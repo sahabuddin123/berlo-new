@@ -1,8 +1,9 @@
 import { lazy } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { RootLayout } from '../components/layout/RootLayout';
+import { AdminAuthProvider } from '../contexts/AdminAuthContext';
 
-// Code-Splitting: Lazy load all route chunks for maximum Lighthouse speed & instant initial load
+// Code-Splitting: Lazy load all public route chunks for maximum Lighthouse speed
 const HomePage = lazy(() => import('../pages/home/HomePage').then((m) => ({ default: m.HomePage })));
 const AboutPage = lazy(() => import('../pages/about/AboutPage').then((m) => ({ default: m.AboutPage })));
 const LeadershipPage = lazy(() => import('../pages/leadership/LeadershipPage').then((m) => ({ default: m.LeadershipPage })));
@@ -24,13 +25,79 @@ const PrivacyPolicyPage = lazy(() => import('../pages/legal/PrivacyPolicyPage').
 const TermsConditionsPage = lazy(() => import('../pages/legal/TermsConditionsPage').then((m) => ({ default: m.TermsConditionsPage })));
 const NotFoundPage = lazy(() => import('../pages/notfound/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 
+// Admin Console Lazy Routes
+const AdminLayout = lazy(() => import('../pages/admin/AdminLayout').then((m) => ({ default: m.AdminLayout })));
+const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage').then((m) => ({ default: m.AdminLoginPage })));
+const AdminForgotPasswordPage = lazy(() => import('../pages/admin/AdminForgotPasswordPage').then((m) => ({ default: m.AdminForgotPasswordPage })));
+const AdminResetPasswordPage = lazy(() => import('../pages/admin/AdminResetPasswordPage').then((m) => ({ default: m.AdminResetPasswordPage })));
+const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage').then((m) => ({ default: m.AdminDashboardPage })));
+const AdminInquiriesPage = lazy(() => import('../pages/admin/AdminInquiriesPage').then((m) => ({ default: m.AdminInquiriesPage })));
+const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage').then((m) => ({ default: m.AdminUsersPage })));
+const AdminServicesPage = lazy(() => import('../pages/admin/AdminServicesPage').then((m) => ({ default: m.AdminServicesPage })));
+const AdminProjectsPage = lazy(() => import('../pages/admin/AdminProjectsPage').then((m) => ({ default: m.AdminProjectsPage })));
+const AdminInsightsPage = lazy(() => import('../pages/admin/AdminInsightsPage').then((m) => ({ default: m.AdminInsightsPage })));
+const AdminGalleryPage = lazy(() => import('../pages/admin/AdminGalleryPage').then((m) => ({ default: m.AdminGalleryPage })));
+const AdminSettingsPage = lazy(() => import('../pages/admin/AdminSettingsPage').then((m) => ({ default: m.AdminSettingsPage })));
+
 export const router = createBrowserRouter([
   // Root URL redirects to default language /en
   {
     path: '/',
     element: <Navigate to="/en" replace />,
   },
-  // Language root: /:lang
+
+  // ---------------------------------------------------------------------------
+  // Administrative RBAC Console Routes
+  // ---------------------------------------------------------------------------
+  {
+    path: '/admin/login',
+    element: (
+      <AdminAuthProvider>
+        <AdminLoginPage />
+      </AdminAuthProvider>
+    ),
+  },
+  {
+    path: '/admin/forgot-password',
+    element: (
+      <AdminAuthProvider>
+        <AdminForgotPasswordPage />
+      </AdminAuthProvider>
+    ),
+  },
+  {
+    path: '/admin/reset-password',
+    element: (
+      <AdminAuthProvider>
+        <AdminResetPasswordPage />
+      </AdminAuthProvider>
+    ),
+  },
+  {
+    path: '/admin',
+    element: (
+      <AdminAuthProvider>
+        <AdminLayout />
+      </AdminAuthProvider>
+    ),
+    children: [
+      { index: true, element: <Navigate to="dashboard" replace /> },
+      { path: 'dashboard', element: <AdminDashboardPage /> },
+      { path: 'inquiries', element: <AdminInquiriesPage /> },
+      { path: 'services', element: <AdminServicesPage /> },
+      { path: 'projects', element: <AdminProjectsPage /> },
+      { path: 'insights', element: <AdminInsightsPage /> },
+      { path: 'gallery', element: <AdminGalleryPage /> },
+      { path: 'team', element: <AdminDashboardPage /> },
+      { path: 'users', element: <AdminUsersPage /> },
+      { path: 'settings', element: <AdminSettingsPage /> },
+      { path: '*', element: <Navigate to="/admin/dashboard" replace /> },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------
+  // Public Multilingual Site Routes
+  // ---------------------------------------------------------------------------
   {
     path: '/:lang',
     element: <RootLayout />,
@@ -58,6 +125,7 @@ export const router = createBrowserRouter([
       { path: '*', element: <NotFoundPage /> },
     ],
   },
+
   // Global wildcard fallback
   {
     path: '*',

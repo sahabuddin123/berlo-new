@@ -11,6 +11,10 @@ backend/public/storage
 backend/bootstrap/cache/*.php
 backend/node_modules/
 backend/.phpunit.cache/
+backend/database/*.sqlite
+backend/database/*.sqlite-*
+*.sqlite
+*.sqlite-*
 
 # --- Frontend (React / Vite) ---
 frontend/node_modules/
