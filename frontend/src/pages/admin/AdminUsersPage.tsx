@@ -125,22 +125,22 @@ export const AdminUsersPage: React.FC = () => {
   };
 
   const roleMeta: Record<string, { label: string; badge: string }> = {
-    superadmin: { label: 'Superadmin', badge: 'bg-[#A302FF]/20 text-[#B833FF] border-[#A302FF]/30' },
-    admin: { label: 'Administrator', badge: 'bg-blue-500/20 text-blue-400 border-blue-500/30' },
-    moderator: { label: 'Moderator', badge: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
-    content_writer: { label: 'Content Writer', badge: 'bg-amber-500/20 text-amber-400 border-amber-500/30' },
+    superadmin: { label: 'Superadmin', badge: 'bg-[#7c3aed]/15 text-[#a855f7] border-[#7c3aed]/30' },
+    admin: { label: 'Administrator', badge: 'bg-blue-500/15 text-blue-400 border-blue-500/30' },
+    moderator: { label: 'Moderator', badge: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' },
+    content_writer: { label: 'Content Writer', badge: 'bg-amber-500/15 text-amber-400 border-amber-500/30' },
   };
 
   return (
     <div className="space-y-6 pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#1b2030]">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#A302FF]/10 text-[#B833FF] mb-2 border border-[#A302FF]/20">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#7c3aed]/15 text-[#a855f7] mb-2 border border-[#7c3aed]/25">
             <ShieldAlert className="w-3.5 h-3.5" />
             <span>Superadmin Clearance Enforced</span>
           </div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             Users & RBAC Roles Management
           </h1>
           <p className="text-xs text-slate-400 mt-1">
@@ -151,7 +151,7 @@ export const AdminUsersPage: React.FC = () => {
         <button
           type="button"
           onClick={() => setIsAddModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#A302FF] hover:bg-[#8D02DE] text-white font-semibold text-xs shadow-lg shadow-[#A302FF]/30 transition-all self-start sm:self-auto cursor-pointer"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#6366f1] hover:from-[#6d28d9] hover:to-[#4f46e5] text-white font-semibold text-xs shadow-md shadow-[#7c3aed]/25 transition-all self-start sm:self-auto cursor-pointer"
         >
           <UserPlus className="w-4 h-4" />
           <span>Provision New User</span>
@@ -159,17 +159,17 @@ export const AdminUsersPage: React.FC = () => {
       </div>
 
       {feedback && (
-        <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs flex items-center gap-2">
+        <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4" />
           <span>{feedback}</span>
         </div>
       )}
 
       {/* Users Table */}
-      <div className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden">
+      <div className="rounded-xl bg-[#111420] border border-[#212738] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950/60 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+            <thead className="bg-[#0c0e17] text-slate-400 uppercase text-[10px] tracking-wider border-b border-[#212738]">
               <tr>
                 <th className="px-5 py-3">Staff Member</th>
                 <th className="px-5 py-3">Email</th>

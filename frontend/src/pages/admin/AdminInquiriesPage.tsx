@@ -126,18 +126,18 @@ export const AdminInquiriesPage: React.FC = () => {
       )}
 
       {/* Filter and Search Bar */}
-      <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row gap-4 items-center justify-between">
+      <div className="p-4 rounded-xl bg-[#111420] border border-[#212738] flex flex-col sm:flex-row gap-4 items-center justify-between">
         {/* Status Filters */}
-        <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+        <div className="flex flex-wrap gap-1.5 w-full sm:w-auto">
           {['all', 'pending', 'in_review', 'contacted', 'closed'].map((st) => (
             <button
               key={st}
               type="button"
               onClick={() => setActiveStatus(st)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                 activeStatus === st
-                  ? 'bg-[#A302FF] text-white shadow-sm'
-                  : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800'
+                  ? 'bg-[#7c3aed] text-white shadow-sm'
+                  : 'bg-[#131622] text-slate-400 hover:text-white border border-[#212738]'
               }`}
             >
               {st.replace('_', ' ')}
@@ -159,16 +159,16 @@ export const AdminInquiriesPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search leads by name or email..."
-            className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:border-[#A302FF]"
+            className="w-full pl-9 pr-3 py-2 rounded-lg bg-[#131622] border border-[#212738] text-white text-xs focus:outline-none focus:border-[#7c3aed] placeholder:text-slate-500"
           />
         </form>
       </div>
 
       {/* Inquiries Table */}
-      <div className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden">
+      <div className="rounded-xl bg-[#111420] border border-[#212738] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950/60 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+            <thead className="bg-[#0c0e17] text-slate-400 uppercase text-[10px] tracking-wider border-b border-[#212738]">
               <tr>
                 <th className="px-5 py-3">Lead / Organization</th>
                 <th className="px-5 py-3">Service Interest</th>
@@ -179,7 +179,7 @@ export const AdminInquiriesPage: React.FC = () => {
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-white/[0.04]">
               {inquiries.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="px-5 py-8 text-center text-slate-500">
@@ -188,7 +188,7 @@ export const AdminInquiriesPage: React.FC = () => {
                 </tr>
               ) : (
                 inquiries.map((inquiry) => (
-                  <tr key={inquiry.id} className="hover:bg-slate-800/40 transition-colors">
+                  <tr key={inquiry.id} className="hover:bg-white/[0.02] transition-colors">
                     <td className="px-5 py-3.5">
                       <div className="font-semibold text-white">{inquiry.name}</div>
                       <div className="text-slate-400 text-[11px] flex items-center gap-2 mt-0.5">
@@ -197,7 +197,7 @@ export const AdminInquiriesPage: React.FC = () => {
                       </div>
                       {inquiry.organization && (
                         <div className="text-slate-400 text-[10px] mt-0.5 flex items-center gap-1">
-                          <Building className="w-3 h-3 text-[#A302FF]" />
+                          <Building className="w-3 h-3 text-[#7c3aed]" />
                           <span>{inquiry.organization}</span>
                         </div>
                       )}
