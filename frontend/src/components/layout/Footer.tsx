@@ -137,19 +137,6 @@ export const Footer: React.FC = () => {
                 </div>
               </form>
             )}
-
-            {/* Industry Memberships */}
-            <div className="pt-2">
-              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                {lang === 'bn' ? 'স্বীকৃত সংস্থা ও সদস্যপদ:' : 'Recognized Member & Affiliations:'}
-              </div>
-              <div className="flex flex-wrap gap-2 text-[10px] font-semibold text-slate-300">
-                <span className="px-2 py-1 rounded bg-slate-800/80 border border-slate-700">BASIS</span>
-                <span className="px-2 py-1 rounded bg-slate-800/80 border border-slate-700">BAPRO</span>
-                <span className="px-2 py-1 rounded bg-slate-800/80 border border-slate-700">PRCA Member</span>
-                <span className="px-2 py-1 rounded bg-slate-800/80 border border-slate-700">e-CAB</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -37,3 +37,20 @@ yarn-error.log*
 .cache/
 tmp/
 
+# --- Scratch & Temporary Development Directories ---
+scratch/
+**/scratch/
+.scratch/
+**/.scratch/
+
+# --- Testing & MCP Output ---
+.playwright-mcp/
+__pycache__/
+*.pyc
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.html
+
+
