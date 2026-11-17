@@ -234,7 +234,18 @@ export async function getPublicTeam(): Promise<TeamMember[]> {
       slug: t.slug || `member-${t.id}`,
       name: { en: t.name_en, bn: t.name_bn },
       role: { en: t.role_en, bn: t.role_bn },
-      department: (t.division_en?.toLowerCase().includes('lead') ? 'leadership' : 'strategy') as any,
+      department: (t.division_en?.toLowerCase() || 'strategy') as any,
+      departmentLabel: {
+        en: t.division_en === 'planning' ? 'Strategic Planning' :
+            t.division_en === 'media' ? 'National Media PR' :
+            t.division_en === 'events' ? 'Events & Summit Lead' :
+            t.division_en === 'creative' ? 'Creative & Visual Art' : (t.division_en || 'Strategic Leadership'),
+        bn: t.division_bn || (t.division_en === 'planning' ? 'কৌশলগত পরিকল্পনা' :
+            t.division_en === 'media' ? 'ন্যাশনাল মিডিয়া পিআর' :
+            t.division_en === 'events' ? 'ইভেন্ট ও সামিট' :
+            t.division_en === 'creative' ? 'ভিজ্যুয়াল ক্রিয়েটিভ' : 'কৌশলগত নেতৃত্ব')
+      },
+      image: t.photo || t.image_url || '/images/berlo/team/shakwat-ullah-01.jpg',
       isLeadership: Boolean(t.is_leadership),
       order: t.sort_order ?? index + 1,
       experienceYears: 12,
@@ -285,6 +296,7 @@ export async function getPublicClients(): Promise<ClientItem[]> {
     return data.map((c: any) => ({
       id: `client-${c.id}`,
       name: c.name,
+      logo: c.logo || '',
       category: (c.industry?.toLowerCase().includes('bank') ? 'banking' : 'telecom') as any,
       industry: { en: c.industry || 'Corporate Partner', bn: c.industry || 'করপোরেট অংশীদার' },
       partnershipYears: 4,
@@ -342,12 +354,15 @@ export async function getPublicVideos(category?: string): Promise<VideoItem[]> {
 // =========================================================================
 export async function getPublicPageSections(pageSlug: string): Promise<Record<string, any>> {
   const data = await fetchJson<any>(`/pages/${pageSlug}`);
-  if (data?.sections) {
+  if (data?.sections && Array.isArray(data.sections)) {
     const map: Record<string, any> = {};
     for (const sec of data.sections) {
       map[sec.section_key] = sec;
     }
     return map;
+  }
+  if (data && typeof data === 'object') {
+    return data;
   }
   return {};
 }

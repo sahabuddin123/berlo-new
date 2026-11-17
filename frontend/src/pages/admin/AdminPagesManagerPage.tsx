@@ -23,6 +23,9 @@ import {
   Users,
   Camera,
   MessageSquare,
+  Plus,
+  Trash2,
+  Film,
 } from 'lucide-react';
 
 interface SlideConfig {
@@ -206,7 +209,7 @@ export const AdminPagesManagerPage: React.FC = () => {
     }
   };
 
-  // Section items configuration for Navigator list
+  // Section items configuration for Navigator list (14 blocks in homepage order)
   const sectionMetaList: { key: string; name: string; icon: any; desc: string; badge: string }[] = [
     {
       key: 'hero',
@@ -216,71 +219,92 @@ export const AdminPagesManagerPage: React.FC = () => {
       badge: 'Interactive',
     },
     {
-      key: 'video_showcase',
-      name: '02. Cinematic Video Showcase',
-      icon: Video,
-      desc: 'Agency Reel, YouTube Embed, Newsroom Tag & Poster',
+      key: 'spotlight',
+      name: '02. In the Spotlight',
+      icon: Tv,
+      desc: 'Tier-1 National Media Outlets Logo Carousel',
       badge: 'Media',
     },
     {
+      key: 'video_showcase',
+      name: '03. Cinematic Video Showcase',
+      icon: Video,
+      desc: 'Agency Reel, YouTube Embed, Newsroom Tag & Poster',
+      badge: 'Video',
+    },
+    {
       key: 'services_header',
-      name: '03. Services Showcase Header',
+      name: '04. Our Services Grid',
       icon: Briefcase,
-      desc: 'Pill Badge, Main Headline & Narrative Subtitle',
-      badge: 'Content',
+      desc: 'Services Display Count, Header Badge & Narrative',
+      badge: 'Services',
     },
     {
       key: 'consultancy_header',
-      name: '04. Consultation Wizard Header',
+      name: '05. Free Consultation Wizard',
       icon: HelpCircle,
-      desc: 'Interactive Consultation Form Header & Subtitle',
+      desc: 'Advisory Team Photo, Form Header & Narrative',
       badge: 'Form',
     },
     {
       key: 'stats',
-      name: '05. Measurable Impact & Stats',
+      name: '06. Measurable Impact & Stats',
       icon: BarChart3,
       desc: '4 Impact Metric Counters (98%, 150+, 14+, 24/7)',
-      badge: 'Numbers',
+      badge: 'Metrics',
     },
     {
       key: 'why_us',
-      name: '06. Why Choose Us (Pillars)',
+      name: '07. Why Choose Us (Pillars)',
       icon: Shield,
       desc: '4 Strategic Strength Pillars (Confidentiality, Media, etc.)',
-      badge: 'Cards',
+      badge: 'Pillars',
+    },
+    {
+      key: 'clients_showcase',
+      name: '08. Innovating Success Together',
+      icon: Layers,
+      desc: '4 3D Flip Card Slots & Marquee Client Logos',
+      badge: 'Clients',
+    },
+    {
+      key: 'testimonials_header',
+      name: '09. Clients Says (Video Reviews)',
+      icon: MessageSquare,
+      desc: '3 Client Video Testimonials & YouTube IDs',
+      badge: 'Reviews',
     },
     {
       key: 'case_studies_header',
-      name: '07. Case Studies Header',
+      name: '10. Recent Projects & Case Studies',
       icon: FileText,
-      desc: 'Featured Projects & De-escalation Milestones Header',
-      badge: 'Header',
-    },
-    {
-      key: 'gallery_header',
-      name: '08. Memories & Moments Gallery',
-      icon: Camera,
-      desc: 'Press Delegations & National Media Archive Header',
-      badge: 'Header',
+      desc: 'Case Studies Display Count & Portfolio Header',
+      badge: 'Portfolio',
     },
     {
       key: 'leadership_header',
-      name: '09. Executive Leadership Header',
+      name: '11. Strategic Leadership & Team',
       icon: Users,
-      desc: 'Senior Partners & Strategic Advisors Header',
-      badge: 'Header',
+      desc: 'Team Members Display Count & Executive Header',
+      badge: 'Team',
+    },
+    {
+      key: 'gallery_header',
+      name: '12. Memories & Moments Gallery',
+      icon: Camera,
+      desc: 'Gallery Photos Display Count & Archival Header',
+      badge: 'Gallery',
     },
     {
       key: 'insights_header',
-      name: '10. Strategic Insights Header',
-      icon: MessageSquare,
-      desc: 'Articles, Editorials & Industry Analysis Header',
-      badge: 'Header',
+      name: '13. Latest Blogs & Insights',
+      icon: Globe,
+      desc: 'Articles Display Count & Thought Leadership Header',
+      badge: 'Blog',
     },
     {
       key: 'cta',
-      name: '11. Call-to-Action (CTA) Banner',
+      name: '14. Final Call-to-Action (CTA)',
       icon: Rocket,
       desc: 'High-Stakes Crisis Consultation Schedule Banner',
       badge: 'Conversion',
@@ -916,6 +940,132 @@ export const AdminPagesManagerPage: React.FC = () => {
                     </div>
                   )}
                 </div>
+              ) : currentSection.section_key === 'spotlight' ? (
+                /* ================================================================= */
+                /* 02. IN THE SPOTLIGHT (MEDIA OUTLET LOGOS)                         */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="In the Spotlight"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="মিডিয়ার স্পটলাইট"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Media Logos Grid & Manager */}
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-white flex items-center gap-2">
+                        <Tv className="w-4 h-4 text-purple-400" />
+                        National & Global Media Logos (Spotlight Marquee)
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const currentList = currentSection.metadata?.media_logos || [
+                            { name: 'The Business Standard', logo: '/images/berlo/media/tbs.svg' },
+                            { name: 'প্রথম আলো', logo: '/images/berlo/media/prothom-alo.svg' },
+                            { name: 'The Daily Star', logo: '/images/berlo/media/the-daily-star.svg' },
+                            { name: 'Dhaka Tribune', logo: '/images/berlo/media/dhaka-tribune.svg' },
+                          ];
+                          updateCurrentSectionMetadata((m) => ({
+                            ...m,
+                            media_logos: [...currentList, { name: 'New Media Outlet', logo: '/images/berlo/clients/atn.jpg' }],
+                          }));
+                        }}
+                        className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#7c3aed] text-white text-[11px] font-semibold hover:bg-[#6d28d9]"
+                      >
+                        <Plus className="w-3 h-3" /> Add Media Logo
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+                      {(
+                        currentSection.metadata?.media_logos || [
+                          { name: 'The Business Standard', logo: '/images/berlo/media/tbs.svg' },
+                          { name: 'প্রথম আলো', logo: '/images/berlo/media/prothom-alo.svg' },
+                          { name: 'The Daily Star', logo: '/images/berlo/media/the-daily-star.svg' },
+                          { name: 'Dhaka Tribune', logo: '/images/berlo/media/dhaka-tribune.svg' },
+                          { name: 'The Financial Express', logo: '/images/berlo/media/financial-express.png' },
+                          { name: 'Reuters', logo: '/images/berlo/media/reuters.svg' },
+                        ]
+                      ).map((media: any, idx: number) => (
+                        <div key={idx} className="p-3 rounded-xl bg-[#0f121d] border border-[#212738] space-y-2 relative group">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const list = [...(currentSection.metadata?.media_logos || [])];
+                              list.splice(idx, 1);
+                              updateCurrentSectionMetadata((m) => ({ ...m, media_logos: list }));
+                            }}
+                            className="absolute top-2 right-2 p-1 text-slate-500 hover:text-rose-400"
+                            title="Remove"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                          <div className="w-full h-12 rounded-lg bg-white p-2 flex items-center justify-center">
+                            <img src={media.logo} alt={media.name} className="max-h-8 max-w-[100px] object-contain" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-slate-400">Media Name:</span>
+                            <input
+                              type="text"
+                              value={media.name || ''}
+                              onChange={(e) => {
+                                const list = [...(currentSection.metadata?.media_logos || [])];
+                                list[idx] = { ...list[idx], name: e.target.value };
+                                updateCurrentSectionMetadata((m) => ({ ...m, media_logos: list }));
+                              }}
+                              className="w-full px-2.5 py-1 rounded bg-[#141826] border border-[#232b3e] text-white text-xs mt-1"
+                            />
+                          </div>
+                          <div className="flex gap-1.5 items-center">
+                            <input
+                              type="text"
+                              value={media.logo || ''}
+                              onChange={(e) => {
+                                const list = [...(currentSection.metadata?.media_logos || [])];
+                                list[idx] = { ...list[idx], logo: e.target.value };
+                                updateCurrentSectionMetadata((m) => ({ ...m, media_logos: list }));
+                              }}
+                              className="flex-1 px-2 py-1 rounded bg-[#141826] border border-[#232b3e] text-white text-[11px] font-mono"
+                            />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                openMediaPicker((url) => {
+                                  const list = [...(currentSection.metadata?.media_logos || [])];
+                                  list[idx] = { ...list[idx], logo: url };
+                                  updateCurrentSectionMetadata((m) => ({ ...m, media_logos: list }));
+                                })
+                              }
+                              className="px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-white"
+                              title="Media Library"
+                            >
+                              <FolderOpen className="w-3 h-3" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               ) : currentSection.section_key === 'video_showcase' ? (
                 /* ================================================================= */
                 /* 02. VIDEO SHOWCASE BUILDER                                        */
@@ -1184,6 +1334,570 @@ export const AdminPagesManagerPage: React.FC = () => {
                           </div>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'services_header' ? (
+                /* ================================================================= */
+                /* 04. OUR SERVICES GRID & DISPLAY CONTROLS                          */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <span className="text-xs font-bold text-white block">Services Display Count on Homepage:</span>
+                      <p className="text-[11px] text-slate-400 mt-0.5">Control how many active services appear in the 3-column grid.</p>
+                    </div>
+                    <select
+                      value={currentSection.metadata?.display_count || 9}
+                      onChange={(e) =>
+                        updateCurrentSectionMetadata((m) => ({
+                          ...m,
+                          display_count: Number(e.target.value),
+                        }))
+                      }
+                      className="px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white text-xs font-semibold"
+                    >
+                      <option value={3}>3 Services (1 Row)</option>
+                      <option value={6}>6 Services (2 Rows)</option>
+                      <option value={9}>9 Services (Standard 3x3)</option>
+                      <option value={12}>12 Services (Full Catalog)</option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Top Pill Badge (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.badge_en || ''}
+                        onChange={(e) => updateCurrentSectionField('badge_en', e.target.value)}
+                        placeholder="PR Services"
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Top Pill Badge (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.badge_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('badge_bn', e.target.value)}
+                        placeholder="জনসংযোগ সেবাসমূহ"
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Our Services"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="আমাদের সেবাসমূহ"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                    <div className="space-y-1.5 md:col-span-2">
+                      <label className="text-slate-300 font-semibold">Section Subtitle / Narrative (English)</label>
+                      <textarea
+                        rows={2}
+                        value={currentSection.subtitle_en || ''}
+                        onChange={(e) => updateCurrentSectionField('subtitle_en', e.target.value)}
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5 md:col-span-2">
+                      <label className="text-slate-300 font-semibold">Section Subtitle / Narrative (Bangla)</label>
+                      <textarea
+                        rows={2}
+                        value={currentSection.subtitle_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('subtitle_bn', e.target.value)}
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'consultancy_header' ? (
+                /* ================================================================= */
+                /* 05. CONSULTATION WIZARD & ADVISORY PHOTO                          */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Book a Free Consultancy"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="ফ্রি পরামর্শ গ্রহণ"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] space-y-3">
+                    <span className="text-xs font-bold text-white flex items-center gap-2">
+                      <ImageIcon className="w-4 h-4 text-purple-400" />
+                      Advisory Team Photo (Left Column Image)
+                    </span>
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
+                      <div className="w-32 h-24 rounded-lg bg-black border border-white/10 overflow-hidden shrink-0">
+                        <img
+                          src={currentSection.image_url || '/images/berlo/team-consultancy.jpg'}
+                          alt="Consultancy Team"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 w-full space-y-2 text-xs">
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={currentSection.image_url || ''}
+                            onChange={(e) => updateCurrentSectionField('image_url', e.target.value)}
+                            placeholder="/images/berlo/team-consultancy.jpg"
+                            className="flex-1 px-3 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white font-mono"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => openMediaPicker((url) => updateCurrentSectionField('image_url', url))}
+                            className="px-3.5 py-2 rounded-xl bg-[#7c3aed] text-white font-semibold flex items-center gap-1.5 shrink-0"
+                          >
+                            <FolderOpen className="w-3.5 h-3.5" /> Select Media
+                          </button>
+                        </div>
+                        <p className="text-[11px] text-slate-400">
+                          Displays with an ambient multi-layer glow backplate on the homepage next to the 3-step form.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'clients_showcase' ? (
+                /* ================================================================= */
+                /* 08. INNOVATING SUCCESS TOGETHER & 3D FLIP CARDS                   */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Innovating Success Together"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="একসাথে উদ্ভাবনী সাফল্য"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 4 3D Flip Slots */}
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] space-y-4">
+                    <span className="text-xs font-bold text-white flex items-center gap-2">
+                      <Layers className="w-4 h-4 text-purple-400" />
+                      4 Large 3D Flip Card Slots (Top Row)
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                      {[0, 1, 2, 3].map((slotIdx) => {
+                        const slots = currentSection.metadata?.flip_slots || [
+                          { front: '/images/berlo/clients/unique.jpg', back: '/images/berlo/clients/radiant.jpg' },
+                          { front: '/images/berlo/clients/rahimafrooz.jpg', back: '/images/berlo/clients/ucep.jpg' },
+                          { front: '/images/berlo/clients/rupayan.jpg', back: '/images/berlo/clients/netcom.jpg' },
+                          { front: '/images/berlo/clients/rajasthan.jpg', back: '/images/berlo/clients/idcol.jpg' },
+                        ];
+                        const slot = slots[slotIdx] || { front: '', back: '' };
+                        return (
+                          <div key={slotIdx} className="p-3.5 rounded-xl bg-[#0f121d] border border-[#212738] space-y-3">
+                            <span className="text-[11px] font-bold text-purple-300 block">Flip Slot #{slotIdx + 1}</span>
+                            <div className="grid grid-cols-2 gap-2">
+                              <div>
+                                <span className="text-[10px] text-slate-400">Front Logo:</span>
+                                <div className="flex gap-1.5 mt-1">
+                                  <input
+                                    type="text"
+                                    value={slot.front || ''}
+                                    onChange={(e) => {
+                                      const next = [...slots];
+                                      next[slotIdx] = { ...next[slotIdx], front: e.target.value };
+                                      updateCurrentSectionMetadata((m) => ({ ...m, flip_slots: next }));
+                                    }}
+                                    className="flex-1 px-2 py-1 rounded bg-[#141826] border border-[#232b3e] text-white text-[11px] font-mono"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      openMediaPicker((url) => {
+                                        const next = [...slots];
+                                        next[slotIdx] = { ...next[slotIdx], front: url };
+                                        updateCurrentSectionMetadata((m) => ({ ...m, flip_slots: next }));
+                                      })
+                                    }
+                                    className="p-1 rounded bg-white/10 text-white"
+                                  >
+                                    <FolderOpen className="w-3 h-3" />
+                                  </button>
+                                </div>
+                              </div>
+                              <div>
+                                <span className="text-[10px] text-slate-400">Back Logo:</span>
+                                <div className="flex gap-1.5 mt-1">
+                                  <input
+                                    type="text"
+                                    value={slot.back || ''}
+                                    onChange={(e) => {
+                                      const next = [...slots];
+                                      next[slotIdx] = { ...next[slotIdx], back: e.target.value };
+                                      updateCurrentSectionMetadata((m) => ({ ...m, flip_slots: next }));
+                                    }}
+                                    className="flex-1 px-2 py-1 rounded bg-[#141826] border border-[#232b3e] text-white text-[11px] font-mono"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      openMediaPicker((url) => {
+                                        const next = [...slots];
+                                        next[slotIdx] = { ...next[slotIdx], back: url };
+                                        updateCurrentSectionMetadata((m) => ({ ...m, flip_slots: next }));
+                                      })
+                                    }
+                                    className="p-1 rounded bg-white/10 text-white"
+                                  >
+                                    <FolderOpen className="w-3 h-3" />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'testimonials_header' ? (
+                /* ================================================================= */
+                /* 09. CLIENTS SAYS & VIDEO TESTIMONIALS                             */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Clients Says"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="ক্লায়েন্টদের মন্তব্য ও রিভিউ"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 3 Video Cards */}
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] space-y-4">
+                    <span className="text-xs font-bold text-white flex items-center gap-2">
+                      <Film className="w-4 h-4 text-rose-400" />
+                      3 Client Video Reviews (16:9 Thumbnail Cards with YouTube Modals)
+                    </span>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                      {[0, 1, 2].map((vIdx) => {
+                        const vList = currentSection.metadata?.video_testimonials || [
+                          { id: 1, title: 'Enterprise Reputation & Brand Scaling', subtitle: 'Strategic PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-1.jpg', youtubeId: 'FHnfg223H60' },
+                          { id: 2, title: 'Nationwide Media Reach & Expansion', subtitle: 'Media Access', thumbnail: '/images/berlo/testimonials/stock-testimonial-2.jpg', youtubeId: 'OTClukQmiEw' },
+                          { id: 3, title: 'Enduring Enterprise Trust & Crisis Shield', subtitle: 'Crisis PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-3.jpg', youtubeId: 'osL5z5nCE8M' },
+                        ];
+                        const item = vList[vIdx] || { title: '', subtitle: '', thumbnail: '', youtubeId: '' };
+                        return (
+                          <div key={vIdx} className="p-3.5 rounded-xl bg-[#0f121d] border border-[#212738] space-y-2.5">
+                            <span className="text-[11px] font-bold text-rose-300 block">Video Review #{vIdx + 1}</span>
+                            <div>
+                              <span className="text-[10px] text-slate-400">Card Title:</span>
+                              <input
+                                type="text"
+                                value={item.title || ''}
+                                onChange={(e) => {
+                                  const next = [...vList];
+                                  next[vIdx] = { ...next[vIdx], title: e.target.value };
+                                  updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
+                                }}
+                                className="w-full px-2.5 py-1.5 rounded-lg bg-[#141826] border border-[#232b3e] text-white text-xs mt-1"
+                              />
+                            </div>
+                            <div>
+                              <span className="text-[10px] text-slate-400">YouTube Video ID:</span>
+                              <input
+                                type="text"
+                                value={item.youtubeId || item.youtube_id || ''}
+                                onChange={(e) => {
+                                  const next = [...vList];
+                                  next[vIdx] = { ...next[vIdx], youtubeId: e.target.value };
+                                  updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
+                                }}
+                                placeholder="FHnfg223H60"
+                                className="w-full px-2.5 py-1.5 rounded-lg bg-[#141826] border border-[#232b3e] text-white font-mono text-xs mt-1"
+                              />
+                            </div>
+                            <div>
+                              <span className="text-[10px] text-slate-400">Thumbnail Image:</span>
+                              <div className="flex gap-1.5 mt-1">
+                                <input
+                                  type="text"
+                                  value={item.thumbnail || ''}
+                                  onChange={(e) => {
+                                    const next = [...vList];
+                                    next[vIdx] = { ...next[vIdx], thumbnail: e.target.value };
+                                    updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
+                                  }}
+                                  className="flex-1 px-2 py-1 rounded bg-[#141826] border border-[#232b3e] text-white text-[11px] font-mono"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    openMediaPicker((url) => {
+                                      const next = [...vList];
+                                      next[vIdx] = { ...next[vIdx], thumbnail: url };
+                                      updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
+                                    })
+                                  }
+                                  className="p-1 rounded bg-white/10 text-white"
+                                >
+                                  <FolderOpen className="w-3 h-3" />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'case_studies_header' ? (
+                /* ================================================================= */
+                /* 10. RECENT PROJECTS & CASE STUDIES CONTROLS                       */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <span className="text-xs font-bold text-white block">Case Studies Display Count:</span>
+                      <p className="text-[11px] text-slate-400 mt-0.5">Control how many featured projects show on the homepage.</p>
+                    </div>
+                    <select
+                      value={currentSection.metadata?.display_count || 4}
+                      onChange={(e) =>
+                        updateCurrentSectionMetadata((m) => ({
+                          ...m,
+                          display_count: Number(e.target.value),
+                        }))
+                      }
+                      className="px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white text-xs font-semibold"
+                    >
+                      <option value={3}>3 Case Studies</option>
+                      <option value={4}>4 Case Studies (1 Large Hero + 3 Cards)</option>
+                      <option value={6}>6 Case Studies</option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Recent Projects"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="সাম্প্রতিক প্রকল্পসমূহ"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'leadership_header' ? (
+                /* ================================================================= */
+                /* 11. STRATEGIC LEADERSHIP & TEAM CONTROLS                          */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <span className="text-xs font-bold text-white block">Team Members Display Count:</span>
+                      <p className="text-[11px] text-slate-400 mt-0.5">Control how many strategic leaders appear on the homepage.</p>
+                    </div>
+                    <select
+                      value={currentSection.metadata?.display_count || 6}
+                      onChange={(e) =>
+                        updateCurrentSectionMetadata((m) => ({
+                          ...m,
+                          display_count: Number(e.target.value),
+                        }))
+                      }
+                      className="px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white text-xs font-semibold"
+                    >
+                      <option value={3}>3 Members (1 Row)</option>
+                      <option value={6}>6 Members (2 Rows x 3)</option>
+                      <option value={9}>9 Members</option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Our Strategic Leadership & Team"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="আমাদের কৌশলগত নেতৃত্ব ও টিম"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'gallery_header' ? (
+                /* ================================================================= */
+                /* 12. MEMORIES & MOMENTS GALLERY CONTROLS                           */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <span className="text-xs font-bold text-white block">Gallery Photos Display Count:</span>
+                      <p className="text-[11px] text-slate-400 mt-0.5">Control how many moment photos appear in the high-density mosaic.</p>
+                    </div>
+                    <select
+                      value={currentSection.metadata?.display_count || 12}
+                      onChange={(e) =>
+                        updateCurrentSectionMetadata((m) => ({
+                          ...m,
+                          display_count: Number(e.target.value),
+                        }))
+                      }
+                      className="px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white text-xs font-semibold"
+                    >
+                      <option value={6}>6 Photos</option>
+                      <option value={12}>12 Photos (Full 6-Col Mosaic)</option>
+                      <option value={18}>18 Photos</option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Memories & Moments"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="স্মৃতি ও মুহূর্তসমূহ"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : currentSection.section_key === 'insights_header' ? (
+                /* ================================================================= */
+                /* 13. LATEST BLOGS & INSIGHTS CONTROLS                              */
+                /* ================================================================= */
+                <div className="p-6 space-y-5">
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <span className="text-xs font-bold text-white block">Articles Display Count:</span>
+                      <p className="text-[11px] text-slate-400 mt-0.5">Control how many blog cards appear on the homepage.</p>
+                    </div>
+                    <select
+                      value={currentSection.metadata?.display_count || 3}
+                      onChange={(e) =>
+                        updateCurrentSectionMetadata((m) => ({
+                          ...m,
+                          display_count: Number(e.target.value),
+                        }))
+                      }
+                      className="px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white text-xs font-semibold"
+                    >
+                      <option value={3}>3 Articles (1 Row)</option>
+                      <option value={6}>6 Articles (2 Rows)</option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (English)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_en || ''}
+                        onChange={(e) => updateCurrentSectionField('title_en', e.target.value)}
+                        placeholder="Latest Blogs"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-slate-300 font-semibold">Section Headline (Bangla)</label>
+                      <input
+                        type="text"
+                        value={currentSection.title_bn || ''}
+                        onChange={(e) => updateCurrentSectionField('title_bn', e.target.value)}
+                        placeholder="সাম্প্রতিক ব্লগ ও ইনসাইটস"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141826] border border-[#232b3e] text-white font-bangla"
+                      />
                     </div>
                   </div>
                 </div>

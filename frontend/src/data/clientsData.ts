@@ -1,6 +1,7 @@
 export interface ClientItem {
   id: string;
   name: string;
+  logo?: string;
   category: 'banking' | 'telecom' | 'fmcg' | 'energy' | 'healthcare' | 'development';
   industry: { en: string; bn: string };
   partnershipYears: number;

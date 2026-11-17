@@ -3,7 +3,9 @@ export interface TeamMember {
   slug: string;
   name: { en: string; bn: string };
   role: { en: string; bn: string };
-  department: 'leadership' | 'strategy' | 'pr' | 'events' | 'creative';
+  department: 'leadership' | 'strategy' | 'pr' | 'events' | 'creative' | 'planning' | 'media';
+  departmentLabel?: { en: string; bn: string };
+  image?: string;
   isLeadership: boolean;
   order: number;
   experienceYears: number;

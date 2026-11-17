@@ -2,7 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { insightsData, Article } from '../../data/insightsData';
-import { getPublicInsights, submitContactInquiry, getPublicPageSections } from '../../services/publicApi';
+import {
+  getPublicInsights,
+  submitContactInquiry,
+  getPublicPageSections,
+  getPublicServices,
+  getPublicClients,
+  getPublicProjects,
+  getPublicTeam,
+  getPublicPhotos,
+} from '../../services/publicApi';
+import { ServiceItem } from '../../data/servicesData';
+import { CaseStudy } from '../../data/projectsData';
+import { ClientItem } from '../../data/clientsData';
+import { TeamMember } from '../../data/teamData';
+import { PhotoItem } from '../../data/galleryData';
 import { Seo } from '../../components/common/Seo';
 import {
   FaPlay,
@@ -49,6 +63,11 @@ export const HomePage: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [homeArticles, setHomeArticles] = useState<Article[]>(insightsData);
   const [pageSections, setPageSections] = useState<Record<string, any>>({});
+  const [dbServices, setDbServices] = useState<ServiceItem[]>([]);
+  const [dbClients, setDbClients] = useState<ClientItem[]>([]);
+  const [dbProjects, setDbProjects] = useState<CaseStudy[]>([]);
+  const [dbTeam, setDbTeam] = useState<TeamMember[]>([]);
+  const [dbPhotos, setDbPhotos] = useState<PhotoItem[]>([]);
 
   useEffect(() => {
     let isMounted = true;
@@ -60,6 +79,31 @@ export const HomePage: React.FC = () => {
     getPublicPageSections('home').then((data) => {
       if (isMounted && data) {
         setPageSections(data);
+      }
+    });
+    getPublicServices().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setDbServices(data);
+      }
+    });
+    getPublicClients().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setDbClients(data);
+      }
+    });
+    getPublicProjects().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setDbProjects(data);
+      }
+    });
+    getPublicTeam().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setDbTeam(data);
+      }
+    });
+    getPublicPhotos().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setDbPhotos(data);
       }
     });
     return () => {
@@ -705,6 +749,139 @@ export const HomePage: React.FC = () => {
     },
   ];
 
+  // Dynamic Helpers & Resolvers for all 14 Homepage Sections
+  const getServiceIcon = (iconName?: string) => {
+    switch (iconName?.toLowerCase()) {
+      case 'shield':
+      case 'shieldcheck':
+      case 'shieldhalved':
+        return FaShieldHalved;
+      case 'building':
+      case 'office':
+        return FaBuilding;
+      case 'bullseye':
+      case 'target':
+        return FaBullseye;
+      case 'landmark':
+      case 'government':
+        return FaLandmark;
+      case 'chartline':
+      case 'chart':
+        return FaChartLine;
+      case 'award':
+      case 'event':
+        return FaAward;
+      case 'microphone':
+      case 'mic':
+        return FaMicrophone;
+      case 'handshake':
+      case 'handshakeangle':
+        return FaHandshakeAngle;
+      case 'bullhorn':
+      default:
+        return FaBullhorn;
+    }
+  };
+
+  // Section 02: In the Spotlight
+  const spotlightSection = pageSections['spotlight'];
+  const dynamicMediaLogos = (spotlightSection?.metadata?.media_logos && Array.isArray(spotlightSection.metadata.media_logos) && spotlightSection.metadata.media_logos.length > 0)
+    ? spotlightSection.metadata.media_logos
+    : spotlightMediaLogos;
+
+  // Section 03: Video Showcase
+  const videoSection = pageSections['video_showcase'];
+  const showcaseYoutubeId = videoSection?.metadata?.youtube_id || (videoSection?.video_url ? videoSection.video_url.replace(/.*(?:embed\/|v=)([^&]+).*/, '$1') : '8nees6k5oNk');
+
+  // Section 04: Our Services
+  const servicesSection = pageSections['services_header'];
+  const servicesDisplayCount = servicesSection?.metadata?.display_count || 9;
+  const activeServicesList = (dbServices.length > 0
+    ? dbServices.map((s, idx) => ({
+        id: s.slug || s.id,
+        icon: getServiceIcon(s.iconName),
+        title: lang === 'bn' ? s.title.bn : s.title.en,
+        desc: lang === 'bn' ? s.shortDesc.bn || s.overview.bn : s.shortDesc.en || s.overview.en,
+        link: `/services/${s.slug}`,
+        isTopLeft: idx === 0,
+        isBottomLeft: idx === 6,
+      }))
+    : servicesList
+  ).slice(0, servicesDisplayCount);
+
+  // Section 05: Book a Free Consultation
+  const consultancySection = pageSections['consultancy_header'];
+
+  // Section 08: Innovating Success Together (Clients)
+  const clientsSection = pageSections['clients_showcase'];
+  const activeMarqueeLogos = (dbClients.length > 0 && dbClients.some((c) => Boolean(c.logo)))
+    ? dbClients.filter((c) => Boolean(c.logo)).map((c) => ({
+        name: c.name,
+        logo: c.logo || '/images/berlo/clients/unique.jpg',
+      }))
+    : marqueeLogos;
+
+  // Section 09: Clients Says (Testimonials)
+  const testimonialsSection = pageSections['testimonials_header'];
+  const activeVideoTestimonials = (testimonialsSection?.metadata?.video_testimonials && Array.isArray(testimonialsSection.metadata.video_testimonials) && testimonialsSection.metadata.video_testimonials.length > 0)
+    ? testimonialsSection.metadata.video_testimonials
+    : videoTestimonials;
+
+  // Section 10: Recent Projects / Case Studies
+  const projectsSection = pageSections['case_studies_header'];
+  const projectsDisplayCount = projectsSection?.metadata?.display_count || 4;
+  const activeProjects = (dbProjects.length > 0
+    ? dbProjects.map((p) => ({
+        id: p.slug || p.id,
+        categoryType: ((p.category as any) === 'trade' || p.slug.includes('trade') ? 'trade' : (p.category as any) === 'crisis' || p.slug.includes('crisis') ? 'crisis' : (p.category as any) === 'speaker' || p.slug.includes('speaker') ? 'speaker' : 'events') as any,
+        title: lang === 'bn' ? p.title.bn : p.title.en,
+        category: lang === 'bn' ? p.industry.bn : p.industry.en,
+        metric: p.heroMetrics?.[0]?.value ? `${p.heroMetrics[0].value} ${lang === 'bn' ? p.heroMetrics[0].label.bn : p.heroMetrics[0].label.en}` : (lang === 'bn' ? '৫০+ আন্তর্জাতিক গণমাধ্যম' : '50+ Global Media Outlets'),
+        submetric: p.heroMetrics?.[1]?.value ? `${p.heroMetrics[1].value} ${lang === 'bn' ? p.heroMetrics[1].label.bn : p.heroMetrics[1].label.en}` : (lang === 'bn' ? '২৫ লক্ষ+ দর্শনার্থী সংযোগ' : '2.5M+ On-Ground Reach'),
+        deliverables: p.servicesProvided?.join(' • ') || (lang === 'bn' ? 'ভিআইপি প্রেস ব্রিফিং • মন্ত্রী পর্যায়ের প্রটোকল' : 'VIP Press Briefing • Ministerial Protocol'),
+        desc: lang === 'bn' ? p.overview.bn || p.challenge.bn : p.overview.en || p.challenge.en,
+        image: (p as any).image_url || (p as any).hero_image || (p.slug.includes('trade') ? '/images/berlo/projects/dhaka-trade-fair_cover.jpg' : p.slug.includes('synova') || p.slug.includes('event') ? '/images/berlo/projects/event-management_synova.jpg' : p.slug.includes('crisis') ? '/images/berlo/projects/production-crisis_cover-1.jpg' : '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195434-56b4a48d.jpg'),
+        link: `/work/${p.slug}`,
+        client: p.clientName || 'Export Promotion Bureau (EPB)',
+        year: p.timeline || '2025–2026',
+        tag: `#${p.slug}`,
+      }))
+    : featuredProjects
+  ).slice(0, projectsDisplayCount);
+
+  // Section 11: Strategic Leadership & Team
+  const leadershipSection = pageSections['leadership_header'];
+  const teamDisplayCount = leadershipSection?.metadata?.display_count || 6;
+  const activeTeamMembers = (dbTeam.length > 0
+    ? dbTeam.map((m) => ({
+        id: m.slug || m.id,
+        department: (['planning', 'media', 'events', 'creative'].includes(m.department) ? m.department : 'planning') as any,
+        name: lang === 'bn' ? m.name.bn : m.name.en,
+        role: lang === 'bn' ? m.role.bn : m.role.en,
+        departmentLabel: lang === 'bn' ? m.departmentLabel?.bn || 'কৌশলগত পরিকল্পনা' : m.departmentLabel?.en || 'Strategic Planning',
+        image: m.image || '/images/berlo/team/shakwat-ullah-01.jpg',
+        bio: lang === 'bn' ? m.bio.bn : m.bio.en,
+        experience: `${m.experienceYears || 12}+ Yrs Exp`,
+        email: m.social?.email || 'contact@berlocommunications.com',
+      }))
+    : teamMembers
+  ).slice(0, teamDisplayCount);
+
+  // Section 12: Memories & Moments Gallery
+  const gallerySection = pageSections['gallery_header'];
+  const galleryDisplayCount = gallerySection?.metadata?.display_count || 12;
+  const activeMomentPhotos = (dbPhotos.length > 0
+    ? dbPhotos.map((p) => ({
+        title: lang === 'bn' ? p.title.bn : p.title.en,
+        url: p.image || '/images/berlo/projects/dhaka-trade-fair_3-1.jpg',
+      }))
+    : momentPhotos
+  ).slice(0, galleryDisplayCount);
+
+  // Section 13: Latest Blogs & Insights
+  const insightsSection = pageSections['insights_header'];
+  const insightsDisplayCount = insightsSection?.metadata?.display_count || 3;
+
   const currentSlide = heroSlides[activeSlideIndex];
 
   return (
@@ -943,11 +1120,12 @@ export const HomePage: React.FC = () => {
             
             {/* Section Title with .b-border highlighter */}
             <h2 className="section-main-title text-slate-900 dark:text-white shrink-0 text-center lg:text-left whitespace-nowrap">
-              {lang === 'bn' ? (
-                <>মিডিয়ার <span className="b-border">স্পটলাইট</span></>
-              ) : (
-                <>In the <span className="b-border">Spotlight</span></>
-              )}
+              {(lang === 'bn' ? spotlightSection?.title_bn : spotlightSection?.title_en) ||
+                (lang === 'bn' ? (
+                  <>মিডিয়ার <span className="b-border">স্পটলাইট</span></>
+                ) : (
+                  <>In the <span className="b-border">Spotlight</span></>
+                ))}
             </h2>
 
             {/* Continuous Right-to-Left Infinite Moving Carousel with Original Media Logos */}
@@ -957,7 +1135,7 @@ export const HomePage: React.FC = () => {
               <div className="absolute right-0 inset-y-0 w-8 sm:w-16 bg-gradient-to-l from-slate-50 dark:from-[#111111] to-transparent z-10 pointer-events-none" />
 
               <div className="animate-marquee flex items-center gap-4 sm:gap-6 py-1">
-                {[...spotlightMediaLogos, ...spotlightMediaLogos].map((media, idx) => (
+                {[...dynamicMediaLogos, ...dynamicMediaLogos].map((media: any, idx: number) => (
                   <div
                     key={`${media.name}-${idx}`}
                     className="shrink-0 h-12 sm:h-14 px-5 sm:px-6 bg-white dark:bg-white border border-slate-200/90 rounded-sm flex items-center justify-center shadow-xs hover:border-[#A302FF] hover:shadow-md hover:scale-105 transition-all duration-300 group cursor-pointer"
@@ -988,13 +1166,13 @@ export const HomePage: React.FC = () => {
         onMouseMove={handleVideoMouseMove}
         onMouseEnter={() => setIsVideoHovered(true)}
         onMouseLeave={() => setIsVideoHovered(false)}
-        onClick={() => setActiveVideoId('8nees6k5oNk')}
+        onClick={() => setActiveVideoId(showcaseYoutubeId)}
         className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[650px] bg-black overflow-hidden border-y border-slate-800 dark:border-[#1F1F1F] cursor-pointer select-none group"
       >
         {/* Continuous Autoplay Background Video (Muted Endless Loop - 3D Illustration & Motion Reel) */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
           <iframe
-            src="https://www.youtube-nocookie.com/embed/8nees6k5oNk?autoplay=1&mute=1&controls=0&loop=1&playlist=8nees6k5oNk&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&playsinline=1"
+            src={`https://www.youtube-nocookie.com/embed/${showcaseYoutubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${showcaseYoutubeId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&playsinline=1`}
             title="Berlo 3D Strategic Motion & Agency Reel"
             className="w-[160%] h-[160%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none filter contrast-110 brightness-95"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1029,9 +1207,10 @@ export const HomePage: React.FC = () => {
           <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-black/85 backdrop-blur-md border border-white/10 text-white text-[10.5px] sm:text-sm font-semibold shadow-2xl">
             <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
             <span className="truncate">
-              {lang === 'bn'
-                ? 'বার্লো স্ট্র্যাটেজিক নিউজরুম ও এজেন্সী রিল — ঢাকা'
-                : 'Berlo Strategic Operations & Agency Reel — Dhaka'}
+              {(lang === 'bn' ? videoSection?.badge_bn : videoSection?.badge_en) ||
+                (lang === 'bn'
+                  ? 'বার্লো স্ট্র্যাটেজিক নিউজরুম ও এজেন্সী রিল — ঢাকা'
+                  : 'Berlo Strategic Operations & Agency Reel — Dhaka')}
             </span>
           </div>
         </div>
@@ -1075,11 +1254,12 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 mb-8 sm:mb-12 text-center md:text-left">
             <div className="w-full md:w-auto">
               <h2 className="section-main-title text-slate-900 dark:text-white text-center md:text-left">
-                {lang === 'bn' ? (
-                  <>আমাদের <span className="b-border">সেবাসমূহ</span></>
-                ) : (
-                  <>Our <span className="b-border">Services</span></>
-                )}
+                {(lang === 'bn' ? servicesSection?.title_bn : servicesSection?.title_en) ||
+                  (lang === 'bn' ? (
+                    <>আমাদের <span className="b-border">সেবাসমূহ</span></>
+                  ) : (
+                    <>Our <span className="b-border">Services</span></>
+                  ))}
               </h2>
             </div>
             <div className="w-full md:w-auto flex justify-center md:justify-end mt-2 md:mt-0">
@@ -1092,9 +1272,9 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* 3x3 Card Grid (9 services) - Centered on Mobile matching IMBD */}
+          {/* 3x3 Card Grid (Dynamic from DB / Admin display count) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
-            {servicesList.map((service) => {
+            {activeServicesList.map((service: any) => {
               const Icon = service.icon;
               return (
                 <div
@@ -1158,7 +1338,7 @@ export const HomePage: React.FC = () => {
                 {/* Main Photo Card with clean rounded border and subtle sheen */}
                 <div className="relative z-10 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/20 bg-white dark:bg-[#12141C] shadow-[0_20px_50px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
                   <img
-                    src="/images/berlo/team-consultancy.jpg"
+                    src={consultancySection?.image_url || "/images/berlo/team-consultancy.jpg"}
                     alt="Berlo PR Strategic Advisory Team"
                     loading="lazy"
                     decoding="async"
@@ -1175,11 +1355,12 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-6 space-y-6 text-left">
               <div>
                 <h2 className="text-[32px] sm:text-[40px] font-bold text-slate-900 dark:text-white tracking-tight">
-                  {lang === 'bn' ? (
-                    <>ফ্রি <span className="b-border">পরামর্শ গ্রহণ</span></>
-                  ) : (
-                    <>Book a Free <span className="b-border">Consultancy</span></>
-                  )}
+                  {(lang === 'bn' ? consultancySection?.title_bn : consultancySection?.title_en) ||
+                    (lang === 'bn' ? (
+                      <>ফ্রি <span className="b-border">পরামর্শ গ্রহণ</span></>
+                    ) : (
+                      <>Book a Free <span className="b-border">Consultancy</span></>
+                    ))}
                 </h2>
               </div>
 
@@ -1662,11 +1843,12 @@ export const HomePage: React.FC = () => {
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center lg:text-left">
             <h2 className="section-main-title text-slate-900 dark:text-white text-center lg:text-left">
-              {lang === 'bn' ? (
-                <>একসাথে উদ্ভাবনী <span className="b-border">সাফল্য</span></>
-              ) : (
-                <>Innovating <span className="b-border">Success</span> Together</>
-              )}
+              {(lang === 'bn' ? clientsSection?.title_bn : clientsSection?.title_en) ||
+                (lang === 'bn' ? (
+                  <>একসাথে উদ্ভাবনী <span className="b-border">সাফল্য</span></>
+                ) : (
+                  <>Innovating <span className="b-border">Success</span> Together</>
+                ))}
             </h2>
           </div>
 
@@ -1706,7 +1888,7 @@ export const HomePage: React.FC = () => {
             {/* Row 2: Continuous Marquee of White Logo Cards */}
             <div className="relative w-full overflow-hidden pt-2">
               <div className="animate-marquee flex gap-4">
-                {[...marqueeLogos, ...marqueeLogos].map((client, idx) => (
+                {[...activeMarqueeLogos, ...activeMarqueeLogos].map((client, idx) => (
                   <div
                     key={`${client.name}-${idx}`}
                     className="shrink-0 w-36 sm:w-44 h-16 sm:h-20 bg-white border border-slate-200 rounded-sm p-3 flex items-center justify-center hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
@@ -1736,11 +1918,12 @@ export const HomePage: React.FC = () => {
           {/* Header Row: Clients Says + VIEW ALL button on right */}
           <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 text-center sm:text-left">
             <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
-              {lang === 'bn' ? (
-                <>ক্লায়েন্টদের <span className="b-border">মন্তব্য ও রিভিউ</span></>
-              ) : (
-                <>Clients <span className="b-border">Says</span></>
-              )}
+              {(lang === 'bn' ? testimonialsSection?.title_bn : testimonialsSection?.title_en) ||
+                (lang === 'bn' ? (
+                  <>ক্লায়েন্টদের <span className="b-border">মন্তব্য ও রিভিউ</span></>
+                ) : (
+                  <>Clients <span className="b-border">Says</span></>
+                ))}
             </h2>
             <Link
               to={formatRoute('clients')}
@@ -1752,10 +1935,10 @@ export const HomePage: React.FC = () => {
 
           {/* 3 Video Cards matching exact 16:9 thumbnail + play button */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {videoTestimonials.map((item) => (
+            {activeVideoTestimonials.map((item: any) => (
               <div
                 key={item.id}
-                onClick={() => setActiveVideoId(item.youtubeId)}
+                onClick={() => setActiveVideoId(item.youtubeId || item.youtube_id || 'FHnfg223H60')}
                 className="group relative aspect-video bg-slate-900 dark:bg-[#0A0A0A] border border-slate-200 dark:border-[#222222] hover:border-[#A302FF] overflow-hidden cursor-pointer shadow-lg dark:shadow-xl transition-all duration-300"
               >
                 {/* Thumbnail Image: Grayscale 100% to Color on hover */}
@@ -1802,11 +1985,12 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 text-center md:text-left">
             <div className="space-y-3 w-full md:w-auto">
               <h2 className="section-main-title text-slate-900 dark:text-white text-center md:text-left">
-                {lang === 'bn' ? (
-                  <>সাম্প্রতিক <span className="b-border">প্রকল্পসমূহ</span></>
-                ) : (
-                  <>Recent <span className="b-border">Projects</span></>
-                )}
+                {(lang === 'bn' ? projectsSection?.title_bn : projectsSection?.title_en) ||
+                  (lang === 'bn' ? (
+                    <>সাম্প্রতিক <span className="b-border">প্রকল্পসমূহ</span></>
+                  ) : (
+                    <>Recent <span className="b-border">Projects</span></>
+                  ))}
               </h2>
             </div>
             
@@ -1851,8 +2035,8 @@ export const HomePage: React.FC = () => {
                 {/* Visual Left: Cinematic Photo without Clutter Badges */}
                 <div className="lg:col-span-7 relative min-h-[340px] sm:min-h-[420px] overflow-hidden bg-black">
                   <img
-                    src={featuredProjects[0].image}
-                    alt={featuredProjects[0].title}
+                    src={activeProjects[0]?.image || featuredProjects[0].image}
+                    alt={activeProjects[0]?.title || featuredProjects[0].title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-white/90 dark:lg:to-[#11141D]" />
@@ -1862,15 +2046,15 @@ export const HomePage: React.FC = () => {
                 <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between space-y-6">
                   <div className="space-y-4">
                     <div className="text-xs uppercase tracking-widest text-[#A302FF] dark:text-[#B833FF] font-bold">
-                      {featuredProjects[0].client}
+                      {activeProjects[0]?.client || featuredProjects[0].client}
                     </div>
                     
                     <h3 className="text-[24px] sm:text-[28px] font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-tight">
-                      {featuredProjects[0].title}
+                      {activeProjects[0]?.title || featuredProjects[0].title}
                     </h3>
                     
                     <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-[15px] leading-relaxed">
-                      {featuredProjects[0].desc}
+                      {activeProjects[0]?.desc || featuredProjects[0].desc}
                     </p>
 
                     {/* Stats Grid */}
@@ -1910,8 +2094,8 @@ export const HomePage: React.FC = () => {
 
           {/* Grid of Remaining/Filtered Projects */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {featuredProjects
-              .filter((p) => activeProjectFilter === 'all' ? p.id !== 'dhaka-trade-fair' : p.categoryType === activeProjectFilter)
+            {activeProjects
+              .filter((p) => activeProjectFilter === 'all' ? p.id !== (activeProjects[0]?.id || 'dhaka-trade-fair') : p.categoryType === activeProjectFilter)
               .map((project) => (
                 <div
                   key={project.id}
@@ -1963,11 +2147,12 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 text-center md:text-left">
             <div className="space-y-3 w-full md:w-auto">
               <h2 className="section-main-title text-slate-900 dark:text-white text-center md:text-left">
-                {lang === 'bn' ? (
-                  <>আমাদের কৌশলগত <span className="b-border">নেতৃত্ব ও টিম</span></>
-                ) : (
-                  <>Our Strategic <span className="b-border">Leadership & Team</span></>
-                )}
+                {(lang === 'bn' ? leadershipSection?.title_bn : leadershipSection?.title_en) ||
+                  (lang === 'bn' ? (
+                    <>আমাদের কৌশলগত <span className="b-border">নেতৃত্ব ও টিম</span></>
+                  ) : (
+                    <>Our Strategic <span className="b-border">Leadership & Team</span></>
+                  ))}
               </h2>
             </div>
 
@@ -2006,7 +2191,7 @@ export const HomePage: React.FC = () => {
 
           {/* Clean Editorial Portrait Cards in 3-Column Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {teamMembers
+            {activeTeamMembers
               .filter((m) => activeTeamFilter === 'all' || m.department === activeTeamFilter)
               .map((member) => (
                 <div
@@ -2067,26 +2252,26 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-
       {/* ========================================================================= */}
-      {/* 10. MEMORIES & MOMENTS (Dense Photo Mosaic Grid)                          */}
+      {/* 12. MEMORIES & MOMENTS (Dense Photo Mosaic Grid)                          */}
       {/* ========================================================================= */}
       <section className="py-16 lg:py-24 bg-slate-50 dark:bg-[#111111] border-t border-slate-200 dark:border-[#1F1F1F]">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
           <div className="text-center lg:text-left space-y-2">
             <h2 className="section-main-title text-slate-900 dark:text-white text-center lg:text-left">
-              {lang === 'bn' ? (
-                <>স্মৃতি ও <span className="b-border">মুহূর্তসমূহ</span></>
-              ) : (
-                <>Memories & <span className="b-border">Moments</span></>
-              )}
+              {(lang === 'bn' ? gallerySection?.title_bn : gallerySection?.title_en) ||
+                (lang === 'bn' ? (
+                  <>স্মৃতি ও <span className="b-border">মুহূর্তসমূহ</span></>
+                ) : (
+                  <>Memories & <span className="b-border">Moments</span></>
+                ))}
             </h2>
           </div>
 
-          {/* 12-Card High-Density Photo Mosaic (3-col mobile, 4-col tablet, 6-col desktop) */}
+          {/* High-Density Photo Mosaic (3-col mobile, 4-col tablet, 6-col desktop) */}
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3.5">
-            {momentPhotos.map((photo, idx) => (
+            {activeMomentPhotos.map((photo, idx) => (
               <button
                 key={idx}
                 type="button"
@@ -2112,16 +2297,17 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 13. LATEST BLOGS (3 Editorial Cards)                                      */}
+      {/* 13. LATEST BLOGS (Editorial Cards)                                        */}
       {/* ========================================================================= */}
       <section className="py-16 lg:py-24 max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 mb-8 sm:mb-12 text-center sm:text-left">
           <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
-            {lang === 'bn' ? (
-              <>সাম্প্রতিক <span className="b-border">ব্লগ ও ইনসাইটস</span></>
-            ) : (
-              <>Latest <span className="b-border">Blogs</span></>
-            )}
+            {(lang === 'bn' ? insightsSection?.title_bn : insightsSection?.title_en) ||
+              (lang === 'bn' ? (
+                <>সাম্প্রতিক <span className="b-border">ব্লগ ও ইনসাইটস</span></>
+              ) : (
+                <>Latest <span className="b-border">Blogs</span></>
+              ))}
           </h2>
           <Link
             to={formatRoute('insights')}
@@ -2131,9 +2317,9 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        {/* 3 Insight Cards */}
+        {/* Insight Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {homeArticles.slice(0, 3).map((article) => (
+          {homeArticles.slice(0, insightsDisplayCount).map((article) => (
             <Link
               key={article.id}
               to={formatRoute(`insights/${article.slug}`)}
@@ -2164,6 +2350,43 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* ========================================================================= */}
+      {/* 14. CALL TO ACTION (CTA) BANNER                                           */}
+      {/* ========================================================================= */}
+      <section className="py-16 lg:py-20 bg-gradient-to-r from-[#0F172A] via-[#1E1B4B] to-[#0A0D14] border-t border-slate-200 dark:border-[#1F1F1F] text-white">
+        <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          {pageSections['cta']?.badge_en && (
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-wider text-purple-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{lang === 'bn' ? pageSections['cta'].badge_bn || pageSections['cta'].badge_en : pageSections['cta'].badge_en}</span>
+            </div>
+          )}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl mx-auto">
+            {(lang === 'bn' ? pageSections['cta']?.title_bn : pageSections['cta']?.title_en) ||
+              (lang === 'bn'
+                ? 'আপনার প্রতিষ্ঠানের সুনাম সুদৃঢ় করতে প্রস্তুত?'
+                : 'Ready to Command the Narrative?')}
+          </h2>
+          <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+            {(lang === 'bn' ? pageSections['cta']?.subtitle_bn : pageSections['cta']?.subtitle_en) ||
+              (lang === 'bn'
+                ? 'বাংলাদেশের শীর্ষস্থানীয় কৌশলগত জনসংযোগ পরামর্শকদের সাথে যুক্ত হোন। ২৪/৭ ক্রাইসিস ওয়ার-রুম সহায়তা।'
+                : "Connect with Bangladesh's foremost strategic PR minds. Confidential 60-minute crisis war-room protocol available 24/7.")}
+          </p>
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={pageSections['cta']?.cta_link || '#consultancy'}
+              className="btn-berlo-primary text-center justify-center min-w-[200px]"
+            >
+              <span>
+                {(lang === 'bn' ? pageSections['cta']?.cta_text_bn : pageSections['cta']?.cta_text_en) ||
+                  (lang === 'bn' ? 'জরুরি পরামর্শ সেশন বুক করুন' : 'Schedule War-Room Advisory')}
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive Gallery Lightbox Modal for Memories & Moments */}
       {activeGalleryIndex !== null && (
         <div
@@ -2183,7 +2406,7 @@ export const HomePage: React.FC = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setActiveGalleryIndex((prev) => (prev! > 0 ? prev! - 1 : momentPhotos.length - 1));
+              setActiveGalleryIndex((prev) => (prev! > 0 ? prev! - 1 : activeMomentPhotos.length - 1));
             }}
             className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-[#A302FF] text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-xl"
             aria-label="Previous photo"
@@ -2195,7 +2418,7 @@ export const HomePage: React.FC = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setActiveGalleryIndex((prev) => (prev! < momentPhotos.length - 1 ? prev! + 1 : 0));
+              setActiveGalleryIndex((prev) => (prev! < activeMomentPhotos.length - 1 ? prev! + 1 : 0));
             }}
             className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-[#A302FF] text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-xl"
             aria-label="Next photo"
@@ -2209,18 +2432,18 @@ export const HomePage: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={momentPhotos[activeGalleryIndex].url}
-              alt={momentPhotos[activeGalleryIndex].title}
+              src={activeMomentPhotos[activeGalleryIndex]?.url || momentPhotos[0].url}
+              alt={activeMomentPhotos[activeGalleryIndex]?.title || momentPhotos[0].title}
               className="max-w-full max-h-[75vh] object-contain rounded-md shadow-2xl border border-white/10"
             />
             <div className="mt-4 text-center">
               <h4 className="text-white text-base sm:text-lg font-bold">
-                {momentPhotos[activeGalleryIndex].title}
+                {activeMomentPhotos[activeGalleryIndex]?.title || momentPhotos[0].title}
               </h4>
               <p className="text-slate-400 text-xs mt-1">
                 {lang === 'bn'
-                  ? `ছবি ${activeGalleryIndex + 1} / ${momentPhotos.length}`
-                  : `Photo ${activeGalleryIndex + 1} of ${momentPhotos.length}`}
+                  ? `ছবি ${activeGalleryIndex + 1} / ${activeMomentPhotos.length}`
+                  : `Photo ${activeGalleryIndex + 1} of ${activeMomentPhotos.length}`}
               </p>
             </div>
           </div>
