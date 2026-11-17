@@ -40,6 +40,8 @@ yarn-error.log*
 # --- Misc ---
 .cache/
 tmp/
+deploy.sh
+*.sh
 
 # --- Scratch & Temporary Development Directories ---
 scratch/
