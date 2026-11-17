@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useSiteSettings } from '../../contexts/SiteSettingsContext';
 import { BRAND } from '../../config/brand';
 import { footerNavigation } from '../../config/navigation';
 import { MapPin, Phone, Mail, ArrowRight, CheckCircle2 } from 'lucide-react';
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+  FaWhatsapp,
+} from 'react-icons/fa';
 
 export const Footer: React.FC = () => {
   const { lang, formatRoute, t } = useLanguage();
+  const { settings } = useSiteSettings();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -18,6 +28,62 @@ export const Footer: React.FC = () => {
     }
   };
 
+  const tagline =
+    lang === 'bn'
+      ? settings.site_tagline_bn || BRAND.tagline.bn
+      : settings.site_tagline_en || BRAND.tagline.en;
+
+  const address =
+    lang === 'bn'
+      ? settings.office_address_bn || BRAND.contact.address.bn
+      : settings.office_address_en || BRAND.contact.address.en;
+
+  const phoneNumbers = [
+    settings.hotline_number || BRAND.contact.phones[0],
+    settings.primary_phone !== settings.hotline_number ? settings.primary_phone : null,
+  ].filter(Boolean) as string[];
+
+  const emailAddresses = [
+    settings.contact_email || BRAND.contact.emails[0],
+    settings.press_email || 'media@berlocommunications.com',
+  ].filter(Boolean) as string[];
+
+  const agencyName = settings.agency_name || BRAND.name;
+  const logoSrc = settings.logo_dark || settings.logo_light || '/brand/logo.png';
+
+  const socialLinks = [
+    {
+      name: 'Facebook',
+      url: settings.social_facebook || BRAND.social.facebook,
+      icon: FaFacebookF,
+    },
+    {
+      name: 'LinkedIn',
+      url: settings.social_linkedin || BRAND.social.linkedin,
+      icon: FaLinkedinIn,
+    },
+    {
+      name: 'Instagram',
+      url: settings.social_instagram || BRAND.social.instagram,
+      icon: FaInstagram,
+    },
+    {
+      name: 'Twitter/X',
+      url: settings.social_twitter || BRAND.social.twitter,
+      icon: FaTwitter,
+    },
+    {
+      name: 'YouTube',
+      url: settings.social_youtube || BRAND.social.youtube,
+      icon: FaYoutube,
+    },
+    {
+      name: 'WhatsApp',
+      url: settings.whatsapp_number ? `https://wa.me/${settings.whatsapp_number.replace(/[^0-9]/g, '')}` : 'https://wa.me/8801711268479',
+      icon: FaWhatsapp,
+    },
+  ].filter((s) => Boolean(s.url));
+
   return (
     <footer className="bg-slate-900 dark:bg-[#000000] text-slate-300 border-t-2 border-[#A302FF] dark:border-[#B833FF]">
       {/* Upper Footer: Main Columns */}
@@ -27,24 +93,43 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 space-y-6">
             <Link to={formatRoute('')} className="inline-block">
               <img
-                src="/brand/logo.png"
-                alt="Berlo Communications"
+                src={logoSrc}
+                alt={agencyName}
                 className="h-11 w-auto object-contain brightness-110"
               />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              {BRAND.tagline[lang]}
+              {tagline}
             </p>
+
+            {/* Social Channels */}
+            <div className="flex items-center gap-2 pt-1">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.name}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={item.name}
+                    className="w-8 h-8 rounded-full bg-slate-800 hover:bg-[#A302FF] text-slate-300 hover:text-white flex items-center justify-center text-xs transition-all shadow"
+                  >
+                    <Icon />
+                  </a>
+                );
+              })}
+            </div>
 
             <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-400">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#A302FF] shrink-0 mt-0.5" />
-                <span>{BRAND.contact.address[lang]}</span>
+                <span>{address}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#11813C] shrink-0" />
                 <div className="flex flex-wrap gap-x-3">
-                  {BRAND.contact.phones.map((p) => (
+                  {phoneNumbers.map((p) => (
                     <a key={p} href={`tel:${p}`} className="hover:text-white transition-colors">
                       {p}
                     </a>
@@ -54,7 +139,7 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#00A896] shrink-0" />
                 <div className="flex flex-wrap gap-x-3">
-                  {BRAND.contact.emails.map((m) => (
+                  {emailAddresses.map((m) => (
                     <a key={m} href={`mailto:${m}`} className="hover:text-white transition-colors">
                       {m}
                     </a>
@@ -145,7 +230,7 @@ export const Footer: React.FC = () => {
       <div className="border-t border-slate-800/80 bg-[#070D18] py-8 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-center sm:text-left">
-            <span>© {new Date().getFullYear()} {BRAND.name}. {t('common.rightsReserved')}</span>
+            <span>© {new Date().getFullYear()} {agencyName}. {t('common.rightsReserved')}</span>
             <span className="hidden sm:inline text-slate-700">•</span>
             <span className="text-slate-400">{t('common.established')}</span>
           </div>
@@ -163,4 +248,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-

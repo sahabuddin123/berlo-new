@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useSiteSettings } from '../../contexts/SiteSettingsContext';
 import { BRAND } from '../../config/brand';
 import { servicesData } from '../../data/servicesData';
 import { Seo } from '../../components/common/Seo';
-import { MapPin, Phone, Clock, ShieldCheck, CheckCircle2, Award, Mail } from 'lucide-react';
+import { MapPin, Phone, Clock, ShieldCheck, CheckCircle2, Award, Mail, ExternalLink } from 'lucide-react';
 import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
 
 export const ContactPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
+  const { settings } = useSiteSettings();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -171,8 +173,8 @@ export const ContactPage: React.FC = () => {
               {lang === 'bn' ? 'সরাসরি হটলাইন' : 'Advisory Hotline'}
             </div>
             <div className="text-base font-bold text-slate-900 dark:text-white">
-              <a href="tel:+8801711268479" className="hover:text-[#A302FF] transition-colors">
-                +880 1711 268 479
+              <a href={`tel:${settings.hotline_number || '+8801711268479'}`} className="hover:text-[#A302FF] transition-colors">
+                {settings.hotline_number || '+880 1711 268 479'}
               </a>
             </div>
           </div>
@@ -185,8 +187,8 @@ export const ContactPage: React.FC = () => {
               {lang === 'bn' ? 'অফিসিয়াল ইমেইল' : 'Corporate Email'}
             </div>
             <div className="text-base font-bold text-slate-900 dark:text-white truncate">
-              <a href="mailto:contact@berlocommunications.com" className="hover:text-[#A302FF] transition-colors">
-                contact@berlo...
+              <a href={`mailto:${settings.contact_email || 'contact@berlocommunications.com'}`} className="hover:text-[#A302FF] transition-colors">
+                {settings.contact_email || 'contact@berlocommunications.com'}
               </a>
             </div>
           </div>
@@ -199,7 +201,9 @@ export const ContactPage: React.FC = () => {
               {lang === 'bn' ? 'কার্যদিবস ও সময়' : 'Working Hours'}
             </div>
             <div className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-snug">
-              {lang === 'bn' ? 'রবি - বৃহঃ ৯:০০ - ১৮:৩০' : 'Sun - Thu: 9 AM - 6:30 PM'}
+              {lang === 'bn'
+                ? settings.working_hours_bn || 'রবি - বৃহঃ ৯:০০ - ১৮:৩০'
+                : settings.working_hours_en || 'Sun - Thu: 9 AM - 6:30 PM'}
             </div>
           </div>
 
@@ -385,29 +389,54 @@ export const ContactPage: React.FC = () => {
               </div>
 
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                Berlo Communications Ltd.
+                {settings.agency_name || 'Berlo Communications Ltd.'}
               </h3>
 
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-                {BRAND.contact.address[lang]}
+                {lang === 'bn'
+                  ? settings.office_address_bn || BRAND.contact.address.bn
+                  : settings.office_address_en || BRAND.contact.address.en}
               </p>
 
               <div className="pt-4 border-t border-slate-100 dark:border-white/10 space-y-3 text-xs">
                 <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300 font-semibold">
                   <Phone className="w-3.5 h-3.5 text-[#11813C]" />
-                  <span>+880 1711 268 479</span>
+                  <a href={`tel:${settings.hotline_number || '+8801711268479'}`} className="hover:text-[#A302FF] transition-colors">
+                    {settings.hotline_number || '+880 1711 268 479'}
+                  </a>
+                  {settings.secondary_phone && (
+                    <span className="text-slate-400">
+                      / <a href={`tel:${settings.secondary_phone}`} className="hover:text-[#A302FF] transition-colors">{settings.secondary_phone}</a>
+                    </span>
+                  )}
                 </div>
                 <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300 font-semibold">
                   <Mail className="w-3.5 h-3.5 text-[#A302FF]" />
-                  <span>contact@berlocommunications.com</span>
+                  <a href={`mailto:${settings.contact_email || 'contact@berlocommunications.com'}`} className="hover:text-[#A302FF] transition-colors">
+                    {settings.contact_email || 'contact@berlocommunications.com'}
+                  </a>
                 </div>
               </div>
+
+              {settings.google_maps_link && (
+                <div className="pt-2">
+                  <a
+                    href={settings.google_maps_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#A302FF] hover:underline"
+                  >
+                    <span>{lang === 'bn' ? 'গুগল ম্যাপে দেখুন' : 'View on Google Maps'}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Embedded Google Map */}
             <div className="overflow-hidden border border-slate-200 dark:border-[#242424] shadow-md h-72 relative bg-slate-900">
               <iframe
-                src={BRAND.contact.mapEmbedUrl}
+                src={settings.google_maps_embed || BRAND.contact.mapEmbedUrl}
                 title="Berlo Communications Location"
                 className="w-full h-full border-0 filter contrast-105"
                 loading="lazy"

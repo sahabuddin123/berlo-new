@@ -488,20 +488,58 @@ class DatabaseSeeder extends Seeder
             GalleryVideo::updateOrCreate(['youtube_id' => $v['youtube_id']], $v);
         }
 
-        // 9. Seed Site Settings
+        // 9. Seed Comprehensive Enterprise Site Settings
         $settings = [
+            // General & Branding
+            'site_title_en' => 'Berlo Communications — Strategic PR & Communications Agency',
+            'site_title_bn' => 'বার্লো কমিউনিকেশন্স — কৌশলগত জনসংযোগ ও যোগাযোগ সংস্থা',
+            'site_tagline_en' => 'Strategic PR, Corporate Communications & Powerful Brand Narratives',
+            'site_tagline_bn' => 'কৌশলগত জনসংযোগ, প্রাতিষ্ঠানিক যোগাযোগ ও ব্র্যান্ড ন্যারেটিভ',
             'agency_name' => 'Berlo Communications Ltd.',
-            'contact_email' => 'contact@berlocommunications.com',
-            'support_email' => 'shatarupa@berlocommunications.com',
+            'logo_light' => '/brand/logo.png',
+            'logo_dark' => '/brand/logo.png',
+            'logo_mobile' => '/brand/logo.png',
+            'favicon' => '/favicon.ico',
+            'og_image' => '/brand/logo.png',
+
+            // Styling & Theme
+            'primary_color' => '#A302FF',
+            'primary_hover' => '#8D00DE',
+            'accent_color' => '#11813C',
+            'dark_bg_color' => '#07090D',
+            'font_family_latin' => 'Inter, sans-serif',
+            'font_family_bengali' => "'Hind Siliguri', sans-serif",
+
+            // Contact & Headquarters
+            'hotline_number' => '+880 1711 268 479',
             'primary_phone' => '+880 1711 268 479',
             'secondary_phone' => '+880 1812 336 789',
-            'office_address' => 'Apartment - B3, House - 32/34, Road - 07, Block - C, Niketon, Gulshan-1, Dhaka-1212, Bangladesh',
-            'working_hours' => 'Sunday - Thursday: 9:00 AM - 6:30 PM (BST)',
+            'contact_email' => 'contact@berlocommunications.com',
+            'press_email' => 'media@berlocommunications.com',
+            'support_email' => 'shatarupa@berlocommunications.com',
+            'office_address_en' => 'Apartment - B3, House - 32/34, Road - 07, Block - C, Niketon, Gulshan-1, Dhaka-1212, Bangladesh',
+            'office_address_bn' => 'অ্যাপার্টমেন্ট - বি৩, বাড়ি - ৩২/৩৪, রোড - ০৭, ব্লক - সি, নিকেতন, গুলশান-১, ঢাকা-১২১২, বাংলাদেশ',
+            'working_hours_en' => 'Sunday - Thursday: 9:00 AM - 6:30 PM (BST)',
+            'working_hours_bn' => 'রবিবার - বৃহস্পতিবার: সকাল ৯:০০ - সন্ধ্যা ৬:৩০ (বিএসটি)',
+            'google_maps_embed' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.520448100588!2d90.40798607602324!3d23.76447838823528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7770e53a3eb%3A0x6b803273e04cf5e1!2sNiketon%2C%20Gulshan-1%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd',
+            'google_maps_link' => 'https://maps.google.com/?q=Niketon+Gulshan-1+Dhaka',
+
+            // Social Channels
             'whatsapp_number' => '+8801711268479',
             'social_facebook' => 'https://facebook.com/berlocommunications',
             'social_linkedin' => 'https://linkedin.com/company/berlocommunications',
-            'social_youtube' => 'https://youtube.com/@berlocommunications',
+            'social_instagram' => 'https://instagram.com/berlocommunications',
             'social_twitter' => 'https://twitter.com/berlocomms',
+            'social_youtube' => 'https://youtube.com/@berlocommunications',
+
+            // Marketing & Tracking Tools
+            'google_search_console' => 'google-site-verification=berlo-gsc-token-verification-2026',
+            'google_analytics_id' => 'G-BERLOPR2026',
+            'google_tag_manager_id' => 'GTM-BERLO01',
+            'bing_webmaster_code' => 'msvalidate.01=BERLOBING2026VERIFIED',
+            'facebook_pixel_id' => 'FB-PIXEL-BERLO-2026',
+            'custom_head_scripts' => '',
+            'custom_body_scripts' => '',
         ];
 
         foreach ($settings as $key => $val) {

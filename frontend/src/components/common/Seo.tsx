@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useSiteSettings } from '../../contexts/SiteSettingsContext';
 
 export interface SeoFaqItem {
   question: string;
@@ -23,27 +24,34 @@ export interface SeoProps {
 export const Seo: React.FC<SeoProps> = ({
   title,
   description,
-  image = '/brand/logo.png',
+  image,
   type = 'website',
   keywords,
   canonicalUrl,
   publishedTime,
   modifiedTime,
-  author = 'Berlo Communications Ltd.',
+  author,
   faqs,
   jsonLd,
 }) => {
   const { lang, t } = useLanguage();
+  const { settings } = useSiteSettings();
+
+  const effectiveAuthor = author || settings.agency_name || 'Berlo Communications Ltd.';
+  const effectiveImage = image || settings.og_image || settings.logo_light || '/brand/logo.png';
 
   useEffect(() => {
-    const baseTitle = t('common.agencyName') || 'Berlo Communications Ltd.';
-    const finalTitle = title ? `${title} — ${baseTitle}` : `${baseTitle} — Strategic PR & Communications Agency`;
+    const siteTitle = lang === 'bn'
+      ? settings.site_title_bn || 'বার্লো কমিউনিকেশন্স — কৌশলগত জনসংযোগ'
+      : settings.site_title_en || 'Berlo Communications — Strategic PR & Communications Agency';
+    const baseAgency = settings.agency_name || t('common.agencyName') || 'Berlo Communications Ltd.';
+    const finalTitle = title ? `${title} — ${baseAgency}` : siteTitle;
     document.title = finalTitle;
 
     const defaultDesc =
       lang === 'bn'
-        ? 'বার্লো কমিউনিকেশন্স লিমিটেড — বাংলাদেশের শীর্ষস্থানীয় কৌশলগত জনসংযোগ, করপোরেট মিডিয়া সংযোগ, ক্রাইসিস ম্যানেজমেন্ট ও ব্রান্ড ন্যারেটিভ সংস্থা।'
-        : 'Berlo Communications Ltd. — Premier Strategic PR, Media Relations, Corporate Communications & Crisis Advisory Agency in Bangladesh.';
+        ? settings.site_tagline_bn || 'বার্লো কমিউনিকেশন্স লিমিটেড — বাংলাদেশের শীর্ষস্থানীয় কৌশলগত জনসংযোগ, করপোরেট মিডিয়া সংযোগ, ক্রাইসিস ম্যানেজমেন্ট ও ব্রান্ড ন্যারেটিভ সংস্থা।'
+        : settings.site_tagline_en || 'Berlo Communications Ltd. — Premier Strategic PR, Media Relations, Corporate Communications & Crisis Advisory Agency in Bangladesh.';
 
     const finalDesc = description || defaultDesc;
     const siteUrl = 'https://berlocommunications.com';
@@ -52,7 +60,7 @@ export const Seo: React.FC<SeoProps> = ({
     const enPath = currentPath.replace(/^\/(?:en|bn)/, '/en');
     const bnPath = currentPath.replace(/^\/(?:en|bn)/, '/bn');
 
-    const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
+    const fullImageUrl = effectiveImage.startsWith('http') ? effectiveImage : `${siteUrl}${effectiveImage.startsWith('/') ? '' : '/'}${effectiveImage}`;
 
     // Helper to set or create meta tags
     const setMetaTag = (attribute: string, key: string, content: string) => {
@@ -73,7 +81,7 @@ export const Seo: React.FC<SeoProps> = ({
       let tag = document.querySelector(selector);
       if (!tag) {
         tag = document.createElement('link');
-        tag.setAttribute('rel', rel);
+        tag.setAttribute(rel, rel);
         if (hreflang) tag.setAttribute('hreflang', hreflang);
         document.head.appendChild(tag);
       }
@@ -83,7 +91,15 @@ export const Seo: React.FC<SeoProps> = ({
     // 1. Standard SEO Meta Tags
     setMetaTag('name', 'description', finalDesc);
     setMetaTag('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-    setMetaTag('name', 'author', author);
+    setMetaTag('name', 'author', effectiveAuthor);
+
+    // Google Search Console & Bing Webmaster Verification
+    if (settings.google_search_console) {
+      setMetaTag('name', 'google-site-verification', settings.google_search_console.replace(/^google-site-verification=/, ''));
+    }
+    if (settings.bing_webmaster_code) {
+      setMetaTag('name', 'msvalidate.01', settings.bing_webmaster_code.replace(/^msvalidate\.01=/, ''));
+    }
 
     const defaultKeywords = [
       'Strategic PR Bangladesh',

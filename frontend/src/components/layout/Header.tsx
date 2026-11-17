@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useDynamicNavigation } from '../../hooks/useDynamicNavigation';
+import { useSiteSettings } from '../../contexts/SiteSettingsContext';
 import { BRAND } from '../../config/brand';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
@@ -15,6 +16,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
   const { lang, formatRoute, t } = useLanguage();
   const { navItems } = useDynamicNavigation();
+  const { settings } = useSiteSettings();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,25 +48,25 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
                 <span className="font-medium text-slate-200">
                   {lang === 'bn' ? 'সরাসরি পরামর্শ হটলাইন:' : 'Direct Advisory Hotline:'}
                 </span>
-                <a href={`tel:${BRAND.contact.phones[0]}`} className="hover:text-white transition-colors font-semibold text-[#16A34A]">
-                  {BRAND.contact.phones[0]}
+                <a href={`tel:${settings.hotline_number || settings.primary_phone || BRAND.contact.phones[0]}`} className="hover:text-white transition-colors font-semibold text-[#16A34A]">
+                  {settings.hotline_number || settings.primary_phone || BRAND.contact.phones[0]}
                 </a>
               </span>
               <span className="text-slate-600">|</span>
               <span className="flex items-center gap-1.5 text-slate-400">
                 <Mail className="w-3.5 h-3.5 text-slate-400" />
-                <a href={`mailto:${BRAND.contact.emails[0]}`} className="hover:text-white transition-colors">
-                  {BRAND.contact.emails[0]}
+                <a href={`mailto:${settings.contact_email || BRAND.contact.emails[0]}`} className="hover:text-white transition-colors">
+                  {settings.contact_email || BRAND.contact.emails[0]}
                 </a>
               </span>
             </div>
             <div className="flex items-center gap-4 text-slate-400">
               <span className="flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-slate-400" />
-                <span>{BRAND.contact.workingHours[lang]}</span>
+                <span>{lang === 'bn' ? (settings.working_hours_bn || BRAND.contact.workingHours.bn) : (settings.working_hours_en || BRAND.contact.workingHours.en)}</span>
               </span>
               <span className="text-slate-600">|</span>
-              <span className="text-slate-400">Niketon, Gulshan-1, Dhaka</span>
+              <span className="text-slate-400">{lang === 'bn' ? 'নিকেতন, গুলশান-১, ঢাকা' : 'Niketon, Gulshan-1, Dhaka'}</span>
             </div>
           </div>
         </div>
@@ -81,8 +83,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
             {/* Official Brand Logo */}
             <Link to={formatRoute('')} className="flex items-center gap-3 shrink-0 group focus:outline-none">
               <img
-                src="/brand/logo.png"
-                alt="Berlo Communications Logo"
+                src={settings.logo_light || '/brand/logo.png'}
+                alt={settings.agency_name || 'Berlo Communications Logo'}
                 className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-102"
               />
             </Link>

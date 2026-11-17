@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useSiteSettings } from '../../contexts/SiteSettingsContext';
 import { FaWhatsapp, FaTimes, FaPaperPlane, FaCheckCircle, FaChevronDown } from 'react-icons/fa';
 
 interface Message {
@@ -11,6 +12,7 @@ interface Message {
 
 export const WhatsAppChatbot: React.FC = () => {
   const { lang } = useLanguage();
+  const { settings } = useSiteSettings();
   const [isOpen, setIsOpen] = useState(false);
   const [hasUnread, setHasUnread] = useState(true);
   const [inputMessage, setInputMessage] = useState('');
@@ -18,7 +20,7 @@ export const WhatsAppChatbot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const whatsappNumber = '8801711268479'; // Berlo Official Advisory Hotline
+  const whatsappNumber = (settings.whatsapp_number || '8801711268479').replace(/[^0-9]/g, '');
 
   const initialBotMessage: Message = {
     id: 'welcome',
