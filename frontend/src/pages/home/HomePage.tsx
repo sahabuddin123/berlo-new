@@ -262,7 +262,7 @@ export const HomePage: React.FC = () => {
         lang === 'bn'
           ? '১০০+ শীর্ষ জাতীয় দৈনিক, টেলিভিশন নেটওয়ার্ক ও বিজনেস ব্যুরোর সাথে সরাসরি সংযোগ স্থাপনের মাধ্যমে আপনার ব্র্যান্ড ন্যারেটিভকে জাতীয় আলোচনার শীর্ষে রাখুন।'
           : 'Elevate your corporate voice across 100+ national dailies, prime-time television broadcasts, and premier business bureaus with high-impact media placements.',
-      link: '/services/strategic-media-relations',
+      link: '/services/media-relations',
       isTopLeft: true,
       isBottomLeft: false,
     },
@@ -274,7 +274,7 @@ export const HomePage: React.FC = () => {
         lang === 'bn'
           ? 'সুনামের যেকোনো হুমকি চিহ্নিত হওয়ার পর তাৎক্ষণিক ওয়ার-রুম কার্যকরীকরণ এবং দ্রুত প্রেস ব্রিফিংয়ের মাধ্যমে নেতিবাচক জনমত প্রশমন ও নিয়ন্ত্রণ।'
           : 'Rapid-response 24/7 war-room mobilization within 60 minutes to neutralize reputational vulnerabilities, de-escalate misinformation, and restore stakeholder trust.',
-      link: '/services/crisis-reputation-management',
+      link: '/services/crisis-management',
       isTopLeft: false,
       isBottomLeft: false,
     },
@@ -298,7 +298,7 @@ export const HomePage: React.FC = () => {
         lang === 'bn'
           ? 'বাজারে দীর্ঘস্থায়ী সুনাম প্রতিষ্ঠা, নতুন পণ্য উন্মোচন এবং গবেষণা ও বিশ্লেষণভিত্তিক যোগাযোগের মাধ্যমে আপনার ব্র্যান্ডকে অন্যদের চেয়ে অনন্যভাবে উপস্থাপন।'
           : 'Differentiating corporate identity, architecting brand equity, and executing disruptive product launch narratives that capture measurable market leadership.',
-      link: '/services/content-storytelling',
+      link: '/services/strategic-pr',
       isTopLeft: false,
       isBottomLeft: false,
     },
@@ -322,7 +322,7 @@ export const HomePage: React.FC = () => {
         lang === 'bn'
           ? 'রিয়েল-টাইম অনলাইন মিডিয়া পর্যবেক্ষণ, ডিজিটাল সেন্টিমেন্ট রিকভারি এবং শীর্ষ ইনফ্লুয়েন্সার ও অনলাইন প্ল্যাটফর্মে সক্রিয় ব্র্যান্ড দৃশ্যমানতা।'
           : 'AI-driven social listening, digital sentiment management, search authority building, and trusted influencer collaborations that amplify credibility.',
-      link: '/services/digital-pr-influencers',
+      link: '/services/digital-pr',
       isTopLeft: false,
       isBottomLeft: false,
     },
@@ -334,7 +334,7 @@ export const HomePage: React.FC = () => {
         lang === 'bn'
           ? 'জাতীয় প্রেস কনফারেন্স, মিডিয়া রাউন্ডটেবিল ও বহুজাতিক কর্পোরেট সম্মেলনের নিখুঁত রূপায়ণ, যা নিশ্চিত করে ব্যাপক প্রচার ও অংশীজনদের সক্রিয় অংশগ্রহণ।'
           : 'Flawless orchestration of high-profile press conferences, CEO roundtables, national industry symposiums, and brand activations with guaranteed media turnout.',
-      link: '/services/events-brand-activations',
+      link: '/services/events-activations',
       isTopLeft: false,
       isBottomLeft: true,
     },
@@ -346,7 +346,7 @@ export const HomePage: React.FC = () => {
         lang === 'bn'
           ? 'শীর্ষ করপোরেট ব্যক্তিত্বের অপ-এড রচনা, কিনোট বক্তৃতা প্রস্তুতি ও শিল্প বিশেষজ্ঞ হিসেবে জাতীয় গণমাধ্যমে জোরালো উপস্থিতি প্রতিষ্ঠা।'
           : 'Op-ed ghostwriting, keynote speechcrafting, and proactive media profiling that positions C-suite executives as foremost industry authorities.',
-      link: '/services/strategic-pr-reputation',
+      link: '/services/thought-leadership',
       isTopLeft: false,
       isBottomLeft: false,
     },
@@ -358,7 +358,7 @@ export const HomePage: React.FC = () => {
         lang === 'bn'
           ? 'ইএসজি প্রতিশ্রুতি প্রচার, সামাজিক দায়িত্বশীলতার ফলাফল প্রকাশ এবং ইতিবাচক সমাজ বিনির্মাণমূলক উদ্যোগসমূহের কার্যকর জনসংযোগ।'
           : 'Communicating ESG metrics, social investment milestones, and donor-funded community initiatives to inspire genuine stakeholder and public trust.',
-      link: '/services/corporate-communications',
+      link: '/services/content-storytelling',
       isTopLeft: false,
       isBottomLeft: false,
     },

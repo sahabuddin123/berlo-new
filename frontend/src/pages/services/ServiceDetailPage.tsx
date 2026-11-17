@@ -10,7 +10,13 @@ export const ServiceDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { lang, formatRoute } = useLanguage();
 
-  const service = servicesData.find((s) => s.slug === slug);
+  const normalizedSlug = (slug || '').toLowerCase().trim();
+  const service = servicesData.find(
+    (s) =>
+      s.slug.toLowerCase() === normalizedSlug ||
+      s.id.toLowerCase() === normalizedSlug ||
+      s.aliases?.some((a) => a.toLowerCase() === normalizedSlug)
+  );
 
   if (!service) {
     return (

@@ -1,6 +1,7 @@
 export interface ServiceItem {
   id: string;
   slug: string;
+  aliases?: string[];
   iconName: string;
   title: { en: string; bn: string };
   tagline: { en: string; bn: string };
@@ -22,6 +23,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: 'strategic-pr',
     slug: 'strategic-pr',
+    aliases: ['strategic-pr-reputation', 'strategic-pr-corporate-reputation', 'corporate-reputation', 'pr'],
     iconName: 'ShieldCheck',
     title: {
       en: 'Strategic PR & Corporate Reputation',
@@ -88,6 +90,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: 'media-relations',
     slug: 'media-relations',
+    aliases: ['strategic-media-relations', 'media-relations-press', 'press-distribution', 'media'],
     iconName: 'Newspaper',
     title: {
       en: 'Media Relations & Press Distribution',
@@ -95,7 +98,7 @@ export const servicesData: ServiceItem[] = [
     },
     tagline: {
       en: 'Bridging corporate objectives with editorial integrity across national media.',
-      bn: 'জাতীয় গণমাধ্যমে সম্পাদকীয় সুনামের সাথে করপোরেট লক্ষ্যের মেলবন্ধন।',
+      bn: 'জাতীয় গণমাধ্যমের সম্পাদকীয় সুনামের সাথে করপোরেট লক্ষ্যের মেলবন্ধন।',
     },
     shortDesc: {
       en: 'Direct access to top editors, national dailies, television networks, and business journalists for impactful coverage.',
@@ -154,6 +157,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: 'crisis-management',
     slug: 'crisis-management',
+    aliases: ['crisis-reputation-management', 'crisis-and-reputation-management', 'crisis-risk-advisory', 'crisis'],
     iconName: 'AlertTriangle',
     title: {
       en: 'Crisis Communication & Issues Advisory',
@@ -218,8 +222,143 @@ export const servicesData: ServiceItem[] = [
     ],
   },
   {
+    id: 'corporate-comms',
+    slug: 'corporate-communications',
+    aliases: ['corporate-comms', 'corporate-communications', 'corporate-advisory', 'comms'],
+    iconName: 'Building2',
+    title: {
+      en: 'Corporate Communications & Governance Advisory',
+      bn: 'কর্পোরেট যোগাযোগ ও সুশাসন উপদেষ্টা',
+    },
+    tagline: {
+      en: 'Aligning internal culture with external market authority and investor transparency.',
+      bn: 'অভ্যন্তরীণ কর্মসংস্কৃতির সাথে বাহ্যিক বাজার কর্তৃত্ব ও বিনিয়োগকারী স্বচ্ছতার সমন্বয়।',
+    },
+    shortDesc: {
+      en: 'Executive messaging, board-level stakeholder alignment, annual ESG reports, and internal culture synchronization.',
+      bn: 'সি-সুইট এক্সিকিউটিভ বার্তা, বোর্ড পর্যায়ের অংশীজন সমন্বয়, বার্ষিক ইএসজি প্রতিবেদন ও প্রাতিষ্ঠানিক ঐক্য।',
+    },
+    overview: {
+      en: 'Modern conglomerates require a unified voice across investors, regulators, employees, and the public. Berlo crafts structured governance narratives that articulate business resilience, ESG commitments, and long-term shareholder value.',
+      bn: 'আধুনিক শিল্পগোষ্ঠীগুলোর জন্য বিনিয়োগকারী, নীতিনির্ধারক ও সাধারণ মানুষের কাছে একটি সমন্বিত বক্তব্য থাকা অপরিহার্য। বার্লো প্রাতিষ্ঠানিক স্থিতিস্থাপকতা, ইএসজি অঙ্গীকার ও শেয়ারহোল্ডার ভ্যালু তুলে ধরতে প্রাতিষ্ঠানিক যোগাযোগ ফ্রেমওয়ার্ক তৈরি করে।',
+    },
+    strategicApproach: {
+      en: 'We work closely with CEOs and company secretariats to transform compliance mandates into compelling stories of leadership, stewardship, and national economic impact.',
+      bn: 'আমরা শীর্ষ নির্বাহীদের সাথে একযোগে কাজ করে নীতিগত বাধ্যবাধকতাগুলোকে কার্যকর নেতৃত্ব, জাতীয় অর্থনীতিতে অবদান ও অগ্রযাত্রার গল্পে রূপান্তর করি।',
+    },
+    capabilities: [
+      {
+        title: { en: 'C-Suite Executive Messaging', bn: 'সি-সুইট এক্সিকিউটিভ বার্তা' },
+        desc: {
+          en: 'Bespoke corporate speeches, shareholder letters, and investor roadshow presentations.',
+          bn: 'কাস্টমাইজড করপোরেট ভাষণ, শেয়ারহোল্ডার চিঠি এবং রোডশো উপস্থাপনা প্রস্তুতকরণ।',
+        },
+      },
+      {
+        title: { en: 'ESG & Sustainability Reporting', bn: 'ইএসজি ও সাসটেইনেবিলিটি রিপোর্টিং' },
+        desc: {
+          en: 'Global-standard sustainability narratives highlighting carbon metrics and community investment.',
+          bn: 'আন্তর্জাতিক মানের টেকসই প্রতিবেদন যা কার্বন হ্রাস ও সামাজিক বিনিয়োগ তুলে ধরে।',
+        },
+      },
+      {
+        title: { en: 'Mergers & Acquisitions (M&A) Comms', bn: 'একীভূতকরণ ও অধিগ্রহণ যোগাযোগ' },
+        desc: {
+          en: 'Confidential strategic communications preserving morale and market confidence during major deals.',
+          bn: 'বড় বাণিজ্যিক লেনদেন বা একীভূতকরণের সময় বাজার আস্থা ও কর্মীদের মনোবল সুরক্ষার কৌশল।',
+        },
+      },
+      {
+        title: { en: 'Crisis Preparedness Manuals & SOPs', bn: 'যোগাযোগ নির্দেশিকা ও এসওপি প্রণয়ন' },
+        desc: {
+          en: 'Comprehensive corporate communication protocols and regulatory notification frameworks.',
+          bn: 'প্রতিষ্ঠানভিত্তিক পূর্ণাঙ্গ যোগাযোগ প্রটোকল ও নিয়ন্ত্রণ সংস্থা বিষয়ক নির্দেশিকা।',
+        },
+      },
+    ],
+    benefits: [
+      { en: 'Unified executive voice across all global touchpoints', bn: 'সকল স্পর্শবিন্দুতে সমন্বিত ও সুসংহত প্রাতিষ্ঠানিক বক্তব্য' },
+      { en: 'Enhanced investor relations and credit rating confidence', bn: 'উন্নত বিনিয়োগকারী সম্পর্ক ও ক্রেডিট রেটিং গ্রহণযোগ্যতা' },
+      { en: 'Seamless organizational alignment during structural transitions', bn: 'কাঠামোগত পরিবর্তনের সময় কর্মীদের নির্বিঘ্ন ঐক্য' },
+      { en: 'Compliance with regional and global ESG disclosure benchmarks', bn: 'আঞ্চলিক ও বৈশ্বিক ইএসজি নিয়মাবলির নিখুঁত পরিপালন' },
+    ],
+    keyMetrics: [
+      { value: '35+', label: { en: 'Annual Reports Designed', bn: 'বার্ষিক প্রতিবেদন ডিজাইন সম্পন্ন' } },
+      { value: '100%', label: { en: 'Executive Message Alignment', bn: 'নির্বাহী বার্তার ঐক্য সূচক' } },
+      { value: '$1.2B+', label: { en: 'M&A Transactions Supported', bn: 'সহায়তাকৃত বাণিজ্যিক লেনদেন' } },
+    ],
+  },
+  {
+    id: 'government-advocacy',
+    slug: 'government-advocacy',
+    aliases: ['gov-advocacy', 'government-affairs', 'public-policy-advocacy', 'regulatory-relations'],
+    iconName: 'Landmark',
+    title: {
+      en: 'Government Affairs & Public Policy Advocacy',
+      bn: 'পাবলিক পলিসি ও রেগুলেটরি সম্পর্ক',
+    },
+    tagline: {
+      en: 'Navigating regulatory dialogues and advancing constructive public-private partnerships.',
+      bn: 'নীতিগত সংলাপ ও সরকারি-বেসরকারি গঠনমূলক অংশীদারিত্ব এগিয়ে নেওয়া।',
+    },
+    shortDesc: {
+      en: 'Evidence-based policy papers, multi-stakeholder roundtables, regulatory monitoring, and ethical government relations.',
+      bn: 'গবেষণানির্ভর পলিসি পেপার, বহু-অংশীজন গোলটেবিল, রেগুলেটরি মনিটরিং ও দায়িত্বশীল সরকারি যোগাযোগ।',
+    },
+    overview: {
+      en: 'Corporate growth often depends on progressive policies and transparent regulatory environments. Berlo connects industry insights with policymakers to foster ethical, evidence-based dialogue that supports economic modernization.',
+      bn: 'ব্যবসার সম্প্রসারণ ও টেকসই অগ্রগতি অনেকাংশে আধুনিক নীতিমালা ও স্বচ্ছ নিয়ন্ত্রক পরিবেশের ওপর নির্ভরশীল। বার্লো শিল্পখাতের বাস্তবতাকে নীতিনির্ধারকদের সামনে তুলে ধরে অর্থনৈতিক সমৃদ্ধির উপযোগী সংলাপ তৈরি করে।',
+    },
+    strategicApproach: {
+      en: 'We conduct thorough legislative analysis and prepare consultative white papers that help government ministries understand commercial nuances while aligning with public welfare goals.',
+      bn: 'আমরা আইনগত দিকগুলো পুঙ্খানুপুঙ্খ বিশ্লেষণ করি এবং জনস্বার্থ বজায় রেখে বাণিজ্যিক বাস্তবতাকে মন্ত্রণালয়ের সামনে তুলে ধরার জন্য সাদা কাগজ ও গবেষণা রিপোর্ট প্রণয়ন করি।',
+    },
+    capabilities: [
+      {
+        title: { en: 'Policy White Papers & Economic Dossiers', bn: 'পলিসি হোয়াইট পেপার ও অর্থনৈতিক প্রতিবেদন' },
+        desc: {
+          en: 'Independent research papers outlining sector challenges and constructive regulatory solutions.',
+          bn: 'খাতভিত্তিক সমস্যা ও তার গঠনমূলক আইনি সমাধানের উপায় বিশ্লেষণকারী গবেষণা প্রতিবেদন।',
+        },
+      },
+      {
+        title: { en: 'Ministerial Roundtables & Seminars', bn: 'মন্ত্রণালয় পর্যায়ের গোলটেবিল ও সেমিনার' },
+        desc: {
+          en: 'High-level public-private summits with relevant ministry officials, trade bodies, and industry leaders.',
+          bn: 'মন্ত্রণালয় কর্মকর্তা, বাণিজ্য সংগঠন ও শিল্পপতিদের সমন্বয়ে অনুষ্ঠিত উচ্চপর্যায়ের সংলাপ।',
+        },
+      },
+      {
+        title: { en: 'Legislative & Regulatory Intelligence', bn: 'আইন ও নীতিগত পূর্বাভাস বিশ্লেষণ' },
+        desc: {
+          en: 'Proactive tracking of gazettes, budget proposals, and statutory regulatory orders (SROs).',
+          bn: 'সরকারি গেজেট, প্রস্তাবিত জাতীয় বাজেট ও এসআরও-র আগাম পর্যবেক্ষণ ও প্রভাব বিশ্লেষণ।',
+        },
+      },
+      {
+        title: { en: 'Industry Chamber Coalition Building', bn: 'বাণিজ্য চেম্বার ও অ্যাসোসিয়েশন জোট' },
+        desc: {
+          en: 'Building consensus among trade bodies (FBCCI, DCCI, BASIS) to advocate for collective growth.',
+          bn: 'জাতীয় বাণিজ্য সংগঠনসমূহের মধ্যে ঐক্য গড়ে তুলে যৌক্তিক নীতি সংস্কারে নেতৃত্ব প্রদান।',
+        },
+      },
+    ],
+    benefits: [
+      { en: 'Clear visibility into upcoming legislative and tax reforms', bn: 'আসন্ন কর ও বাণিজ্যিক আইন সংস্কারের স্পষ্ট আগাম ধারণা' },
+      { en: 'Direct channel for constructive stakeholder representation', bn: 'যৌক্তিক দাবি ও প্রস্তাবনা সরাসরি নীতিনির্ধারকদের কাছে উপস্থাপনের সুযোগ' },
+      { en: 'Mitigation of policy shocks and operational friction', bn: 'হঠাৎ নীতিগত পরিবর্তনের ঝুঁকি ও পরিচালন জটিলতা হ্রাস' },
+      { en: 'Reputation as a responsible national development partner', bn: 'জাতীয় উন্নয়নের এক নির্ভরযোগ্য সহযোগী হিসেবে আত্মপ্রকাশ' },
+    ],
+    keyMetrics: [
+      { value: '50+', label: { en: 'Policy Dialogues Hosted', bn: 'আয়োজিত নীতিগত সংলাপ' } },
+      { value: '18', label: { en: 'SRO Clarifications Facilitated', bn: 'সহায়তাকৃত নীতিগত ব্যাখ্যামূলক প্রজ্ঞাপন' } },
+      { value: '100%', label: { en: 'Compliance with Lobbying Transparency', bn: 'নৈতিক মান পরিপালন নিশ্চয়তা' } },
+    ],
+  },
+  {
     id: 'events-activations',
     slug: 'events-activations',
+    aliases: ['events-brand-activations', 'high-impact-events', 'events-conclaves', 'events'],
     iconName: 'Sparkles',
     title: {
       en: 'Events & Experiential Brand Activations',
@@ -284,8 +423,76 @@ export const servicesData: ServiceItem[] = [
     ],
   },
   {
+    id: 'thought-leadership',
+    slug: 'thought-leadership',
+    aliases: ['executive-thought-leadership', 'c-suite-branding', 'executive-branding', 'thought-leadership-pr'],
+    iconName: 'Microphone',
+    title: {
+      en: 'Executive Thought Leadership & C-Suite Profiling',
+      bn: 'সি-সুইট এক্সিকিউটিভ ব্র্যান্ডিং ও থট লিডারশিপ',
+    },
+    tagline: {
+      en: 'Positioning corporate leaders at the center of industry dialogue and national economic vision.',
+      bn: 'শিল্পের গুরুত্বপূর্ণ অগ্রযাত্রায় শীর্ষ করপোরেট নেতৃবৃন্দকে সম্মুখভাগে উপস্থাপন।',
+    },
+    shortDesc: {
+      en: 'Op-ed ghostwriting, keynote speaking placements, LinkedIn executive elevation, and personal brand reputation management.',
+      bn: 'অপ-এড রচনা, কিনোট বক্তৃতা সুযোগ তৈরি, লিংকডইন নির্বাহী ব্র্যান্ডিং এবং ব্যক্তিগত সুনাম ব্যবস্থাপনা।',
+    },
+    overview: {
+      en: 'In an era where personal credibility is closely linked to enterprise value, corporate leaders must actively communicate vision and purpose. Berlo curates compelling executive profiles that elevate CEOs and chairpersons into trusted industry statespersons.',
+      bn: 'বর্তমান বিশ্বে প্রতিষ্ঠানের বাণিজ্যিক মূল্যের সাথে শীর্ষ নেতার ভাবমূর্তি গভীরভাবে জড়িত। বার্লো এমন একটি সুপরিকল্পিত এক্সিকিউটিভ প্রোফাইল তৈরি করে যা চেয়ারম্যান ও সিইও-দের খাতের অন্যতম প্রামাণ্য নীতি-চিন্তাবিদ হিসেবে প্রতিষ্ঠা করে।',
+    },
+    strategicApproach: {
+      en: 'We identify distinct thought platforms for each leader—from technological innovation to governance and inclusive growth—and secure regular placements in national and global business publications.',
+      bn: 'আমরা প্রতিটি নেতার জন্য স্বতন্ত্র ভাবনার ক্ষেত্র চিহ্নিত করি এবং জাতীয় ও আন্তর্জাতিক শীর্ষ সংবাদ মাধ্যমে নিয়মিত তাদের মতামত প্রকাশের সুযোগ তৈরি করি।',
+    },
+    capabilities: [
+      {
+        title: { en: 'Executive Op-Ed Drafting & Syndication', bn: 'সম্পাদকীয় প্রবন্ধ রচনা ও প্রকাশ' },
+        desc: {
+          en: 'Insightful, data-backed columns published under executive bylines in premier national and regional business dailies.',
+          bn: 'তথ্যনির্ভর গভীর অন্তর্দৃষ্টিমূলক কলাম যা শীর্ষ জাতীয় দৈনিকগুলোতে প্রকাশিত হয়।',
+        },
+      },
+      {
+        title: { en: 'Global Keynote & Panelist Representation', bn: 'আন্তর্জাতিক সম্মেলন ও প্যানেলিস্ট প্রতিনিধিত্ব' },
+        desc: {
+          en: 'Securing speaking slots at premier economic conclaves, trade expos, and university leadership symposiums.',
+          bn: 'শীর্ষ অর্থনৈতিক সম্মেলন ও আন্তর্জাতিক ফোরামে কিনোট স্পিকার হিসেবে অংশগ্রহণের ব্যবস্থা।',
+        },
+      },
+      {
+        title: { en: 'LinkedIn C-Suite Profile Architecture', bn: 'লিংকডইন এক্সিকিউটিভ প্রোফাইল রূপায়ন' },
+        desc: {
+          en: 'Professional curation of digital presence, thought-leadership posts, and industry engagement.',
+          bn: 'ডিজিটাল উপস্থিতি, সুচিন্তিত মতামত প্রকাশ এবং পেশাদার নেটওয়ার্কে প্রভাব বৃদ্ধির কৌশল।',
+        },
+      },
+      {
+        title: { en: 'Reputational Insulation & Media Training', bn: 'মিডিয়া ব্রিফিং ও প্রস্তুতি প্রশিক্ষণ' },
+        desc: {
+          en: 'One-on-one camera coaching, live interview preparation, and message discipline frameworks.',
+          bn: 'ক্যামেরার মুখোমুখি হওয়ার মহড়া, সরাসরি টিভি সাক্ষাৎকারের প্রস্তুতি ও বার্তা শৃঙ্খলা প্রশিক্ষণ।',
+        },
+      },
+    ],
+    benefits: [
+      { en: 'Prestige elevation reflecting positively on corporate valuation', bn: 'ব্যক্তিগত সুনামের প্রতিফলন যা প্রতিষ্ঠানের বাজারমূল্য বৃদ্ধি করে' },
+      { en: 'Natural platform for articulating corporate vision directly to peers', bn: 'সমগোত্রীয় নেতৃত্ব ও নীতিমণ্ডলে সরাসরি ভিশন পৌঁছানোর মঞ্চ' },
+      { en: 'Attraction of top-tier executive talent and strategic investors', bn: 'শীর্ষ পেশাদার প্রতিভা ও আন্তর্জাতিক বিনিয়োগকারীদের আকৃষ্টকরণ' },
+      { en: 'Preemptive credibility barrier during challenging market cycles', bn: 'বাজারের সংকটময় মুহূর্তে বিশ্বস্ততার শক্তিশালী প্রাচীর সৃষ্টি' },
+    ],
+    keyMetrics: [
+      { value: '40+', label: { en: 'C-Suite Leaders Profiled', bn: 'উন্নীত শীর্ষ করপোরেট নেতা' } },
+      { value: '180+', label: { en: 'Executive Op-Eds Published', bn: 'প্রকাশিত বিশেষ অভিমত কলাম' } },
+      { value: '500k+', label: { en: 'Organic Executive Post Reach', bn: 'এক্সিকিউটিভ পোস্টের অর্গানিক রিচ' } },
+    ],
+  },
+  {
     id: 'content-storytelling',
     slug: 'content-storytelling',
+    aliases: ['visual-storytelling', 'visual-digital-content', 'corporate-documentaries', 'storytelling'],
     iconName: 'FileText',
     title: {
       en: 'Visual & Digital Storytelling',
@@ -352,6 +559,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: 'digital-pr',
     slug: 'digital-pr',
+    aliases: ['digital-pr-influencers', 'digital-pr-social-sentiment', 'social-sentiment', 'online-pr'],
     iconName: 'Globe',
     title: {
       en: 'Digital PR & Influencer Outreach',
@@ -416,4 +624,3 @@ export const servicesData: ServiceItem[] = [
     ],
   },
 ];
-

@@ -64,7 +64,7 @@ export const ServicesOverviewPage: React.FC = () => {
     },
     {
       id: 'thought-leadership',
-      link: '/services/strategic-pr',
+      link: '/services/thought-leadership',
       icon: FaMicrophoneAlt,
       title: lang === 'bn' ? 'সি-সুইট এক্সিকিউটিভ ও স্পিকার পজিশনিং' : 'Executive Speaker & C-Suite Positioning',
       desc:
@@ -84,7 +84,7 @@ export const ServicesOverviewPage: React.FC = () => {
     },
     {
       id: 'corporate-publishing',
-      link: '/services/content-storytelling',
+      link: '/services/corporate-communications',
       icon: FaNewspaper,
       isBottomLeft: true,
       title: lang === 'bn' ? 'কর্পোরেট পাবলিশিং ও বার্ষিক প্রতিবেদন' : 'Corporate Publishing & Annual Reports',
@@ -105,7 +105,7 @@ export const ServicesOverviewPage: React.FC = () => {
     },
     {
       id: 'advocacy',
-      link: '/services/strategic-pr',
+      link: '/services/government-advocacy',
       icon: FaHandshake,
       title: lang === 'bn' ? 'পলিসি অ্যাডভোকেসি ও অংশীজন সম্পর্ক' : 'Advocacy & Public Affairs',
       desc:
