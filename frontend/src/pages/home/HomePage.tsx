@@ -56,6 +56,116 @@ function extractCleanYoutubeId(input?: string): string {
   return match ? match[1] : 'dVAVFOU7dGk';
 }
 
+function renderHeroHeadline(rawText: string | undefined, lang: string): React.ReactNode {
+  const text = rawText || (lang === 'bn' ? 'কর্পোরেট সাফল্যের অনন্য কৌশলগত পিআর পার্টনার।' : 'Your Strategic PR partner for corporate success.');
+  const clean = text.replace(/^["“'”\s]+|["“'”\s]+$/g, '');
+
+  if (lang === 'bn') {
+    const parts = clean.split(/(সাফল্যের|পিআর)/g);
+    return (
+      <>
+        <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">“</span>
+        {parts.map((p, i) => {
+          if (p === 'সাফল্যের') return <span key={i} className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">{p}</span>;
+          if (p === 'পিআর') return <span key={i} className="text-[#11813C] dark:text-[#16A34A] font-extrabold">{p}</span>;
+          return <React.Fragment key={i}>{p}</React.Fragment>;
+        })}
+        <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">”</span>
+      </>
+    );
+  }
+
+  // Bracket syntax support: [purple text] and {green text}
+  if (/(\[.*?\]|\{.*?\})/.test(clean)) {
+    const parts = clean.split(/(\[.*?\]|\{.*?\})/g);
+    return (
+      <>
+        <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">“</span>
+        {parts.map((p, i) => {
+          if (p.startsWith('[') && p.endsWith(']')) {
+            return <span key={i} className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">{p.slice(1, -1)}</span>;
+          }
+          if (p.startsWith('{') && p.endsWith('}')) {
+            return <span key={i} className="text-[#11813C] dark:text-[#16A34A] font-extrabold">{p.slice(1, -1)}</span>;
+          }
+          return <React.Fragment key={i}>{p}</React.Fragment>;
+        })}
+        <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">”</span>
+      </>
+    );
+  }
+
+  // Default color spans for Hero headline matching Berlo enterprise aesthetic
+  const regex = /(Strategic\s+PR|partner|success\.?)/gi;
+  const parts = clean.split(regex);
+  return (
+    <>
+      <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">“</span>
+      {parts.map((p, i) => {
+        const low = p.toLowerCase();
+        if (low === 'strategic pr') {
+          return <span key={i} className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">{p}</span>;
+        }
+        if (low === 'partner') {
+          return <span key={i} className="text-[#11813C] dark:text-[#16A34A] font-extrabold">{p}</span>;
+        }
+        if (low.startsWith('success')) {
+          return <span key={i} className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">{p}</span>;
+        }
+        return <React.Fragment key={i}>{p}</React.Fragment>;
+      })}
+      <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">”</span>
+    </>
+  );
+}
+
+function renderStyledSectionTitle(
+  rawTitle: string | undefined,
+  defaultFallback: React.ReactNode,
+  targetKeywords?: string | string[]
+): React.ReactNode {
+  const title = rawTitle?.trim();
+  if (!title) return defaultFallback;
+
+  // 1. Check if bracket syntax like [Success] or [Services] is explicitly used
+  if (/\[.*?\]/.test(title)) {
+    const parts = title.split(/(\[.*?\])/g);
+    return (
+      <>
+        {parts.map((part, i) => {
+          if (part.startsWith('[') && part.endsWith(']')) {
+            return <span key={i} className="b-border">{part.slice(1, -1)}</span>;
+          }
+          return <React.Fragment key={i}>{part}</React.Fragment>;
+        })}
+      </>
+    );
+  }
+
+  // 2. Check target keywords
+  const keywords = Array.isArray(targetKeywords) ? targetKeywords : [targetKeywords].filter(Boolean) as string[];
+  for (const kw of keywords) {
+    if (!kw) continue;
+    const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escaped})`, 'i');
+    if (regex.test(title)) {
+      const parts = title.split(regex);
+      return (
+        <>
+          {parts.map((part, i) => {
+            if (part.toLowerCase() === kw.toLowerCase()) {
+              return <span key={i} className="b-border">{part}</span>;
+            }
+            return <React.Fragment key={i}>{part}</React.Fragment>;
+          })}
+        </>
+      );
+    }
+  }
+
+  return title;
+}
+
 export const HomePage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
 
@@ -1075,28 +1185,7 @@ export const HomePage: React.FC = () => {
               
               {/* Responsive Hero Headline */}
               <h1 className="hero-quote-title font-semibold tracking-tight text-[#1A305A] dark:text-[#FFFFFF]">
-                <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">“</span>
-                {(lang === 'bn' ? dynamicHero?.title_bn : dynamicHero?.title_en) ? (
-                  lang === 'bn' ? dynamicHero?.title_bn : dynamicHero?.title_en
-                ) : lang === 'bn' ? (
-                  <>
-                    কর্পোরেট{' '}
-                    <span className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">সাফল্যের</span>{' '}
-                    অনন্য কৌশলগত{' '}
-                    <span className="text-[#11813C] dark:text-[#16A34A] font-extrabold">পিআর</span>{' '}
-                    পার্টনার।
-                  </>
-                ) : (
-                  <>
-                    Your{' '}
-                    <span className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">Strategic</span>{' '}
-                    PR{' '}
-                    <span className="text-[#11813C] dark:text-[#16A34A] font-extrabold">partner</span>{' '}
-                    for corporate{' '}
-                    <span className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">success</span>.
-                  </>
-                )}
-                <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">”</span>
+                {renderHeroHeadline(lang === 'bn' ? dynamicHero?.title_bn : dynamicHero?.title_en, lang)}
               </h1>
 
               {/* Responsive Description with clean word alignment on mobile */}
@@ -1243,12 +1332,11 @@ export const HomePage: React.FC = () => {
             
             {/* Section Title with .b-border highlighter */}
             <h2 className="section-main-title text-slate-900 dark:text-white shrink-0 text-center lg:text-left whitespace-nowrap">
-              {(lang === 'bn' ? spotlightSection?.title_bn : spotlightSection?.title_en) ||
-                (lang === 'bn' ? (
-                  <>মিডিয়ার <span className="b-border">স্পটলাইট</span></>
-                ) : (
-                  <>In the <span className="b-border">Spotlight</span></>
-                ))}
+              {renderStyledSectionTitle(
+                lang === 'bn' ? spotlightSection?.title_bn : spotlightSection?.title_en,
+                lang === 'bn' ? <>মিডিয়ার <span className="b-border">স্পটলাইট</span></> : <>In the <span className="b-border">Spotlight</span></>,
+                ['Spotlight', 'স্পটলাইট']
+              )}
             </h2>
 
             {/* Continuous Right-to-Left Infinite Moving Carousel with Original Media Logos */}
@@ -1392,12 +1480,11 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 mb-8 sm:mb-12 text-center md:text-left">
             <div className="w-full md:w-auto">
               <h2 className="section-main-title text-slate-900 dark:text-white text-center md:text-left">
-                {(lang === 'bn' ? servicesSection?.title_bn : servicesSection?.title_en) ||
-                  (lang === 'bn' ? (
-                    <>আমাদের <span className="b-border">সেবাসমূহ</span></>
-                  ) : (
-                    <>Our <span className="b-border">Services</span></>
-                  ))}
+                {renderStyledSectionTitle(
+                  lang === 'bn' ? servicesSection?.title_bn : servicesSection?.title_en,
+                  lang === 'bn' ? <>আমাদের <span className="b-border">সেবাসমূহ</span></> : <>Our <span className="b-border">Services</span></>,
+                  ['Services', 'সেবাসমূহ']
+                )}
               </h2>
               {(servicesSection?.subtitle_en || servicesSection?.subtitle_bn) && (
                 <p className="text-slate-600 dark:text-[#A0A0A0] text-sm sm:text-base mt-2 max-w-xl text-center md:text-left">
@@ -1500,12 +1587,11 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-6 space-y-6 text-left">
               <div>
                 <h2 className="text-[32px] sm:text-[40px] font-bold text-slate-900 dark:text-white tracking-tight">
-                  {(lang === 'bn' ? consultancySection?.title_bn : consultancySection?.title_en) ||
-                    (lang === 'bn' ? (
-                      <>ফ্রি <span className="b-border">পরামর্শ গ্রহণ</span></>
-                    ) : (
-                      <>Book a Free <span className="b-border">Consultancy</span></>
-                    ))}
+                  {renderStyledSectionTitle(
+                    lang === 'bn' ? consultancySection?.title_bn : consultancySection?.title_en,
+                    lang === 'bn' ? <>ফ্রি <span className="b-border">পরামর্শ গ্রহণ</span></> : <>Book a Free <span className="b-border">Consultancy</span></>,
+                    ['Consultancy', 'Consultation', 'পরামর্শ গ্রহণ', 'পরামর্শ']
+                  )}
                 </h2>
                 {(consultancySection?.subtitle_en || consultancySection?.subtitle_bn) && (
                   <p className="text-slate-600 dark:text-[#A0A0A0] text-sm sm:text-base mt-2">
@@ -1772,12 +1858,11 @@ export const HomePage: React.FC = () => {
 
             <div>
               <h2 className="section-main-title text-slate-900 dark:text-white uppercase tracking-tight">
-                {(lang === 'bn' ? pageSections['stats']?.title_bn : pageSections['stats']?.title_en) ||
-                  (lang === 'bn' ? (
-                    <>ক্লায়েন্টদের <span className="b-border">রেটিং ও সাফল্য</span></>
-                  ) : (
-                    <>Explore <span className="b-border">Client Ratings </span> Showcase</>
-                  ))}
+                {renderStyledSectionTitle(
+                  lang === 'bn' ? pageSections['stats']?.title_bn : pageSections['stats']?.title_en,
+                  lang === 'bn' ? <>ক্লায়েন্টদের <span className="b-border">রেটিং ও সাফল্য</span></> : <>Explore <span className="b-border">Client Ratings </span> Showcase</>,
+                  ['Client Ratings', 'রেটিং ও সাফল্য', 'Ratings', 'সাফল্য']
+                )}
               </h2>
               {(pageSections['stats']?.subtitle_en || pageSections['stats']?.subtitle_bn) && (
                 <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
@@ -1856,12 +1941,11 @@ export const HomePage: React.FC = () => {
           {/* Left Column: Benefits / Pillars */}
           <div className="lg:col-span-7 space-y-6">
             <h2 className="section-main-title text-slate-900 dark:text-white text-center lg:text-left">
-              {(lang === 'bn' ? pageSections['why_us']?.title_bn : pageSections['why_us']?.title_en) ||
-                (lang === 'bn' ? (
-                  <>আমাদের সাথে কাজ করার <span className="b-border">সুবিধাসমূহ</span></>
-                ) : (
-                  <>Discover the <span className="b-border">Benefits</span> with Us</>
-                ))}
+              {renderStyledSectionTitle(
+                lang === 'bn' ? pageSections['why_us']?.title_bn : pageSections['why_us']?.title_en,
+                lang === 'bn' ? <>আমাদের সাথে কাজ করার <span className="b-border">সুবিধাসমূহ</span></> : <>Discover the <span className="b-border">Benefits</span> with Us</>,
+                ['Benefits', 'সুবিধাসমূহ', 'Why Us', 'Berlo']
+              )}
             </h2>
 
             <div className="space-y-4 pt-2">
@@ -2006,12 +2090,11 @@ export const HomePage: React.FC = () => {
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center lg:text-left">
             <h2 className="section-main-title text-slate-900 dark:text-white text-center lg:text-left">
-              {(lang === 'bn' ? clientsSection?.title_bn : clientsSection?.title_en) ||
-                (lang === 'bn' ? (
-                  <>একসাথে উদ্ভাবনী <span className="b-border">সাফল্য</span></>
-                ) : (
-                  <>Innovating <span className="b-border">Success</span> Together</>
-                ))}
+              {renderStyledSectionTitle(
+                lang === 'bn' ? clientsSection?.title_bn : clientsSection?.title_en,
+                lang === 'bn' ? <>একসাথে উদ্ভাবনী <span className="b-border">সাফল্য</span></> : <>Innovating <span className="b-border">Success</span> Together</>,
+                ['Success', 'সাফল্য']
+              )}
             </h2>
             {(clientsSection?.subtitle_en || clientsSection?.subtitle_bn) && (
               <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
@@ -2089,12 +2172,11 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 text-center sm:text-left">
             <div>
               <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
-                {(lang === 'bn' ? testimonialsSection?.title_bn : testimonialsSection?.title_en) ||
-                  (lang === 'bn' ? (
-                    <>ক্লায়েন্টদের <span className="b-border">মন্তব্য ও রিভিউ</span></>
-                  ) : (
-                    <>Clients <span className="b-border">Says</span></>
-                  ))}
+                {renderStyledSectionTitle(
+                  lang === 'bn' ? testimonialsSection?.title_bn : testimonialsSection?.title_en,
+                  lang === 'bn' ? <>ক্লায়েন্টদের <span className="b-border">মন্তব্য ও রিভিউ</span></> : <>Clients <span className="b-border">Says</span></>,
+                  ['Says', 'মন্তব্য ও রিভিউ', 'প্রতিক্রিয়া', 'মন্তব্য']
+                )}
               </h2>
               {(testimonialsSection?.subtitle_en || testimonialsSection?.subtitle_bn) && (
                 <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
@@ -2200,12 +2282,11 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 text-center md:text-left">
             <div className="space-y-3 w-full md:w-auto">
               <h2 className="section-main-title text-slate-900 dark:text-white text-center md:text-left">
-                {(lang === 'bn' ? projectsSection?.title_bn : projectsSection?.title_en) ||
-                  (lang === 'bn' ? (
-                    <>সাম্প্রতিক <span className="b-border">প্রকল্পসমূহ</span></>
-                  ) : (
-                    <>Recent <span className="b-border">Projects</span></>
-                  ))}
+                {renderStyledSectionTitle(
+                  lang === 'bn' ? projectsSection?.title_bn : projectsSection?.title_en,
+                  lang === 'bn' ? <>সাম্প্রতিক <span className="b-border">প্রকল্পসমূহ</span></> : <>Recent <span className="b-border">Projects</span></>,
+                  ['Projects', 'প্রকল্পসমূহ']
+                )}
               </h2>
               {(projectsSection?.subtitle_en || projectsSection?.subtitle_bn) && (
                 <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center md:text-left">
@@ -2373,12 +2454,11 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 text-center md:text-left">
             <div className="space-y-3 w-full md:w-auto">
               <h2 className="section-main-title text-slate-900 dark:text-white text-center md:text-left">
-                {(lang === 'bn' ? leadershipSection?.title_bn : leadershipSection?.title_en) ||
-                  (lang === 'bn' ? (
-                    <>আমাদের কৌশলগত <span className="b-border">নেতৃত্ব ও টিম</span></>
-                  ) : (
-                    <>Our Strategic <span className="b-border">Leadership & Team</span></>
-                  ))}
+                {renderStyledSectionTitle(
+                  lang === 'bn' ? leadershipSection?.title_bn : leadershipSection?.title_en,
+                  lang === 'bn' ? <>আমাদের কৌশলগত <span className="b-border">নেতৃত্ব ও টিম</span></> : <>Our Strategic <span className="b-border">Leadership & Team</span></>,
+                  ['Leadership & Team', 'Leadership', 'নেতৃত্ব ও টিম', 'নেতৃত্ব']
+                )}
               </h2>
               {(leadershipSection?.subtitle_en || leadershipSection?.subtitle_bn) && (
                 <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center md:text-left">
@@ -2493,12 +2573,11 @@ export const HomePage: React.FC = () => {
           
           <div className="text-center lg:text-left space-y-2">
             <h2 className="section-main-title text-slate-900 dark:text-white text-center lg:text-left">
-              {(lang === 'bn' ? gallerySection?.title_bn : gallerySection?.title_en) ||
-                (lang === 'bn' ? (
-                  <>স্মৃতি ও <span className="b-border">মুহূর্তসমূহ</span></>
-                ) : (
-                  <>Memories & <span className="b-border">Moments</span></>
-                ))}
+              {renderStyledSectionTitle(
+                lang === 'bn' ? gallerySection?.title_bn : gallerySection?.title_en,
+                lang === 'bn' ? <>স্মৃতি ও <span className="b-border">মুহূর্তসমূহ</span></> : <>Memories & <span className="b-border">Moments</span></>,
+                ['Moments', 'মুহূর্তসমূহ']
+              )}
             </h2>
             {(gallerySection?.subtitle_en || gallerySection?.subtitle_bn) && (
               <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center lg:text-left">
@@ -2543,12 +2622,11 @@ export const HomePage: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 mb-8 sm:mb-12 text-center sm:text-left">
           <div>
             <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
-              {(lang === 'bn' ? insightsSection?.title_bn : insightsSection?.title_en) ||
-                (lang === 'bn' ? (
-                  <>সাম্প্রতিক <span className="b-border">ব্লগ ও ইনসাইটস</span></>
-                ) : (
-                  <>Latest <span className="b-border">Blogs</span></>
-                ))}
+              {renderStyledSectionTitle(
+                lang === 'bn' ? insightsSection?.title_bn : insightsSection?.title_en,
+                lang === 'bn' ? <>সাম্প্রতিক <span className="b-border">ব্লগ ও ইনসাইটস</span></> : <>Latest <span className="b-border">Blogs</span></>,
+                ['Blogs', 'ব্লগ ও ইনসাইটস', 'ব্লগ']
+              )}
             </h2>
             {(insightsSection?.subtitle_en || insightsSection?.subtitle_bn) && (
               <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1 text-center sm:text-left">
@@ -2611,10 +2689,12 @@ export const HomePage: React.FC = () => {
             </div>
           )}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl mx-auto">
-            {(lang === 'bn' ? pageSections['cta']?.title_bn : pageSections['cta']?.title_en) ||
-              (lang === 'bn'
+            {renderStyledSectionTitle(
+              lang === 'bn' ? pageSections['cta']?.title_bn : pageSections['cta']?.title_en,
+              lang === 'bn'
                 ? 'আপনার প্রতিষ্ঠানের সুনাম সুদৃঢ় করতে প্রস্তুত?'
-                : 'Ready to Command the Narrative?')}
+                : 'Ready to Command the Narrative?'
+            )}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
             {(lang === 'bn' ? pageSections['cta']?.subtitle_bn : pageSections['cta']?.subtitle_en) ||
