@@ -4,6 +4,7 @@ import { LanguageProvider } from '../../contexts/LanguageContext';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { SearchModal } from '../common/SearchModal';
+import { WhatsAppChatbot } from '../common/WhatsAppChatbot';
 
 const InnerLayout: React.FC = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -32,6 +33,7 @@ const InnerLayout: React.FC = () => {
       </main>
       <Footer />
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      <WhatsAppChatbot />
     </div>
   );
 };
