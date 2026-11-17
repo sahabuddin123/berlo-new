@@ -7,7 +7,8 @@ import {
   AlertCircle,
   Eye,
   EyeOff,
-  ArrowRight,
+  Check,
+  Shield,
 } from 'lucide-react';
 
 export const AdminLoginPage: React.FC = () => {
@@ -18,6 +19,7 @@ export const AdminLoginPage: React.FC = () => {
   const [email, setEmail] = useState('superadmin@berlocommunications.com');
   const [password, setPassword] = useState('Berlo@Admin2026!');
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,142 +51,198 @@ export const AdminLoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-[#07090D] to-slate-950 flex flex-col items-center justify-center p-4 antialiased text-white">
-      {/* Background Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#A302FF]/15 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen relative flex flex-col items-center justify-center p-4 antialiased overflow-hidden select-none bg-[#12081f]">
+      {/* Dynamic Ambient Background Mesh matching reference */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Deep background gradient base */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1b0b2b] via-[#150a26] to-[#12112e]" />
 
-      <div className="w-full max-w-md relative z-10 space-y-6">
-        {/* Brand Header */}
-        <div className="text-center space-y-2">
-          <Link to="/en" className="inline-block">
-            <img src="/brand/logo.png" alt="Berlo Logo" className="h-11 w-auto mx-auto object-contain" />
-          </Link>
-          <h1 className="text-2xl font-extrabold tracking-tight text-white">
-            Administrative Access
-          </h1>
-          <p className="text-xs text-slate-400">
-            Role-Based Management Portal • Secure Access Protocol
-          </p>
-        </div>
+        {/* Top-center / right vibrant crimson-magenta glow */}
+        <div className="absolute top-[8%] left-[45%] -translate-x-1/2 w-[550px] h-[480px] rounded-full bg-gradient-to-br from-[#9f1239]/65 via-[#831843]/50 to-transparent blur-[110px]" />
+        
+        {/* Left deep purple glow */}
+        <div className="absolute top-[20%] -left-16 w-[450px] h-[450px] rounded-full bg-[#581c87]/50 blur-[130px]" />
 
-        {/* Login Card */}
-        <div className="rounded-3xl p-6 sm:p-8 bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-xl space-y-6">
+        {/* Center glowing orb behind card */}
+        <div className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-[#7c3aed]/25 blur-[100px]" />
+
+        {/* Bottom-right cool slate/periwinkle blue ambient field */}
+        <div className="absolute bottom-[5%] right-[10%] w-[580px] h-[520px] rounded-full bg-gradient-to-tl from-[#4361ee]/45 via-[#3b82f6]/30 to-transparent blur-[120px]" />
+        
+        {/* Bottom-left muted plum/rose glow */}
+        <div className="absolute -bottom-10 left-[15%] w-[420px] h-[400px] rounded-full bg-[#701a75]/35 blur-[120px]" />
+      </div>
+
+      <div className="w-full max-w-[400px] relative z-10 space-y-6">
+        {/* Sleek Frosted Glassmorphism Card */}
+        <div className="relative rounded-[44px] px-8 sm:px-10 pt-12 pb-11 bg-white/[0.08] border border-white/[0.18] shadow-[0_30px_90px_rgba(0,0,0,0.65)] backdrop-blur-2xl overflow-hidden">
+          {/* Subtle top edge specular highlight */}
+          <div className="absolute inset-x-12 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
+
+          {/* Frosted Avatar Icon */}
+          <div className="flex justify-center mb-11">
+            <div className="w-32 h-32 rounded-full bg-white/[0.12] border border-white/[0.22] shadow-[inset_0_2px_14px_rgba(255,255,255,0.18)] backdrop-blur-md flex items-center justify-center p-5">
+              {/* Reference silhouette head and shoulders */}
+              <svg
+                viewBox="0 0 24 24"
+                className="w-20 h-20 fill-white/40 drop-shadow-sm"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 12c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm0 2.5c-3.4 0-10.2 1.7-10.2 5.1V22h20.4v-2.4c0-3.4-6.8-5.1-10.2-5.1z" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Error Message */}
           {error && (
-            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-start gap-2.5 animate-in fade-in">
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <div className="mb-6 p-3 rounded-2xl bg-rose-500/15 border border-rose-400/30 text-rose-200 text-xs flex items-start gap-2.5 backdrop-blur-md animate-in fade-in">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-400" />
               <span>{error}</span>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Administrative Email</label>
-              <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          {/* Login Form with Underline-Only Inputs */}
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Email Field */}
+            <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2.5">
+              <div className="flex items-center gap-3.5">
+                <Mail className="w-4 h-4 text-white/80 shrink-0 stroke-[1.8]" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@berlocommunications.com"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-[#A302FF] transition-colors"
+                  placeholder="Email ID"
+                  className="w-full bg-transparent text-white placeholder-white/70 text-sm font-light tracking-wide focus:outline-none"
                 />
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-slate-300">Password</label>
-                <Link
-                  to="/admin/forgot-password"
-                  className="text-xs font-medium text-[#B833FF] hover:underline"
-                >
-                  Forgot Password?
-                </Link>
-              </div>
-              <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            {/* Password Field */}
+            <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2.5">
+              <div className="flex items-center gap-3.5">
+                <Lock className="w-4 h-4 text-white/80 shrink-0 stroke-[1.8]" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-[#A302FF] transition-colors"
+                  placeholder="Password"
+                  className="w-full bg-transparent text-white placeholder-white/70 text-sm font-light tracking-wide focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                  className="text-white/50 hover:text-white transition-colors shrink-0 p-1"
+                  tabIndex={-1}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-3 rounded-xl bg-[#A302FF] hover:bg-[#8D02DE] text-white font-semibold text-sm transition-all shadow-lg shadow-[#A302FF]/30 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-            >
-              {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <>
-                  <span>Authenticate & Enter Console</span>
-                  <ArrowRight className="w-4 h-4" />
-                </>
-              )}
-            </button>
-          </form>
+            {/* Remember me & Forgot Password Row */}
+            <div className="flex items-center justify-between text-xs pt-1">
+              <label
+                onClick={() => setRememberMe(!rememberMe)}
+                className="flex items-center gap-2 cursor-pointer group select-none"
+              >
+                <div
+                  className={`w-4 h-4 rounded-[3px] border flex items-center justify-center transition-all ${
+                    rememberMe
+                      ? 'bg-black/60 border-white/60 text-white'
+                      : 'bg-black/20 border-white/40 text-transparent'
+                  }`}
+                >
+                  <Check className="w-3 h-3 stroke-[3]" />
+                </div>
+                <span className="text-white/85 group-hover:text-white font-light text-[13px] tracking-tight">
+                  Remember me
+                </span>
+              </label>
 
-          {/* Quick Demo Role Selectors */}
-          <div className="pt-4 border-t border-slate-800 space-y-2">
-            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block text-center">
-              Quick Role Switch (Demo Credentials)
-            </span>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+              <Link
+                to="/admin/forgot-password"
+                className="italic text-white/70 hover:text-white text-[13px] font-light transition-colors"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+
+            {/* Rounded Capsule Gradient Button */}
+            <div className="pt-3">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#240a34] via-[#351859] to-[#3d5bbd] hover:from-[#2e0e42] hover:via-[#421e70] hover:to-[#486bd9] text-white font-bold text-xs uppercase tracking-[0.25em] shadow-[0_12px_28px_rgba(40,20,70,0.5)] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center border border-white/10"
+              >
+                {isLoading ? (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <span>LOGIN</span>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Demo Roles & Public Site Navigation */}
+        <div className="space-y-3 pt-1">
+          {/* Discreet Quick Role Switcher */}
+          <div className="p-3 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-[10px] uppercase font-semibold tracking-wider text-white/50 flex items-center gap-1.5">
+                <Shield className="w-3 h-3 text-[#A302FF]" /> Demo Roles Switch
+              </span>
+              <span className="text-[10px] text-white/40 font-mono">Berlo@Admin2026!</span>
+            </div>
+            <div className="grid grid-cols-4 gap-1.5">
               <button
                 type="button"
                 onClick={() => setDemoRole('superadmin@berlocommunications.com')}
-                className="p-2 rounded-lg bg-slate-950 hover:bg-[#A302FF]/10 border border-slate-800 hover:border-[#A302FF]/40 text-left text-slate-300 transition-colors"
+                className="px-2 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-center transition-all cursor-pointer group"
+                title="Superadmin"
               >
-                <div className="font-semibold text-white">Superadmin</div>
-                <div className="text-[10px] text-[#B833FF]">Master Root</div>
+                <div className="text-[11px] font-semibold text-white/90 group-hover:text-white">Super</div>
+                <div className="text-[9px] text-purple-300 font-light">Root</div>
               </button>
               <button
                 type="button"
                 onClick={() => setDemoRole('admin@berlocommunications.com')}
-                className="p-2 rounded-lg bg-slate-950 hover:bg-blue-500/10 border border-slate-800 hover:border-blue-500/40 text-left text-slate-300 transition-colors"
+                className="px-2 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-center transition-all cursor-pointer group"
+                title="Administrator"
               >
-                <div className="font-semibold text-white">Administrator</div>
-                <div className="text-[10px] text-blue-400">Operations</div>
+                <div className="text-[11px] font-semibold text-white/90 group-hover:text-white">Admin</div>
+                <div className="text-[9px] text-blue-300 font-light">Ops</div>
               </button>
               <button
                 type="button"
                 onClick={() => setDemoRole('moderator@berlocommunications.com')}
-                className="p-2 rounded-lg bg-slate-950 hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-500/40 text-left text-slate-300 transition-colors"
+                className="px-2 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-center transition-all cursor-pointer group"
+                title="Moderator"
               >
-                <div className="font-semibold text-white">Moderator</div>
-                <div className="text-[10px] text-emerald-400">Reviews & Leads</div>
+                <div className="text-[11px] font-semibold text-white/90 group-hover:text-white">Mod</div>
+                <div className="text-[9px] text-emerald-300 font-light">Leads</div>
               </button>
               <button
                 type="button"
                 onClick={() => setDemoRole('writer@berlocommunications.com')}
-                className="p-2 rounded-lg bg-slate-950 hover:bg-amber-500/10 border border-slate-800 hover:border-amber-500/40 text-left text-slate-300 transition-colors"
+                className="px-2 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-center transition-all cursor-pointer group"
+                title="Content Writer"
               >
-                <div className="font-semibold text-white">Content Writer</div>
-                <div className="text-[10px] text-amber-400">Drafts & Articles</div>
+                <div className="text-[11px] font-semibold text-white/90 group-hover:text-white">Writer</div>
+                <div className="text-[9px] text-amber-300 font-light">Drafts</div>
               </button>
             </div>
           </div>
-        </div>
 
-        {/* Back Link */}
-        <div className="text-center text-xs text-slate-500">
-          <Link to="/en" className="hover:text-slate-300 transition-colors">
-            ← Return to Berlo Communications Public Website
-          </Link>
+          {/* Return to website */}
+          <div className="text-center text-xs text-white/40">
+            <Link to="/en" className="hover:text-white/70 transition-colors tracking-wide font-light">
+              ← Return to Berlo Communications Public Website
+            </Link>
+          </div>
         </div>
       </div>
     </div>
