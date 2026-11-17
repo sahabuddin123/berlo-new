@@ -65,6 +65,25 @@ const defaultServiceCatalog = [
   { id: 9, slug: 'monitoring-analytics', title_en: 'Media Intelligence & Sentiment Analytics', title_bn: 'মিডিয়া মনিটরিং ও অ্যানালিটিক্স' },
 ];
 
+const defaultMarqueeLogos = [
+  { name: 'Unique Group', logo: '/images/berlo/clients/unique.jpg' },
+  { name: 'Rahimafrooz', logo: '/images/berlo/clients/rahimafrooz.jpg' },
+  { name: 'Rupayan Group', logo: '/images/berlo/clients/rupayan.jpg' },
+  { name: 'Rajasthan', logo: '/images/berlo/clients/rajasthan.jpg' },
+  { name: 'ATN News', logo: '/images/berlo/clients/atn.jpg' },
+  { name: 'BAT Bangladesh', logo: '/images/berlo/clients/bat.jpg' },
+  { name: 'Beacon Pharma', logo: '/images/berlo/clients/beacon.jpg' },
+  { name: 'Borak Real Estate', logo: '/images/berlo/clients/borak.jpg' },
+  { name: 'Lazz Pharma', logo: '/images/berlo/clients/lazzpharma.jpg' },
+  { name: 'Motul BD', logo: '/images/berlo/clients/motul.jpg' },
+  { name: 'IDCOL', logo: '/images/berlo/clients/idcol.jpg' },
+  { name: 'Synova Pharma', logo: '/images/berlo/clients/stynova.jpg' },
+  { name: 'Ministry of Agriculture', logo: '/images/berlo/clients/agery-calture.jpg' },
+  { name: 'Univ. of Asia Pacific', logo: '/images/berlo/clients/uap.jpg' },
+  { name: 'BUBT University', logo: '/images/berlo/clients/bubt.jpg' },
+  { name: 'Export Promotion Bureau', logo: '/images/berlo/clients/epbb.jpg' },
+];
+
 export const AdminPagesManagerPage: React.FC = () => {
   const [selectedPage, setSelectedPage] = useState<string>('home');
   const [sections, setSections] = useState<PageSection[]>([]);
@@ -2008,6 +2027,219 @@ export const AdminPagesManagerPage: React.FC = () => {
                       })}
                     </div>
                   </div>
+
+                  {/* ================================================================= */}
+                  {/* Client Logos Marquee Carousel (Bottom Row - User Requested)       */}
+                  {/* ================================================================= */}
+                  {(() => {
+                    const logos: Array<{ name: string; logo: string }> =
+                      currentSection.metadata?.marquee_logos || defaultMarqueeLogos;
+
+                    const updateLogos = (newLogos: Array<{ name: string; logo: string }>) => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        marquee_logos: newLogos,
+                      }));
+                    };
+
+                    const addLogo = () => {
+                      const next = [...logos, { name: 'New Client Partner', logo: '/images/berlo/clients/unique.jpg' }];
+                      updateLogos(next);
+                    };
+
+                    const removeLogo = (idx: number) => {
+                      const next = logos.filter((_, i) => i !== idx);
+                      updateLogos(next);
+                    };
+
+                    const updateLogoField = (idx: number, field: 'name' | 'logo', val: string) => {
+                      const next = [...logos];
+                      next[idx] = { ...next[idx], [field]: val };
+                      updateLogos(next);
+                    };
+
+                    const moveLogo = (idx: number, dir: 'up' | 'down') => {
+                      if (dir === 'up' && idx > 0) {
+                        const next = [...logos];
+                        const tmp = next[idx - 1];
+                        next[idx - 1] = next[idx];
+                        next[idx] = tmp;
+                        updateLogos(next);
+                      } else if (dir === 'down' && idx < logos.length - 1) {
+                        const next = [...logos];
+                        const tmp = next[idx + 1];
+                        next[idx + 1] = next[idx];
+                        next[idx] = tmp;
+                        updateLogos(next);
+                      }
+                    };
+
+                    const resetToDefaults = () => {
+                      updateLogos(defaultMarqueeLogos);
+                    };
+
+                    return (
+                      <div className="p-5 rounded-2xl bg-[#0d101a] border border-[#20273c] space-y-4 shadow-xl">
+                        {/* Header Row */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1b2234]">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <ImageIcon className="w-4 h-4 text-purple-400" />
+                              <span className="text-sm font-bold text-white tracking-wide">
+                                Client Logos Marquee Carousel (Bottom Row)
+                              </span>
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                                {logos.length} Logos in Carousel
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-400 mt-1">
+                              হোমপেজের ৩ডি ফ্লিপ কার্ডের নিচে যে স্ক্রলিং ক্লায়েন্ট লোগো ক্যারোসেল রয়েছে, তার লোগো এবং নাম এখান থেকে অ্যাড, পরিবর্তন বা ডিলিট করুন।
+                            </p>
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={addLogo}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-purple-900/30 transition-all cursor-pointer"
+                            >
+                              <Plus className="w-3.5 h-3.5" />
+                              <span>Add Client Logo</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={resetToDefaults}
+                              className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10 text-xs transition-colors cursor-pointer"
+                              title="Reset to 16 default brand logos"
+                            >
+                              Reset Default 16
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Live Visual Marquee Preview Strip */}
+                        <div className="p-3 rounded-xl bg-[#141826] border border-[#232b3e] space-y-2">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                            Carousel Real-Time Preview ({logos.length} active logos):
+                          </span>
+                          <div className="flex items-center gap-3 overflow-x-auto pb-2 no-scrollbar">
+                            {logos.map((item, idx) => (
+                              <div
+                                key={idx}
+                                className="shrink-0 w-28 h-12 bg-white rounded-lg p-2 border border-slate-200 flex items-center justify-center shadow-sm relative group"
+                                title={item.name}
+                              >
+                                <img
+                                  src={item.logo}
+                                  alt={item.name}
+                                  className="max-h-8 max-w-[80px] object-contain filter contrast-110"
+                                  onError={(e: any) => {
+                                    e.target.src = '/images/berlo/clients/unique.jpg';
+                                  }}
+                                />
+                                <span className="absolute -top-1.5 -left-1.5 w-4 h-4 rounded-full bg-[#7c3aed] text-white text-[9px] font-bold flex items-center justify-center shadow">
+                                  {idx + 1}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Editable Grid of Client Logos */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 max-h-[500px] overflow-y-auto pr-1">
+                          {logos.map((item, idx) => (
+                            <div
+                              key={idx}
+                              className="p-3 rounded-xl bg-[#141826] border border-[#222a3d] hover:border-purple-500/50 transition-all space-y-2.5 shadow-sm group"
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-[11px] font-bold text-purple-300 flex items-center gap-1.5">
+                                  <span className="w-4 h-4 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-[9px] font-mono flex items-center justify-center">
+                                    {idx + 1}
+                                  </span>
+                                  <span>Client #{idx + 1}</span>
+                                </span>
+
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    type="button"
+                                    disabled={idx === 0}
+                                    onClick={() => moveLogo(idx, 'up')}
+                                    className="p-1 rounded bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white disabled:opacity-20 cursor-pointer"
+                                    title="Move earlier"
+                                  >
+                                    <ArrowUp className="w-3 h-3" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    disabled={idx === logos.length - 1}
+                                    onClick={() => moveLogo(idx, 'down')}
+                                    className="p-1 rounded bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white disabled:opacity-20 cursor-pointer"
+                                    title="Move later"
+                                  >
+                                    <ArrowDown className="w-3 h-3" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeLogo(idx)}
+                                    className="p-1 rounded bg-rose-500/10 hover:bg-rose-500/25 text-rose-400 hover:text-rose-300 transition-colors ml-1 cursor-pointer"
+                                    title="Delete this client logo"
+                                  >
+                                    <Trash2 className="w-3 h-3" />
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-2.5">
+                                {/* Thumbnail Preview */}
+                                <div className="w-14 h-12 bg-white rounded-lg p-1.5 border border-slate-300 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+                                  <img
+                                    src={item.logo}
+                                    alt={item.name}
+                                    className="max-h-full max-w-full object-contain"
+                                    onError={(e: any) => {
+                                      e.target.src = '/images/berlo/clients/unique.jpg';
+                                    }}
+                                  />
+                                </div>
+
+                                <div className="flex-1 space-y-1.5 min-w-0">
+                                  <input
+                                    type="text"
+                                    value={item.name || ''}
+                                    onChange={(e) => updateLogoField(idx, 'name', e.target.value)}
+                                    placeholder="Client Brand Name"
+                                    className="w-full px-2 py-1 rounded-lg bg-[#0e121d] border border-[#232b3e] text-white text-xs font-semibold"
+                                  />
+                                  <div className="flex gap-1">
+                                    <input
+                                      type="text"
+                                      value={item.logo || ''}
+                                      onChange={(e) => updateLogoField(idx, 'logo', e.target.value)}
+                                      placeholder="Logo image URL"
+                                      className="flex-1 px-2 py-1 rounded-lg bg-[#0e121d] border border-[#232b3e] text-white text-[10px] font-mono"
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() =>
+                                        openMediaPicker((url) => {
+                                          updateLogoField(idx, 'logo', url);
+                                        })
+                                      }
+                                      className="px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[10px] font-semibold flex items-center gap-1 cursor-pointer"
+                                      title="Select from Media Library"
+                                    >
+                                      <FolderOpen className="w-3 h-3" />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               ) : currentSection.section_key === 'testimonials_header' ? (
                 /* ================================================================= */

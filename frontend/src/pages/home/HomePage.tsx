@@ -195,18 +195,22 @@ export const HomePage: React.FC = () => {
   }, [pageSections]);
 
   useEffect(() => {
-    const clientLogos = (dbClients.length > 0 ? dbClients.filter((c) => Boolean(c.logo)).map((c) => c.logo!) : []).concat([
-      '/images/berlo/clients/unique.jpg',
-      '/images/berlo/clients/rahimafrooz.jpg',
-      '/images/berlo/clients/rupayan.jpg',
-      '/images/berlo/clients/rajasthan.jpg',
-      '/images/berlo/clients/ucep.jpg',
-      '/images/berlo/clients/radiant.jpg',
-      '/images/berlo/clients/netcom.jpg',
-      '/images/berlo/clients/idcol.jpg',
-      '/images/berlo/clients/stynova.jpg',
-      '/images/berlo/clients/uap.jpg',
-    ]);
+    const customMarquee = pageSections['clients_showcase']?.metadata?.marquee_logos;
+    const clientLogos = (customMarquee && Array.isArray(customMarquee) && customMarquee.length > 0
+      ? customMarquee.map((c: any) => c.logo)
+      : (dbClients.length > 0 ? dbClients.filter((c) => Boolean(c.logo)).map((c) => c.logo!) : []).concat([
+          '/images/berlo/clients/unique.jpg',
+          '/images/berlo/clients/rahimafrooz.jpg',
+          '/images/berlo/clients/rupayan.jpg',
+          '/images/berlo/clients/rajasthan.jpg',
+          '/images/berlo/clients/ucep.jpg',
+          '/images/berlo/clients/radiant.jpg',
+          '/images/berlo/clients/netcom.jpg',
+          '/images/berlo/clients/idcol.jpg',
+          '/images/berlo/clients/stynova.jpg',
+          '/images/berlo/clients/uap.jpg',
+        ])
+    );
     const FLIP_POOL = Array.from(new Set(clientLogos.filter(Boolean)));
 
     let queueIdx = 4;
@@ -852,12 +856,17 @@ export const HomePage: React.FC = () => {
 
   // Section 08: Innovating Success Together (Clients)
   const clientsSection = pageSections['clients_showcase'];
-  const activeMarqueeLogos = (dbClients.length > 0 && dbClients.some((c) => Boolean(c.logo)))
-    ? dbClients.filter((c) => Boolean(c.logo)).map((c) => ({
-        name: c.name,
-        logo: c.logo || '/images/berlo/clients/unique.jpg',
-      }))
-    : marqueeLogos;
+  const activeMarqueeLogos =
+    clientsSection?.metadata?.marquee_logos &&
+    Array.isArray(clientsSection.metadata.marquee_logos) &&
+    clientsSection.metadata.marquee_logos.length > 0
+      ? clientsSection.metadata.marquee_logos
+      : dbClients.length > 0 && dbClients.some((c) => Boolean(c.logo))
+      ? dbClients.filter((c) => Boolean(c.logo)).map((c) => ({
+          name: c.name,
+          logo: c.logo || '/images/berlo/clients/unique.jpg',
+        }))
+      : marqueeLogos;
 
   // Section 09: Clients Says (Testimonials)
   const testimonialsSection = pageSections['testimonials_header'];
