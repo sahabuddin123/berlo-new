@@ -9,6 +9,8 @@ export interface Article {
   publishedAt: string;
   readTimeMinutes: number;
   featured: boolean;
+  cover_image?: string;
+  image?: string;
   content: {
     en: {
       introduction: string;

@@ -176,8 +176,22 @@ export const HomePage: React.FC = () => {
     { front: '/images/berlo/clients/rajasthan.jpg', back: '/images/berlo/clients/idcol.jpg', isFlipped: false },
   ]);
 
+  // Synchronize 3D flip card slots when page sections data loads from PostgreSQL
   useEffect(() => {
-    const FLIP_POOL = [
+    const customSlots = pageSections['clients_showcase']?.metadata?.flip_slots;
+    if (customSlots && Array.isArray(customSlots) && customSlots.length === 4) {
+      setFlipSlots(
+        customSlots.map((s: any) => ({
+          front: s.front || '/images/berlo/clients/unique.jpg',
+          back: s.back || '/images/berlo/clients/radiant.jpg',
+          isFlipped: false,
+        }))
+      );
+    }
+  }, [pageSections]);
+
+  useEffect(() => {
+    const clientLogos = (dbClients.length > 0 ? dbClients.filter((c) => Boolean(c.logo)).map((c) => c.logo!) : []).concat([
       '/images/berlo/clients/unique.jpg',
       '/images/berlo/clients/rahimafrooz.jpg',
       '/images/berlo/clients/rupayan.jpg',
@@ -188,7 +202,8 @@ export const HomePage: React.FC = () => {
       '/images/berlo/clients/idcol.jpg',
       '/images/berlo/clients/stynova.jpg',
       '/images/berlo/clients/uap.jpg',
-    ];
+    ]);
+    const FLIP_POOL = Array.from(new Set(clientLogos.filter(Boolean)));
 
     let queueIdx = 4;
     const timers: Array<ReturnType<typeof setTimeout>> = [];
@@ -1193,10 +1208,10 @@ export const HomePage: React.FC = () => {
         <div className="absolute inset-x-0 top-0 h-16 sm:h-20 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none z-10" />
         <div className="absolute inset-x-0 bottom-0 h-20 sm:h-24 bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none z-10" />
 
-        {/* Official Agency Brand Logo in Top-Right Corner (Exact match with IMBD reference) */}
+        {/* Official Agency Brand Logo in Top-Right Corner (Dynamic with fallback) */}
         <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-20 pointer-events-none">
           <img
-            src="/brand/logo.png"
+            src={videoSection?.image_url || "/brand/logo.png"}
             alt="Berlo Communications"
             className="h-7 sm:h-11 w-auto object-contain filter drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] brightness-110"
           />
@@ -1261,6 +1276,11 @@ export const HomePage: React.FC = () => {
                     <>Our <span className="b-border">Services</span></>
                   ))}
               </h2>
+              {(servicesSection?.subtitle_en || servicesSection?.subtitle_bn) && (
+                <p className="text-slate-600 dark:text-[#A0A0A0] text-sm sm:text-base mt-2 max-w-xl text-center md:text-left">
+                  {lang === 'bn' ? servicesSection?.subtitle_bn || servicesSection?.subtitle_en : servicesSection?.subtitle_en}
+                </p>
+              )}
             </div>
             <div className="w-full md:w-auto flex justify-center md:justify-end mt-2 md:mt-0">
               <Link
@@ -1362,6 +1382,11 @@ export const HomePage: React.FC = () => {
                       <>Book a Free <span className="b-border">Consultancy</span></>
                     ))}
                 </h2>
+                {(consultancySection?.subtitle_en || consultancySection?.subtitle_bn) && (
+                  <p className="text-slate-600 dark:text-[#A0A0A0] text-sm sm:text-base mt-2">
+                    {lang === 'bn' ? consultancySection?.subtitle_bn || consultancySection?.subtitle_en : consultancySection?.subtitle_en}
+                  </p>
+                )}
               </div>
 
               {/* 3-Step Indicator Bar matching reference image */}
@@ -1530,21 +1555,21 @@ export const HomePage: React.FC = () => {
                           onChange={(e) => setWizardData({ ...wizardData, service: e.target.value })}
                           className="w-full py-3.5 px-4 bg-white dark:bg-[#141414] border border-slate-300 dark:border-[#2b2b2b] text-slate-900 dark:text-white focus:outline-none focus:border-[#A302FF] text-[15px] transition-colors rounded-none shadow-sm dark:shadow-none"
                         >
-                          <option value="Strategic Media Relations" className="bg-white dark:bg-[#191919] text-slate-900 dark:text-white">
-                            {lang === 'bn' ? 'জাতীয় মিডিয়া সম্পর্ক ও প্রেস কনফারেন্স' : 'Strategic Media Relations & Press'}
-                          </option>
-                          <option value="Crisis & Reputation Management" className="bg-white dark:bg-[#191919] text-slate-900 dark:text-white">
-                            {lang === 'bn' ? 'সংকট ব্যবস্থাপনা ও সুনাম সুরক্ষা' : 'Crisis & Reputation Architecture'}
-                          </option>
-                          <option value="Corporate Communications" className="bg-white dark:bg-[#191919] text-slate-900 dark:text-white">
-                            {lang === 'bn' ? 'কর্পোরেট যোগাযোগ ও উপদেষ্টা' : 'Corporate Communications & Advisory'}
-                          </option>
-                          <option value="Brand Positioning" className="bg-white dark:bg-[#191919] text-slate-900 dark:text-white">
-                            {lang === 'bn' ? 'কৌশলগত ব্র্যান্ড ও মার্কেট পিআর' : 'Strategic Brand PR Positioning'}
-                          </option>
-                          <option value="Government Affairs" className="bg-white dark:bg-[#191919] text-slate-900 dark:text-white">
-                            {lang === 'bn' ? 'পাবলিক পলিসি ও রেগুলেটরি সম্পর্ক' : 'Government Affairs & Policy Advocacy'}
-                          </option>
+                          {(dbServices.length > 0 ? dbServices : [
+                            { id: '1', title: { en: 'Strategic Media Relations', bn: 'জাতীয় মিডিয়া সম্পর্ক ও প্রেস কনফারেন্স' } },
+                            { id: '2', title: { en: 'Crisis & Reputation Management', bn: 'সংকট ব্যবস্থাপনা ও সুনাম সুরক্ষা' } },
+                            { id: '3', title: { en: 'Corporate Communications', bn: 'কর্পোরেট যোগাযোগ ও উপদেষ্টা' } },
+                            { id: '4', title: { en: 'Brand Positioning', bn: 'কৌশলগত ব্র্যান্ড ও মার্কেট পিআর' } },
+                            { id: '5', title: { en: 'Government Affairs', bn: 'পাবলিক পলিসি ও রেগুলেটরি সম্পর্ক' } },
+                          ]).map((s: any) => (
+                            <option
+                              key={s.id || s.slug}
+                              value={s.title.en}
+                              className="bg-white dark:bg-[#191919] text-slate-900 dark:text-white"
+                            >
+                              {lang === 'bn' ? s.title.bn : s.title.en}
+                            </option>
+                          ))}
                         </select>
                       </div>
                       <div className="pt-2 flex items-center gap-4">
@@ -1627,6 +1652,11 @@ export const HomePage: React.FC = () => {
                     <>Explore <span className="b-border">Client Ratings </span> Showcase</>
                   ))}
               </h2>
+              {(pageSections['stats']?.subtitle_en || pageSections['stats']?.subtitle_bn) && (
+                <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
+                  {lang === 'bn' ? pageSections['stats']?.subtitle_bn || pageSections['stats']?.subtitle_en : pageSections['stats']?.subtitle_en}
+                </p>
+              )}
             </div>
 
             {/* Laurel Wreath Right SVG */}
@@ -1811,23 +1841,25 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Office Photo */}
+          {/* Right Column: Office Photo (Dynamic with fallback) */}
           <div className="lg:col-span-5 relative">
             <div className="border border-slate-200 dark:border-[#262626] shadow-2xl aspect-[4/5] overflow-hidden group">
               <img
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"
+                src={pageSections['why_us']?.image_url || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"}
                 alt="Berlo Agency Conference Room"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <div className="text-xs uppercase tracking-wider text-[#A302FF] dark:text-[#B833FF] font-bold">
-                  {lang === 'bn' ? 'কর্পোরেট হেডকোয়ার্টার্স' : 'Corporate Headquarters'}
+                  {(lang === 'bn' ? pageSections['why_us']?.metadata?.office_tag_bn : pageSections['why_us']?.metadata?.office_tag_en) ||
+                    (lang === 'bn' ? 'কর্পোরেট হেডকোয়ার্টার্স' : 'Corporate Headquarters')}
                 </div>
                 <div className="text-base font-bold mt-1">
-                  {lang === 'bn'
-                    ? 'অ্যাপার্টমেন্ট বি৩, বাড়ি ৩২/৩৪, রোড ০৭, নিকেতন, গুলশান-১, ঢাকা'
-                    : 'Apartment B3, House 32/34, Road 07, Niketon, Gulshan-1, Dhaka'}
+                  {(lang === 'bn' ? pageSections['why_us']?.metadata?.address_bn : pageSections['why_us']?.metadata?.address_en) ||
+                    (lang === 'bn'
+                      ? 'অ্যাপার্টমেন্ট বি৩, বাড়ি ৩২/৩৪, রোড ০৭, নিকেতন, গুলশান-১, ঢাকা'
+                      : 'Apartment B3, House 32/34, Road 07, Niketon, Gulshan-1, Dhaka')}
                 </div>
               </div>
             </div>
@@ -1850,6 +1882,11 @@ export const HomePage: React.FC = () => {
                   <>Innovating <span className="b-border">Success</span> Together</>
                 ))}
             </h2>
+            {(clientsSection?.subtitle_en || clientsSection?.subtitle_bn) && (
+              <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
+                {lang === 'bn' ? clientsSection?.subtitle_bn || clientsSection?.subtitle_en : clientsSection?.subtitle_en}
+              </p>
+            )}
           </div>
 
           {/* Framed Container matching reference screenshot */}
@@ -1917,14 +1954,21 @@ export const HomePage: React.FC = () => {
           
           {/* Header Row: Clients Says + VIEW ALL button on right */}
           <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 text-center sm:text-left">
-            <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
-              {(lang === 'bn' ? testimonialsSection?.title_bn : testimonialsSection?.title_en) ||
-                (lang === 'bn' ? (
-                  <>ক্লায়েন্টদের <span className="b-border">মন্তব্য ও রিভিউ</span></>
-                ) : (
-                  <>Clients <span className="b-border">Says</span></>
-                ))}
-            </h2>
+            <div>
+              <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
+                {(lang === 'bn' ? testimonialsSection?.title_bn : testimonialsSection?.title_en) ||
+                  (lang === 'bn' ? (
+                    <>ক্লায়েন্টদের <span className="b-border">মন্তব্য ও রিভিউ</span></>
+                  ) : (
+                    <>Clients <span className="b-border">Says</span></>
+                  ))}
+              </h2>
+              {(testimonialsSection?.subtitle_en || testimonialsSection?.subtitle_bn) && (
+                <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
+                  {lang === 'bn' ? testimonialsSection?.subtitle_bn || testimonialsSection?.subtitle_en : testimonialsSection?.subtitle_en}
+                </p>
+              )}
+            </div>
             <Link
               to={formatRoute('clients')}
               className="px-5 py-2 border border-[#A302FF] text-[#A302FF] dark:text-white hover:bg-[#A302FF] hover:text-white text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-none self-center sm:self-auto"
@@ -1992,6 +2036,11 @@ export const HomePage: React.FC = () => {
                     <>Recent <span className="b-border">Projects</span></>
                   ))}
               </h2>
+              {(projectsSection?.subtitle_en || projectsSection?.subtitle_bn) && (
+                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center md:text-left">
+                  {lang === 'bn' ? projectsSection?.subtitle_bn || projectsSection?.subtitle_en : projectsSection?.subtitle_en}
+                </p>
+              )}
             </div>
             
             <Link
@@ -2057,16 +2106,20 @@ export const HomePage: React.FC = () => {
                       {activeProjects[0]?.desc || featuredProjects[0].desc}
                     </p>
 
-                    {/* Stats Grid */}
+                    {/* Stats Grid (Dynamic from DB / Project attributes) */}
                     <div className="grid grid-cols-2 gap-3 pt-2">
                       <div className="p-3.5 bg-slate-50 dark:bg-[#171B26] border border-slate-200 dark:border-white/5">
-                        <div className="text-lg font-black text-slate-900 dark:text-white">50+ Tier-1</div>
+                        <div className="text-lg font-black text-slate-900 dark:text-white">
+                          {activeProjects[0]?.metric || (lang === 'bn' ? '৫০+ আন্তর্জাতিক গণমাধ্যম' : '50+ Global Media Outlets')}
+                        </div>
                         <div className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-0.5">
                           {lang === 'bn' ? 'জাতীয় ও আন্তর্জাতিক মিডিয়া' : 'Global Media Outlets'}
                         </div>
                       </div>
                       <div className="p-3.5 bg-slate-50 dark:bg-[#171B26] border border-slate-200 dark:border-white/5">
-                        <div className="text-lg font-black text-[#11813C]">2.5M+</div>
+                        <div className="text-lg font-black text-[#11813C]">
+                          {activeProjects[0]?.submetric || (lang === 'bn' ? '২৫ লক্ষ+ দর্শনার্থী সংযোগ' : '2.5M+ On-Ground Reach')}
+                        </div>
                         <div className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-0.5">
                           {lang === 'bn' ? 'দর্শনার্থী সংযোগ' : 'On-Ground Footfall'}
                         </div>
@@ -2154,6 +2207,11 @@ export const HomePage: React.FC = () => {
                     <>Our Strategic <span className="b-border">Leadership & Team</span></>
                   ))}
               </h2>
+              {(leadershipSection?.subtitle_en || leadershipSection?.subtitle_bn) && (
+                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center md:text-left">
+                  {lang === 'bn' ? leadershipSection?.subtitle_bn || leadershipSection?.subtitle_en : leadershipSection?.subtitle_en}
+                </p>
+              )}
             </div>
 
             <Link
@@ -2267,6 +2325,11 @@ export const HomePage: React.FC = () => {
                   <>Memories & <span className="b-border">Moments</span></>
                 ))}
             </h2>
+            {(gallerySection?.subtitle_en || gallerySection?.subtitle_bn) && (
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center lg:text-left">
+                {lang === 'bn' ? gallerySection?.subtitle_bn || gallerySection?.subtitle_en : gallerySection?.subtitle_en}
+              </p>
+            )}
           </div>
 
           {/* High-Density Photo Mosaic (3-col mobile, 4-col tablet, 6-col desktop) */}
@@ -2301,14 +2364,21 @@ export const HomePage: React.FC = () => {
       {/* ========================================================================= */}
       <section className="py-16 lg:py-24 max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 mb-8 sm:mb-12 text-center sm:text-left">
-          <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
-            {(lang === 'bn' ? insightsSection?.title_bn : insightsSection?.title_en) ||
-              (lang === 'bn' ? (
-                <>সাম্প্রতিক <span className="b-border">ব্লগ ও ইনসাইটস</span></>
-              ) : (
-                <>Latest <span className="b-border">Blogs</span></>
-              ))}
-          </h2>
+          <div>
+            <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
+              {(lang === 'bn' ? insightsSection?.title_bn : insightsSection?.title_en) ||
+                (lang === 'bn' ? (
+                  <>সাম্প্রতিক <span className="b-border">ব্লগ ও ইনসাইটস</span></>
+                ) : (
+                  <>Latest <span className="b-border">Blogs</span></>
+                ))}
+            </h2>
+            {(insightsSection?.subtitle_en || insightsSection?.subtitle_bn) && (
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1 text-center sm:text-left">
+                {lang === 'bn' ? insightsSection?.subtitle_bn || insightsSection?.subtitle_en : insightsSection?.subtitle_en}
+              </p>
+            )}
+          </div>
           <Link
             to={formatRoute('insights')}
             className="btn-berlo-outline self-center sm:self-auto"
@@ -2328,7 +2398,7 @@ export const HomePage: React.FC = () => {
               <div>
                 <div className="relative aspect-[16/10] overflow-hidden bg-black">
                   <img
-                    src={articleImages[article.id] || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80'}
+                    src={article.cover_image || article.image || articleImages[article.id] || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80'}
                     alt={article.title[lang]}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

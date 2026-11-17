@@ -170,6 +170,8 @@ export async function getPublicInsights(): Promise<Article[]> {
       publishedAt: i.published_at || new Date().toISOString().split('T')[0],
       readTimeMinutes: i.read_time || 5,
       featured: Boolean(i.is_featured),
+      cover_image: i.cover_image || i.image || '',
+      image: i.image || i.cover_image || '',
       content: {
         en: typeof i.content_en === 'object' ? i.content_en : {
           introduction: i.content_en || i.excerpt_en || '',

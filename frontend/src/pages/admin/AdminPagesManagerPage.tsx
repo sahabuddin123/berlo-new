@@ -1336,6 +1336,86 @@ export const AdminPagesManagerPage: React.FC = () => {
                       ))}
                     </div>
                   </div>
+
+                  {/* Corporate Office Photo & Location Card Editor */}
+                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] space-y-4">
+                    <span className="text-xs font-bold text-white flex items-center gap-2">
+                      <ImageIcon className="w-4 h-4 text-purple-400" />
+                      Corporate Office Card & Address
+                    </span>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                      <div className="space-y-1.5">
+                        <label className="text-slate-300 font-semibold">Office Image URL</label>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={currentSection.image_url || ''}
+                            onChange={(e) => updateCurrentSectionField('image_url', e.target.value)}
+                            placeholder="https://... or /images/..."
+                            className="w-full px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white"
+                          />
+                          <button
+                            type="button"
+                            onClick={() =>
+                              openMediaPicker((url) => updateCurrentSectionField('image_url', url))
+                            }
+                            className="px-3 py-2 rounded-xl bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 text-purple-200 text-xs font-semibold whitespace-nowrap cursor-pointer"
+                          >
+                            Browse
+                          </button>
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-slate-300 font-semibold">Office Badge Tag (EN / BN)</label>
+                        <div className="grid grid-cols-2 gap-2">
+                          <input
+                            type="text"
+                            value={currentSection.metadata?.office_tag_en || ''}
+                            onChange={(e) =>
+                              updateCurrentSectionMetadata((m) => ({ ...m, office_tag_en: e.target.value }))
+                            }
+                            placeholder="Corporate Headquarters"
+                            className="w-full px-3 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white"
+                          />
+                          <input
+                            type="text"
+                            value={currentSection.metadata?.office_tag_bn || ''}
+                            onChange={(e) =>
+                              updateCurrentSectionMetadata((m) => ({ ...m, office_tag_bn: e.target.value }))
+                            }
+                            placeholder="কর্পোরেট হেডকোয়ার্টার্স"
+                            className="w-full px-3 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white font-bangla"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                      <div className="space-y-1.5">
+                        <label className="text-slate-300 font-semibold">Address (English)</label>
+                        <input
+                          type="text"
+                          value={currentSection.metadata?.address_en || ''}
+                          onChange={(e) =>
+                            updateCurrentSectionMetadata((m) => ({ ...m, address_en: e.target.value }))
+                          }
+                          placeholder="Apartment B3, House 32/34, Road 07, Niketon, Gulshan-1, Dhaka"
+                          className="w-full px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-slate-300 font-semibold">Address (Bangla)</label>
+                        <input
+                          type="text"
+                          value={currentSection.metadata?.address_bn || ''}
+                          onChange={(e) =>
+                            updateCurrentSectionMetadata((m) => ({ ...m, address_bn: e.target.value }))
+                          }
+                          placeholder="অ্যাপার্টমেন্ট বি৩, বাড়ি ৩২/৩৪, রোড ০৭, নিকেতন, গুলশান-১, ঢাকা"
+                          className="w-full px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white font-bangla"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ) : currentSection.section_key === 'services_header' ? (
                 /* ================================================================= */
