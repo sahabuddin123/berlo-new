@@ -43,8 +43,17 @@ scratch/
 .scratch/
 **/.scratch/
 
+# --- Agent & Workspace Internal Tools ---
+.agents/
+**/.agents/
+.tools/
+**/.tools/
+.gemini/
+**/.gemini/
+
 # --- Testing & MCP Output ---
 .playwright-mcp/
+**/.playwright-mcp/
 __pycache__/
 *.pyc
 /*.png
@@ -52,5 +61,6 @@ __pycache__/
 /*.jpeg
 /*.webp
 /*.html
+
 
 
