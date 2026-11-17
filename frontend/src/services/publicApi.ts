@@ -5,7 +5,10 @@ import { teamData, TeamMember } from '../data/teamData';
 import { clientsData, ClientItem } from '../data/clientsData';
 import { photoGalleryItems, videoGalleryItems, PhotoItem, VideoItem } from '../data/galleryData';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.VITE_API_BASE_URL ? `${import.meta.env.VITE_API_BASE_URL}/api/v1` : '') ||
+  (import.meta.env.DEV ? 'http://localhost:8000/api/v1' : '/api/v1');
 
 async function fetchJson<T>(endpoint: string): Promise<T | null> {
   try {

@@ -118,7 +118,10 @@ const SiteSettingsContext = createContext<SiteSettingsContextType>({
   updateSettingsInMemory: () => {},
 });
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.VITE_API_BASE_URL ? `${import.meta.env.VITE_API_BASE_URL}/api/v1` : '') ||
+  (import.meta.env.DEV ? 'http://localhost:8000/api/v1' : '/api/v1');
 
 export const SiteSettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<SiteSettingsMap>(defaultSiteSettings);
