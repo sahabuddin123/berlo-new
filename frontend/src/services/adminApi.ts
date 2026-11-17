@@ -69,6 +69,58 @@ export interface UserItem {
   created_at?: string;
 }
 
+export interface MenuItem {
+  id: number;
+  location: 'header' | 'footer_quick' | 'footer_capabilities' | 'footer_legal';
+  parent_id?: number | null;
+  title_en: string;
+  title_bn: string;
+  url: string;
+  target?: string;
+  icon?: string;
+  badge_text?: string;
+  order: number;
+  is_active: boolean;
+  children?: MenuItem[];
+}
+
+export interface MediaAsset {
+  id: number;
+  name: string;
+  file_name: string;
+  file_path: string;
+  url: string;
+  mime_type: string;
+  size_bytes: number;
+  dimensions?: string;
+  folder: string;
+  alt_text?: string;
+  uploaded_by?: number;
+  created_at?: string;
+}
+
+export interface PageSection {
+  id: number;
+  page_slug: string;
+  section_key: string;
+  title_en?: string;
+  title_bn?: string;
+  subtitle_en?: string;
+  subtitle_bn?: string;
+  badge_en?: string;
+  badge_bn?: string;
+  content_en?: string;
+  content_bn?: string;
+  image_url?: string;
+  video_url?: string;
+  cta_text_en?: string;
+  cta_text_bn?: string;
+  cta_link?: string;
+  metadata?: Record<string, any>;
+  is_active: boolean;
+  sort_order: number;
+}
+
 // Token storage key
 const TOKEN_KEY = 'berlo_admin_token';
 const USER_KEY = 'berlo_admin_user';
@@ -291,6 +343,147 @@ export const adminApi = {
       method: 'PUT',
       body: JSON.stringify({ settings }),
     });
+  },
+
+  // =========================================================================
+  // Navigation Menu Management
+  // =========================================================================
+  async getMenus(): Promise<{ success: boolean; items: MenuItem[]; grouped: Record<string, MenuItem[]> }> {
+    return await apiRequest('/admin/menus');
+  },
+
+  async createMenu(payload: Partial<MenuItem>): Promise<{ success: boolean; item: MenuItem }> {
+    return await apiRequest('/admin/menus', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async updateMenu(id: number, payload: Partial<MenuItem>): Promise<{ success: boolean; item: MenuItem }> {
+    return await apiRequest(`/admin/menus/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteMenu(id: number): Promise<{ success: boolean; message: string }> {
+    return await apiRequest(`/admin/menus/${id}`, { method: 'DELETE' });
+  },
+
+  async reorderMenus(items: { id: number; order: number }[]): Promise<{ success: boolean }> {
+    return await apiRequest('/admin/menus/reorder', {
+      method: 'POST',
+      body: JSON.stringify({ items }),
+    });
+  },
+
+  // =========================================================================
+  // Media Library Management
+  // =========================================================================
+  async getMediaAssets(params: { search?: string; folder?: string; type?: string; page?: number } = {}): Promise<{
+    success: boolean;
+    data: { data: MediaAsset[]; total: number; current_page: number; last_page: number };
+    folders: string[];
+  }> {
+    const q = new URLSearchParams();
+    if (params.search) q.append('search', params.search);
+    if (params.folder && params.folder !== 'all') q.append('folder', params.folder);
+    if (params.type && params.type !== 'all') q.append('type', params.type);
+    if (params.page) q.append('page', params.page.toString());
+
+    return await apiRequest(`/admin/media-assets?${q.toString()}`);
+  },
+
+  async uploadMediaAsset(file: File, folder = 'general', alt_text = ''): Promise<{ success: boolean; asset: MediaAsset }> {
+    const token = getStoredToken();
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('folder', folder);
+    formData.append('alt_text', alt_text);
+
+    const res = await fetch(`${API_BASE}/admin/media-assets/upload`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'File upload failed');
+    }
+
+    return await res.json();
+  },
+
+  async updateMediaAsset(id: number, payload: { name?: string; alt_text?: string; folder?: string }): Promise<{ success: boolean; asset: MediaAsset }> {
+    return await apiRequest(`/admin/media-assets/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteMediaAsset(id: number): Promise<{ success: boolean; message: string }> {
+    return await apiRequest(`/admin/media-assets/${id}`, { method: 'DELETE' });
+  },
+
+  // =========================================================================
+  // Dynamic Page Sections Management
+  // =========================================================================
+  async getManagedPages(): Promise<{ success: boolean; pages: string[] }> {
+    return await apiRequest('/admin/pages');
+  },
+
+  async getPageSections(slug: string): Promise<{ success: boolean; page: string; sections: PageSection[] }> {
+    return await apiRequest(`/admin/pages/${slug}/sections`);
+  },
+
+  async updatePageSection(slug: string, sectionKey: string, payload: Partial<PageSection>): Promise<{ success: boolean; section: PageSection }> {
+    return await apiRequest(`/admin/pages/${slug}/sections/${sectionKey}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  // =========================================================================
+  // Public Dynamic Website APIs (consumed by frontend pages)
+  // =========================================================================
+  async getPublicMenus(location?: string): Promise<{
+    success: boolean;
+    data: MenuItem[];
+    grouped: Record<string, MenuItem[]>;
+  }> {
+    try {
+      const q = location ? `?location=${location}` : '';
+      return await apiRequest(`/menus${q}`);
+    } catch {
+      // Fallback
+      return {
+        success: true,
+        data: [],
+        grouped: {},
+      };
+    }
+  },
+
+  async getPublicPageSections(slug: string): Promise<{
+    success: boolean;
+    page: string;
+    sections: PageSection[];
+    data: Record<string, PageSection>;
+  }> {
+    try {
+      return await apiRequest(`/pages/${slug}`);
+    } catch {
+      return {
+        success: true,
+        page: slug,
+        sections: [],
+        data: {},
+      };
+    }
   },
 };
 

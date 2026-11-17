@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { navigationItems } from '../../config/navigation';
+import { navigationItems as defaultNavItems, NavItem } from '../../config/navigation';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { Button } from '../common/Button';
@@ -12,9 +12,10 @@ interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenSearch: () => void;
+  items?: NavItem[];
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onOpenSearch }) => {
+export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onOpenSearch, items = defaultNavItems }) => {
   const { lang, formatRoute, t } = useLanguage();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
@@ -63,7 +64,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onOpenS
 
         {/* Navigation Links */}
         <nav className="flex-1 p-4 space-y-1">
-          {navigationItems.map((item) => {
+          {items.map((item) => {
             const hasChildren = item.children && item.children.length > 0;
             const isExpanded = expandedItem === item.id;
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { navigationItems } from '../../config/navigation';
+import { useDynamicNavigation } from '../../hooks/useDynamicNavigation';
 import { BRAND } from '../../config/brand';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
@@ -14,6 +14,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
   const { lang, formatRoute, t } = useLanguage();
+  const { navItems } = useDynamicNavigation();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -88,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-              {navigationItems.map((item) => {
+              {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isItemActive = location.pathname.includes(`/${item.path}`) && item.path !== '';
 
@@ -205,6 +206,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch }) => {
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         onOpenSearch={onOpenSearch}
+        items={navItems}
       />
     </>
   );

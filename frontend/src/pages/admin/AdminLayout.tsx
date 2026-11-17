@@ -25,6 +25,9 @@ import {
   ChevronDown,
   BarChart3,
   Command,
+  HardDrive,
+  Compass,
+  Layers,
 } from 'lucide-react';
 
 interface NavItem {
@@ -126,6 +129,26 @@ export const AdminLayout: React.FC = () => {
           path: '/admin/gallery',
           icon: Images,
           allowed: hasAnyRole(['superadmin', 'admin', 'moderator', 'content_writer']),
+        },
+        {
+          name: 'Media Library',
+          path: '/admin/media',
+          icon: HardDrive,
+          allowed: hasAnyRole(['superadmin', 'admin', 'moderator', 'content_writer']),
+          badge: 'Assets',
+          badgeColor: 'bg-emerald-500/15 text-emerald-400',
+        },
+        {
+          name: 'Page Sections',
+          path: '/admin/pages',
+          icon: Layers,
+          allowed: hasAnyRole(['superadmin', 'admin', 'content_writer']),
+        },
+        {
+          name: 'Menu Builder',
+          path: '/admin/menus',
+          icon: Compass,
+          allowed: hasAnyRole(['superadmin', 'admin']),
         },
         {
           name: 'Team & Leadership',

@@ -9,7 +9,9 @@ use App\Models\GalleryVideo;
 use App\Models\Inquiry;
 use App\Models\Insight;
 use App\Models\MediaItem;
+use App\Models\MenuItem;
 use App\Models\NewsletterSubscriber;
+use App\Models\PageSection;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\SiteSetting;
@@ -288,6 +290,62 @@ class PublicContentController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Successfully subscribed to the Berlo Executive PR Briefing.',
+        ]);
+    }
+
+    /**
+     * Get dynamic navigation menus.
+     */
+    public function menus(Request $request): JsonResponse
+    {
+        $location = $request->query('location');
+        $query = MenuItem::with(['children' => function ($q) {
+            $q->where('is_active', true)->orderBy('order');
+        }])
+        ->whereNull('parent_id')
+        ->where('is_active', true)
+        ->orderBy('order');
+
+        if ($location) {
+            $query->where('location', $location);
+        }
+
+        $items = $query->get();
+
+        // Also group by location for single-request consumption
+        $grouped = MenuItem::with(['children' => function ($q) {
+            $q->where('is_active', true)->orderBy('order');
+        }])
+        ->whereNull('parent_id')
+        ->where('is_active', true)
+        ->orderBy('order')
+        ->get()
+        ->groupBy('location');
+
+        return response()->json([
+            'success' => true,
+            'data' => $items,
+            'grouped' => $grouped,
+        ]);
+    }
+
+    /**
+     * Get dynamic sections for a specific page.
+     */
+    public function pageSections(string $slug): JsonResponse
+    {
+        $sections = PageSection::where('page_slug', $slug)
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $keyed = $sections->keyBy('section_key');
+
+        return response()->json([
+            'success' => true,
+            'page' => $slug,
+            'sections' => $sections,
+            'data' => $keyed,
         ]);
     }
 }

@@ -38,6 +38,9 @@ const AdminProjectsPage = lazy(() => import('../pages/admin/AdminProjectsPage').
 const AdminInsightsPage = lazy(() => import('../pages/admin/AdminInsightsPage').then((m) => ({ default: m.AdminInsightsPage })));
 const AdminGalleryPage = lazy(() => import('../pages/admin/AdminGalleryPage').then((m) => ({ default: m.AdminGalleryPage })));
 const AdminSettingsPage = lazy(() => import('../pages/admin/AdminSettingsPage').then((m) => ({ default: m.AdminSettingsPage })));
+const AdminMediaLibraryPage = lazy(() => import('../pages/admin/AdminMediaLibraryPage').then((m) => ({ default: m.AdminMediaLibraryPage })));
+const AdminMenuPage = lazy(() => import('../pages/admin/AdminMenuPage').then((m) => ({ default: m.AdminMenuPage })));
+const AdminPagesManagerPage = lazy(() => import('../pages/admin/AdminPagesManagerPage').then((m) => ({ default: m.AdminPagesManagerPage })));
 
 export const router = createBrowserRouter([
   // Root URL redirects to default language /en
@@ -88,6 +91,9 @@ export const router = createBrowserRouter([
       { path: 'projects', element: <AdminProjectsPage /> },
       { path: 'insights', element: <AdminInsightsPage /> },
       { path: 'gallery', element: <AdminGalleryPage /> },
+      { path: 'media', element: <AdminMediaLibraryPage /> },
+      { path: 'menus', element: <AdminMenuPage /> },
+      { path: 'pages', element: <AdminPagesManagerPage /> },
       { path: 'team', element: <AdminDashboardPage /> },
       { path: 'users', element: <AdminUsersPage /> },
       { path: 'settings', element: <AdminSettingsPage /> },

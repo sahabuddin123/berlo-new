@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\AdminContentController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\MediaController;
+use App\Http\Controllers\Api\PageAndMenuController;
 use App\Http\Controllers\Api\PublicContentController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +70,8 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/media', [PublicContentController::class, 'media']);
         Route::get('/settings', [PublicContentController::class, 'settings']);
+        Route::get('/menus', [PublicContentController::class, 'menus']);
+        Route::get('/pages/{slug}', [PublicContentController::class, 'pageSections']);
 
         // Public Lead & Newsletter Submissions (Throttled)
         Route::post('/contact', [PublicContentController::class, 'submitInquiry'])->middleware('throttle:contact-form');
@@ -121,6 +125,26 @@ Route::prefix('v1')->group(function () {
             Route::post('/gallery/videos', [AdminContentController::class, 'storeVideo']);
             Route::delete('/gallery/videos/{id}', [AdminContentController::class, 'deleteVideo']);
         });
+
+        // --- Media Library (Upload, Browse, Delete) ---
+        Route::get('/media-assets', [MediaController::class, 'index']);
+        Route::post('/media-assets/upload', [MediaController::class, 'upload'])->middleware('role:superadmin,admin,content_writer');
+        Route::put('/media-assets/{id}', [MediaController::class, 'update'])->middleware('role:superadmin,admin,content_writer');
+        Route::delete('/media-assets/{id}', [MediaController::class, 'destroy'])->middleware('role:superadmin,admin');
+
+        // --- Dynamic Navigation Menu Management ---
+        Route::get('/menus', [PageAndMenuController::class, 'getMenus']);
+        Route::middleware('role:superadmin,admin')->group(function () {
+            Route::post('/menus', [PageAndMenuController::class, 'storeMenu']);
+            Route::put('/menus/{id}', [PageAndMenuController::class, 'updateMenu']);
+            Route::delete('/menus/{id}', [PageAndMenuController::class, 'deleteMenu']);
+            Route::post('/menus/reorder', [PageAndMenuController::class, 'reorderMenus']);
+        });
+
+        // --- Dynamic Page Sections Management ---
+        Route::get('/pages', [PageAndMenuController::class, 'getPages']);
+        Route::get('/pages/{slug}/sections', [PageAndMenuController::class, 'getPageSections']);
+        Route::put('/pages/{slug}/sections/{sectionKey}', [PageAndMenuController::class, 'updatePageSection'])->middleware('role:superadmin,admin,content_writer');
 
         // --- Site Settings (superadmin, admin) ---
         Route::get('/settings', [AdminContentController::class, 'getSettings']);
