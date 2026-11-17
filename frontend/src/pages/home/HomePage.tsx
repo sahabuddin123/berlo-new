@@ -815,18 +815,37 @@ export const HomePage: React.FC = () => {
   // Section 04: Our Services
   const servicesSection = pageSections['services_header'];
   const servicesDisplayCount = servicesSection?.metadata?.display_count || 9;
-  const activeServicesList = (dbServices.length > 0
-    ? dbServices.map((s, idx) => ({
+  const selectedServiceSlugs: string[] = servicesSection?.metadata?.selected_service_slugs || [];
+
+  const rawServices = dbServices.length > 0
+    ? dbServices.map((s) => ({
         id: s.slug || s.id,
+        slug: s.slug || s.id,
         icon: getServiceIcon(s.iconName),
         title: lang === 'bn' ? s.title.bn : s.title.en,
         desc: lang === 'bn' ? s.shortDesc.bn || s.overview.bn : s.shortDesc.en || s.overview.en,
         link: `/services/${s.slug}`,
-        isTopLeft: idx === 0,
-        isBottomLeft: idx === 6,
       }))
-    : servicesList
-  ).slice(0, servicesDisplayCount);
+    : servicesList.map((s) => ({
+        ...s,
+        slug: s.id,
+      }));
+
+  let orderedServices = rawServices;
+  if (Array.isArray(selectedServiceSlugs) && selectedServiceSlugs.length > 0) {
+    const matched = selectedServiceSlugs
+      .map((slug) => rawServices.find((s) => s.slug === slug || s.id === slug))
+      .filter(Boolean) as typeof rawServices;
+    if (matched.length > 0) {
+      orderedServices = matched;
+    }
+  }
+
+  const activeServicesList = orderedServices.slice(0, servicesDisplayCount).map((s, idx) => ({
+    ...s,
+    isTopLeft: idx === 0,
+    isBottomLeft: idx === 6,
+  }));
 
   // Section 05: Book a Free Consultation
   const consultancySection = pageSections['consultancy_header'];

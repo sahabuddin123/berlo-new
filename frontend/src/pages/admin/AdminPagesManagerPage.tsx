@@ -28,6 +28,10 @@ import {
   Film,
   Eye,
   EyeOff,
+  Check,
+  ArrowUp,
+  ArrowDown,
+  X,
 } from 'lucide-react';
 
 interface SlideConfig {
@@ -49,6 +53,18 @@ interface SlideConfig {
   blob_gradient?: string;
 }
 
+const defaultServiceCatalog = [
+  { id: 1, slug: 'strategic-pr', title_en: 'Strategic PR & Corporate Communications', title_bn: 'কৌশলগত জনসংযোগ ও করপোরেট যোগাযোগ' },
+  { id: 2, slug: 'media-relations', title_en: 'Media Relations & Press Management', title_bn: 'মিডিয়া সংযোগ ও প্রেস ব্যবস্থাপনা' },
+  { id: 3, slug: 'crisis-management', title_en: 'Crisis Communication & Reputation Risk', title_bn: 'সংকট ও ঝুঁকি ব্যবস্থাপনা' },
+  { id: 4, slug: 'events-activations', title_en: 'Experiential Events & Brand Activations', title_bn: 'ইভেন্ট ও ব্র্যান্ড অ্যাক্টিভেশন' },
+  { id: 5, slug: 'digital-pr', title_en: 'Digital PR & Social Media Management', title_bn: 'ডিজিটাল পিআর ও সোশ্যাল মিডিয়া' },
+  { id: 6, slug: 'content-storytelling', title_en: 'Visual Storytelling & Media Production', title_bn: 'ভিজ্যুয়াল স্টোরিটেলিং ও মিডিয়া প্রোডাকশন' },
+  { id: 7, slug: 'brand-strategy', title_en: 'Brand Strategy & Identity Design', title_bn: 'ব্র্যান্ড স্ট্র্যাটেজি ও আইডেন্টিটি ডিজাইন' },
+  { id: 8, slug: 'advocacy-pr', title_en: 'Public Affairs & Government Advocacy', title_bn: 'পাবলিক অ্যাফেয়ার্স ও সরকারি সম্পর্ক' },
+  { id: 9, slug: 'monitoring-analytics', title_en: 'Media Intelligence & Sentiment Analytics', title_bn: 'মিডিয়া মনিটরিং ও অ্যানালিটিক্স' },
+];
+
 export const AdminPagesManagerPage: React.FC = () => {
   const [selectedPage, setSelectedPage] = useState<string>('home');
   const [sections, setSections] = useState<PageSection[]>([]);
@@ -63,6 +79,21 @@ export const AdminPagesManagerPage: React.FC = () => {
   const [mediaAssets, setMediaAssets] = useState<MediaAsset[]>([]);
   const [mediaLoading, setMediaLoading] = useState(false);
   const [mediaTargetCallback, setMediaTargetCallback] = useState<((url: string) => void) | null>(null);
+
+  // Available Services from Backend (for Homepage Service Selector)
+  const [availableServices, setAvailableServices] = useState<any[]>([]);
+
+  useEffect(() => {
+    adminApi
+      .getServices()
+      .then((res: any) => {
+        const data = res?.data || res || [];
+        if (Array.isArray(data) && data.length > 0) {
+          setAvailableServices(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const fetchSections = async (slug: string) => {
     setIsLoading(true);
@@ -1578,6 +1609,230 @@ export const AdminPagesManagerPage: React.FC = () => {
                       />
                     </div>
                   </div>
+
+                  {/* ================================================================= */}
+                  {/* Select Which Services Show on Homepage (User Requested Option)     */}
+                  {/* ================================================================= */}
+                  {(() => {
+                    const servicesListToUse =
+                      availableServices.length > 0 ? availableServices : defaultServiceCatalog;
+                    const allSlugs = servicesListToUse.map((s) => s.slug || String(s.id));
+                    const selectedSlugs: string[] =
+                      currentSection.metadata?.selected_service_slugs || [];
+                    const isAllSelected =
+                      selectedSlugs.length === 0 || selectedSlugs.length === servicesListToUse.length;
+
+                    const toggleService = (slug: string) => {
+                      let next: string[];
+                      if (selectedSlugs.length === 0) {
+                        // Was defaulting to all: uncheck this one
+                        next = allSlugs.filter((s) => s !== slug);
+                      } else if (selectedSlugs.includes(slug)) {
+                        next = selectedSlugs.filter((s) => s !== slug);
+                      } else {
+                        next = [...selectedSlugs, slug];
+                      }
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_service_slugs: next,
+                      }));
+                    };
+
+                    const moveService = (slug: string, dir: 'up' | 'down') => {
+                      const list =
+                        selectedSlugs.length > 0 ? [...selectedSlugs] : [...allSlugs];
+                      const idx = list.indexOf(slug);
+                      if (idx === -1) return;
+                      if (dir === 'up' && idx > 0) {
+                        const tmp = list[idx - 1];
+                        list[idx - 1] = list[idx];
+                        list[idx] = tmp;
+                      } else if (dir === 'down' && idx < list.length - 1) {
+                        const tmp = list[idx + 1];
+                        list[idx + 1] = list[idx];
+                        list[idx] = tmp;
+                      }
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_service_slugs: list,
+                      }));
+                    };
+
+                    const selectAll = () => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_service_slugs: allSlugs,
+                      }));
+                    };
+
+                    const resetDefault = () => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_service_slugs: [],
+                      }));
+                    };
+
+                    const activeCount =
+                      selectedSlugs.length === 0
+                        ? servicesListToUse.length
+                        : selectedSlugs.length;
+
+                    return (
+                      <div className="p-5 rounded-2xl bg-[#0d101a] border border-[#20273c] space-y-4 shadow-xl">
+                        {/* Header Row */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1b2234]">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <Briefcase className="w-4 h-4 text-[#A302FF]" />
+                              <span className="text-sm font-bold text-white tracking-wide">
+                                Choose Services to Showcase on Homepage
+                              </span>
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                                {isAllSelected
+                                  ? `All ${servicesListToUse.length} Services Selected`
+                                  : `${activeCount} of ${servicesListToUse.length} Selected`}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-400 mt-1">
+                              হোমপেজের ৩×৩ গ্রিডে কোন কোন সার্ভিস প্রদর্শিত হবে তা এখান থেকে টিক দিয়ে নির্বাচন করুন। যেগুলোতে টিক থাকবে শুধুমাত্র সেগুলোই হোমপেজে শো করবে।
+                            </p>
+                          </div>
+
+                          {/* Quick Actions */}
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={selectAll}
+                              className="px-3 py-1.5 rounded-lg bg-[#1a2032] hover:bg-[#252d47] text-purple-300 hover:text-white border border-purple-500/30 text-xs font-semibold transition-all cursor-pointer"
+                            >
+                              Select All
+                            </button>
+                            <button
+                              type="button"
+                              onClick={resetDefault}
+                              className="px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-semibold transition-all cursor-pointer"
+                            >
+                              Reset
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Selected Order Sequence Bar */}
+                        {selectedSlugs.length > 0 && (
+                          <div className="p-3 rounded-xl bg-[#141826] border border-[#232b3e] space-y-2">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                              Homepage Display Sequence (Use arrows to reorder):
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {selectedSlugs.map((slug, idx) => {
+                                const svc = servicesListToUse.find(
+                                  (s) => s.slug === slug || String(s.id) === slug
+                                );
+                                return (
+                                  <div
+                                    key={slug}
+                                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#1c2235] border border-purple-500/40 text-white text-xs font-semibold shadow-sm"
+                                  >
+                                    <span className="w-4 h-4 rounded-full bg-[#7c3aed] text-[10px] flex items-center justify-center font-bold">
+                                      {idx + 1}
+                                    </span>
+                                    <span className="truncate max-w-[140px] text-[11px]">
+                                      {svc?.title_en || svc?.title?.en || slug}
+                                    </span>
+                                    <div className="flex items-center gap-0.5 ml-1">
+                                      <button
+                                        type="button"
+                                        disabled={idx === 0}
+                                        onClick={() => moveService(slug, 'up')}
+                                        className="p-0.5 hover:text-purple-300 disabled:opacity-30 disabled:hover:text-inherit cursor-pointer"
+                                        title="Move earlier"
+                                      >
+                                        <ArrowUp className="w-3 h-3" />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        disabled={idx === selectedSlugs.length - 1}
+                                        onClick={() => moveService(slug, 'down')}
+                                        className="p-0.5 hover:text-purple-300 disabled:opacity-30 disabled:hover:text-inherit cursor-pointer"
+                                        title="Move later"
+                                      >
+                                        <ArrowDown className="w-3 h-3" />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => toggleService(slug)}
+                                        className="p-0.5 hover:text-rose-400 ml-0.5 cursor-pointer"
+                                        title="Remove from homepage"
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </button>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Interactive Grid of Services */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                          {servicesListToUse.map((svc) => {
+                            const slug = svc.slug || String(svc.id);
+                            const isSelected =
+                              selectedSlugs.length === 0 || selectedSlugs.includes(slug);
+                            const orderNum =
+                              selectedSlugs.length > 0 ? selectedSlugs.indexOf(slug) + 1 : null;
+
+                            return (
+                              <div
+                                key={slug}
+                                onClick={() => toggleService(slug)}
+                                className={`p-3.5 rounded-xl border transition-all cursor-pointer select-none flex items-start gap-3 group relative ${
+                                  isSelected
+                                    ? 'bg-gradient-to-br from-[#1a1e2f] to-[#121624] border-purple-500/60 shadow-lg shadow-purple-950/20'
+                                    : 'bg-[#121522]/50 border-[#1f2638] text-slate-500 opacity-60 hover:opacity-100 hover:border-slate-600'
+                                }`}
+                              >
+                                {/* Checkbox Pill */}
+                                <div className="mt-0.5 shrink-0">
+                                  <div
+                                    className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
+                                      isSelected
+                                        ? 'bg-[#7c3aed] text-white shadow-sm shadow-purple-600/40 ring-1 ring-purple-400/50'
+                                        : 'border border-slate-600 bg-black/40 text-transparent'
+                                    }`}
+                                  >
+                                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                                  </div>
+                                </div>
+
+                                {/* Service Content */}
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-center justify-between gap-1.5">
+                                    <span
+                                      className={`text-xs font-bold truncate ${
+                                        isSelected ? 'text-white' : 'text-slate-400'
+                                      }`}
+                                    >
+                                      {svc.title_en || svc.title?.en}
+                                    </span>
+                                    {orderNum !== null && (
+                                      <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 shrink-0 font-mono">
+                                        #{orderNum}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-[11px] text-slate-400 font-bangla truncate mt-0.5">
+                                    {svc.title_bn || svc.title?.bn}
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               ) : currentSection.section_key === 'consultancy_header' ? (
                 /* ================================================================= */
