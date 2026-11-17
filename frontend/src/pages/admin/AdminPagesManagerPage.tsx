@@ -90,6 +90,164 @@ const defaultVideoTestimonials = [
   { id: 3, title: 'Enduring Enterprise Trust & Crisis Shield', subtitle: 'Crisis PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-3.jpg', youtubeId: 'osL5z5nCE8M' },
 ];
 
+const defaultProjectsCatalog = [
+  {
+    id: 1,
+    slug: 'epb-diaspora-summit',
+    title_en: 'Global Trade & Diaspora Investment Summit',
+    title_bn: 'গ্লোবাল ট্রেড ও ডায়াসপোরা ইনভেস্টমেন্ট সামিট',
+    client_name: 'Ministry of Commerce & Export Promotion Bureau (EPB)',
+    industry: 'trade',
+    cover_image: '/images/berlo/portfolio/epb-1.png',
+  },
+  {
+    id: 2,
+    slug: 'unique-group-crisis',
+    title_en: 'Corporate Reputation Shield & Narrative Reclamation',
+    title_bn: 'কর্পোরেট সুনাম সুরক্ষা ও ক্রাইসিস প্রতিরক্ষা',
+    client_name: 'Unique Group & The Westin Dhaka',
+    industry: 'crisis',
+    cover_image: '/images/berlo/portfolio/westin-1.png',
+  },
+  {
+    id: 3,
+    slug: 'icab-national-awards',
+    title_en: 'ICAB National Corporate Governance & Transparency Awards',
+    title_bn: 'আইসিএবি জাতীয় সুশাসন ও ট্রান্সপারেন্সি অ্যাওয়ার্ডস',
+    client_name: 'Institute of Chartered Accountants of Bangladesh (ICAB)',
+    industry: 'events',
+    cover_image: '/images/berlo/portfolio/icab-1.png',
+  },
+  {
+    id: 4,
+    slug: 'apex-footwear-sustainability',
+    title_en: 'Corporate ESG & Green Manufacturing Global Debut',
+    title_bn: 'কর্পোরেট ইএসজি ও গ্রিন ম্যানুফ্যাকচারিং আত্মপ্রকাশ',
+    client_name: 'Apex Footwear Limited',
+    industry: 'speaker',
+    cover_image: '/images/berlo/portfolio/apex-1.png',
+  },
+  {
+    id: 5,
+    slug: 'dhaka-trade-fair',
+    title_en: 'Dhaka International Trade Fair (DITF) Pavilion PR',
+    title_bn: 'ঢাকা আন্তর্জাতিক বাণিজ্য মেলা (DITF) প্যাভিলিয়ন পিআর',
+    client_name: 'Export Promotion Bureau (EPB)',
+    industry: 'trade',
+    cover_image: '/images/berlo/projects/dhaka-trade-fair_cover.jpg',
+  },
+  {
+    id: 6,
+    slug: 'production-crisis',
+    title_en: 'Multimedia Video Newsroom & 24/7 Crisis Resolution',
+    title_bn: 'মাল্টিমিডিয়া ভিডিও নিউজরুম ও জরুরি সংকট ব্যবস্থাপনা',
+    client_name: 'National Conglomerate Client',
+    industry: 'crisis',
+    cover_image: '/images/berlo/projects/production-crisis_cover-1.jpg',
+  },
+  {
+    id: 7,
+    slug: 'speaker-program',
+    title_en: 'Executive Speaker Program & C-Suite Press Conclave',
+    title_bn: 'এক্সিকিউটিভ স্পিকার প্রোগ্রাম ও সি-সুইট প্রেস কনক্লেভ',
+    client_name: 'Industry Chamber of Commerce',
+    industry: 'speaker',
+    cover_image: '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195434-56b4a48d.jpg',
+  },
+  {
+    id: 8,
+    slug: 'event-management',
+    title_en: 'Synova Global Healthcare Strategic Milestone Launch',
+    title_bn: 'সিনোভা গ্লোবাল হেলথকেয়ার স্ট্র্যাটেজিক মাইলফলক উন্মোচন',
+    client_name: 'Synova Healthcare Limited',
+    industry: 'events',
+    cover_image: '/images/berlo/projects/event-management_synova.jpg',
+  },
+];
+
+const defaultTeamCatalog = [
+  {
+    id: 1,
+    slug: 'shakhwat-ullah',
+    name_en: 'Shakhwat Ullah',
+    name_bn: 'সাখাওয়াত উল্লাহ',
+    role_en: 'Chief Executive Officer & Lead Strategist',
+    role_bn: 'প্রধান নির্বাহী কর্মকর্তা ও প্রধান কৌশলবিদ',
+    division_en: 'planning',
+    photo: '/images/berlo/team/shakwat-ullah-01.jpg',
+  },
+  {
+    id: 2,
+    slug: 'shatarupa-mitra',
+    name_en: 'Shatarupa Mitra',
+    name_bn: 'শতরূপা মিত্র',
+    role_en: 'Director of Strategy & Operations',
+    role_bn: 'পরিচালক, কৌশল ও পরিচালনা',
+    division_en: 'planning',
+    photo: '/images/berlo/team/shatarupa.jpg',
+  },
+  {
+    id: 3,
+    slug: 'arifur-rahman',
+    name_en: 'Arifur Rahman',
+    name_bn: 'আরিফুর রহমান',
+    role_en: 'Head of Media Relations',
+    role_bn: 'মিডিয়া রিলেশনস প্রধান',
+    division_en: 'media',
+    photo: '/images/berlo/team/arifur-rahman.jpg',
+  },
+  {
+    id: 4,
+    slug: 'kabery-azad',
+    name_en: 'Kabery Azad',
+    name_bn: 'কাকেরী আজাদ',
+    role_en: 'Consultant of Arts & Visual Design',
+    role_bn: 'শিল্প ও ভিজ্যুয়াল ডিজাইন পরামর্শক',
+    division_en: 'creative',
+    photo: '/images/berlo/team/shakhwat-ullah-1.png',
+  },
+  {
+    id: 5,
+    slug: 'rajin-shaleh',
+    name_en: 'Rajin Shaleh',
+    name_bn: 'রাজিন সালেহ',
+    role_en: 'Jr. Executive Officer',
+    role_bn: 'জুনিয়র এক্সিকিউটিভ অফিসার',
+    division_en: 'media',
+    photo: '/images/berlo/team/team-tut.jpg',
+  },
+  {
+    id: 6,
+    slug: 'tahsin-al-jawad',
+    name_en: 'Tahsin Al Jawad',
+    name_bn: 'তাহসিন আল জাওয়াদ',
+    role_en: 'Executive Officer',
+    role_bn: 'এক্সিকিউটিভ অফিসার',
+    division_en: 'planning',
+    photo: '/images/berlo/team/jawad.jpg',
+  },
+  {
+    id: 7,
+    slug: 'md-kabir-hossain',
+    name_en: 'Md. Kabir Hossain',
+    name_bn: 'মোঃ কবির হোসেন',
+    role_en: 'Senior Manager, Public Relations',
+    role_bn: 'সিনিয়র ম্যানেজার, পাবলিক রিলেশনস',
+    division_en: 'media',
+    photo: '/images/berlo/team/img-20260301-wa0001.jpg',
+  },
+  {
+    id: 8,
+    slug: 'akm-zamshed-uddin',
+    name_en: 'A K M Zamshed Uddin',
+    name_bn: 'এ কে এম জামশেদ উদ্দিন',
+    role_en: 'Events & Activation Lead',
+    role_bn: 'ইভেন্ট ও অ্যাক্টিভেশন প্রধান',
+    division_en: 'events',
+    photo: '/images/berlo/team/zamshed.png',
+  },
+];
+
 export const AdminPagesManagerPage: React.FC = () => {
   const [selectedPage, setSelectedPage] = useState<string>('home');
   const [sections, setSections] = useState<PageSection[]>([]);
@@ -107,6 +265,10 @@ export const AdminPagesManagerPage: React.FC = () => {
 
   // Available Services from Backend (for Homepage Service Selector)
   const [availableServices, setAvailableServices] = useState<any[]>([]);
+  // Available Projects from Backend (for Homepage Case Studies Selector)
+  const [availableProjects, setAvailableProjects] = useState<any[]>([]);
+  // Available Team Members from Backend (for Homepage Team Selector)
+  const [availableTeam, setAvailableTeam] = useState<any[]>([]);
 
   useEffect(() => {
     adminApi
@@ -115,6 +277,26 @@ export const AdminPagesManagerPage: React.FC = () => {
         const data = res?.data || res || [];
         if (Array.isArray(data) && data.length > 0) {
           setAvailableServices(data);
+        }
+      })
+      .catch(() => {});
+
+    adminApi
+      .getProjects()
+      .then((res: any) => {
+        const data = res?.data || res || [];
+        if (Array.isArray(data) && data.length > 0) {
+          setAvailableProjects(data);
+        }
+      })
+      .catch(() => {});
+
+    adminApi
+      .getTeam()
+      .then((res: any) => {
+        const data = res?.data || res || [];
+        if (Array.isArray(data) && data.length > 0) {
+          setAvailableTeam(data);
         }
       })
       .catch(() => {});
@@ -2559,6 +2741,276 @@ export const AdminPagesManagerPage: React.FC = () => {
                       />
                     </div>
                   </div>
+
+                  {/* ================================================================= */}
+                  {/* Select Which Case Studies / Projects Show on Homepage             */}
+                  {/* ================================================================= */}
+                  {(() => {
+                    const projectsListToUse =
+                      availableProjects.length > 0 ? availableProjects : defaultProjectsCatalog;
+                    const allSlugs = projectsListToUse.map((p) => p.slug || String(p.id));
+                    const selectedSlugs: string[] =
+                      currentSection.metadata?.selected_project_slugs || [];
+                    const isAllSelected =
+                      selectedSlugs.length === 0 || selectedSlugs.length === projectsListToUse.length;
+
+                    const toggleProject = (slug: string) => {
+                      let next: string[];
+                      if (selectedSlugs.length === 0) {
+                        next = allSlugs.filter((s) => s !== slug);
+                      } else if (selectedSlugs.includes(slug)) {
+                        next = selectedSlugs.filter((s) => s !== slug);
+                      } else {
+                        next = [...selectedSlugs, slug];
+                      }
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_project_slugs: next,
+                      }));
+                    };
+
+                    const moveProject = (slug: string, dir: 'up' | 'down') => {
+                      const list =
+                        selectedSlugs.length > 0 ? [...selectedSlugs] : [...allSlugs];
+                      const idx = list.indexOf(slug);
+                      if (idx === -1) return;
+                      if (dir === 'up' && idx > 0) {
+                        const tmp = list[idx - 1];
+                        list[idx - 1] = list[idx];
+                        list[idx] = tmp;
+                      } else if (dir === 'down' && idx < list.length - 1) {
+                        const tmp = list[idx + 1];
+                        list[idx + 1] = list[idx];
+                        list[idx] = tmp;
+                      }
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_project_slugs: list,
+                      }));
+                    };
+
+                    const selectAll = () => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_project_slugs: allSlugs,
+                      }));
+                    };
+
+                    const resetDefault = () => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_project_slugs: [],
+                      }));
+                    };
+
+                    const activeCount =
+                      selectedSlugs.length === 0
+                        ? projectsListToUse.length
+                        : selectedSlugs.length;
+
+                    return (
+                      <div className="p-5 rounded-2xl bg-[#0d101a] border border-[#20273c] space-y-4 shadow-xl">
+                        {/* Header Row */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1b2234]">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <FileText className="w-4 h-4 text-[#A302FF]" />
+                              <span className="text-sm font-bold text-white tracking-wide">
+                                Choose Case Studies to Showcase on Homepage
+                              </span>
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                                {isAllSelected
+                                  ? `All ${projectsListToUse.length} Projects Selected`
+                                  : `${activeCount} of ${projectsListToUse.length} Selected`}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-400 mt-1">
+                              হোমপেজের সাম্প্রতিক প্রকল্প ও কেস স্টাডি সেকশনে কোন কোন কাজ প্রদর্শিত হবে তা নির্বাচন করুন। প্রথম ক্রমান্বয়ের (#১) প্রজেক্টটি হোমপেজে মূল লার্জ হিরো ফিচার্ড কার্ড হিসেবে শো করবে।
+                            </p>
+                          </div>
+
+                          {/* Quick Actions */}
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={selectAll}
+                              className="px-3 py-1.5 rounded-lg bg-[#1a2032] hover:bg-[#252d47] text-purple-300 hover:text-white border border-purple-500/30 text-xs font-semibold transition-all cursor-pointer"
+                            >
+                              Select All
+                            </button>
+                            <button
+                              type="button"
+                              onClick={resetDefault}
+                              className="px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-semibold transition-all cursor-pointer"
+                            >
+                              Reset
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Selected Order Sequence Bar */}
+                        {selectedSlugs.length > 0 && (
+                          <div className="p-3 rounded-xl bg-[#141826] border border-[#232b3e] space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                                Homepage Display Sequence (#1 is Featured Hero):
+                              </span>
+                              <span className="text-[10px] text-purple-300 font-medium">
+                                Use arrows to reorder
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2">
+                              {selectedSlugs.map((slug, idx) => {
+                                const prj =
+                                  projectsListToUse.find((p) => (p.slug || String(p.id)) === slug) || {
+                                    title_en: slug,
+                                  };
+                                const isHero = idx === 0;
+                                return (
+                                  <div
+                                    key={slug}
+                                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs ${
+                                      isHero
+                                        ? 'bg-purple-900/30 border-purple-500/50 text-purple-200 ring-1 ring-purple-500/40'
+                                        : 'bg-[#0f121d] border-[#252d43] text-slate-300'
+                                    }`}
+                                  >
+                                    <span
+                                      className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
+                                        isHero
+                                          ? 'bg-[#A302FF] text-white'
+                                          : 'bg-[#1e2538] text-purple-300'
+                                      }`}
+                                    >
+                                      {isHero ? '#1 HERO' : `#${idx + 1}`}
+                                    </span>
+                                    <span className="font-semibold truncate max-w-[140px]">
+                                      {prj.title_en || prj.title || slug}
+                                    </span>
+                                    <div className="flex items-center ml-1">
+                                      <button
+                                        type="button"
+                                        disabled={idx === 0}
+                                        onClick={() => moveProject(slug, 'up')}
+                                        className="p-1 hover:text-white disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
+                                        title="Move earlier"
+                                      >
+                                        <ArrowUp className="w-3 h-3" />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        disabled={idx === selectedSlugs.length - 1}
+                                        onClick={() => moveProject(slug, 'down')}
+                                        className="p-1 hover:text-white disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
+                                        title="Move later"
+                                      >
+                                        <ArrowDown className="w-3 h-3" />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => toggleProject(slug)}
+                                        className="p-1 hover:text-rose-400 ml-0.5 cursor-pointer"
+                                        title="Remove from homepage"
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </button>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Projects Cards Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[460px] overflow-y-auto pr-1">
+                          {projectsListToUse.map((project, pIdx) => {
+                            const slug = project.slug || String(project.id);
+                            const isSelected =
+                              selectedSlugs.length === 0
+                                ? true
+                                : selectedSlugs.includes(slug);
+                            const orderIndex = selectedSlugs.indexOf(slug);
+                            const isHero = orderIndex === 0;
+
+                            return (
+                              <div
+                                key={slug || pIdx}
+                                onClick={() => toggleProject(slug)}
+                                className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center gap-3 select-none ${
+                                  isSelected
+                                    ? isHero
+                                      ? 'bg-purple-950/20 border-purple-500/60 ring-1 ring-purple-500/40 shadow-lg shadow-purple-950/40'
+                                      : 'bg-[#141827] border-purple-500/40'
+                                    : 'bg-[#0f121d]/60 border-[#1d2335] opacity-50 hover:opacity-75'
+                                }`}
+                              >
+                                {/* Checkbox */}
+                                <div
+                                  className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-all ${
+                                    isSelected
+                                      ? 'bg-[#A302FF] text-white'
+                                      : 'border border-slate-600 bg-black/40'
+                                  }`}
+                                >
+                                  {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                                </div>
+
+                                {/* Thumbnail Preview */}
+                                <div className="w-14 h-11 rounded-lg overflow-hidden bg-black/50 shrink-0 border border-white/5 relative">
+                                  <img
+                                    src={
+                                      project.cover_image ||
+                                      project.image ||
+                                      project.image_url ||
+                                      '/images/berlo/portfolio/epb-1.png'
+                                    }
+                                    alt={project.title_en || project.title || 'Project'}
+                                    className="w-full h-full object-cover"
+                                    onError={(e: any) => {
+                                      e.target.src = '/images/berlo/portfolio/epb-1.png';
+                                    }}
+                                  />
+                                </div>
+
+                                {/* Details */}
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-center gap-1.5 flex-wrap">
+                                    {project.client_name && (
+                                      <span className="text-[10px] font-bold text-slate-400 truncate max-w-[180px]">
+                                        {project.client_name}
+                                      </span>
+                                    )}
+                                    {isSelected && (
+                                      <span
+                                        className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded ml-auto ${
+                                          isHero
+                                            ? 'bg-purple-500 text-white'
+                                            : 'bg-purple-500/20 text-purple-300'
+                                        }`}
+                                      >
+                                        {isHero
+                                          ? '★ #1 HERO'
+                                          : orderIndex !== -1
+                                          ? `#${orderIndex + 1}`
+                                          : 'ACTIVE'}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-xs font-bold text-white truncate mt-0.5">
+                                    {project.title_en || project.title}
+                                  </div>
+                                  <div className="text-[11px] text-slate-400 font-bangla truncate">
+                                    {project.title_bn || ''}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               ) : currentSection.section_key === 'leadership_header' ? (
                 /* ================================================================= */
@@ -2608,6 +3060,249 @@ export const AdminPagesManagerPage: React.FC = () => {
                       />
                     </div>
                   </div>
+
+                  {/* ================================================================= */}
+                  {/* Select Which Team Members Show on Homepage & Control Ordering     */}
+                  {/* ================================================================= */}
+                  {(() => {
+                    const teamListToUse =
+                      availableTeam.length > 0 ? availableTeam : defaultTeamCatalog;
+                    const allSlugs = teamListToUse.map((m) => m.slug || String(m.id));
+                    const selectedSlugs: string[] =
+                      currentSection.metadata?.selected_team_slugs || [];
+                    const isAllSelected =
+                      selectedSlugs.length === 0 || selectedSlugs.length === teamListToUse.length;
+
+                    const toggleTeamMember = (slug: string) => {
+                      let next: string[];
+                      if (selectedSlugs.length === 0) {
+                        next = allSlugs.filter((s) => s !== slug);
+                      } else if (selectedSlugs.includes(slug)) {
+                        next = selectedSlugs.filter((s) => s !== slug);
+                      } else {
+                        next = [...selectedSlugs, slug];
+                      }
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_team_slugs: next,
+                      }));
+                    };
+
+                    const moveTeamMember = (slug: string, dir: 'up' | 'down') => {
+                      const list =
+                        selectedSlugs.length > 0 ? [...selectedSlugs] : [...allSlugs];
+                      const idx = list.indexOf(slug);
+                      if (idx === -1) return;
+                      if (dir === 'up' && idx > 0) {
+                        const tmp = list[idx - 1];
+                        list[idx - 1] = list[idx];
+                        list[idx] = tmp;
+                      } else if (dir === 'down' && idx < list.length - 1) {
+                        const tmp = list[idx + 1];
+                        list[idx + 1] = list[idx];
+                        list[idx] = tmp;
+                      }
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_team_slugs: list,
+                      }));
+                    };
+
+                    const selectAll = () => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_team_slugs: allSlugs,
+                      }));
+                    };
+
+                    const resetDefault = () => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        selected_team_slugs: [],
+                      }));
+                    };
+
+                    const activeCount =
+                      selectedSlugs.length === 0
+                        ? teamListToUse.length
+                        : selectedSlugs.length;
+
+                    return (
+                      <div className="p-5 rounded-2xl bg-[#0d101a] border border-[#20273c] space-y-4 shadow-xl">
+                        {/* Header Row */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1b2234]">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <Users className="w-4 h-4 text-[#A302FF]" />
+                              <span className="text-sm font-bold text-white tracking-wide">
+                                Choose Team Members to Showcase on Homepage
+                              </span>
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                                {isAllSelected
+                                  ? `All ${teamListToUse.length} Members Selected`
+                                  : `${activeCount} of ${teamListToUse.length} Selected`}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-400 mt-1">
+                              হোমপেজের টিম সেকশনে কোন কোন সদস্যকে দেখাবেন এবং কার পজিশন আগে বা পরে হবে তা এখান থেকে সম্পূর্ণ নিয়ন্ত্রণ করুন।
+                            </p>
+                          </div>
+
+                          {/* Quick Actions */}
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={selectAll}
+                              className="px-3 py-1.5 rounded-lg bg-[#1a2032] hover:bg-[#252d47] text-purple-300 hover:text-white border border-purple-500/30 text-xs font-semibold transition-all cursor-pointer"
+                            >
+                              Select All
+                            </button>
+                            <button
+                              type="button"
+                              onClick={resetDefault}
+                              className="px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-semibold transition-all cursor-pointer"
+                            >
+                              Reset
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Selected Order Sequence Bar */}
+                        {selectedSlugs.length > 0 && (
+                          <div className="p-3 rounded-xl bg-[#141826] border border-[#232b3e] space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                                Homepage Display Sequence (Whose position comes first):
+                              </span>
+                              <span className="text-[10px] text-purple-300 font-medium">
+                                Use arrows to reorder
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2">
+                              {selectedSlugs.map((slug, idx) => {
+                                const member =
+                                  teamListToUse.find((m) => (m.slug || String(m.id)) === slug) || {
+                                    name_en: slug,
+                                  };
+                                return (
+                                  <div
+                                    key={slug}
+                                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs bg-[#0f121d] border-[#252d43] text-slate-300"
+                                  >
+                                    <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-[#1e2538] text-purple-300">
+                                      #{idx + 1}
+                                    </span>
+                                    <span className="font-semibold truncate max-w-[140px]">
+                                      {member.name_en || member.name || slug}
+                                    </span>
+                                    <div className="flex items-center ml-1">
+                                      <button
+                                        type="button"
+                                        disabled={idx === 0}
+                                        onClick={() => moveTeamMember(slug, 'up')}
+                                        className="p-1 hover:text-white disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
+                                        title="Move earlier"
+                                      >
+                                        <ArrowUp className="w-3 h-3" />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        disabled={idx === selectedSlugs.length - 1}
+                                        onClick={() => moveTeamMember(slug, 'down')}
+                                        className="p-1 hover:text-white disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
+                                        title="Move later"
+                                      >
+                                        <ArrowDown className="w-3 h-3" />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => toggleTeamMember(slug)}
+                                        className="p-1 hover:text-rose-400 ml-0.5 cursor-pointer"
+                                        title="Remove from homepage"
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </button>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Team Members Cards Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[460px] overflow-y-auto pr-1">
+                          {teamListToUse.map((member, mIdx) => {
+                            const slug = member.slug || String(member.id);
+                            const isSelected =
+                              selectedSlugs.length === 0
+                                ? true
+                                : selectedSlugs.includes(slug);
+                            const orderIndex = selectedSlugs.indexOf(slug);
+
+                            return (
+                              <div
+                                key={slug || mIdx}
+                                onClick={() => toggleTeamMember(slug)}
+                                className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center gap-3 select-none ${
+                                  isSelected
+                                    ? 'bg-[#141827] border-purple-500/50 shadow-md shadow-purple-950/20'
+                                    : 'bg-[#0f121d]/60 border-[#1d2335] opacity-50 hover:opacity-75'
+                                }`}
+                              >
+                                {/* Checkbox */}
+                                <div
+                                  className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-all ${
+                                    isSelected
+                                      ? 'bg-[#A302FF] text-white'
+                                      : 'border border-slate-600 bg-black/40'
+                                  }`}
+                                >
+                                  {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                                </div>
+
+                                {/* Avatar Thumbnail Preview */}
+                                <div className="w-12 h-12 rounded-full overflow-hidden bg-black/50 shrink-0 border border-white/10 relative">
+                                  <img
+                                    src={
+                                      member.photo ||
+                                      member.image ||
+                                      '/images/berlo/team/shakwat-ullah-01.jpg'
+                                    }
+                                    alt={member.name_en || member.name || 'Team'}
+                                    className="w-full h-full object-cover"
+                                    onError={(e: any) => {
+                                      e.target.src = '/images/berlo/team/shakwat-ullah-01.jpg';
+                                    }}
+                                  />
+                                </div>
+
+                                {/* Details */}
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-center gap-1.5 flex-wrap">
+                                    <span className="text-xs font-bold text-white truncate">
+                                      {member.name_en || member.name}
+                                    </span>
+                                    {isSelected && (
+                                      <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded ml-auto bg-purple-500/20 text-purple-300">
+                                        {orderIndex !== -1 ? `#${orderIndex + 1}` : 'ACTIVE'}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-[11px] text-purple-300 truncate">
+                                    {member.role_en || member.role}
+                                  </div>
+                                  <div className="text-[10px] text-slate-400 font-bangla truncate">
+                                    {member.name_bn || ''} {member.role_bn ? `• ${member.role_bn}` : ''}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               ) : currentSection.section_key === 'gallery_header' ? (
                 /* ================================================================= */

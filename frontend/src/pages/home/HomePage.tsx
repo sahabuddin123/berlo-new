@@ -894,31 +894,48 @@ export const HomePage: React.FC = () => {
   // Section 10: Recent Projects / Case Studies
   const projectsSection = pageSections['case_studies_header'];
   const projectsDisplayCount = projectsSection?.metadata?.display_count || 4;
-  const activeProjects = (dbProjects.length > 0
+  const selectedProjectSlugs: string[] = projectsSection?.metadata?.selected_project_slugs || [];
+
+  const rawProjects = (dbProjects.length > 0
     ? dbProjects.map((p) => ({
-        id: p.slug || p.id,
+        id: p.slug || String(p.id),
+        slug: p.slug,
         categoryType: ((p.category as any) === 'trade' || p.slug.includes('trade') ? 'trade' : (p.category as any) === 'crisis' || p.slug.includes('crisis') ? 'crisis' : (p.category as any) === 'speaker' || p.slug.includes('speaker') ? 'speaker' : 'events') as any,
-        title: lang === 'bn' ? p.title.bn : p.title.en,
-        category: lang === 'bn' ? p.industry.bn : p.industry.en,
-        metric: p.heroMetrics?.[0]?.value ? `${p.heroMetrics[0].value} ${lang === 'bn' ? p.heroMetrics[0].label.bn : p.heroMetrics[0].label.en}` : (lang === 'bn' ? '৫০+ আন্তর্জাতিক গণমাধ্যম' : '50+ Global Media Outlets'),
-        submetric: p.heroMetrics?.[1]?.value ? `${p.heroMetrics[1].value} ${lang === 'bn' ? p.heroMetrics[1].label.bn : p.heroMetrics[1].label.en}` : (lang === 'bn' ? '২৫ লক্ষ+ দর্শনার্থী সংযোগ' : '2.5M+ On-Ground Reach'),
+        title: lang === 'bn' ? (p.title?.bn || (p as any).title_bn || p.title) : (p.title?.en || (p as any).title_en || p.title),
+        category: lang === 'bn' ? (p.industry?.bn || (p as any).industry || p.category) : (p.industry?.en || (p as any).industry || p.category),
+        metric: p.heroMetrics?.[0]?.value ? `${p.heroMetrics[0].value} ${lang === 'bn' ? p.heroMetrics[0].label.bn : p.heroMetrics[0].label.en}` : (p as any).stat_number ? `${(p as any).stat_number} ${lang === 'bn' ? ((p as any).stat_label_bn || '') : ((p as any).stat_label_en || '')}` : (lang === 'bn' ? '৫০+ আন্তর্জাতিক গণমাধ্যম' : '50+ Global Media Outlets'),
+        submetric: p.heroMetrics?.[1]?.value ? `${p.heroMetrics[1].value} ${lang === 'bn' ? p.heroMetrics[1].label.bn : p.heroMetrics[1].label.en}` : (p as any).impact_en ? (lang === 'bn' ? ((p as any).impact_bn || (p as any).impact_en) : (p as any).impact_en) : (lang === 'bn' ? '২৫ লক্ষ+ দর্শনার্থী সংযোগ' : '2.5M+ On-Ground Reach'),
         deliverables: p.servicesProvided?.join(' • ') || (lang === 'bn' ? 'ভিআইপি প্রেস ব্রিফিং • মন্ত্রী পর্যায়ের প্রটোকল' : 'VIP Press Briefing • Ministerial Protocol'),
-        desc: lang === 'bn' ? p.overview.bn || p.challenge.bn : p.overview.en || p.challenge.en,
-        image: (p as any).image_url || (p as any).hero_image || (p.slug.includes('trade') ? '/images/berlo/projects/dhaka-trade-fair_cover.jpg' : p.slug.includes('synova') || p.slug.includes('event') ? '/images/berlo/projects/event-management_synova.jpg' : p.slug.includes('crisis') ? '/images/berlo/projects/production-crisis_cover-1.jpg' : '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195434-56b4a48d.jpg'),
+        desc: lang === 'bn' ? (p.overview?.bn || p.challenge?.bn || (p as any).overview_bn) : (p.overview?.en || p.challenge?.en || (p as any).overview_en),
+        image: (p as any).cover_image || (p as any).image_url || (p as any).hero_image || (p.slug.includes('trade') ? '/images/berlo/projects/dhaka-trade-fair_cover.jpg' : p.slug.includes('synova') || p.slug.includes('event') ? '/images/berlo/projects/event-management_synova.jpg' : p.slug.includes('crisis') ? '/images/berlo/projects/production-crisis_cover-1.jpg' : '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195434-56b4a48d.jpg'),
         link: `/work/${p.slug}`,
-        client: p.clientName || 'Export Promotion Bureau (EPB)',
-        year: p.timeline || '2025–2026',
+        client: p.clientName || (p as any).client_name || 'Export Promotion Bureau (EPB)',
+        year: p.timeline || (p as any).year || '2025–2026',
         tag: `#${p.slug}`,
       }))
     : featuredProjects
-  ).slice(0, projectsDisplayCount);
+  );
+
+  let activeProjects = rawProjects;
+  if (selectedProjectSlugs && selectedProjectSlugs.length > 0) {
+    const matched = selectedProjectSlugs
+      .map((slug) => rawProjects.find((p) => p.id === slug || (p as any).slug === slug))
+      .filter(Boolean) as typeof rawProjects;
+    if (matched.length > 0) {
+      activeProjects = matched;
+    }
+  }
+  activeProjects = activeProjects.slice(0, projectsDisplayCount);
 
   // Section 11: Strategic Leadership & Team
   const leadershipSection = pageSections['leadership_header'];
   const teamDisplayCount = leadershipSection?.metadata?.display_count || 6;
-  const activeTeamMembers = (dbTeam.length > 0
+  const selectedTeamSlugs: string[] = leadershipSection?.metadata?.selected_team_slugs || [];
+
+  const rawTeamMembers = (dbTeam.length > 0
     ? dbTeam.map((m) => ({
-        id: m.slug || m.id,
+        id: m.slug || String(m.id),
+        slug: m.slug,
         department: (['planning', 'media', 'events', 'creative'].includes(m.department) ? m.department : 'planning') as any,
         name: lang === 'bn' ? m.name.bn : m.name.en,
         role: lang === 'bn' ? m.role.bn : m.role.en,
@@ -929,7 +946,18 @@ export const HomePage: React.FC = () => {
         email: m.social?.email || 'contact@berlocommunications.com',
       }))
     : teamMembers
-  ).slice(0, teamDisplayCount);
+  );
+
+  let activeTeamMembers = rawTeamMembers;
+  if (selectedTeamSlugs && selectedTeamSlugs.length > 0) {
+    const matched = selectedTeamSlugs
+      .map((slug) => rawTeamMembers.find((m) => m.id === slug || (m as any).slug === slug))
+      .filter(Boolean) as typeof rawTeamMembers;
+    if (matched.length > 0) {
+      activeTeamMembers = matched;
+    }
+  }
+  activeTeamMembers = activeTeamMembers.slice(0, teamDisplayCount);
 
   // Section 12: Memories & Moments Gallery
   const gallerySection = pageSections['gallery_header'];
@@ -2193,8 +2221,8 @@ export const HomePage: React.FC = () => {
             ))}
           </div>
 
-          {/* Featured Hero Showcase Card (Active when 'all' or 'trade' is selected) */}
-          {(activeProjectFilter === 'all' || activeProjectFilter === 'trade') && (
+          {/* Featured Hero Showcase Card (Active when 'all' or matching category is selected) */}
+          {activeProjects.length > 0 && (activeProjectFilter === 'all' || activeProjectFilter === (activeProjects[0]?.categoryType || 'trade')) && (
             <div className="bg-white dark:bg-[#11141D] border border-slate-200 dark:border-[#232838] hover:border-[#A302FF] transition-all duration-500 overflow-hidden shadow-lg dark:shadow-2xl group">
               <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                 
@@ -2265,7 +2293,7 @@ export const HomePage: React.FC = () => {
           {/* Grid of Remaining/Filtered Projects */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {activeProjects
-              .filter((p) => activeProjectFilter === 'all' ? p.id !== (activeProjects[0]?.id || 'dhaka-trade-fair') : p.categoryType === activeProjectFilter)
+              .filter((p, pIdx) => activeProjectFilter === 'all' ? pIdx !== 0 : p.categoryType === activeProjectFilter)
               .map((project) => (
                 <div
                   key={project.id}
