@@ -162,12 +162,18 @@ class AuthController extends Controller
             'user_agent' => $request->userAgent(),
         ]);
 
-        return response()->json([
+        $response = [
             'success' => true,
-            'message' => 'Password reset token generated successfully. In production this is sent via email.',
-            'reset_token' => $rawToken, // Included so frontend SPA / developer can immediately complete flow
-            'email' => $email,
-        ]);
+            'message' => 'If this email is registered, password reset instructions have been issued.',
+        ];
+
+        // Only include reset_token in local non-production environment with debug enabled
+        if (app()->environment('local', 'testing') && config('app.debug')) {
+            $response['reset_token'] = $rawToken;
+            $response['email'] = $email;
+        }
+
+        return response()->json($response);
     }
 
     /**

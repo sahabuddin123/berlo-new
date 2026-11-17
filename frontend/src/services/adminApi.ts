@@ -213,8 +213,8 @@ export const adminApi = {
       }
       return res;
     } catch (err: any) {
-      // Offline / local fallback demo credentials
-      if (err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError')) {
+      // Local development offline fallback only (strictly disabled in production builds)
+      if (!import.meta.env.PROD && (err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError'))) {
         return mockLoginFallback(email, password);
       }
       throw err;
@@ -248,10 +248,10 @@ export const adminApi = {
         body: JSON.stringify({ email }),
       });
     } catch (err: any) {
-      if (err.message?.includes('Failed to fetch')) {
+      if (!import.meta.env.PROD && (err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError'))) {
         return {
           success: true,
-          message: 'Password reset link simulated. Use reset token: BERLO-SECURE-TOKEN-2026',
+          message: 'Password reset link simulated (dev only). Use reset token: BERLO-SECURE-TOKEN-2026',
           reset_token: 'BERLO-SECURE-TOKEN-2026',
         };
       }

@@ -80,7 +80,16 @@ class CareerController extends Controller
         $resumePath = null;
         if ($request->hasFile('resume')) {
             $file = $request->file('resume');
-            $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            $allowedResumeExts = ['pdf', 'doc', 'docx'];
+            $extension = strtolower($file->getClientOriginalExtension());
+            if (!in_array($extension, $allowedResumeExts)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invalid resume format. Only PDF, DOC, and DOCX files are allowed.',
+                ], 422);
+            }
+            // Cryptographically unguessable filename prevents IDOR harvesting
+            $fileName = time() . '_' . Str::random(24) . '.' . $extension;
             $resumePath = $file->storeAs('resumes', $fileName, 'public');
         }
 

@@ -74,16 +74,53 @@ class MediaController extends Controller
         ]);
 
         $file = $request->file('file');
-        $folder = $request->input('folder', 'general');
+        
+        // 1. Strict Extension Allowlist
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'gif', 'mp4', 'webm', 'pdf'];
+        $extension = strtolower($file->getClientOriginalExtension());
+        if (!in_array($extension, $allowedExtensions)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid file extension. Prohibited file type.',
+            ], 422);
+        }
 
-        // Create upload destination in public directory
+        // 2. Strict SVG Content Inspection (Prevent Stored XSS via SVG scripts/events)
+        if ($extension === 'svg') {
+            $svgContent = file_get_contents($file->getRealPath());
+            if (preg_match('/<script|javascript:|onload=|onerror=|onclick=|<iframe|<foreignObject/i', $svgContent)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'SVG file contains prohibited scripts or executable attributes.',
+                ], 422);
+            }
+        }
+
+        // 3. Strict Folder Sanitization against Directory Traversal (Alphanumeric only)
+        $folder = Str::slug($request->input('folder', 'general')) ?: 'general';
+
+        // 4. Create and verify upload destination strictly within public/uploads
+        $uploadsRoot = public_path('uploads');
+        if (!File::isDirectory($uploadsRoot)) {
+            File::makeDirectory($uploadsRoot, 0755, true, true);
+        }
+
         $destinationPath = public_path("uploads/{$folder}");
         if (!File::isDirectory($destinationPath)) {
             File::makeDirectory($destinationPath, 0755, true, true);
         }
 
+        // Canonical directory traversal check
+        $realUploads = realpath($uploadsRoot);
+        $realDest = realpath($destinationPath);
+        if (!$realDest || !str_starts_with($realDest, $realUploads)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid upload destination path.',
+            ], 403);
+        }
+
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $extension = $file->getClientOriginalExtension();
         $safeFileName = Str::slug($originalName) . '-' . time() . '.' . $extension;
 
         $file->move($destinationPath, $safeFileName);
