@@ -63,6 +63,7 @@ export const HomePage: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [homeArticles, setHomeArticles] = useState<Article[]>(insightsData);
   const [pageSections, setPageSections] = useState<Record<string, any>>({});
+  const [pageSectionsLoaded, setPageSectionsLoaded] = useState(false);
   const [dbServices, setDbServices] = useState<ServiceItem[]>([]);
   const [dbClients, setDbClients] = useState<ClientItem[]>([]);
   const [dbProjects, setDbProjects] = useState<CaseStudy[]>([]);
@@ -77,8 +78,11 @@ export const HomePage: React.FC = () => {
       }
     });
     getPublicPageSections('home').then((data) => {
-      if (isMounted && data) {
-        setPageSections(data);
+      if (isMounted) {
+        if (data) {
+          setPageSections(data);
+        }
+        setPageSectionsLoaded(true);
       }
     });
     getPublicServices().then((data) => {
@@ -899,6 +903,19 @@ export const HomePage: React.FC = () => {
 
   const currentSlide = heroSlides[activeSlideIndex];
 
+  // Section Visibility / Active State Resolver (Controlled via Admin Page Builder)
+  const isSectionActive = (key: string): boolean => {
+    if (!pageSectionsLoaded) return true;
+    if (pageSections[key]) {
+      return pageSections[key].is_active !== false;
+    }
+    // If backend already filtered it out via is_active = true and other sections loaded:
+    if (Object.keys(pageSections).length > 0) {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="bg-[#FFFFFF] dark:bg-[#000000] text-slate-900 dark:text-[#FFFFFF] transition-colors duration-200">
       <Seo
@@ -960,6 +977,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================================= */}
       {/* 01. HERO SECTION (Exact Same to Same layout, typography and animations)   */}
       {/* ========================================================================= */}
+      {isSectionActive('hero') && (
       <section className="relative pt-6 pb-16 lg:pt-12 lg:pb-24 overflow-hidden border-b border-slate-200 dark:border-[#1F1F1F]">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -1125,10 +1143,12 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 02. IN THE SPOTLIGHT (Continuous Right-to-Left Carousel with Original Logos)*/}
       {/* ========================================================================= */}
+      {isSectionActive('spotlight') && (
       <section className="py-7 sm:py-10 bg-slate-50 dark:bg-[#111111] border-b border-slate-200 dark:border-[#1F1F1F] overflow-hidden">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10">
@@ -1171,10 +1191,12 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 03. FULL-WIDTH CINEMATIC BACKGROUND VIDEO (Exact match with IMBD reference)*/}
       {/* ========================================================================= */}
+      {isSectionActive('video_showcase') && (
       <section
         id="playVideo"
         ref={videoSectionRef}
@@ -1258,10 +1280,12 @@ export const HomePage: React.FC = () => {
           </span>
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 04. OUR SERVICES (Exact 3x3 Grid, 350px min-height, .b-border, corners)   */}
       {/* ========================================================================= */}
+      {isSectionActive('services_header') && (
       <section id="services" className="py-12 sm:py-16 lg:py-24 border-t border-slate-200 dark:border-[#1F1F1F]">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -1337,10 +1361,12 @@ export const HomePage: React.FC = () => {
 
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 05. BOOK A FREE CONSULTANCY (Exact Same to Same from reference screenshot) */}
       {/* ========================================================================= */}
+      {isSectionActive('consultancy_header') && (
       <section id="consultancy" className="py-16 lg:py-24 bg-slate-50 dark:bg-[#0A0A0A] text-slate-900 dark:text-white border-y border-slate-200 dark:border-[#1F1F1F] transition-colors duration-200">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
@@ -1631,10 +1657,12 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 06. EXPLORE CLIENT RATINGS SHOWCASE (Laurel Wreath Banner)                */}
       {/* ========================================================================= */}
+      {isSectionActive('stats') && (
       <section className="py-10 sm:py-12 bg-slate-50 dark:bg-[#111111] border-y border-slate-200 dark:border-[#1F1F1F] text-center">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-8">
@@ -1717,10 +1745,12 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 07. DISCOVER THE BENEFITS WITH US (Exact 2-column layout)                 */}
       {/* ========================================================================= */}
+      {isSectionActive('why_us') && (
       <section className="py-16 lg:py-24 max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -1867,10 +1897,12 @@ export const HomePage: React.FC = () => {
 
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 08. INNOVATING SUCCESS TOGETHER (3D Logo Flip Showcase + Logo Marquee)    */}
       {/* ========================================================================= */}
+      {isSectionActive('clients_showcase') && (
       <section className="py-16 lg:py-20 bg-slate-50 dark:bg-[#07090D] border-y border-slate-200 dark:border-[#1F1F1F] overflow-hidden text-slate-900 dark:text-white transition-colors duration-200">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center lg:text-left">
@@ -1945,10 +1977,12 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 09. CLIENTS SAYS (Video Testimonial Cards matching reference screenshot)   */}
       {/* ========================================================================= */}
+      {isSectionActive('testimonials_header') && (
       <section className="py-16 lg:py-20 bg-white dark:bg-[#000000] text-slate-900 dark:text-white border-b border-slate-200 dark:border-[#1F1F1F] transition-colors duration-200">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           
@@ -2018,10 +2052,12 @@ export const HomePage: React.FC = () => {
 
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 10. RECENT PROJECTS / CASE STUDIES (Modern Editorial Portfolio Showcase)   */}
       {/* ========================================================================= */}
+      {isSectionActive('case_studies_header') && (
       <section className="py-20 lg:py-28 bg-slate-50 dark:bg-[#07090D] text-slate-900 dark:text-white border-b border-slate-200 dark:border-[#1F1F1F] transition-colors duration-200">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
@@ -2189,10 +2225,12 @@ export const HomePage: React.FC = () => {
 
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 11. OUR STRATEGIC LEADERSHIP & TEAM (Clean Editorial Executive Portraits)  */}
       {/* ========================================================================= */}
+      {isSectionActive('leadership_header') && (
       <section className="py-20 lg:py-28 bg-white dark:bg-[#07090D] text-slate-900 dark:text-white border-b border-slate-200 dark:border-[#1F1F1F] transition-colors duration-200">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
@@ -2309,10 +2347,12 @@ export const HomePage: React.FC = () => {
 
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 12. MEMORIES & MOMENTS (Dense Photo Mosaic Grid)                          */}
       {/* ========================================================================= */}
+      {isSectionActive('gallery_header') && (
       <section className="py-16 lg:py-24 bg-slate-50 dark:bg-[#111111] border-t border-slate-200 dark:border-[#1F1F1F]">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -2358,10 +2398,12 @@ export const HomePage: React.FC = () => {
 
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 13. LATEST BLOGS (Editorial Cards)                                        */}
       {/* ========================================================================= */}
+      {isSectionActive('insights_header') && (
       <section className="py-16 lg:py-24 max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 mb-8 sm:mb-12 text-center sm:text-left">
           <div>
@@ -2419,10 +2461,12 @@ export const HomePage: React.FC = () => {
           ))}
         </div>
       </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 14. CALL TO ACTION (CTA) BANNER                                           */}
       {/* ========================================================================= */}
+      {isSectionActive('cta') && (
       <section className="py-16 lg:py-20 bg-gradient-to-r from-[#0F172A] via-[#1E1B4B] to-[#0A0D14] border-t border-slate-200 dark:border-[#1F1F1F] text-white">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           {pageSections['cta']?.badge_en && (
@@ -2456,6 +2500,7 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Interactive Gallery Lightbox Modal for Memories & Moments */}
       {activeGalleryIndex !== null && (

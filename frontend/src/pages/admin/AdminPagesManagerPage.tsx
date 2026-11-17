@@ -26,6 +26,8 @@ import {
   Plus,
   Trash2,
   Film,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 
 interface SlideConfig {
@@ -194,9 +196,10 @@ export const AdminPagesManagerPage: React.FC = () => {
 
     try {
       await adminApi.updatePageSection(selectedPage, currentSection.section_key, currentSection);
+      const isEnabled = currentSection.is_active !== false;
       setFeedback({
         type: 'success',
-        message: `Section "${currentSection.section_key}" updated and published successfully to database!`,
+        message: `Section "${currentSection.section_key}" (${isEnabled ? 'Enabled & Live' : 'Disabled & Hidden'}) saved and published successfully!`,
       });
       setTimeout(() => setFeedback(null), 4000);
     } catch (err: any) {
@@ -411,6 +414,9 @@ export const AdminPagesManagerPage: React.FC = () => {
               {sectionMetaList.map((meta) => {
                 const Icon = meta.icon;
                 const isActive = activeSectionKey === meta.key;
+                const secItem = sections.find((s) => s.section_key === meta.key);
+                const isSecEnabled = secItem ? secItem.is_active !== false : true;
+
                 return (
                   <button
                     key={meta.key}
@@ -419,22 +425,29 @@ export const AdminPagesManagerPage: React.FC = () => {
                     className={`w-full text-left p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${
                       isActive
                         ? 'bg-gradient-to-r from-[#7c3aed]/20 to-[#4f46e5]/10 border-[#7c3aed] text-white shadow-md'
-                        : 'bg-[#131724]/70 hover:bg-[#181d2e] border-[#212738] text-slate-300'
+                        : isSecEnabled
+                        ? 'bg-[#131724]/70 hover:bg-[#181d2e] border-[#212738] text-slate-300'
+                        : 'bg-[#131724]/40 hover:bg-[#181d2e] border-rose-950/40 text-slate-400 opacity-80'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div
                         className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                           isActive
                             ? 'bg-[#7c3aed] text-white'
-                            : 'bg-white/[0.04] text-slate-400 group-hover:text-purple-300'
+                            : isSecEnabled
+                            ? 'bg-white/[0.04] text-slate-400 group-hover:text-purple-300'
+                            : 'bg-rose-500/10 text-rose-400'
                         }`}
                       >
                         <Icon className="w-4 h-4" />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-xs font-bold truncate group-hover:text-white">
-                          {meta.name}
+                        <div className="text-xs font-bold truncate group-hover:text-white flex items-center gap-1.5">
+                          <span>{meta.name}</span>
+                          {!isSecEnabled && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" title="Hidden on public site" />
+                          )}
                         </div>
                         <div className="text-[10px] text-slate-400 truncate">
                           {meta.desc}
@@ -442,15 +455,22 @@ export const AdminPagesManagerPage: React.FC = () => {
                       </div>
                     </div>
 
-                    <span
-                      className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0 ${
-                        isActive
-                          ? 'bg-[#7c3aed]/30 text-purple-300 border border-purple-500/30'
-                          : 'bg-white/[0.04] text-slate-500'
-                      }`}
-                    >
-                      {meta.badge}
-                    </span>
+                    <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                      {!isSecEnabled && (
+                        <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                          Hidden
+                        </span>
+                      )}
+                      <span
+                        className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                          isActive
+                            ? 'bg-[#7c3aed]/30 text-purple-300 border border-purple-500/30'
+                            : 'bg-white/[0.04] text-slate-500'
+                        }`}
+                      >
+                        {meta.badge}
+                      </span>
+                    </div>
                   </button>
                 );
               })}
@@ -485,7 +505,61 @@ export const AdminPagesManagerPage: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Enable / Disable Button Toggle (User requested red box location) */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      updateCurrentSectionField(
+                        'is_active',
+                        currentSection.is_active === false ? true : false
+                      )
+                    }
+                    className={`inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer select-none active:scale-95 ${
+                      currentSection.is_active !== false
+                        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/25 shadow-sm shadow-emerald-950/30'
+                        : 'bg-rose-500/15 border-rose-500/40 text-rose-300 hover:bg-rose-500/25 shadow-sm shadow-rose-950/30'
+                    }`}
+                    title={
+                      currentSection.is_active !== false
+                        ? 'Section is currently ENABLED. Click to disable.'
+                        : 'Section is currently DISABLED. Click to enable.'
+                    }
+                  >
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span
+                        className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                          currentSection.is_active !== false ? 'bg-emerald-400' : 'bg-rose-400'
+                        }`}
+                      />
+                      <span
+                        className={`relative inline-flex rounded-full h-2.5 w-2.5 ${
+                          currentSection.is_active !== false ? 'bg-emerald-500' : 'bg-rose-500'
+                        }`}
+                      />
+                    </span>
+
+                    <span className="tracking-wide flex items-center gap-1.5">
+                      {currentSection.is_active !== false ? (
+                        <Eye className="w-3.5 h-3.5" />
+                      ) : (
+                        <EyeOff className="w-3.5 h-3.5" />
+                      )}
+                      <span>{currentSection.is_active !== false ? 'Section Enabled' : 'Section Disabled'}</span>
+                    </span>
+
+                    {/* Visual Toggle Pill Switch */}
+                    <div
+                      className={`w-9 h-5 rounded-full p-0.5 transition-colors flex items-center ${
+                        currentSection.is_active !== false
+                          ? 'bg-emerald-600 justify-end'
+                          : 'bg-[#28324a] justify-start'
+                      }`}
+                    >
+                      <div className="w-4 h-4 rounded-full bg-white shadow-md transform transition-transform" />
+                    </div>
+                  </button>
+
                   <button
                     type="button"
                     onClick={handleSaveCurrentSection}
@@ -2119,10 +2193,33 @@ export const AdminPagesManagerPage: React.FC = () => {
               )}
 
               {/* Sticky Footer Action Bar */}
-              <div className="p-4 border-t border-[#212738] bg-[#121624] flex items-center justify-between">
-                <span className="text-xs text-slate-400">
-                  Changes will be published live to public website immediately after saving.
-                </span>
+              <div className="p-4 border-t border-[#212738] bg-[#121624] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      updateCurrentSectionField(
+                        'is_active',
+                        currentSection.is_active === false ? true : false
+                      )
+                    }
+                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-all ${
+                      currentSection.is_active !== false
+                        ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/25'
+                        : 'bg-rose-500/15 border-rose-500/30 text-rose-300 hover:bg-rose-500/25'
+                    }`}
+                  >
+                    <span
+                      className={`w-2 h-2 rounded-full ${
+                        currentSection.is_active !== false ? 'bg-emerald-400' : 'bg-rose-400'
+                      }`}
+                    />
+                    <span>{currentSection.is_active !== false ? 'Active on Homepage' : 'Hidden from Homepage'}</span>
+                  </button>
+                  <span className="text-xs text-slate-400">
+                    Changes will be published live to public website immediately after saving.
+                  </span>
+                </div>
                 <button
                   type="button"
                   onClick={handleSaveCurrentSection}
