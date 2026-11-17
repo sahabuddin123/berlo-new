@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://berlocommunications.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://berlocommunications.com/en" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/bn</loc>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://berlocommunications.com/en" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://berlocommunications.com/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/about" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/bn/about</loc>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/about" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Services Overview -->
+  <url>
+    <loc>https://berlocommunications.com/en/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/bn/services</loc>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 9 Strategic Services -->
+  <url>
+    <loc>https://berlocommunications.com/en/services/strategic-pr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/strategic-pr" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/strategic-pr" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/media-relations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/media-relations" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/media-relations" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/crisis-management</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/crisis-management" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/crisis-management" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/corporate-communications</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/corporate-communications" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/corporate-communications" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/government-advocacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/government-advocacy" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/government-advocacy" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/events-activations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/events-activations" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/events-activations" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/thought-leadership</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/thought-leadership" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/thought-leadership" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/content-storytelling</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/content-storytelling" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/content-storytelling" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/services/digital-pr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/services/digital-pr" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/services/digital-pr" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Work & Case Studies -->
+  <url>
+    <loc>https://berlocommunications.com/en/work</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/work" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/work" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/clients</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/clients" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/clients" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/leadership</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/leadership" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/leadership" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/insights</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/insights" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/insights" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/media</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/media" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/media" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://berlocommunications.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berlocommunications.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://berlocommunications.com/bn/contact" />
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>

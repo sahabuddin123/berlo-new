@@ -631,7 +631,61 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="bg-[#FFFFFF] dark:bg-[#000000] text-slate-900 dark:text-[#FFFFFF] transition-colors duration-200">
-      <Seo />
+      <Seo
+        title={
+          lang === 'bn'
+            ? 'কৌশলগত জনসংযোগ ও করপোরেট পিআর এজেন্সি'
+            : 'Premier Strategic PR & Corporate Communications Agency'
+        }
+        description={
+          lang === 'bn'
+            ? 'বার্লো কমিউনিকেশন্স লিমিটেড — বাংলাদেশের শীর্ষস্থানীয় করপোরেট পিআর ও কৌশলগত যোগাযোগ সংস্থা। ১০০+ জাতীয় মিডিয়া এক্সেস, ২৪/৭ ক্রাইসিস ওয়ার-রুম ও এক্সিকিউটিভ ব্র্যান্ডিং।'
+            : 'Berlo Communications Ltd. is Bangladesh’s leading strategic PR and corporate communications agency, delivering tier-1 media access, 24/7 crisis war-room mobilization, and executive thought leadership.'
+        }
+        keywords={[
+          'PR Agency Bangladesh',
+          'Corporate PR Dhaka',
+          'Strategic Communications Firm',
+          'Crisis Management Agency Bangladesh',
+          'Top PR Firms in Dhaka',
+          'Media Relations Bangladesh',
+          'Executive Thought Leadership Dhaka',
+          'Berlo Communications',
+          'বার্লো কমিউনিকেশন্স',
+        ]}
+        faqs={[
+          {
+            question:
+              lang === 'bn'
+                ? 'বার্লো কমিউনিকেশন্স লিমিটেড কী ধরনের সেবা প্রদান করে?'
+                : 'What core services does Berlo Communications provide?',
+            answer:
+              lang === 'bn'
+                ? 'বার্লো কৌশলগত জনসংযোগ, শীর্ষ জাতীয় গণমাধ্যম সম্পর্ক, ২৪/৭ ক্রাইসিস ম্যানেজমেন্ট ওয়ার-রুম, সি-সুইট এক্সিকিউটিভ ব্র্যান্ডিং, সরকারি নীতি পরামর্শ ও ব্র্যান্ড অ্যাক্টিভেশন সেবা প্রদান করে।'
+                : 'Berlo Communications provides strategic public relations, tier-1 national media relations, 24/7 crisis war-room mobilization, C-suite thought leadership profiling, government policy advocacy, and high-impact brand activations.',
+          },
+          {
+            question:
+              lang === 'bn'
+                ? 'বার্লো কীভাবে সংকটকালীন জনসংযোগ (Crisis PR) পরিচালনা করে?'
+                : 'How quickly does Berlo respond to corporate crises?',
+            answer:
+              lang === 'bn'
+                ? 'বার্লোর জরুরি ক্রাইসিস টিম ৬০ মিনিটের মধ্যে সক্রিয় ওয়ার-রুম প্রতিষ্ঠা করে তথ্যভিত্তিক প্রেস ব্রিফিং ও ফ্যাক্ট-চেক পোর্টালের মাধ্যমে দ্রুত নেতিবাচক জনমত প্রশমন করে।'
+                : 'Berlo deploys an emergency crisis war-room within 60 minutes, utilizing rapid fact-checking portals, vetted spokesperson coaching, and tier-1 media coordination to neutralize misinformation.',
+          },
+          {
+            question:
+              lang === 'bn'
+                ? 'বার্লো কোন কোন প্রধান শিল্পখাতের সাথে কাজ করে?'
+                : 'Which enterprise sectors does Berlo Communications serve?',
+            answer:
+              lang === 'bn'
+                ? 'বার্লো প্রধানত ব্যাংকিং, বহুজাতিক করপোরেট প্রতিষ্ঠান, ওষুধ শিল্প, টেলিকম, রিয়েল এস্টেট, ভারী শিল্প এবং আন্তর্জাতিক উন্নয়ন সংস্থার সাথে কাজ করে।'
+                : 'Berlo serves tier-1 leaders across banking and finance, multinational FMCG, pharmaceuticals, real estate conglomerates, telecommunications, and international development agencies.',
+          },
+        ]}
+      />
 
       {/* ========================================================================= */}
       {/* 01. HERO SECTION (Exact Same to Same layout, typography and animations)   */}

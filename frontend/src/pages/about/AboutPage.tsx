@@ -28,6 +28,20 @@ export const AboutPage: React.FC = () => {
             ? 'বার্লো কমিউনিকেশন্স লিমিটেডের ইতিহাস, ভিশন, মিশন ও মূলনীতিসমূহ। বাংলাদেশের শীর্ষস্থানীয় কর্পোরেট জনসংযোগ ও কৌশলগত যোগাযোগ সংস্থা।'
             : 'Explore Berlo Communications Ltd. history, vision, mission, and strategic corporate communications philosophy in Bangladesh.'
         }
+        image="/images/berlo/about-image.jpg"
+        jsonLd={{
+          '@type': 'AboutPage',
+          '@id': `https://berlocommunications.com/${lang}/about#aboutpage`,
+          name: lang === 'bn' ? 'বার্লো কমিউনিকেশন্স পরিচিতি' : 'About Berlo Communications',
+          mainEntity: {
+            '@type': 'Organization',
+            name: 'Berlo Communications Ltd.',
+            foundingDate: '2012',
+            foundingLocation: 'Dhaka, Bangladesh',
+            description: 'Premier Strategic PR, Media Relations, Corporate Communications & Crisis Advisory Agency.',
+            numberOfEmployees: '35+',
+          },
+        }}
       />
 
       {/* ========================================================================= */}

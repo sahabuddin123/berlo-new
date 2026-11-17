@@ -73,6 +73,26 @@ export const ContactPage: React.FC = () => {
             ? 'বার্লো কমিউনিকেশন্স লিমিটেডের সাথে যোগাযোগ করুন। প্রধান কার্যালয়: নিকেতন, গুলশান-১, ঢাকা।'
             : 'Initiate a strategic briefing with Berlo Communications Ltd. Headquarters in Niketon, Gulshan-1, Dhaka.'
         }
+        jsonLd={{
+          '@type': 'ContactPage',
+          '@id': `https://berlocommunications.com/${lang}/contact#contactpage`,
+          name: lang === 'bn' ? 'বার্লো যোগাযোগ সেল' : 'Berlo Communications Contact Desk',
+          mainEntity: {
+            '@type': 'LocalBusiness',
+            name: 'Berlo Communications Ltd.',
+            telephone: '+880 1711 268 479',
+            email: 'contact@berlocommunications.com',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Apartment - B3, House - 32/34, Road - 07, Block - C, Niketon',
+              addressLocality: 'Gulshan-1',
+              addressRegion: 'Dhaka',
+              postalCode: '1212',
+              addressCountry: 'BD',
+            },
+            openingHours: 'Mo,Tu,We,Th,Su 09:00-18:30',
+          },
+        }}
       />
 
       {/* ========================================================================= */}

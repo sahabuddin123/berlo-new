@@ -63,6 +63,30 @@ export const ArticleDetailPage: React.FC = () => {
       <Seo
         title={`${article.title[lang]} — Berlo Communications Insights`}
         description={article.excerpt[lang]}
+        type="article"
+        image={heroImage}
+        publishedTime={article.publishedAt}
+        author={article.author[lang]}
+        jsonLd={{
+          '@type': 'NewsArticle',
+          '@id': `https://berlocommunications.com/${lang}/insights/${article.slug}#article`,
+          headline: article.title[lang],
+          description: article.excerpt[lang],
+          image: [heroImage],
+          datePublished: article.publishedAt,
+          author: {
+            '@type': 'Person',
+            name: article.author[lang],
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Berlo Communications Ltd.',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://berlocommunications.com/brand/logo.png',
+            },
+          },
+        }}
       />
 
       {/* ========================================================================= */}

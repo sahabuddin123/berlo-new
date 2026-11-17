@@ -43,6 +43,32 @@ export const ServiceDetailPage: React.FC = () => {
       <Seo
         title={`${service.title[lang]} — Berlo Communications`}
         description={service.shortDesc[lang]}
+        type="service"
+        jsonLd={{
+          '@type': 'Service',
+          '@id': `https://berlocommunications.com/${lang}/services/${service.slug}#service`,
+          name: service.title[lang],
+          description: service.shortDesc[lang],
+          provider: {
+            '@type': 'Organization',
+            name: 'Berlo Communications Ltd.',
+            url: 'https://berlocommunications.com',
+          },
+          serviceType: 'Public Relations & Strategic Advisory',
+          areaServed: 'Bangladesh',
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: service.title[lang],
+            itemListElement: service.capabilities.map((c) => ({
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: c.title[lang],
+                description: c.desc[lang],
+              },
+            })),
+          },
+        }}
       />
 
       {/* ========================================================================= */}

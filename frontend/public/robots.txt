@@ -1,0 +1,39 @@
+# =========================================================================
+# Robots.txt for Berlo Communications Ltd.
+# Optimized for Web Crawlers & Generative AI Search Engines (SEO, AEO & GEO)
+# =========================================================================
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /storage/logs/
+
+# Explicitly Allow Leading Generative AI & LLM Search Agents (AEO & GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Canonical Sitemaps & AI Context Files
+Sitemap: https://berlocommunications.com/sitemap.xml
+LLMs-Txt: https://berlocommunications.com/llms.txt

@@ -124,6 +124,24 @@ export const ServicesOverviewPage: React.FC = () => {
             ? 'বার্লো কমিউনিকেশন্স লিমিটেডের পূর্ণাঙ্গ পিআর, মিডিয়া রিলেশনস, ক্রাইসিস ম্যানেজমেন্ট ও ইভেন্ট সেবাসমূহ।'
             : 'Explore full-spectrum PR, media relations, crisis mitigation, and brand activations by Berlo Communications Ltd.'
         }
+        faqs={[
+          {
+            question: lang === 'bn' ? 'বার্লোর সাথে যোগাযোগের কত সময়ের মধ্যে কাজ শুরু হয়?' : 'How quickly can Berlo deploy a strategic PR campaign?',
+            answer: lang === 'bn' ? 'প্রাথমিক পরামর্শ সেশনের পর ২৪ থেকে ৪৮ ঘণ্টার মধ্যে আমরা সামগ্রিক কৌশল পরিকল্পনা জমা দিই। সংকটকালীন ক্ষেত্রে ৬০ মিনিটের মধ্যে ওয়ার-রুম সক্রিয় হয়।' : 'Standard campaign blueprints are submitted within 24-48 hours post-briefing. In crisis scenarios, our emergency war-room activates within 60 minutes.',
+          },
+          {
+            question: lang === 'bn' ? 'আপনারা কি নির্দিষ্ট কোনো খাতেই সীমাবদ্ধ?' : 'Do you specialize in specific industry sectors?',
+            answer: lang === 'bn' ? 'আমরা ব্যাংকিং, ফাইন্যান্স, টেলিকম, এফএমসিজি, এনার্জি, স্বাস্থ্যসেবা ও আন্তর্জাতিক উন্নয়ন খাতের শীর্ষ প্রতিষ্ঠানের সাথে কাজ করি।' : 'We serve tier-1 leaders across Banking, Telecommunications, FMCG, Pharmaceuticals, Heavy Industry, and Development agencies.',
+          },
+          {
+            question: lang === 'bn' ? 'মিডিয়া কাভারেজের নিশ্চয়তা কীভাবে পরিমাপ করা হয়?' : 'How is media success quantified and reported?',
+            answer: lang === 'bn' ? 'আমরা স্বাধীন অডিট রিপোর্ট, শেয়ার অব ভয়েস (SOV) শতাংশ, পজিটিভ সেন্টিমেন্ট ট্র্যাকিং ও বিজ্ঞাপনী সমতুল্য মূল্য (AVE) দিয়ে ফলাফল পরিমাপ করি।' : 'All deliverables are tracked through independent editorial clippings, sentiment scoring, Share of Voice metrics, and executive board presentations.',
+          },
+          {
+            question: lang === 'bn' ? 'গোপনীয়তার নিশ্চয়তা কীভাবে নিশ্চিত করেন?' : 'How do you safeguard client confidentiality?',
+            answer: lang === 'bn' ? 'আমাদের প্রতিটি প্রকল্প আন্তর্জাতিক মানদণ্ডের নন-ডিসক্লোজার এগ্রিমেন্ট (NDA) প্রটোকল দ্বারা সুরক্ষিত।' : 'Every engagement is bound by stringent Non-Disclosure Agreements (NDAs), ensuring complete boardroom privacy and strategic discretion.',
+          },
+        ]}
       />
 
       {/* ========================================================================= */}
