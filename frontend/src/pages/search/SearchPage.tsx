@@ -10,11 +10,12 @@ import { FaSearch, FaArrowRight, FaShieldAlt, FaBriefcase, FaFileAlt, FaUserTie 
 
 export const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get('q') || '';
+  const rawQuery = searchParams.get('q') || '';
+  const query = rawQuery.trim().slice(0, 100);
   const { lang, formatRoute, t } = useLanguage();
 
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.toLowerCase();
     if (!q) return { services: [], projects: [], insights: [], team: [] };
 
     const services = servicesData.filter(

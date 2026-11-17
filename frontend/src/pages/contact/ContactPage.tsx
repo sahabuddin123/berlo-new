@@ -21,9 +21,34 @@ export const ContactPage: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError(null);
+
+    // Defense-in-depth: Input Validation & Sanitization
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedPhone || !trimmedMessage) {
+      setFormError(lang === 'bn' ? 'অনুগ্রহ করে সকল আবশ্যকীয় তথ্য পূরণ করুন।' : 'Please complete all required fields.');
+      return;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setFormError(lang === 'bn' ? 'অনুগ্রহ করে একটি সঠিক প্রাতিষ্ঠানিক ইমেইল ঠিকানা প্রদান করুন।' : 'Please provide a valid corporate email address.');
+      return;
+    }
+
+    if (trimmedPhone.length < 7 || !/^[0-9+() -]+$/.test(trimmedPhone)) {
+      setFormError(lang === 'bn' ? 'অনুগ্রহ করে একটি সঠিক ফোন নম্বর প্রদান করুন।' : 'Please provide a valid telephone number.');
+      return;
+    }
+
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
@@ -198,6 +223,11 @@ export const ContactPage: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {formError && (
+                  <div className="p-3.5 bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold">
+                    {formError}
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
@@ -206,6 +236,7 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="text"
                       required
+                      maxLength={80}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder={lang === 'bn' ? 'যেমন: মোহাম্মদ রহমান' : 'e.g. Johnathan Vance'}
@@ -220,6 +251,7 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="email"
                       required
+                      maxLength={100}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="corporate@company.com"
@@ -236,6 +268,7 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="tel"
                       required
+                      maxLength={25}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+880 17XX XXXXXX"
@@ -249,6 +282,7 @@ export const ContactPage: React.FC = () => {
                     </label>
                     <input
                       type="text"
+                      maxLength={100}
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       placeholder={lang === 'bn' ? 'যেমন: প্রাইম হোল্ডিংস লিমিটেড' : 'e.g. Apex Holdings PLC'}
@@ -282,6 +316,7 @@ export const ContactPage: React.FC = () => {
                   <textarea
                     rows={4}
                     required
+                    maxLength={2500}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder={lang === 'bn' ? 'আপনার প্রতিষ্ঠানের লক্ষ্য বা সংকট সম্পর্কিত সংক্ষেপ বিবরণ...' : 'Summarize your corporate narrative, campaign objectives, or emergency brief...'}

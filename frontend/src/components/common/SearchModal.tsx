@@ -110,6 +110,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
           <input
             ref={inputRef}
             type="text"
+            maxLength={80}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={
