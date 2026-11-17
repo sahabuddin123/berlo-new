@@ -208,13 +208,19 @@
 
 .hero-quote-title {
   font-family: var(--font-poppins);
-  font-size: 55px;
+  font-size: 54px;
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
-@media (max-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1440px) {
   .hero-quote-title {
-    font-size: 42px;
+    font-size: 44px;
+    line-height: 1.16;
+  }
+}
+@media (max-width: 1023px) {
+  .hero-quote-title {
+    font-size: 38px;
     line-height: 1.18;
   }
 }
@@ -232,9 +238,15 @@
   line-height: 1.25;
   letter-spacing: -0.015em;
 }
-@media (max-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1440px) {
   .section-main-title {
-    font-size: 34px;
+    font-size: 33px;
+    line-height: 1.25;
+  }
+}
+@media (max-width: 1023px) {
+  .section-main-title {
+    font-size: 30px;
     line-height: 1.28;
   }
 }
@@ -248,6 +260,24 @@
   .section-main-title {
     font-size: 23px;
     line-height: 1.32;
+  }
+}
+
+/* ========================================================================= */
+/* Responsive Container & Laptop Width Optimization                          */
+/* ========================================================================= */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  /* Provides balanced, elegant breathing room on 13.3" - 15.6" laptop screens */
+  .max-w-\[1300px\],
+  .max-w-7xl {
+    max-width: 1180px !important;
+  }
+}
+
+@media (min-width: 1441px) {
+  .max-w-\[1300px\],
+  .max-w-7xl {
+    max-width: 1260px !important;
   }
 }
 

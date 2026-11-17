@@ -1189,7 +1189,7 @@ export const HomePage: React.FC = () => {
               </h1>
 
               {/* Responsive Description with clean word alignment on mobile */}
-              <p className="text-[15px] sm:text-[17px] lg:text-[19px] text-[#475569] dark:text-[#7A7A7A] leading-[1.65] text-left sm:text-justify font-normal">
+              <p className="text-[15px] sm:text-[16.5px] lg:text-[17px] xl:text-[19px] text-[#475569] dark:text-[#7A7A7A] leading-[1.65] text-left sm:text-justify font-normal">
                 {(lang === 'bn' ? dynamicHero?.subtitle_bn : dynamicHero?.subtitle_en) ||
                   (lang === 'bn'
                     ? 'বার্লো কমিউনিকেশন্সে আপনাকে স্বাগতম—বাংলাদেশের অন্যতম শীর্ষস্থানীয় করপোরেট পিআর ও কৌশলগত যোগাযোগ সংস্থা। আমাদের উদ্ভাবনী কৌশল ও ফলমুখী দৃষ্টিভঙ্গির মাধ্যমে আমরা শীর্ষ প্রতিষ্ঠান ও বহুজাতিক ব্র্যান্ডের দীর্ঘমেয়াদী সুনাম বিনির্মাণ ও সংকট ব্যবস্থাপনা পরিচালনা করি।'
@@ -1225,14 +1225,14 @@ export const HomePage: React.FC = () => {
 
             {/* Right Column: Hero Organic Illustrated Stage matching IMBD Agency Reference */}
             <div className="lg:col-span-6 flex justify-center lg:justify-end relative mb-6 sm:mb-8 lg:mb-0 order-1 lg:order-2">
-              <div className="relative w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[580px] min-h-[360px] sm:min-h-[420px] lg:min-h-[460px] flex items-center justify-center select-none">
+              <div className="relative w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[500px] xl:max-w-[580px] min-h-[360px] sm:min-h-[420px] lg:min-h-[460px] flex items-center justify-center select-none">
                 
                 {/* Ambient Radial Glow */}
                 <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] rounded-full bg-gradient-to-tr from-[#A302FF]/25 via-[#1A305A]/20 to-[#11813C]/25 blur-3xl pointer-events-none" />
 
                 {/* Organic Fluid Backdrop Blob */}
                 <div
-                  className={`absolute left-2 sm:left-6 top-3 sm:top-2 w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[390px] lg:h-[390px] bg-gradient-to-tr ${currentSlide.blobGradient} opacity-95 transition-all duration-700 shadow-2xl shadow-purple-950/40`}
+                  className={`absolute left-2 sm:left-6 top-3 sm:top-2 w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[350px] xl:w-[390px] lg:h-[350px] xl:h-[390px] bg-gradient-to-tr ${currentSlide.blobGradient} opacity-95 transition-all duration-700 shadow-2xl shadow-purple-950/40`}
                   style={{
                     borderRadius: '42% 58% 68% 32% / 45% 45% 55% 55%',
                   }}
@@ -1246,12 +1246,12 @@ export const HomePage: React.FC = () => {
                     alt="Berlo PR Strategic Character"
                     fetchPriority="high"
                     decoding="async"
-                    className="h-[310px] sm:h-[400px] lg:h-[460px] w-auto max-w-[75%] sm:max-w-[70%] object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] transition-all duration-700 hover:scale-[1.02]"
+                    className="h-[310px] sm:h-[400px] lg:h-[430px] xl:h-[460px] w-auto max-w-[75%] sm:max-w-[70%] object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] transition-all duration-700 hover:scale-[1.02]"
                   />
                 </div>
 
                 {/* Floating Glass Card 1 (Top-Right Typewriter Message) */}
-                <div className="absolute -top-4 sm:-top-2 -right-1 sm:-right-3 lg:-right-4 z-20 w-[220px] sm:w-[260px] lg:w-[290px] bg-slate-950/80 dark:bg-[#0A0D14]/90 backdrop-blur-xl border border-white/20 dark:border-white/15 rounded-2xl p-3 sm:p-4 shadow-2xl text-white transition-all duration-500">
+                <div className="absolute -top-4 sm:-top-2 -right-1 sm:-right-2 lg:right-0 xl:-right-4 z-20 w-[220px] sm:w-[260px] lg:w-[270px] xl:w-[290px] bg-slate-950/80 dark:bg-[#0A0D14]/90 backdrop-blur-xl border border-white/20 dark:border-white/15 rounded-2xl p-3 sm:p-4 shadow-2xl text-white transition-all duration-500">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-ping" />
                     <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-400">
@@ -1273,7 +1273,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Floating Glass Card 2 (Middle-Right 3D / Glass Icon Badge) */}
-                <div className="absolute top-[44%] sm:top-[42%] -right-1 sm:right-0 lg:right-2 z-20 bg-slate-900/80 dark:bg-[#0F1420]/90 backdrop-blur-xl border border-white/25 rounded-2xl p-2.5 sm:p-3 shadow-2xl flex items-center gap-2.5 transition-all duration-500 hover:scale-105">
+                <div className="absolute top-[44%] sm:top-[42%] -right-1 sm:right-0 lg:right-0 xl:right-2 z-20 bg-slate-900/80 dark:bg-[#0F1420]/90 backdrop-blur-xl border border-white/25 rounded-2xl p-2.5 sm:p-3 shadow-2xl flex items-center gap-2.5 transition-all duration-500 hover:scale-105">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-[#A302FF] to-[#11813C] flex items-center justify-center text-white shadow-md shadow-purple-500/30">
                     {currentSlide.iconType === 'shield' ? (
                       <FaShieldHalved className="w-4 h-4" />
