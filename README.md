@@ -10,6 +10,9 @@ Configured specifically for **Ubuntu 24.04 LTS**, **aaPanel Web Console**, **Ngi
 - **Panel:** aaPanel (Nginx)
 - **Production Domain:** `berlocommunications.com` (and `www.berlocommunications.com`)
 - **Project Root Directory:** `/www/wwwroot/berlocommunications.com`
+- **Database Name:** `berlo_innova_db`
+- **Database User:** `berlo_user`
+- **Database Password:** `BerINN#3813@%Qa&`
 - **Backend Directory:** `/www/wwwroot/berlocommunications.com/backend`
 - **Frontend Build Directory:** `/www/wwwroot/berlocommunications.com/frontend/dist`
 
@@ -17,12 +20,12 @@ Configured specifically for **Ubuntu 24.04 LTS**, **aaPanel Web Console**, **Ngi
 
 ## Quick Navigation
 1. [Prerequisites in aaPanel Dashboard](#1-prerequisites-in-aapanel-dashboard)
-2. [Step-by-Step Live Server Setup (From Terminal)](#2-step-by-step-live-server-setup-from-terminal)
-   - [Step 2.1: PostgreSQL Database & User Creation](#step-21-postgresql-database--user-creation)
-   - [Step 2.2: Backend (Laravel) Setup & Seeding](#step-22-backend-laravel-setup--seeding)
-   - [Step 2.3: Frontend (React) Production Build](#step-23-frontend-react-production-build)
-   - [Step 2.4: Fix Ownership & Permissions](#step-24-fix-ownership--permissions)
-3. [All-in-One Automated Setup Script (One-Click)](#3-all-in-one-automated-setup-script-copy--paste)
+2. [Instant 1-Click Deployment (deploy.sh) — RECOMMENDED](#2-instant-1-click-deployment-deploysh--recommended)
+3. [Manual Step-by-Step Live Server Setup](#3-manual-step-by-step-live-server-setup)
+   - [Step 3.1: PostgreSQL Database & User Creation](#step-31-postgresql-database--user-creation)
+   - [Step 3.2: Backend (Laravel) Setup & Seeding](#step-32-backend-laravel-setup--seeding)
+   - [Step 3.3: Frontend (React) Production Build](#step-33-frontend-react-production-build)
+   - [Step 3.4: Fix Ownership & Permissions](#step-34-fix-ownership--permissions)
 4. [aaPanel Nginx Site Configuration for berlocommunications.com](#4-aapanel-nginx-site-configuration-for-berlocommunicationscom)
 5. [SSL (Let's Encrypt) Setup](#5-ssl-lets-encrypt-setup)
 6. [Default Superadmin Login Credentials](#6-default-superadmin-login-credentials)
@@ -38,7 +41,7 @@ Before running commands, verify these software packages in your **aaPanel Web Da
 - **Nginx** (1.24 or 1.26)
 - **PHP** (PHP-8.3 or PHP-8.4 installed)
 - **Node.js Version Manager** (Install **Node v20 LTS** or **v22 LTS** + `npm`)
-- **PostgreSQL** (If not yet installed, run `sudo apt install -y postgresql postgresql-contrib` in terminal)
+- **PostgreSQL** (If not yet installed, `deploy.sh` installs it automatically, or run `sudo apt install -y postgresql postgresql-contrib`)
 
 ### B. Crucial PHP Settings (Inside aaPanel)
 1. Go to **aaPanel → App Store → Installed → PHP (your version) → Settings**:
@@ -54,17 +57,36 @@ Before running commands, verify these software packages in your **aaPanel Web Da
 
 ---
 
-## 2. Step-by-Step Live Server Setup (From Terminal)
+## 2. Instant 1-Click Deployment (`deploy.sh`) — RECOMMENDED
 
 Since you are already in your terminal at:
 ```bash
 root@mail:/www/wwwroot/berlocommunications.com#
 ```
-Follow these steps in order:
+
+Just pull the latest script and execute `deploy.sh`:
+
+```bash
+git pull origin main && bash deploy.sh
+```
+
+### What `deploy.sh` automatically does for you:
+1. Installs and starts PostgreSQL on Ubuntu (if not already running).
+2. Creates the PostgreSQL database **`berlo_innova_db`** and user **`berlo_user`** with password **`BerINN#3813@%Qa&`**.
+3. Installs backend dependencies via Composer.
+4. Generates `.env` and `APP_KEY`.
+5. Runs all database migrations & seeds all 14 dynamic sections, 9 services, projects, team, settings, and the default Superadmin.
+6. Installs frontend NPM packages and compiles the production Vite React bundle.
+7. Sets aaPanel `www:www` file ownership and Laravel storage permissions.
+8. Clears and optimizes all production caches.
 
 ---
 
-### Step 2.1: PostgreSQL Database & User Creation
+## 3. Manual Step-by-Step Live Server Setup
+
+If you prefer running commands manually instead of `deploy.sh`:
+
+### Step 3.1: PostgreSQL Database & User Creation
 
 If PostgreSQL is not yet installed on your Ubuntu server, install it first:
 ```bash
@@ -79,16 +101,16 @@ sudo -u postgres psql
 
 Inside the `psql` shell, paste these exact queries:
 ```sql
-CREATE DATABASE berlo_communications;
-CREATE USER berlo_user WITH ENCRYPTED PASSWORD 'BerloDB@2026!';
-GRANT ALL PRIVILEGES ON DATABASE berlo_communications TO berlo_user;
-ALTER DATABASE berlo_communications OWNER TO berlo_user;
+CREATE DATABASE berlo_innova_db;
+CREATE USER berlo_user WITH ENCRYPTED PASSWORD 'BerINN#3813@%Qa&';
+GRANT ALL PRIVILEGES ON DATABASE berlo_innova_db TO berlo_user;
+ALTER DATABASE berlo_innova_db OWNER TO berlo_user;
 \q
 ```
 
 ---
 
-### Step 2.2: Backend (Laravel) Setup & Seeding
+### Step 3.2: Backend (Laravel) Setup & Seeding
 
 Navigate to the backend directory:
 ```bash
@@ -118,9 +140,9 @@ APP_URL=https://berlocommunications.com
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=berlo_communications
+DB_DATABASE=berlo_innova_db
 DB_USERNAME=berlo_user
-DB_PASSWORD=BerloDB@2026!
+DB_PASSWORD="BerINN#3813@%Qa&"
 
 # Sessions & Cache (File driver works instantly without Redis setup)
 SESSION_DRIVER=file
@@ -140,7 +162,7 @@ Save and exit `nano` (`CTRL + O` → `Enter` → `CTRL + X`).
 #### 3. Run migrations, seeders, and optimization:
 ```bash
 # Generate APP_KEY
-php artisan key:generate
+php artisan key:generate --force
 
 # Storage symlink for media files
 php artisan storage:link
@@ -155,7 +177,7 @@ php artisan optimize
 
 ---
 
-### Step 2.3: Frontend (React) Production Build
+### Step 3.3: Frontend (React) Production Build
 
 Navigate to the frontend directory:
 ```bash
@@ -180,7 +202,7 @@ npm run build
 
 ---
 
-### Step 2.4: Fix Ownership & Permissions
+### Step 3.4: Fix Ownership & Permissions
 
 In aaPanel, Nginx and PHP run under the user `www`. Since files were cloned as `root`, update ownership:
 
@@ -195,30 +217,7 @@ find /www/wwwroot/berlocommunications.com -type f -exec chmod 644 {} \;
 # Grant writable permissions to Laravel storage & bootstrap cache
 chmod -R 775 /www/wwwroot/berlocommunications.com/backend/storage
 chmod -R 775 /www/wwwroot/berlocommunications.com/backend/bootstrap/cache
-```
-
----
-
-## 3. All-in-One Automated Setup Script (Copy & Paste)
-
-If you want to run everything automatically in your terminal from `/www/wwwroot/berlocommunications.com`, copy and paste this complete block:
-
-```bash
-cd /www/wwwroot/berlocommunications.com/backend && \
-composer install --no-dev --optimize-autoloader && \
-cp -n .env.example .env && \
-php artisan key:generate && \
-php artisan storage:link && \
-php artisan migrate --force && \
-php artisan db:seed --force && \
-php artisan optimize && \
-cd /www/wwwroot/berlocommunications.com/frontend && \
-npm install && \
-echo "VITE_API_URL=/api/v1" > .env.production && \
-npm run build && \
-chown -R www:www /www/wwwroot/berlocommunications.com && \
-chmod -R 775 /www/wwwroot/berlocommunications.com/backend/storage /www/wwwroot/berlocommunications.com/backend/bootstrap/cache && \
-echo "=== Berlo Communications Setup Completed Successfully! ==="
+chmod +x /www/wwwroot/berlocommunications.com/deploy.sh
 ```
 
 ---
