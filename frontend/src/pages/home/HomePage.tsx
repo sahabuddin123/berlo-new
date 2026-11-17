@@ -768,6 +768,8 @@ export const HomePage: React.FC = () => {
                     key={currentSlide.id}
                     src={currentSlide.image}
                     alt="Berlo PR Strategic Character"
+                    fetchPriority="high"
+                    decoding="async"
                     className="h-[310px] sm:h-[400px] lg:h-[460px] w-auto max-w-[75%] sm:max-w-[70%] object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] transition-all duration-700 hover:scale-[1.02]"
                   />
                 </div>
@@ -875,6 +877,8 @@ export const HomePage: React.FC = () => {
                     <img
                       src={media.logo}
                       alt={media.name}
+                      loading="lazy"
+                      decoding="async"
                       className="max-h-7 sm:max-h-8 max-w-[110px] sm:max-w-[135px] object-contain filter contrast-105 group-hover:scale-105 transition-transform"
                     />
                   </div>
@@ -1067,6 +1071,8 @@ export const HomePage: React.FC = () => {
                   <img
                     src="/images/berlo/team-consultancy.jpg"
                     alt="Berlo PR Strategic Advisory Team"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto object-cover filter contrast-105 brightness-100 group-hover:scale-102 transition-transform duration-700"
                   />
                   {/* Subtle inner vignette */}
@@ -1540,6 +1546,8 @@ export const HomePage: React.FC = () => {
                       <img
                         src={slot.front}
                         alt={`Enterprise Partner ${idx + 1}`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain filter contrast-105"
                       />
                     </div>
@@ -1548,6 +1556,8 @@ export const HomePage: React.FC = () => {
                       <img
                         src={slot.back}
                         alt={`Enterprise Partner ${idx + 1}`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain filter contrast-105"
                       />
                     </div>
@@ -1567,6 +1577,8 @@ export const HomePage: React.FC = () => {
                     <img
                       src={client.logo}
                       alt={client.name}
+                      loading="lazy"
+                      decoding="async"
                       className="max-h-12 max-w-[120px] object-contain filter contrast-110"
                     />
                   </div>
@@ -1613,6 +1625,8 @@ export const HomePage: React.FC = () => {
                 <img
                   src={item.thumbnail}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
 

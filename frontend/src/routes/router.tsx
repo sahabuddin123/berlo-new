@@ -1,23 +1,26 @@
+import { lazy } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { RootLayout } from '../components/layout/RootLayout';
-import { HomePage } from '../pages/home/HomePage';
-import { AboutPage } from '../pages/about/AboutPage';
-import { LeadershipPage } from '../pages/leadership/LeadershipPage';
-import { LeaderDetailPage } from '../pages/leadership/LeaderDetailPage';
-import { TeamPage } from '../pages/team/TeamPage';
-import { ServicesOverviewPage } from '../pages/services/ServicesOverviewPage';
-import { ServiceDetailPage } from '../pages/services/ServiceDetailPage';
-import { WorkListingPage } from '../pages/work/WorkListingPage';
-import { CaseStudyDetailPage } from '../pages/work/CaseStudyDetailPage';
-import { ClientsPage } from '../pages/clients/ClientsPage';
-import { InsightsListingPage } from '../pages/insights/InsightsListingPage';
-import { ArticleDetailPage } from '../pages/insights/ArticleDetailPage';
-import { MediaPage } from '../pages/media/MediaPage';
-import { ContactPage } from '../pages/contact/ContactPage';
-import { SearchPage } from '../pages/search/SearchPage';
-import { PrivacyPolicyPage } from '../pages/legal/PrivacyPolicyPage';
-import { TermsConditionsPage } from '../pages/legal/TermsConditionsPage';
-import { NotFoundPage } from '../pages/notfound/NotFoundPage';
+
+// Code-Splitting: Lazy load all route chunks for maximum Lighthouse speed & instant initial load
+const HomePage = lazy(() => import('../pages/home/HomePage').then((m) => ({ default: m.HomePage })));
+const AboutPage = lazy(() => import('../pages/about/AboutPage').then((m) => ({ default: m.AboutPage })));
+const LeadershipPage = lazy(() => import('../pages/leadership/LeadershipPage').then((m) => ({ default: m.LeadershipPage })));
+const LeaderDetailPage = lazy(() => import('../pages/leadership/LeaderDetailPage').then((m) => ({ default: m.LeaderDetailPage })));
+const TeamPage = lazy(() => import('../pages/team/TeamPage').then((m) => ({ default: m.TeamPage })));
+const ServicesOverviewPage = lazy(() => import('../pages/services/ServicesOverviewPage').then((m) => ({ default: m.ServicesOverviewPage })));
+const ServiceDetailPage = lazy(() => import('../pages/services/ServiceDetailPage').then((m) => ({ default: m.ServiceDetailPage })));
+const WorkListingPage = lazy(() => import('../pages/work/WorkListingPage').then((m) => ({ default: m.WorkListingPage })));
+const CaseStudyDetailPage = lazy(() => import('../pages/work/CaseStudyDetailPage').then((m) => ({ default: m.CaseStudyDetailPage })));
+const ClientsPage = lazy(() => import('../pages/clients/ClientsPage').then((m) => ({ default: m.ClientsPage })));
+const InsightsListingPage = lazy(() => import('../pages/insights/InsightsListingPage').then((m) => ({ default: m.InsightsListingPage })));
+const ArticleDetailPage = lazy(() => import('../pages/insights/ArticleDetailPage').then((m) => ({ default: m.ArticleDetailPage })));
+const MediaPage = lazy(() => import('../pages/media/MediaPage').then((m) => ({ default: m.MediaPage })));
+const ContactPage = lazy(() => import('../pages/contact/ContactPage').then((m) => ({ default: m.ContactPage })));
+const SearchPage = lazy(() => import('../pages/search/SearchPage').then((m) => ({ default: m.SearchPage })));
+const PrivacyPolicyPage = lazy(() => import('../pages/legal/PrivacyPolicyPage').then((m) => ({ default: m.PrivacyPolicyPage })));
+const TermsConditionsPage = lazy(() => import('../pages/legal/TermsConditionsPage').then((m) => ({ default: m.TermsConditionsPage })));
+const NotFoundPage = lazy(() => import('../pages/notfound/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 
 export const router = createBrowserRouter([
   // Root URL redirects to default language /en

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { LanguageProvider } from '../../contexts/LanguageContext';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { SearchModal } from '../common/SearchModal';
 import { WhatsAppChatbot } from '../common/WhatsAppChatbot';
+import { PageLoader } from '../common/PageLoader';
 
 const InnerLayout: React.FC = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -29,7 +30,9 @@ const InnerLayout: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-white dark:bg-[#000000] text-slate-900 dark:text-[#FFFFFF] transition-colors duration-200">
       <Header onOpenSearch={() => setSearchOpen(true)} />
       <main className="flex-1 pt-16 sm:pt-20 lg:pt-28">
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />

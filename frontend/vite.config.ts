@@ -16,5 +16,24 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    cssMinify: true,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom') || id.includes('react-router-dom') || id.includes('react/')) {
+              return 'vendor-react';
+            }
+            if (id.includes('react-icons') || id.includes('lucide-react')) {
+              return 'vendor-icons';
+            }
+            return 'vendor-core';
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+  },
 });
-
