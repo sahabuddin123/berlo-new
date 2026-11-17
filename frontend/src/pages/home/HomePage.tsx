@@ -46,6 +46,16 @@ const articleImages: Record<string, string> = {
   'art-3': 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
 };
 
+function extractCleanYoutubeId(input?: string): string {
+  if (!input) return 'dVAVFOU7dGk';
+  const str = input.trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(str)) {
+    return str;
+  }
+  const match = str.match(/(?:embed\/|v=|youtu\.be\/|\/v\/|^)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : 'dVAVFOU7dGk';
+}
+
 export const HomePage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
 
@@ -831,7 +841,12 @@ export const HomePage: React.FC = () => {
 
   // Section 03: Video Showcase
   const videoSection = pageSections['video_showcase'];
-  const showcaseYoutubeId = videoSection?.metadata?.youtube_id || (videoSection?.video_url ? videoSection.video_url.replace(/.*(?:embed\/|v=)([^&]+).*/, '$1') : '8nees6k5oNk');
+  const showcaseYoutubeId = extractCleanYoutubeId(
+    videoSection?.metadata?.youtube_video_id ||
+    videoSection?.metadata?.youtube_id ||
+    videoSection?.video_url ||
+    'dVAVFOU7dGk'
+  );
 
   // Section 04: Our Services
   const servicesSection = pageSections['services_header'];
@@ -1281,11 +1296,22 @@ export const HomePage: React.FC = () => {
       >
         {/* Continuous Autoplay Background Video (Muted Endless Loop - 3D Illustration & Motion Reel) */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+          {videoSection?.image_url && (
+            <img
+              src={videoSection.image_url}
+              alt="Video Poster Fallback"
+              className="w-full h-full object-cover filter contrast-105 brightness-90 absolute inset-0 -z-10"
+              onError={(e: any) => {
+                e.target.src = '/images/berlo/gallery/moment-3.jpg';
+              }}
+            />
+          )}
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${showcaseYoutubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${showcaseYoutubeId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&playsinline=1`}
+            src={`https://www.youtube.com/embed/${showcaseYoutubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${showcaseYoutubeId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&playsinline=1`}
             title="Berlo 3D Strategic Motion & Agency Reel"
             className="w-[160%] h-[160%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none filter contrast-110 brightness-95"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
           />
         </div>
 

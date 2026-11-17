@@ -84,6 +84,14 @@ const defaultMarqueeLogos = [
   { name: 'Export Promotion Bureau', logo: '/images/berlo/clients/epbb.jpg' },
 ];
 
+const extractCleanYoutubeId = (input?: string): string => {
+  if (!input) return 'dVAVFOU7dGk';
+  const str = input.trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(str)) return str;
+  const match = str.match(/(?:embed\/|v=|youtu\.be\/|\/v\/|^)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : 'dVAVFOU7dGk';
+};
+
 const defaultVideoTestimonials = [
   { id: 1, title: 'Enterprise Reputation & Brand Scaling', subtitle: 'Strategic PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-1.jpg', youtubeId: 'FHnfg223H60' },
   { id: 2, title: 'Nationwide Media Reach & Expansion', subtitle: 'Media Access', thumbnail: '/images/berlo/testimonials/stock-testimonial-2.jpg', youtubeId: 'OTClukQmiEw' },
@@ -1390,12 +1398,21 @@ export const AdminPagesManagerPage: React.FC = () => {
                     </span>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                       <div className="space-y-1.5">
-                        <label className="text-slate-300 font-semibold">YouTube Embed URL or Video Link:</label>
+                        <label className="text-slate-300 font-semibold">YouTube Embed URL, Link or Video ID:</label>
                         <input
                           type="text"
-                          value={currentSection.video_url || 'https://www.youtube.com/embed/8nees6k5oNk'}
-                          onChange={(e) => updateCurrentSectionField('video_url', e.target.value)}
-                          placeholder="https://www.youtube.com/embed/..."
+                          value={currentSection.video_url || 'https://www.youtube.com/embed/dVAVFOU7dGk'}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            updateCurrentSectionField('video_url', val);
+                            const cleanId = extractCleanYoutubeId(val);
+                            updateCurrentSectionMetadata((m) => ({
+                              ...m,
+                              youtube_id: cleanId,
+                              youtube_video_id: cleanId,
+                            }));
+                          }}
+                          placeholder="e.g. dVAVFOU7dGk or https://www.youtube.com/watch?v=..."
                           className="w-full px-3.5 py-2 rounded-xl bg-[#0f121d] border border-[#212738] text-white font-mono"
                         />
                       </div>
@@ -1430,10 +1447,11 @@ export const AdminPagesManagerPage: React.FC = () => {
                         <span className="text-[11px] text-slate-400 block mb-1">Live Video Frame:</span>
                         <div className="w-full h-44 rounded-xl overflow-hidden bg-black border border-white/10 shadow-lg">
                           <iframe
-                            src={currentSection.video_url}
+                            src={`https://www.youtube.com/embed/${extractCleanYoutubeId(currentSection.video_url || currentSection.metadata?.youtube_id || currentSection.metadata?.youtube_video_id)}`}
                             title="Video Preview"
                             className="w-full h-full object-cover"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerPolicy="strict-origin-when-cross-origin"
                           />
                         </div>
                       </div>
