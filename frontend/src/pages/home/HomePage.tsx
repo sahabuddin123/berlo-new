@@ -934,12 +934,6 @@ export const HomePage: React.FC = () => {
                   <>Our <span className="b-border">Services</span></>
                 )}
               </h2>
-              {/* Mobile Subtitle matching IMBD reference screenshot */}
-              <p className="mt-2.5 text-[13.5px] sm:text-sm text-slate-600 dark:text-slate-400 max-w-sm sm:max-w-md mx-auto md:mx-0 text-center md:text-left block md:hidden leading-relaxed">
-                {lang === 'bn'
-                  ? 'আমাদের লক্ষ্য ফলাফলনির্ভর কৌশলের মাধ্যমে আপনার কর্পোরেট সুনাম ও অবস্থানকে নতুন উচ্চতায় পৌঁছে দেওয়া।'
-                  : 'Focused on results we seek to raise the level of our corporate customers.'}
-              </p>
             </div>
             <div className="w-full md:w-auto flex justify-center md:justify-end mt-2 md:mt-0">
               <Link

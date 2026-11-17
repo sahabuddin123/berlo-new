@@ -6,8 +6,7 @@ import { projectsData } from '../../data/projectsData';
 import { insightsData } from '../../data/insightsData';
 import { teamData } from '../../data/teamData';
 import { Seo } from '../../components/common/Seo';
-import { SectionHeader } from '../../components/common/SectionHeader';
-import { ArrowRight, ShieldCheck, Briefcase, FileText, User } from 'lucide-react';
+import { FaSearch, FaArrowRight, FaShieldAlt, FaBriefcase, FaFileAlt, FaUserTie } from 'react-icons/fa';
 
 export const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -56,149 +55,186 @@ export const SearchPage: React.FC = () => {
     results.team.length;
 
   return (
-    <div className="space-y-16 lg:space-y-24 pb-24">
+    <div className="bg-white dark:bg-[#07090D] min-h-screen text-slate-900 dark:text-white transition-colors duration-200">
       <Seo
         title={`${t('common.searchResults')}: "${query}"`}
         description="Search results across Berlo Communications services, case studies, insights, and leadership."
       />
 
-      <section className="pt-12 pb-16 lg:pt-16 lg:pb-20 bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge={t('common.searchResults')}
-            badgeVariant="purple"
-            title={query ? `"${query}"` : t('common.searchResults')}
-            subtitle={
-              query
-                ? `${totalResults} ${lang === 'bn' ? 'টি ফলাফল পাওয়া গেছে' : 'results located'}`
-                : t('common.searchPlaceholder')
-            }
-          />
+      {/* Header Section */}
+      <section className="py-16 sm:py-20 lg:py-24 border-b border-slate-200 dark:border-[#1F1F1F] bg-slate-50 dark:bg-[#0B0E14]">
+        <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#A302FF]/10 text-[#A302FF] dark:text-[#B833FF] border border-[#A302FF]/20 text-xs font-bold uppercase tracking-wider">
+              <FaSearch className="w-3.5 h-3.5" />
+              <span>{t('common.searchResults')}</span>
+            </div>
+
+            <h1 className="section-main-title text-slate-900 dark:text-white text-center">
+              {lang === 'bn' ? (
+                <>অনুসন্ধান <span className="b-border">ফলাফল</span></>
+              ) : (
+                <>Search <span className="b-border">Results</span></>
+              )}
+            </h1>
+
+            <p className="text-base text-slate-600 dark:text-slate-400">
+              {query ? (
+                <span>
+                  &ldquo;<span className="text-[#A302FF] dark:text-[#B833FF] font-semibold">{query}</span>&rdquo; — {totalResults} {lang === 'bn' ? 'টি ফলাফল পাওয়া গেছে' : 'results located'}
+                </span>
+              ) : (
+                <span>{t('common.searchPlaceholder')}</span>
+              )}
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {/* Results Content */}
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-12">
         {!query && (
-          <div className="text-center py-16 text-slate-500">
-            {lang === 'bn' ? 'অনুসন্ধানের জন্য কোনো কীওয়ার্ড প্রদান করুন।' : 'Please enter a keyword to search.'}
+          <div className="text-center py-16 text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-[#11141D] border border-slate-200 dark:border-[#1F2432] p-8">
+            <FaSearch className="w-8 h-8 text-[#A302FF] mx-auto mb-3 opacity-60" />
+            <p className="text-base font-medium">
+              {lang === 'bn' ? 'অনুসন্ধানের জন্য কোনো কীওয়ার্ড প্রদান করুন।' : 'Please enter a keyword to search.'}
+            </p>
           </div>
         )}
 
         {query && totalResults === 0 && (
-          <div className="text-center py-16 text-slate-500">
-            {t('common.noResults')}
+          <div className="text-center py-16 text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-[#11141D] border border-slate-200 dark:border-[#1F2432] p-8">
+            <p className="text-base font-medium">{t('common.noResults')}</p>
           </div>
         )}
 
-        {/* Services */}
+        {/* Services Results */}
         {results.services.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#11813C]" />
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#A302FF] dark:text-[#B833FF] flex items-center gap-2">
+              <FaShieldAlt className="w-4 h-4 text-[#11813C]" />
               <span>{lang === 'bn' ? 'সেবাসমূহ' : 'Services'} ({results.services.length})</span>
-            </h3>
+            </h2>
             <div className="space-y-3">
               {results.services.map((s) => (
                 <Link
                   key={s.id}
                   to={formatRoute(`services/${s.slug}`)}
-                  className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#A302FF] flex items-center justify-between group transition-all block"
+                  className="p-5 sm:p-6 bg-white dark:bg-[#11141D] border border-slate-200 dark:border-[#1F2432] hover:border-[#A302FF] dark:hover:border-[#A302FF] flex items-center justify-between group transition-all shadow-sm block"
                 >
-                  <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] text-base mb-1">
+                  <div className="pr-4">
+                    <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] text-base sm:text-lg mb-1 transition-colors">
                       {s.title[lang]}
-                    </h4>
-                    <p className="text-xs text-slate-500 line-clamp-1">{s.shortDesc[lang]}</p>
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                      {s.shortDesc[lang]}
+                    </p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#A302FF] shrink-0 ml-4" />
+                  <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#1A1F2C] border border-slate-200 dark:border-white/10 group-hover:bg-[#A302FF] group-hover:text-white flex items-center justify-center shrink-0 transition-all">
+                    <FaArrowRight className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-white" />
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
         )}
 
-        {/* Case Studies */}
+        {/* Case Studies Results */}
         {results.projects.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-              <Briefcase className="w-4 h-4 text-[#A302FF]" />
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#A302FF] dark:text-[#B833FF] flex items-center gap-2">
+              <FaBriefcase className="w-4 h-4 text-[#A302FF]" />
               <span>{lang === 'bn' ? 'কেস স্টাডিজ' : 'Case Studies'} ({results.projects.length})</span>
-            </h3>
+            </h2>
             <div className="space-y-3">
               {results.projects.map((p) => (
                 <Link
                   key={p.id}
                   to={formatRoute(`work/${p.slug}`)}
-                  className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#A302FF] flex items-center justify-between group transition-all block"
+                  className="p-5 sm:p-6 bg-white dark:bg-[#11141D] border border-slate-200 dark:border-[#1F2432] hover:border-[#A302FF] dark:hover:border-[#A302FF] flex items-center justify-between group transition-all shadow-sm block"
                 >
-                  <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] text-base mb-1">
+                  <div className="pr-4">
+                    <div className="text-[11px] font-bold text-[#A302FF] dark:text-[#B833FF] uppercase tracking-wider mb-1">
+                      {p.clientName}
+                    </div>
+                    <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] text-base sm:text-lg mb-1 transition-colors">
                       {p.title[lang]}
-                    </h4>
-                    <p className="text-xs text-slate-500 line-clamp-1">{p.overview[lang]}</p>
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                      {p.overview[lang]}
+                    </p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#A302FF] shrink-0 ml-4" />
+                  <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#1A1F2C] border border-slate-200 dark:border-white/10 group-hover:bg-[#A302FF] group-hover:text-white flex items-center justify-center shrink-0 transition-all">
+                    <FaArrowRight className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-white" />
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
         )}
 
-        {/* Insights */}
+        {/* Insights Results */}
         {results.insights.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-              <FileText className="w-4 h-4 text-[#00A896]" />
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#A302FF] dark:text-[#B833FF] flex items-center gap-2">
+              <FaFileAlt className="w-4 h-4 text-[#11813C]" />
               <span>{lang === 'bn' ? 'ইনসাইটস' : 'Insights'} ({results.insights.length})</span>
-            </h3>
+            </h2>
             <div className="space-y-3">
               {results.insights.map((a) => (
                 <Link
                   key={a.id}
                   to={formatRoute(`insights/${a.slug}`)}
-                  className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#A302FF] flex items-center justify-between group transition-all block"
+                  className="p-5 sm:p-6 bg-white dark:bg-[#11141D] border border-slate-200 dark:border-[#1F2432] hover:border-[#A302FF] dark:hover:border-[#A302FF] flex items-center justify-between group transition-all shadow-sm block"
                 >
-                  <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] text-base mb-1">
+                  <div className="pr-4">
+                    <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] text-base sm:text-lg mb-1 transition-colors">
                       {a.title[lang]}
-                    </h4>
-                    <p className="text-xs text-slate-500 line-clamp-1">{a.excerpt[lang]}</p>
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                      {a.excerpt[lang]}
+                    </p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#A302FF] shrink-0 ml-4" />
+                  <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#1A1F2C] border border-slate-200 dark:border-white/10 group-hover:bg-[#A302FF] group-hover:text-white flex items-center justify-center shrink-0 transition-all">
+                    <FaArrowRight className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-white" />
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
         )}
 
-        {/* Team */}
+        {/* Team Results */}
         {results.team.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-              <User className="w-4 h-4 text-[#1A305A] dark:text-[#93C5FD]" />
-              <span>{lang === 'bn' ? 'টিম' : 'Team'} ({results.team.length})</span>
-            </h3>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#A302FF] dark:text-[#B833FF] flex items-center gap-2">
+              <FaUserTie className="w-4 h-4 text-[#1A305A] dark:text-[#93C5FD]" />
+              <span>{lang === 'bn' ? 'টিম ও নেতৃত্ব' : 'Team & Leadership'} ({results.team.length})</span>
+            </h2>
             <div className="space-y-3">
               {results.team.map((m) => (
                 <Link
                   key={m.id}
                   to={formatRoute(`leadership/${m.slug}`)}
-                  className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#A302FF] flex items-center justify-between group transition-all block"
+                  className="p-5 sm:p-6 bg-white dark:bg-[#11141D] border border-slate-200 dark:border-[#1F2432] hover:border-[#A302FF] dark:hover:border-[#A302FF] flex items-center justify-between group transition-all shadow-sm block"
                 >
-                  <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] text-base mb-1">
+                  <div className="pr-4">
+                    <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] text-base sm:text-lg mb-1 transition-colors">
                       {m.name[lang]}
-                    </h4>
-                    <p className="text-xs text-[#11813C] dark:text-[#22C55E]">{m.role[lang]}</p>
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#11813C] dark:text-[#22C55E] font-medium">
+                      {m.role[lang]}
+                    </p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#A302FF] shrink-0 ml-4" />
+                  <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#1A1F2C] border border-slate-200 dark:border-white/10 group-hover:bg-[#A302FF] group-hover:text-white flex items-center justify-center shrink-0 transition-all">
+                    <FaArrowRight className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-white" />
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
         )}
-      </section>
+      </div>
     </div>
   );
 };
-

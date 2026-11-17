@@ -1,178 +1,254 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { mediaData } from '../../data/mediaData';
-import { BRAND } from '../../config/brand';
 import { Seo } from '../../components/common/Seo';
-import { Badge } from '../../components/common/Badge';
-import { SectionHeader } from '../../components/common/SectionHeader';
-import { Newspaper, Tv, Globe, Download, Mail, Phone, ExternalLink } from 'lucide-react';
+import { Newspaper, Tv, Globe, Download, Mail, Phone, ExternalLink, Award } from 'lucide-react';
+import { FaChevronRight } from 'react-icons/fa';
 
 export const MediaPage: React.FC = () => {
-  const { lang, t } = useLanguage();
+  const { lang, formatRoute } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  const categories = [
+    { key: 'all', en: 'All Media', bn: 'সকল মিডিয়া' },
+    { key: 'interview', en: 'Broadcast & TV Interviews', bn: 'টেলিভিশন সাক্ষাৎকার' },
+    { key: 'press_release', en: 'Press Releases', bn: 'প্রেস বিজ্ঞপ্তি' },
+    { key: 'mention', en: 'News Mentions', bn: 'সংবাদ কাভারেজ' },
+  ];
+
+  // Real national media logos
+  const mediaLogos = [
+    { name: 'Prothom Alo', logo: '/images/berlo/media/prothom-alo.svg' },
+    { name: 'The Daily Star', logo: '/images/berlo/media/the-daily-star.svg' },
+    { name: 'The Business Standard', logo: '/images/berlo/media/tbs.svg' },
+    { name: 'Dhaka Tribune', logo: '/images/berlo/media/dhaka-tribune.svg' },
+    { name: 'Bloomberg', logo: '/images/berlo/media/bloomberg.svg' },
+    { name: 'Reuters', logo: '/images/berlo/media/reuters.svg' },
+    { name: 'Financial Express', logo: '/images/berlo/media/financial-express.png' },
+  ];
 
   const filteredMedia =
     activeCategory === 'all'
       ? mediaData
       : mediaData.filter((m) => m.category === activeCategory);
 
-  const categories = [
-    { key: 'all', label: t('media.allMedia') },
-    { key: 'award', label: lang === 'bn' ? 'স্বীকৃতি ও পুরস্কার' : 'Awards & Recognition' },
-    { key: 'interview', label: t('media.interviews') },
-    { key: 'press_release', label: t('media.pressReleases') },
-    { key: 'mention', label: t('media.mentions') },
-  ];
-
   const getSourceIcon = (type: string) => {
     switch (type) {
       case 'broadcast':
-        return <Tv className="w-4 h-4 text-[#A302FF]" />;
+        return <Tv className="w-4 h-4 text-[#A302FF] dark:text-[#B833FF]" />;
       case 'online':
         return <Globe className="w-4 h-4 text-[#00A896]" />;
       default:
-        return <Newspaper className="w-4 h-4 text-[#11813C]" />;
+        return <Newspaper className="w-4 h-4 text-[#11813C] dark:text-[#22C55E]" />;
     }
   };
 
   return (
-    <div className="space-y-16 lg:space-y-24 pb-24">
+    <div className="space-y-16 sm:space-y-24 lg:space-y-32 pb-24 overflow-hidden">
       <Seo
-        title={lang === 'bn' ? 'মিডিয়া কভারেজ ও প্রেস রুম' : 'Media Coverage & Press Room'}
+        title={lang === 'bn' ? 'মিডিয়া কভারেজ ও প্রেস রুম — বার্লো' : 'Media Coverage & Press Newsroom — Berlo Communications'}
         description={
           lang === 'bn'
             ? 'বার্লো কমিউনিকেশন্স লিমিটেডের আনুষ্ঠানিক প্রেস রিলিজ, গণমাধ্যম কভারেজ ও এক্সিকিউটিভ সাক্ষাৎকার।'
-            : 'Track official press announcements, media coverage, and television interviews featuring Berlo.'
+            : 'Track official press announcements, media coverage, and television interviews featuring Berlo Communications Ltd.'
         }
       />
 
-      {/* Header Banner */}
-      <section className="pt-12 pb-16 lg:pt-16 lg:pb-20 bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge={t('media.badge')}
-            badgeVariant="purple"
-            title={t('media.title')}
-            subtitle={t('media.subtitle')}
-          />
+      {/* ========================================================================= */}
+      {/* 01. PAGE HERO BANNER                                                      */}
+      {/* ========================================================================= */}
+      <section className="relative pt-12 pb-16 lg:pt-20 lg:pb-24 bg-slate-50 dark:bg-[#07090D] border-b border-slate-200 dark:border-[#1F1F1F] transition-colors duration-200">
+        <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 mb-6 uppercase tracking-wider">
+            <Link to={formatRoute('')} className="hover:text-[#A302FF] transition-colors">
+              {lang === 'bn' ? 'হোম' : 'Home'}
+            </Link>
+            <FaChevronRight className="w-2.5 h-2.5 text-slate-400" />
+            <span className="text-[#A302FF] dark:text-[#B833FF]">
+              {lang === 'bn' ? 'মিডিয়া রুম' : 'Newsroom'}
+            </span>
+          </nav>
+
+          <div className="max-w-3xl space-y-5 text-center lg:text-left mx-auto lg:mx-0">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#11813C]/10 text-[#11813C] dark:text-[#22C55E] text-xs font-bold uppercase tracking-wider">
+              <Award className="w-3.5 h-3.5" />
+              <span>{lang === 'bn' ? 'অফিসিয়াল নিউজ ও প্রেস সেন্টার' : 'Official Press & Broadcast Newsroom'}</span>
+            </div>
+
+            <h1 className="section-main-title text-slate-900 dark:text-white text-center lg:text-left">
+              {lang === 'bn' ? (
+                <>
+                  গণমাধ্যম কভারেজ ও <span className="b-border">প্রেস সেন্টার</span>
+                </>
+              ) : (
+                <>
+                  Media Coverage & <span className="b-border">Press Center</span>
+                </>
+              )}
+            </h1>
+
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+              {lang === 'bn'
+                ? 'বার্লো কমিউনিকেশন্সের সর্বশেষ প্রেস রিলিজ, টেলিভিশন বিশ্লেষণ, আন্তর্জাতিক মিডিয়া উপস্থিতি এবং অফিশিয়াল প্রেস কিট।'
+                : 'Explore television interviews, editorial opinions, and official press releases published across Bangladesh and international business wires.'}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Filter Tabs */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center gap-2 pb-6 border-b border-slate-200 dark:border-slate-800">
+      {/* ========================================================================= */}
+      {/* 02. NATIONAL MEDIA AFFILIATIONS                                           */}
+      {/* ========================================================================= */}
+      <section className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="text-center sm:text-left">
+          <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+            {lang === 'bn' ? 'শীর্ষ জাতীয় ও আন্তর্জাতিক গণমাধ্যম সংযোগ' : 'Tier-1 National & International Media Network'}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+          {mediaLogos.map((m, idx) => (
+            <div
+              key={idx}
+              className="h-16 sm:h-20 bg-white dark:bg-[#161616] border border-slate-200 dark:border-[#242424] p-3 flex items-center justify-center shadow-xs"
+              title={m.name}
+            >
+              <img
+                src={m.logo}
+                alt={m.name}
+                className="max-h-8 max-w-[110px] object-contain filter contrast-110"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 03. CATEGORY FILTER TABS                                                  */}
+      {/* ========================================================================= */}
+      <section className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap pb-3 border-b border-slate-200 dark:border-white/10 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
           {categories.map((c) => (
             <button
               key={c.key}
               onClick={() => setActiveCategory(c.key)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              type="button"
+              className={`shrink-0 px-4 py-2 text-xs font-bold tracking-wide uppercase transition-all cursor-pointer rounded-none ${
                 activeCategory === c.key
-                  ? 'bg-[#A302FF] text-white shadow-md shadow-[#A302FF]/20'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  ? 'bg-[#A302FF] text-white shadow-lg shadow-purple-900/30'
+                  : 'bg-white dark:bg-[#141720] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#1E2330] border border-slate-200 dark:border-white/5'
               }`}
             >
-              {c.label}
+              {lang === 'bn' ? c.bn : c.en}
             </button>
           ))}
         </div>
       </section>
 
-      {/* Media Stories Listing */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ========================================================================= */}
+      {/* 04. MEDIA COVERAGE STORIES LISTING                                        */}
+      {/* ========================================================================= */}
+      <section className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-6">
           {filteredMedia.map((item) => (
             <div
               key={item.id}
-              className="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all"
+              className="p-6 sm:p-8 bg-white dark:bg-[#161616] border border-slate-200 dark:border-[#242424] hover:border-[#A302FF] dark:hover:border-[#B833FF] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group"
             >
               <div className="space-y-3 max-w-3xl">
                 <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-500">
-                  <span className="flex items-center gap-1.5 text-slate-800 dark:text-slate-200 font-bold">
+                  <span className="flex items-center gap-1.5 text-slate-900 dark:text-white font-bold">
                     {getSourceIcon(item.sourceType)}
                     <span>{item.outlet}</span>
                   </span>
                   <span>•</span>
                   <span>{item.date}</span>
-                  <span>•</span>
-                  <Badge variant="navy" size="sm">
+                  <span className="px-2 py-0.5 rounded-none bg-slate-100 dark:bg-[#202534] text-[10px] uppercase font-bold text-slate-700 dark:text-slate-300">
                     {item.category.replace('_', ' ')}
-                  </Badge>
+                  </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-snug">
                   {item.title[lang]}
                 </h3>
 
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
                   {item.summary[lang]}
                 </p>
               </div>
 
-              {item.url && (
+              <div className="shrink-0 w-full md:w-auto pt-2 md:pt-0">
                 <a
-                  href={item.url}
+                  href={item.url || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-200 shrink-0"
+                  className="w-full md:w-auto px-5 py-2.5 bg-slate-100 dark:bg-[#202534] hover:bg-[#A302FF] text-slate-900 dark:text-white hover:text-white dark:hover:bg-[#A302FF] text-xs font-bold uppercase tracking-wider transition-all rounded-none inline-flex items-center justify-center gap-2 group/link"
                 >
-                  <span>{lang === 'bn' ? 'মূল উৎস দেখুন' : 'View Source'}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{lang === 'bn' ? 'সংবাদটি দেখুন' : 'Read Coverage'}</span>
+                  <ExternalLink className="w-3.5 h-3.5 group-link:translate-x-0.5 transition-transform" />
                 </a>
-              )}
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Media Kit & Journalist Relations Box */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Media Kit Download */}
-          <div className="lg:col-span-7 p-8 sm:p-12 rounded-3xl bg-slate-900 text-white space-y-4">
-            <Badge variant="teal">{lang === 'bn' ? 'প্রেস কিট' : 'Official Press Kit'}</Badge>
-            <h3 className="text-2xl font-bold">
-              {lang === 'bn'
-                ? 'বার্লো কমিউনিকেশন্স প্রেস রিসোর্স কিট'
-                : 'Berlo Communications Media Resources'}
+      {/* ========================================================================= */}
+      {/* 05. OFFICIAL PRESS KIT & MEDIA ENQUIRIES                                  */}
+      {/* ========================================================================= */}
+      <section className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Press Kit Download */}
+          <div className="p-8 sm:p-10 bg-slate-900 dark:bg-[#07090D] border border-slate-800 text-white space-y-4 shadow-xl">
+            <div className="w-12 h-12 rounded-full bg-[#A302FF]/20 text-[#B833FF] flex items-center justify-center">
+              <Download className="w-6 h-6" />
+            </div>
+            <h3 className="text-2xl font-bold text-white">
+              {lang === 'bn' ? 'অফিসিয়াল প্রেস কিট ও লোগো' : 'Official Press Kit & Assets'}
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
               {lang === 'bn'
-                ? 'সংস্থার লোগো অ্যাসেট (ভেক্টর ও হাই-রেস), অফিশিয়াল ব্র্যান্ড গাইডলাইন, এক্সিকিউটিভ হেডশট এবং করপোরেট ফ্যাক্টশিট।'
-                : 'Download high-resolution agency logos, executive portrait photography, corporate boilerplates, and official brand identity guidelines.'}
+                ? 'বার্লো কমিউনিকেশন্সের উচ্চমানের ভেক্টর লোগো, প্রাতিষ্ঠানিক ফ্যাক্ট শিট এবং সিনিয়র নেতৃত্ব দলের অফিসিয়াল প্রেস পোর্ট্রেট ডাউনলোড করুন।'
+                : 'Download high-resolution corporate vector logos, executive portraits, and official company fact sheets for editorial publishing.'}
             </p>
             <div className="pt-2">
               <a
-                href="/brand/logo.png"
-                download="berlo-logo.png"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-slate-900 text-xs font-bold hover:bg-[#A302FF] hover:text-white transition-colors"
+                href="/images/berlo/about-image.jpg"
+                download
+                className="px-6 py-3 bg-[#A302FF] text-white hover:bg-[#8D00DE] text-xs font-bold uppercase tracking-widest transition-all rounded-none inline-flex items-center gap-2"
               >
-                <Download className="w-4 h-4" />
-                <span>{lang === 'bn' ? 'লোগো অ্যাসেট ডাউনলোড করুন' : 'Download Official Logo Asset'}</span>
+                <Download className="w-3.5 h-3.5" />
+                <span>{lang === 'bn' ? 'প্রেস কিট ডাউনলোড (ZIP)' : 'Download Media Kit (ZIP)'}</span>
               </a>
             </div>
           </div>
 
-          {/* Press Desk Inquiries */}
-          <div className="lg:col-span-5 p-8 sm:p-12 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-              {lang === 'bn' ? 'সাংবাদিক ও প্রেস ডেস্ক যোগাযোগ' : 'Press Desk & Media Inquiries'}
+          {/* Media Enquiries */}
+          <div className="p-8 sm:p-10 bg-white dark:bg-[#161616] border border-slate-200 dark:border-[#242424] shadow-xl space-y-4">
+            <div className="w-12 h-12 rounded-full bg-[#11813C]/10 text-[#11813C] dark:text-[#22C55E] flex items-center justify-center">
+              <Mail className="w-6 h-6" />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+              {lang === 'bn' ? 'সাংবাদিক ও গণমাধ্যম অনুসন্ধান' : 'Press Desk & Media Contacts'}
             </h3>
-            <p className="text-xs text-slate-500 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
               {lang === 'bn'
-                ? 'সাংবাদিক এবং মিডিয়া প্রতিনিধিদের জরুরী অনুসন্ধান ও সাক্ষাৎকারের জন্য সরাসরি প্রেস ডেস্ক।'
-                : 'For breaking press queries, deadline-driven statements, or spokesperson interview requests:'}
+                ? 'সাংবাদিক, সম্পাদক ও গণমাধ্যমকর্মীরা যেকোনো আনুষ্ঠানিক মন্তব্য, সাক্ষাৎকার বা প্রেস তথ্যের জন্য আমাদের মিডিয়া ডেস্কে সরাসরি যোগাযোগ করতে পারেন।'
+                : 'Accredited journalists and broadcast producers seeking official agency statements or expert C-suite commentary may contact our press desk.'}
             </p>
-            <div className="space-y-2 text-xs font-medium text-slate-700 dark:text-slate-300">
+            <div className="pt-2 space-y-2 text-xs font-bold text-slate-800 dark:text-slate-200">
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#A302FF]" />
-                <a href={`mailto:${BRAND.contact.emails[0]}`} className="hover:underline">
-                  {BRAND.contact.emails[0]}
+                <Mail className="w-4 h-4 text-[#A302FF]" />
+                <a href="mailto:contact@berlocommunications.com" className="hover:underline">
+                  contact@berlocommunications.com
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#11813C]" />
-                <a href={`tel:${BRAND.contact.phones[0]}`} className="hover:underline">
-                  {BRAND.contact.phones[0]}
+                <Phone className="w-4 h-4 text-[#11813C]" />
+                <a href="tel:+8801711268479" className="hover:underline">
+                  +880 1711 268 479 (24/7 Media Desk)
                 </a>
               </div>
             </div>
