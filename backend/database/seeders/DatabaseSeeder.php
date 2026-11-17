@@ -561,5 +561,8 @@ class DatabaseSeeder extends Seeder
                 'ip_address' => '127.0.0.1',
             ]
         );
+
+        // 11. Seed Dynamic Menus, Media Assets, and Page Sections
+        $this->call(DynamicSiteContentSeeder::class);
     }
 }
