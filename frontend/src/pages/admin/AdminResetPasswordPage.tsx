@@ -43,7 +43,7 @@ export const AdminResetPasswordPage: React.FC = () => {
       setSuccess(true);
       setTimeout(() => {
         navigate('/admin/login');
-      }, 2500);
+      }, 2200);
     } catch (err: any) {
       setError(err.message || 'Failed to reset password. Please verify the reset token.');
     } finally {
@@ -52,112 +52,131 @@ export const AdminResetPasswordPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 antialiased text-white">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center space-y-2">
-          <Link to="/admin/login" className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white mb-2">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Login</span>
-          </Link>
-          <h1 className="text-2xl font-extrabold text-white">Reset Password</h1>
-          <p className="text-xs text-slate-400">
-            Set a new secure password for your administrative profile.
-          </p>
-        </div>
+    <div className="min-h-screen relative flex flex-col items-center justify-center p-4 antialiased overflow-hidden select-none bg-[#11071d] text-white">
+      {/* Ambient Glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#140822] via-[#10061c] to-[#12112b]" />
+        <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[580px] h-[460px] rounded-full bg-gradient-to-b from-[#991b3b]/60 via-[#881337]/45 to-transparent blur-[110px]" />
+        <div className="absolute bottom-[8%] right-[22%] w-[580px] h-[480px] rounded-full bg-gradient-to-tl from-[#4361ee]/40 via-[#3b82f6]/25 to-transparent blur-[120px]" />
+      </div>
 
-        <div className="rounded-3xl p-6 sm:p-8 bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-xl space-y-5">
+      <div className="w-full max-w-[390px] relative z-10 space-y-4">
+        {/* Sleek Frosted Card */}
+        <div className="w-full rounded-[44px] px-8 sm:px-9 pt-10 pb-9 bg-white/[0.07] border border-white/[0.18] shadow-[0_25px_70px_rgba(0,0,0,0.55)] backdrop-blur-2xl overflow-hidden relative">
+          <div className="absolute inset-x-10 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+
+          {/* Frosted Shield/Lock Icon */}
+          <div className="flex justify-center mb-5">
+            <div className="w-[88px] h-[88px] rounded-full bg-white/[0.12] border border-white/[0.20] shadow-[inset_0_2px_10px_rgba(255,255,255,0.12)] backdrop-blur-md flex items-center justify-center">
+              <Lock className="w-9 h-9 text-white/80" />
+            </div>
+          </div>
+
+          <div className="text-center mb-6">
+            <h1 className="text-lg font-bold text-white tracking-wide">Set New Password</h1>
+            <p className="text-xs text-white/60 mt-1 font-light">
+              Enter your recovery token and new password
+            </p>
+          </div>
+
           {error && (
-            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-start gap-2.5">
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <div className="mb-5 p-3 rounded-2xl bg-rose-500/20 border border-rose-400/30 text-rose-200 text-xs flex items-start gap-2.5 backdrop-blur-md">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-400" />
               <span>{error}</span>
             </div>
           )}
 
           {success ? (
-            <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-3">
+            <div className="p-6 rounded-3xl bg-emerald-500/15 border border-emerald-400/30 text-center space-y-3 backdrop-blur-md animate-in fade-in">
               <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-              <h3 className="text-base font-bold text-white">Password Reset Successful!</h3>
-              <p className="text-xs text-slate-300">
-                Your credentials have been updated securely. Redirecting to login console...
+              <h3 className="text-sm font-bold text-white">Password Reset Successful!</h3>
+              <p className="text-xs text-emerald-200/80">
+                Credentials updated. Redirecting to login...
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300">Administrative Email</label>
-                <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2">
+                <div className="flex items-center gap-3.5">
+                  <Mail className="w-4 h-4 text-white/80 shrink-0 stroke-[1.6]" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@berlocommunications.com"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-[#A302FF] transition-colors"
+                    placeholder="Staff Email ID"
+                    className="w-full bg-transparent text-white placeholder-white/60 text-sm font-light tracking-wide focus:outline-none"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300">Reset Token</label>
-                <div className="relative">
-                  <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+              <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2">
+                <div className="flex items-center gap-3.5">
+                  <KeyRound className="w-4 h-4 text-white/80 shrink-0 stroke-[1.6]" />
                   <input
                     type="text"
                     required
                     value={token}
                     onChange={(e) => setToken(e.target.value)}
-                    placeholder="Enter 64-character token"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-mono focus:outline-none focus:border-[#A302FF] transition-colors"
+                    placeholder="Security Token"
+                    className="w-full bg-transparent text-white placeholder-white/60 text-sm font-light tracking-wide focus:outline-none font-mono"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300">New Password (min 8 chars)</label>
-                <div className="relative">
-                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+              <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2">
+                <div className="flex items-center gap-3.5">
+                  <Lock className="w-4 h-4 text-white/80 shrink-0 stroke-[1.6]" />
                   <input
                     type="password"
                     required
-                    minLength={8}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-[#A302FF] transition-colors"
+                    placeholder="New Password"
+                    className="w-full bg-transparent text-white placeholder-white/60 text-sm font-light tracking-wide focus:outline-none"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300">Confirm New Password</label>
-                <div className="relative">
-                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+              <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2">
+                <div className="flex items-center gap-3.5">
+                  <Lock className="w-4 h-4 text-white/80 shrink-0 stroke-[1.6]" />
                   <input
                     type="password"
                     required
-                    minLength={8}
                     value={passwordConfirmation}
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
-                    placeholder="••••••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-[#A302FF] transition-colors"
+                    placeholder="Confirm New Password"
+                    className="w-full bg-transparent text-white placeholder-white/60 text-sm font-light tracking-wide focus:outline-none"
                   />
                 </div>
               </div>
 
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full py-3 rounded-xl bg-[#A302FF] hover:bg-[#8D02DE] text-white font-semibold text-sm transition-all shadow-lg shadow-[#A302FF]/30 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-              >
-                {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  <span>Update Password & Complete Reset</span>
-                )}
-              </button>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#1c0d38] via-[#21164e] to-[#2b3c7d] hover:from-[#241147] hover:via-[#2b1d63] hover:to-[#364b9a] text-white font-bold text-xs uppercase tracking-[0.2em] shadow-[0_12px_28px_rgba(15,10,35,0.6)] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center border border-white/10"
+                >
+                  {isLoading ? (
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <span>Update Password</span>
+                  )}
+                </button>
+              </div>
             </form>
           )}
+        </div>
+
+        <div className="text-center pt-2">
+          <Link
+            to="/admin/login"
+            className="text-xs text-white/50 hover:text-white transition-colors inline-flex items-center gap-1.5"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Back to Login</span>
+          </Link>
         </div>
       </div>
     </div>

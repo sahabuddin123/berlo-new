@@ -350,6 +350,102 @@ class DynamicSiteContentSeeder extends Seeder
             'is_active' => true,
         ]);
 
+        PageSection::create([
+            'page_slug' => 'home',
+            'section_key' => 'video_showcase',
+            'title_en' => 'Experience Strategic Leadership in Motion',
+            'title_bn' => 'কৌশলগত নেতৃত্বের দৃশ্যমান গতিশীলতা',
+            'subtitle_en' => 'Watch how Berlo navigates high-stakes corporate narratives, manages live broadcast press delegations, and commands national media discourse.',
+            'subtitle_bn' => 'দেখুন কীভাবে বার্লো জাতীয় সংকট নিরসন, সরাসরি গণমাধ্যম ব্রিফিং এবং করপোরেট আখ্যান পরিচালনা করে।',
+            'badge_en' => 'The Agency in Motion',
+            'badge_bn' => 'সক্রিয় জনসংযোগ সংস্থা',
+            'video_url' => 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            'image_url' => '/images/berlo/gallery/moment-3.jpg',
+            'cta_text_en' => 'Watch Full Briefing',
+            'cta_text_bn' => 'সম্পূর্ণ ভিডিও দেখুন',
+            'cta_link' => '#playVideo',
+            'sort_order' => 5,
+            'is_active' => true,
+        ]);
+
+        PageSection::create([
+            'page_slug' => 'home',
+            'section_key' => 'services_header',
+            'title_en' => 'Strategic Capabilities & Core PR Services',
+            'title_bn' => 'কৌশলগত সক্ষমতা ও মূল জনসংযোগ সেবাসমূহ',
+            'subtitle_en' => 'Precision-engineered communications frameworks built to elevate leadership, protect assets, and drive stakeholder action.',
+            'subtitle_bn' => 'নেতৃত্বকে সুদৃঢ় করতে, ব্র্যান্ড মূল্যায়ন রক্ষা করতে এবং অংশীদারদের অনুপ্রাণিত করতে আমাদের সুনির্দিষ্ট সেবা।',
+            'badge_en' => 'Specialized Practices',
+            'badge_bn' => 'বিশেষায়িত সেবাসমূহ',
+            'sort_order' => 6,
+            'is_active' => true,
+        ]);
+
+        PageSection::create([
+            'page_slug' => 'home',
+            'section_key' => 'consultancy_header',
+            'title_en' => 'Direct C-Suite Communications Consultation',
+            'title_bn' => 'সি-সুইট নির্বাহীদের জন্য কৌশলগত পরামর্শ',
+            'subtitle_en' => 'Select your priority communications challenge to initiate a confidential briefing with our senior partners.',
+            'subtitle_bn' => 'আপনার প্রতিষ্ঠানের অগ্রাধিকার নির্বাচন করে আমাদের সিনিয়র পার্টনারদের সাথে কনফিডেনশিয়াল ব্রিফিং শুরু করুন।',
+            'badge_en' => 'Confidential Advisory',
+            'badge_bn' => 'গোপনীয় পরামর্শ',
+            'sort_order' => 7,
+            'is_active' => true,
+        ]);
+
+        PageSection::create([
+            'page_slug' => 'home',
+            'section_key' => 'case_studies_header',
+            'title_en' => 'Featured Case Studies & High-Stakes Milestones',
+            'title_bn' => 'নির্বাচিত কেস স্টাডি ও কৌশলগত সাফল্য',
+            'subtitle_en' => 'Empirical proof of how we de-escalated hostile narratives and delivered multi-billion stakeholder value.',
+            'subtitle_bn' => 'কঠিন পরিস্থিতিতে সুনাম সুরক্ষা এবং শতকোটি টাকার ব্র্যান্ড ভ্যালু বৃদ্ধির প্রামাণ্য মাইলফলক।',
+            'badge_en' => 'Proven Results',
+            'badge_bn' => 'বাস্তব সাফল্য',
+            'sort_order' => 8,
+            'is_active' => true,
+        ]);
+
+        PageSection::create([
+            'page_slug' => 'home',
+            'section_key' => 'gallery_header',
+            'title_en' => 'Moments & National Media Roundtables',
+            'title_bn' => 'গণমাধ্যম গোলটেবিল ও জাতীয় মুহূর্তসমূহ',
+            'subtitle_en' => 'Live press delegations, television studio appearances, and high-level corporate delegations.',
+            'subtitle_bn' => 'জাতীয় প্রেস কনফারেন্স, টেলিভিশন গোলটেবিল এবং সিনিয়র নেতৃত্বের ঐতিহাসিক মুহূর্তসমূহ।',
+            'badge_en' => 'Archival Moments',
+            'badge_bn' => 'ঐতিহাসিক মুহূর্ত',
+            'sort_order' => 9,
+            'is_active' => true,
+        ]);
+
+        PageSection::create([
+            'page_slug' => 'home',
+            'section_key' => 'leadership_header',
+            'title_en' => 'Architects of Influence: Senior Leadership',
+            'title_bn' => 'প্রভাব ও আখ্যানের স্থপতি: শীর্ষ নেতৃত্ব',
+            'subtitle_en' => 'Led by veteran editors, investigative journalists, and corporate strategists with decades of proven authority.',
+            'subtitle_bn' => 'অভিজ্ঞ সম্পাদক, অনুসন্ধানী সাংবাদিক এবং করপোরেট কৌশলবিদদের সমন্বয়ে গঠিত দেশসেরা টিম।',
+            'badge_en' => 'Strategic Counsel',
+            'badge_bn' => 'কৌশলগত নেতৃত্ব',
+            'sort_order' => 10,
+            'is_active' => true,
+        ]);
+
+        PageSection::create([
+            'page_slug' => 'home',
+            'section_key' => 'insights_header',
+            'title_en' => 'Thought Leadership & Industry Intelligence',
+            'title_bn' => 'বিশেষজ্ঞ মতামত ও শিল্প বিশ্লেষণ',
+            'subtitle_en' => 'Proprietary research, boardroom advisories, and media sentiment trends shaping Bangladesh.',
+            'subtitle_bn' => 'বাংলাদেশের নীতিনির্ধারণ ও করপোরেট পরিমণ্ডল পরিচালনাকারী বিশ্লেষণধর্মী প্রবন্ধ ও গবেষণা।',
+            'badge_en' => 'Intelligence & Insights',
+            'badge_bn' => 'ইনসাইটস ও মতামত',
+            'sort_order' => 11,
+            'is_active' => true,
+        ]);
+
         // 2. About Page Sections
         PageSection::create([
             'page_slug' => 'about',
