@@ -158,6 +158,14 @@ export const AdminLayout: React.FC = () => {
           allowed: hasAnyRole(['superadmin', 'admin']),
         },
         {
+          name: 'Careers & Jobs',
+          path: '/admin/careers',
+          icon: UserCheck,
+          allowed: hasAnyRole(['superadmin', 'admin', 'moderator', 'content_writer']),
+          badge: 'Hiring',
+          badgeColor: 'bg-purple-500/15 text-purple-400',
+        },
+        {
           name: 'Clients & Partners',
           path: '/admin/clients',
           icon: Handshake,

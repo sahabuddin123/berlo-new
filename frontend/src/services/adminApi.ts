@@ -121,6 +121,28 @@ export interface PageSection {
   sort_order: number;
 }
 
+export interface JobApplicationItem {
+  id: number;
+  job_posting_id?: number;
+  job_posting?: {
+    id: number;
+    title_en: string;
+    title_bn: string;
+    department_en: string;
+  };
+  name: string;
+  email: string;
+  phone: string;
+  linkedin_url?: string;
+  portfolio_url?: string;
+  cover_letter?: string;
+  resume_url?: string;
+  resume_path?: string;
+  status: 'pending' | 'reviewed' | 'shortlisted' | 'rejected' | 'hired';
+  admin_notes?: string;
+  created_at: string;
+}
+
 // Token storage key
 const TOKEN_KEY = 'berlo_admin_token';
 const USER_KEY = 'berlo_admin_user';
@@ -497,6 +519,56 @@ export const adminApi = {
 
   async deleteMenu(id: number): Promise<{ success: boolean; message: string }> {
     return await apiRequest(`/admin/menus/${id}`, { method: 'DELETE' });
+  },
+
+  // =========================================================================
+  // Careers & Job Openings Management
+  // =========================================================================
+  async getCareers(): Promise<{ success: boolean; data: any[] }> {
+    return await apiRequest('/admin/careers');
+  },
+
+  async createCareer(payload: Record<string, any>): Promise<{ success: boolean; data: any }> {
+    return await apiRequest('/admin/careers', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async updateCareer(id: number, payload: Record<string, any>): Promise<{ success: boolean; data: any }> {
+    return await apiRequest(`/admin/careers/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteCareer(id: number): Promise<{ success: boolean; message: string }> {
+    return await apiRequest(`/admin/careers/${id}`, { method: 'DELETE' });
+  },
+
+  async getJobApplications(params: { job_id?: number; status?: string; page?: number } = {}): Promise<{
+    success: boolean;
+    data: JobApplicationItem[];
+    total: number;
+    current_page: number;
+    last_page: number;
+  }> {
+    const q = new URLSearchParams();
+    if (params.job_id) q.append('job_id', params.job_id.toString());
+    if (params.status && params.status !== 'all') q.append('status', params.status);
+    if (params.page) q.append('page', params.page.toString());
+    return await apiRequest(`/admin/job-applications?${q.toString()}`);
+  },
+
+  async updateJobApplicationStatus(id: number, status: string, admin_notes?: string): Promise<{ success: boolean; data: JobApplicationItem }> {
+    return await apiRequest(`/admin/job-applications/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ status, admin_notes }),
+    });
+  },
+
+  async deleteJobApplication(id: number): Promise<{ success: boolean; message: string }> {
+    return await apiRequest(`/admin/job-applications/${id}`, { method: 'DELETE' });
   },
 
   async reorderMenus(items: { id: number; order: number }[]): Promise<{ success: boolean }> {

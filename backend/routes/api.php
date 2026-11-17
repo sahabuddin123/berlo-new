@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AdminContentController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CareerController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\PageAndMenuController;
@@ -67,6 +68,10 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/gallery/photos', [PublicContentController::class, 'photoGallery']);
         Route::get('/gallery/videos', [PublicContentController::class, 'videoGallery']);
+
+        Route::get('/careers', [CareerController::class, 'index']);
+        Route::get('/careers/{slug}', [CareerController::class, 'show']);
+        Route::post('/careers/apply', [CareerController::class, 'apply'])->middleware('throttle:15,1');
 
         Route::get('/media', [PublicContentController::class, 'media']);
         Route::get('/settings', [PublicContentController::class, 'settings']);
@@ -161,6 +166,21 @@ Route::prefix('v1')->group(function () {
         Route::get('/pages', [PageAndMenuController::class, 'getPages']);
         Route::get('/pages/{slug}/sections', [PageAndMenuController::class, 'getPageSections']);
         Route::put('/pages/{slug}/sections/{sectionKey}', [PageAndMenuController::class, 'updatePageSection'])->middleware('role:superadmin,admin,content_writer');
+
+        // --- Careers & Job Openings Management ---
+        Route::get('/careers', [CareerController::class, 'adminIndex']);
+        Route::middleware('role:superadmin,admin,content_writer')->group(function () {
+            Route::post('/careers', [CareerController::class, 'adminStore']);
+            Route::put('/careers/{id}', [CareerController::class, 'adminUpdate']);
+        });
+        Route::delete('/careers/{id}', [CareerController::class, 'adminDestroy'])->middleware('role:superadmin,admin');
+
+        // --- Job Applications Review (superadmin, admin, moderator) ---
+        Route::middleware('role:superadmin,admin,moderator')->group(function () {
+            Route::get('/job-applications', [CareerController::class, 'applications']);
+            Route::put('/job-applications/{id}', [CareerController::class, 'updateApplicationStatus']);
+            Route::delete('/job-applications/{id}', [CareerController::class, 'destroyApplication']);
+        });
 
         // --- Site Settings (superadmin, admin) ---
         Route::get('/settings', [AdminContentController::class, 'getSettings']);

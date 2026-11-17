@@ -75,6 +75,15 @@ class DynamicSiteContentSeeder extends Seeder
             'order' => 3,
             'is_active' => true,
         ]);
+        MenuItem::create([
+            'location' => 'header',
+            'parent_id' => $about->id,
+            'title_en' => 'Careers & Openings',
+            'title_bn' => 'ক্যারিয়ার ও সুযোগ',
+            'url' => '/en/careers',
+            'order' => 4,
+            'is_active' => true,
+        ]);
 
         MenuItem::create([
             'location' => 'header',
@@ -155,6 +164,7 @@ class DynamicSiteContentSeeder extends Seeder
             ['title_en' => 'About Berlo', 'title_bn' => 'বার্লো সম্পর্কে', 'url' => '/en/about'],
             ['title_en' => 'Executive Leadership', 'title_bn' => 'নির্বাহী নেতৃত্ব', 'url' => '/en/leadership'],
             ['title_en' => 'Advisory Team', 'title_bn' => 'আমাদের দল', 'url' => '/en/team'],
+            ['title_en' => 'Careers & Openings', 'title_bn' => 'ক্যারিয়ার', 'url' => '/en/careers'],
             ['title_en' => 'Client Portfolio', 'title_bn' => 'ক্লায়েন্ট তালিকা', 'url' => '/en/clients'],
             ['title_en' => 'Press Media Desk', 'title_bn' => 'মিডিয়া ডেস্ক', 'url' => '/en/media'],
             ['title_en' => 'Contact Headquarters', 'title_bn' => 'যোগাযোগ', 'url' => '/en/contact'],

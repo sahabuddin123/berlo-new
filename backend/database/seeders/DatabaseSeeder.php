@@ -564,5 +564,8 @@ class DatabaseSeeder extends Seeder
 
         // 11. Seed Dynamic Menus, Media Assets, and Page Sections
         $this->call(DynamicSiteContentSeeder::class);
+
+        // 12. Seed Careers & Job Applications
+        $this->call(CareerSeeder::class);
     }
 }

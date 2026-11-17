@@ -27,6 +27,7 @@ export const navigationItems: NavItem[] = [
       { id: 'about-us', path: 'about', label: { en: 'Our Story & Values', bn: 'আমাদের গল্প ও মূল্যবোধ' } },
       { id: 'leadership', path: 'leadership', label: { en: 'Leadership Team', bn: 'নেতৃত্ব দল' } },
       { id: 'team', path: 'team', label: { en: 'Creative & PR Team', bn: 'সৃজনশীল ও জনসংযোগ দল' } },
+      { id: 'careers', path: 'careers', label: { en: 'Careers & Opportunities', bn: 'ক্যারিয়ার ও সুযোগ' } },
     ],
   },
   {
@@ -83,6 +84,7 @@ export const footerNavigation = {
     { path: 'about', label: { en: 'About Berlo', bn: 'বার্লো সম্পর্কে' } },
     { path: 'leadership', label: { en: 'Leadership', bn: 'নেতৃত্ব' } },
     { path: 'team', label: { en: 'Our Team', bn: 'আমাদের টিম' } },
+    { path: 'careers', label: { en: 'Careers & Openings', bn: 'ক্যারিয়ার' } },
     { path: 'clients', label: { en: 'Clients', bn: 'ক্লায়েন্টসমূহ' } },
     { path: 'gallery/photos', label: { en: 'Photo Gallery', bn: 'ফটো গ্যালারি' } },
     { path: 'gallery/videos', label: { en: 'Video Gallery', bn: 'ভিডিও গ্যালারি' } },

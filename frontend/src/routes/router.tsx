@@ -23,6 +23,8 @@ const ContactPage = lazy(() => import('../pages/contact/ContactPage').then((m) =
 const SearchPage = lazy(() => import('../pages/search/SearchPage').then((m) => ({ default: m.SearchPage })));
 const PrivacyPolicyPage = lazy(() => import('../pages/legal/PrivacyPolicyPage').then((m) => ({ default: m.PrivacyPolicyPage })));
 const TermsConditionsPage = lazy(() => import('../pages/legal/TermsConditionsPage').then((m) => ({ default: m.TermsConditionsPage })));
+const CareersListingPage = lazy(() => import('../pages/careers/CareersListingPage').then((m) => ({ default: m.CareersListingPage })));
+const JobDetailPage = lazy(() => import('../pages/careers/JobDetailPage').then((m) => ({ default: m.JobDetailPage })));
 const NotFoundPage = lazy(() => import('../pages/notfound/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 
 // Admin Console Lazy Routes
@@ -37,6 +39,7 @@ const AdminServicesPage = lazy(() => import('../pages/admin/AdminServicesPage').
 const AdminProjectsPage = lazy(() => import('../pages/admin/AdminProjectsPage').then((m) => ({ default: m.AdminProjectsPage })));
 const AdminInsightsPage = lazy(() => import('../pages/admin/AdminInsightsPage').then((m) => ({ default: m.AdminInsightsPage })));
 const AdminGalleryPage = lazy(() => import('../pages/admin/AdminGalleryPage').then((m) => ({ default: m.AdminGalleryPage })));
+const AdminCareersPage = lazy(() => import('../pages/admin/AdminCareersPage').then((m) => ({ default: m.AdminCareersPage })));
 const AdminSettingsPage = lazy(() => import('../pages/admin/AdminSettingsPage').then((m) => ({ default: m.AdminSettingsPage })));
 const AdminMediaLibraryPage = lazy(() => import('../pages/admin/AdminMediaLibraryPage').then((m) => ({ default: m.AdminMediaLibraryPage })));
 const AdminMenuPage = lazy(() => import('../pages/admin/AdminMenuPage').then((m) => ({ default: m.AdminMenuPage })));
@@ -93,6 +96,7 @@ export const router = createBrowserRouter([
       { path: 'projects', element: <AdminProjectsPage /> },
       { path: 'insights', element: <AdminInsightsPage /> },
       { path: 'gallery', element: <AdminGalleryPage /> },
+      { path: 'careers', element: <AdminCareersPage /> },
       { path: 'media', element: <AdminMediaLibraryPage /> },
       { path: 'menus', element: <AdminMenuPage /> },
       { path: 'pages', element: <AdminPagesManagerPage /> },
@@ -116,6 +120,8 @@ export const router = createBrowserRouter([
       { path: 'leadership', element: <LeadershipPage /> },
       { path: 'leadership/:slug', element: <LeaderDetailPage /> },
       { path: 'team', element: <TeamPage /> },
+      { path: 'careers', element: <CareersListingPage /> },
+      { path: 'careers/:slug', element: <JobDetailPage /> },
       { path: 'services', element: <ServicesOverviewPage /> },
       { path: 'services/:slug', element: <ServiceDetailPage /> },
       { path: 'work', element: <WorkListingPage /> },

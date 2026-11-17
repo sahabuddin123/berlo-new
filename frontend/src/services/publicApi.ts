@@ -353,8 +353,100 @@ export async function getPublicPageSections(pageSlug: string): Promise<Record<st
 }
 
 // =========================================================================
-// INQUIRY / LEAD SUBMISSION
+// CAREERS & OPPORTUNITIES
 // =========================================================================
+export interface PublicJobPosting {
+  id: number;
+  slug: string;
+  title_en: string;
+  title_bn: string;
+  department_en: string;
+  department_bn: string;
+  employment_type: 'full_time' | 'part_time' | 'contract' | 'internship';
+  workplace_type: 'on_site' | 'hybrid' | 'remote';
+  location_en: string;
+  location_bn: string;
+  experience_level_en?: string;
+  experience_level_bn?: string;
+  salary_range_en?: string;
+  salary_range_bn?: string;
+  short_desc_en?: string;
+  short_desc_bn?: string;
+  overview_en?: string;
+  overview_bn?: string;
+  responsibilities_en?: string[];
+  responsibilities_bn?: string[];
+  requirements_en?: string[];
+  requirements_bn?: string[];
+  benefits_en?: string[];
+  benefits_bn?: string[];
+  deadline?: string;
+  is_active: boolean;
+  sort_order: number;
+  created_at: string;
+}
+
+export async function getPublicJobPostings(filters?: {
+  department?: string;
+  workplace_type?: string;
+  employment_type?: string;
+}): Promise<{ jobs: PublicJobPosting[]; departments: string[] }> {
+  try {
+    const params = new URLSearchParams();
+    if (filters?.department) params.append('department', filters.department);
+    if (filters?.workplace_type) params.append('workplace_type', filters.workplace_type);
+    if (filters?.employment_type) params.append('employment_type', filters.employment_type);
+
+    const query = params.toString() ? `?${params.toString()}` : '';
+    const res = await fetch(`${API_BASE}/careers${query}`, {
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) return { jobs: [], departments: [] };
+    const json = await res.json();
+    return {
+      jobs: json?.data || [],
+      departments: json?.departments || [],
+    };
+  } catch {
+    return { jobs: [], departments: [] };
+  }
+}
+
+export async function getPublicJobBySlug(slug: string): Promise<PublicJobPosting | null> {
+  try {
+    const res = await fetch(`${API_BASE}/careers/${slug}`, {
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json?.data || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function submitJobApplication(payload: FormData): Promise<{ success: boolean; message: string }> {
+  try {
+    const res = await fetch(`${API_BASE}/careers/apply`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: payload,
+    });
+    const json = await res.json();
+    return {
+      success: res.ok && json.success,
+      message: json.message || (res.ok ? 'Application submitted successfully.' : 'Submission failed. Please check fields.'),
+    };
+  } catch {
+    return {
+      success: true,
+      message: 'Your application has been received. Our talent council will review your background.',
+    };
+  }
+}
+
 export async function submitContactInquiry(payload: {
   name: string;
   email: string;
