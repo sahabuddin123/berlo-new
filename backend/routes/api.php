@@ -1,0 +1,23 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned the "api" middleware group.
+|
+*/
+
+// Health-check endpoint
+Route::get('/health', fn () => response()->json(['status' => 'ok', 'service' => 'Berlo Communications API']));
+
+// All authenticated API routes will be registered here in subsequent phases.
+Route::middleware('auth:sanctum')->group(function (): void {
+    // Phase 02+ routes go here
+});
+

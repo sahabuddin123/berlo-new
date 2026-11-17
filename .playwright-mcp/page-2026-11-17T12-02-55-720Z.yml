@@ -1,0 +1,511 @@
+- generic [ref=f13e3]:
+  - banner [ref=f13e4]:
+    - generic [ref=f13e6]:
+      - generic [ref=f13e7]:
+        - generic [ref=f13e8]:
+          - generic [ref=f13e10]: "Direct Advisory Hotline:"
+          - link "+880 1711 268 479" [ref=f13e11] [cursor=pointer]:
+            - /url: tel:+880 1711 268 479
+        - generic [ref=f13e12]: "|"
+        - link "contact@berlocommunications.com" [ref=f13e17] [cursor=pointer]:
+          - /url: mailto:contact@berlocommunications.com
+      - generic [ref=f13e18]:
+        - generic [ref=f13e19]: "Sunday - Thursday: 9:00 AM - 6:30 PM (BST)"
+        - generic [ref=f13e24]: "|"
+        - generic [ref=f13e25]: Niketon, Gulshan-1, Dhaka
+    - generic [ref=f13e27]:
+      - link [ref=f13e28] [cursor=pointer]:
+        - /url: /en
+        - img "Berlo Communications Logo" [ref=f13e29]
+      - navigation [ref=f13e30]:
+        - link "Home" [ref=f13e31] [cursor=pointer]:
+          - /url: /en
+        - button "About" [ref=f13e33] [cursor=pointer]
+        - button "Services" [ref=f13e38] [cursor=pointer]
+        - link "Case Studies" [ref=f13e42] [cursor=pointer]:
+          - /url: /en/work
+        - link "Clients" [ref=f13e43] [cursor=pointer]:
+          - /url: /en/clients
+        - button "Insights" [ref=f13e45] [cursor=pointer]
+        - link "Contact" [ref=f13e49] [cursor=pointer]:
+          - /url: /en/contact
+      - generic [ref=f13e50]:
+        - button "Open search dialog" [ref=f13e51]
+        - button "Toggle language" [ref=f13e55]:
+          - generic [ref=f13e59]: বাংলা
+        - button "Toggle theme mode" [ref=f13e60]
+        - link "Inquire Now" [ref=f13e64] [cursor=pointer]:
+          - /url: /en/contact
+  - main [ref=f13e65]:
+    - generic [ref=f13e66]:
+      - generic [ref=f13e69]:
+        - generic [ref=f13e70]:
+          - heading "“Your Strategic PR partner for corporate success.”" [level=1] [ref=f13e71]
+          - paragraph [ref=f13e72]: Welcome to Berlo Communications Ltd., one of the premier Public Relations and strategic corporate communications agencies in Bangladesh. With our innovative narrative engineering and results-oriented media access, we help enterprises protect reputation, command authority, and accelerate sustainable growth.
+          - generic [ref=f13e73]:
+            - link "Book Free Consultation" [ref=f13e74] [cursor=pointer]:
+              - /url: "#consultancy"
+            - link "Working scope with you" [ref=f13e78] [cursor=pointer]:
+              - /url: "#services"
+          - generic [ref=f13e80]:
+            - generic [ref=f13e81]: "Recognized Member & Affiliations:"
+            - generic [ref=f13e82]:
+              - generic [ref=f13e83]: BASIS
+              - generic [ref=f13e86]: BAPRO
+              - generic [ref=f13e89]: PRCA Member
+              - generic [ref=f13e92]: e-CAB
+        - generic [ref=f13e96]:
+          - img "Berlo Senior PR Strategist" [ref=f13e99]
+          - generic [ref=f13e101]:
+            - generic [ref=f13e102]: Reputation Architecture
+            - generic [ref=f13e105]: "|"
+            - generic [ref=f13e106]:
+              - generic [ref=f13e107]: +320% Positive Sentiment
+              - generic [ref=f13e111]: 100+ Tier-1 Newsdesks Engaged
+          - generic [ref=f13e112]: 12+ Years PR Excellence
+          - generic [ref=f13e117]:
+            - button "Go to slide 1" [ref=f13e118]
+            - button "Go to slide 2" [ref=f13e119]
+            - button "Go to slide 3" [ref=f13e120]
+      - generic [ref=f13e123]:
+        - heading "In the Spotlight" [level=2] [ref=f13e124]:
+          - text: In the
+          - generic [ref=f13e125]: Spotlight
+        - generic [ref=f13e126]:
+          - generic [ref=f13e127] [cursor=pointer]: The Business Standard
+          - generic [ref=f13e128] [cursor=pointer]: প্রথম আলো
+          - generic [ref=f13e129] [cursor=pointer]: The Daily Star
+          - generic [ref=f13e130] [cursor=pointer]: DHAKA TRIBUNE
+          - generic [ref=f13e131] [cursor=pointer]: Financial Express
+          - generic [ref=f13e132] [cursor=pointer]: REUTERS
+      - generic [ref=f13e134]:
+        - img "Berlo PR Strategy Room" [ref=f13e135]
+        - generic [ref=f13e137]:
+          - button "Play agency video reel" [ref=f13e138] [cursor=pointer]
+          - generic [ref=f13e141]:
+            - generic [ref=f13e142]: Watch Agency Reel
+            - generic [ref=f13e143]: 2:45
+        - generic [ref=f13e144]: Berlo Strategic Newsroom & Crisis Command Center — Dhaka
+      - generic [ref=f13e148]:
+        - generic [ref=f13e149]:
+          - generic [ref=f13e150]:
+            - heading "Our Services" [level=2] [ref=f13e151]:
+              - text: Our
+              - generic [ref=f13e152]: Services
+            - paragraph [ref=f13e153]: Focused on results we seek to raise the level of our corporate customers.
+          - link "VIEW ALL" [ref=f13e155] [cursor=pointer]:
+            - /url: /en/services
+        - generic [ref=f13e157]:
+          - link "Strategic Media Relations Elevate your corporate voice across 100+ national dailies, prime-time television broadcasts, and premier business bureaus with high-impact media placements. Explore Capability" [ref=f13e159] [cursor=pointer]:
+            - /url: /en/services/strategic-media-relations
+            - generic [ref=f13e160]:
+              - heading "Strategic Media Relations" [level=3] [ref=f13e165]
+              - paragraph [ref=f13e166]: Elevate your corporate voice across 100+ national dailies, prime-time television broadcasts, and premier business bureaus with high-impact media placements.
+            - generic [ref=f13e167]: Explore Capability
+          - link "Crisis & Reputation Management Rapid-response 24/7 war-room mobilization within 60 minutes to neutralize reputational vulnerabilities, de-escalate misinformation, and restore stakeholder trust. Explore Capability" [ref=f13e172] [cursor=pointer]:
+            - /url: /en/services/crisis-reputation-management
+            - generic [ref=f13e173]:
+              - heading "Crisis & Reputation Management" [level=3] [ref=f13e177]
+              - paragraph [ref=f13e178]: Rapid-response 24/7 war-room mobilization within 60 minutes to neutralize reputational vulnerabilities, de-escalate misinformation, and restore stakeholder trust.
+            - generic [ref=f13e179]: Explore Capability
+          - link "Corporate Comms & Advisory Executive messaging, board-level stakeholder alignment, and governance communications engineered to reinforce leadership authority and market valuation. Explore Capability" [ref=f13e184] [cursor=pointer]:
+            - /url: /en/services/corporate-communications
+            - generic [ref=f13e185]:
+              - heading "Corporate Comms & Advisory" [level=3] [ref=f13e191]
+              - paragraph [ref=f13e192]: Executive messaging, board-level stakeholder alignment, and governance communications engineered to reinforce leadership authority and market valuation.
+            - generic [ref=f13e193]: Explore Capability
+          - link "Strategic Brand PR Positioning Differentiating corporate identity, architecting brand equity, and executing disruptive product launch narratives that capture measurable market leadership. Explore Capability" [ref=f13e198] [cursor=pointer]:
+            - /url: /en/services/content-storytelling
+            - generic [ref=f13e199]:
+              - heading "Strategic Brand PR Positioning" [level=3] [ref=f13e205]
+              - paragraph [ref=f13e206]: Differentiating corporate identity, architecting brand equity, and executing disruptive product launch narratives that capture measurable market leadership.
+            - generic [ref=f13e207]: Explore Capability
+          - link "Government Affairs & Advocacy Facilitating transparent dialogue with policy makers, regulatory bodies, and industry chambers to advance ethical public-private partnerships. Explore Capability" [ref=f13e212] [cursor=pointer]:
+            - /url: /en/services/government-advocacy
+            - generic [ref=f13e213]:
+              - heading "Government Affairs & Advocacy" [level=3] [ref=f13e219]
+              - paragraph [ref=f13e220]: Facilitating transparent dialogue with policy makers, regulatory bodies, and industry chambers to advance ethical public-private partnerships.
+            - generic [ref=f13e221]: Explore Capability
+          - link "Digital PR & Social Sentiment AI-driven social listening, digital sentiment management, search authority building, and trusted influencer collaborations that amplify credibility. Explore Capability" [ref=f13e226] [cursor=pointer]:
+            - /url: /en/services/digital-pr-influencers
+            - generic [ref=f13e227]:
+              - heading "Digital PR & Social Sentiment" [level=3] [ref=f13e235]
+              - paragraph [ref=f13e236]: AI-driven social listening, digital sentiment management, search authority building, and trusted influencer collaborations that amplify credibility.
+            - generic [ref=f13e237]: Explore Capability
+          - link "High-Impact Events & Conclaves Flawless orchestration of high-profile press conferences, CEO roundtables, national industry symposiums, and brand activations with guaranteed media turnout. Explore Capability" [ref=f13e242] [cursor=pointer]:
+            - /url: /en/services/events-brand-activations
+            - generic [ref=f13e243]:
+              - heading "High-Impact Events & Conclaves" [level=3] [ref=f13e248]
+              - paragraph [ref=f13e249]: Flawless orchestration of high-profile press conferences, CEO roundtables, national industry symposiums, and brand activations with guaranteed media turnout.
+            - generic [ref=f13e250]: Explore Capability
+          - link "Executive Thought Leadership Op-ed ghostwriting, keynote speechcrafting, and proactive media profiling that positions C-suite executives as foremost industry authorities. Explore Capability" [ref=f13e255] [cursor=pointer]:
+            - /url: /en/services/strategic-pr-reputation
+            - generic [ref=f13e256]:
+              - heading "Executive Thought Leadership" [level=3] [ref=f13e262]
+              - paragraph [ref=f13e263]: Op-ed ghostwriting, keynote speechcrafting, and proactive media profiling that positions C-suite executives as foremost industry authorities.
+            - generic [ref=f13e264]: Explore Capability
+          - link "CSR & Sustainability Comms Communicating ESG metrics, social investment milestones, and donor-funded community initiatives to inspire genuine stakeholder and public trust. Explore Capability" [ref=f13e269] [cursor=pointer]:
+            - /url: /en/services/corporate-communications
+            - generic [ref=f13e270]:
+              - heading "CSR & Sustainability Comms" [level=3] [ref=f13e275]
+              - paragraph [ref=f13e276]: Communicating ESG metrics, social investment milestones, and donor-funded community initiatives to inspire genuine stakeholder and public trust.
+            - generic [ref=f13e277]: Explore Capability
+      - generic [ref=f13e282]:
+        - generic [ref=f13e283]:
+          - img "Berlo PR Strategic Consultation" [ref=f13e284]
+          - generic [ref=f13e286]:
+            - generic [ref=f13e287]: Confidential C-Suite Advisory
+            - generic [ref=f13e288]: Direct engagement with senior agency partners and crisis advisors.
+        - generic [ref=f13e289]:
+          - generic [ref=f13e290]:
+            - heading "Book a Free Consultancy" [level=2] [ref=f13e291]:
+              - text: Book a Free
+              - generic [ref=f13e292]: Consultancy
+            - paragraph [ref=f13e293]: Schedule a confidential strategy session with our senior PR leads.
+          - generic [ref=f13e294]:
+            - textbox "Your Name / Corporate Entity" [ref=f13e296]
+            - textbox "Phone Number or Business Email" [ref=f13e298]
+            - combobox [ref=f13e300]:
+              - option "Strategic Media Relations & Press" [selected]
+              - option "Crisis & Reputation Architecture"
+              - option "Corporate Communications & Advisory"
+              - option "Strategic Brand PR Positioning"
+              - option "Government Affairs & Policy Advocacy"
+            - button "Submit Request" [ref=f13e302] [cursor=pointer]
+      - generic [ref=f13e309]:
+        - heading "Explore Client Ratings Showcase" [level=2] [ref=f13e314]:
+          - text: Explore
+          - generic [ref=f13e315]: Client Ratings
+          - text: Showcase
+        - generic [ref=f13e318]:
+          - generic [ref=f13e319]:
+            - generic [ref=f13e320]: 250+
+            - generic [ref=f13e321]: Corporate Campaigns
+          - generic [ref=f13e322]:
+            - generic [ref=f13e323]: 100%
+            - generic [ref=f13e324]: NDA Confidentiality
+          - generic [ref=f13e325]:
+            - generic [ref=f13e326]: 60 Min
+            - generic [ref=f13e327]: Crisis War-Room Speed
+          - generic [ref=f13e328]:
+            - generic [ref=f13e329]: 12+ Yrs
+            - generic [ref=f13e330]: Media Ecosystem Legacy
+      - generic [ref=f13e332]:
+        - generic [ref=f13e333]:
+          - heading "Discover the Benefits with Us" [level=2] [ref=f13e334]:
+            - text: Discover the
+            - generic [ref=f13e335]: Benefits
+            - text: with Us
+          - paragraph [ref=f13e336]: Why leading enterprises, financial institutions, and global brands partner with Berlo Communications.
+          - generic [ref=f13e337]:
+            - generic [ref=f13e338]:
+              - generic [ref=f13e339]: "1"
+              - generic [ref=f13e340]:
+                - heading "Unmatched Tier-1 Media Access" [level=4] [ref=f13e341]
+                - paragraph [ref=f13e342]: Direct access to national chief editors, investigative reporters, and prime-time broadcast directors across Bangladesh.
+            - generic [ref=f13e343]:
+              - generic [ref=f13e344]: "2"
+              - generic [ref=f13e345]:
+                - heading "Rapid 24/7 Crisis Protocol" [level=4] [ref=f13e346]
+                - paragraph [ref=f13e347]: Immediate war-room activation within 60 minutes to neutralize reputational vulnerability and protect brand equity.
+            - generic [ref=f13e348]:
+              - generic [ref=f13e349]: "3"
+              - generic [ref=f13e350]:
+                - heading "Data-Driven Sentiment Intelligence" [level=4] [ref=f13e351]
+                - paragraph [ref=f13e352]: Real-time media tracking, predictive sentiment trajectory modeling, and comprehensive Share of Voice (SOV) metrics.
+            - generic [ref=f13e353]:
+              - generic [ref=f13e354]: "4"
+              - generic [ref=f13e355]:
+                - heading "Pan-Bangladesh Operational Reach" [level=4] [ref=f13e356]
+                - paragraph [ref=f13e357]: Seamless nationwide execution of press conferences, roundtables, and high-impact activations across all 8 divisions.
+            - generic [ref=f13e358]:
+              - generic [ref=f13e359]: "5"
+              - generic [ref=f13e360]:
+                - heading "Absolute Boardroom Confidentiality" [level=4] [ref=f13e361]
+                - paragraph [ref=f13e362]: Institutional-grade non-disclosure agreements safeguarding sensitive corporate transactions, restructuring, and leadership shifts.
+        - generic [ref=f13e364]:
+          - img "Berlo Agency Conference Room" [ref=f13e365]
+          - generic [ref=f13e367]:
+            - generic [ref=f13e368]: Corporate Headquarters
+            - generic [ref=f13e369]: Apartment B3, House 32/34, Road 07, Niketon, Gulshan-1, Dhaka
+      - generic [ref=f13e370]:
+        - generic [ref=f13e372]:
+          - heading "Innovating Success Together" [level=2] [ref=f13e373]:
+            - text: Innovating
+            - generic [ref=f13e374]: Success
+            - text: Together
+          - paragraph [ref=f13e375]: Trusted by visionary market leaders, tech innovators, and multinational enterprises
+        - generic [ref=f13e377]:
+          - generic [ref=f13e378] [cursor=pointer]:
+            - generic [ref=f13e379]: bKash
+            - generic [ref=f13e380]: FinTech
+          - generic [ref=f13e381] [cursor=pointer]:
+            - generic [ref=f13e382]: Grameenphone
+            - generic [ref=f13e383]: Telecom
+          - generic [ref=f13e384] [cursor=pointer]:
+            - generic [ref=f13e385]: Walton
+            - generic [ref=f13e386]: Consumer Tech
+          - generic [ref=f13e387] [cursor=pointer]:
+            - generic [ref=f13e388]: PRAN-RFL
+            - generic [ref=f13e389]: FMCG Conglomerate
+          - generic [ref=f13e390] [cursor=pointer]:
+            - generic [ref=f13e391]: Summit Group
+            - generic [ref=f13e392]: Power & Infra
+          - generic [ref=f13e393] [cursor=pointer]:
+            - generic [ref=f13e394]: Square Pharma
+            - generic [ref=f13e395]: Healthcare
+          - generic [ref=f13e396] [cursor=pointer]:
+            - generic [ref=f13e397]: BRAC Bank
+            - generic [ref=f13e398]: Banking
+          - generic [ref=f13e399] [cursor=pointer]:
+            - generic [ref=f13e400]: Beximco
+            - generic [ref=f13e401]: Conglomerate
+          - generic [ref=f13e402] [cursor=pointer]:
+            - generic [ref=f13e403]: Unilever Bangladesh
+            - generic [ref=f13e404]: FMCG Global
+          - generic [ref=f13e405] [cursor=pointer]:
+            - generic [ref=f13e406]: Standard Chartered
+            - generic [ref=f13e407]: Banking
+          - generic [ref=f13e408] [cursor=pointer]:
+            - generic [ref=f13e409]: City Bank
+            - generic [ref=f13e410]: Financial
+          - generic [ref=f13e411] [cursor=pointer]:
+            - generic [ref=f13e412]: Robi Axiata
+            - generic [ref=f13e413]: Telecom
+          - generic [ref=f13e414] [cursor=pointer]:
+            - generic [ref=f13e415]: bKash
+            - generic [ref=f13e416]: FinTech
+          - generic [ref=f13e417] [cursor=pointer]:
+            - generic [ref=f13e418]: Grameenphone
+            - generic [ref=f13e419]: Telecom
+          - generic [ref=f13e420] [cursor=pointer]:
+            - generic [ref=f13e421]: Walton
+            - generic [ref=f13e422]: Consumer Tech
+          - generic [ref=f13e423] [cursor=pointer]:
+            - generic [ref=f13e424]: PRAN-RFL
+            - generic [ref=f13e425]: FMCG Conglomerate
+          - generic [ref=f13e426] [cursor=pointer]:
+            - generic [ref=f13e427]: Summit Group
+            - generic [ref=f13e428]: Power & Infra
+          - generic [ref=f13e429] [cursor=pointer]:
+            - generic [ref=f13e430]: Square Pharma
+            - generic [ref=f13e431]: Healthcare
+          - generic [ref=f13e432] [cursor=pointer]:
+            - generic [ref=f13e433]: BRAC Bank
+            - generic [ref=f13e434]: Banking
+          - generic [ref=f13e435] [cursor=pointer]:
+            - generic [ref=f13e436]: Beximco
+            - generic [ref=f13e437]: Conglomerate
+          - generic [ref=f13e438] [cursor=pointer]:
+            - generic [ref=f13e439]: Unilever Bangladesh
+            - generic [ref=f13e440]: FMCG Global
+          - generic [ref=f13e441] [cursor=pointer]:
+            - generic [ref=f13e442]: Standard Chartered
+            - generic [ref=f13e443]: Banking
+          - generic [ref=f13e444] [cursor=pointer]:
+            - generic [ref=f13e445]: City Bank
+            - generic [ref=f13e446]: Financial
+          - generic [ref=f13e447] [cursor=pointer]:
+            - generic [ref=f13e448]: Robi Axiata
+            - generic [ref=f13e449]: Telecom
+      - generic [ref=f13e450]:
+        - generic [ref=f13e451]:
+          - heading "Clients Says" [level=2] [ref=f13e452]:
+            - text: Clients
+            - generic [ref=f13e453]: Says
+          - link "VIEW ALL" [ref=f13e454] [cursor=pointer]:
+            - /url: /en/clients
+        - generic [ref=f13e456]:
+          - generic [ref=f13e457]:
+            - generic [ref=f13e458]:
+              - img "Syed Mahbubur Rahman" [ref=f13e459]
+              - button "Play client video review" [ref=f13e461] [cursor=pointer]
+            - generic [ref=f13e464]:
+              - paragraph [ref=f13e465]: “Berlo’s strategic counsel during our nationwide brand repositioning was flawless. Their media access and crisis instincts are truly unmatched.”
+              - generic [ref=f13e466]:
+                - generic [ref=f13e467]: Syed Mahbubur Rahman
+                - generic [ref=f13e468]: Managing Director & CEO — Mutual Trust Bank PLC
+          - generic [ref=f13e469]:
+            - generic [ref=f13e470]:
+              - img "Tania Sharmin" [ref=f13e471]
+              - button "Play client video review" [ref=f13e473] [cursor=pointer]
+            - generic [ref=f13e476]:
+              - paragraph [ref=f13e477]: “In high-stakes corporate situations, Berlo delivers with pinpoint precision, boardroom confidentiality, and extraordinary speed.”
+              - generic [ref=f13e478]:
+                - generic [ref=f13e479]: Tania Sharmin
+                - generic [ref=f13e480]: Head of Corporate Affairs — Leading Multiconglomerate
+          - generic [ref=f13e481]:
+            - generic [ref=f13e482]:
+              - img "Kazi Ashraful Islam" [ref=f13e483]
+              - button "Play client video review" [ref=f13e485] [cursor=pointer]
+            - generic [ref=f13e488]:
+              - paragraph [ref=f13e489]: “From press conclaves to regulatory advocacy, Berlo has consistently proven to be our most dependable communications ally.”
+              - generic [ref=f13e490]:
+                - generic [ref=f13e491]: Kazi Ashraful Islam
+                - generic [ref=f13e492]: Director of External Comms — National FinTech Leader
+      - generic [ref=f13e494]:
+        - heading "Memories & Moments" [level=2] [ref=f13e496]:
+          - text: Memories &
+          - generic [ref=f13e497]: Moments
+        - generic [ref=f13e498]:
+          - generic [ref=f13e499] [cursor=pointer]:
+            - img "National Tech Summit Press Briefing" [ref=f13e500]
+            - generic [ref=f13e501]: National Tech Summit Press Briefing
+          - generic [ref=f13e503] [cursor=pointer]:
+            - img "Chief Editors Media Roundtable" [ref=f13e504]
+            - generic [ref=f13e505]: Chief Editors Media Roundtable
+          - generic [ref=f13e507] [cursor=pointer]:
+            - img "Corporate Rebranding Gala Launch" [ref=f13e508]
+            - generic [ref=f13e509]: Corporate Rebranding Gala Launch
+          - generic [ref=f13e511] [cursor=pointer]:
+            - img "Crisis War-Room Strategic Session" [ref=f13e512]
+            - generic [ref=f13e513]: Crisis War-Room Strategic Session
+          - generic [ref=f13e515] [cursor=pointer]:
+            - img "Broadcast Studio Interview Coordination" [ref=f13e516]
+            - generic [ref=f13e517]: Broadcast Studio Interview Coordination
+          - generic [ref=f13e519] [cursor=pointer]:
+            - img "Strategic Corporate Partnership Signing" [ref=f13e520]
+            - generic [ref=f13e521]: Strategic Corporate Partnership Signing
+          - generic [ref=f13e523] [cursor=pointer]:
+            - img "Annual PR Excellence Recognition" [ref=f13e524]
+            - generic [ref=f13e525]: Annual PR Excellence Recognition
+          - generic [ref=f13e527] [cursor=pointer]:
+            - img "C-Suite Policy Dialogue Conclave" [ref=f13e528]
+            - generic [ref=f13e529]: C-Suite Policy Dialogue Conclave
+          - generic [ref=f13e531] [cursor=pointer]:
+            - img "FinTech Leadership Press Conference" [ref=f13e532]
+            - generic [ref=f13e533]: FinTech Leadership Press Conference
+          - generic [ref=f13e535] [cursor=pointer]:
+            - img "Berlo Strategy & Planning Team" [ref=f13e536]
+            - generic [ref=f13e537]: Berlo Strategy & Planning Team
+          - generic [ref=f13e539] [cursor=pointer]:
+            - img "CSR Flagship Project Inauguration" [ref=f13e540]
+            - generic [ref=f13e541]: CSR Flagship Project Inauguration
+          - generic [ref=f13e543] [cursor=pointer]:
+            - img "International Media Delegates Reception" [ref=f13e544]
+            - generic [ref=f13e545]: International Media Delegates Reception
+      - generic [ref=f13e547]:
+        - generic [ref=f13e548]:
+          - heading "Latest Blogs" [level=2] [ref=f13e549]:
+            - text: Latest
+            - generic [ref=f13e550]: Blogs
+          - link "VIEW ALL" [ref=f13e551] [cursor=pointer]:
+            - /url: /en/insights
+        - generic [ref=f13e553]:
+          - 'link "The First 60 Minutes: Surviving and De-escalating Corporate Crises in South Asia Crisis PR 7 min read • 2026-10-15 The First 60 Minutes: Surviving and De-escalating Corporate Crises in South Asia How senior leadership teams must adapt their response velocity, factual transparency, and newsroom liaisons when viral misinformation strikes. Read Article" [ref=f13e554] [cursor=pointer]':
+            - /url: /en/insights/navigating-corporate-crises-in-the-hyper-digital-age
+            - generic [ref=f13e555]:
+              - generic [ref=f13e556]:
+                - 'img "The First 60 Minutes: Surviving and De-escalating Corporate Crises in South Asia" [ref=f13e557]'
+                - generic [ref=f13e558]: Crisis PR
+              - generic [ref=f13e559]:
+                - generic [ref=f13e560]:
+                  - generic [ref=f13e564]: 7 min read
+                  - generic [ref=f13e565]: •
+                  - generic [ref=f13e566]: 2026-10-15
+                - 'heading "The First 60 Minutes: Surviving and De-escalating Corporate Crises in South Asia" [level=3] [ref=f13e567]'
+                - paragraph [ref=f13e568]: How senior leadership teams must adapt their response velocity, factual transparency, and newsroom liaisons when viral misinformation strikes.
+            - generic [ref=f13e569]: Read Article
+          - 'link "The Death of the Generic Press Release: How Modern Newsrooms Select What Runs Media Relations 5 min read • 2026-09-28 The Death of the Generic Press Release: How Modern Newsrooms Select What Runs Why 90% of corporate press releases end up in newsroom recycle bins, and the editorial storytelling techniques that guarantee high-value placement. Read Article" [ref=f13e573] [cursor=pointer]':
+            - /url: /en/insights/the-death-of-generic-press-releases
+            - generic [ref=f13e574]:
+              - generic [ref=f13e575]:
+                - 'img "The Death of the Generic Press Release: How Modern Newsrooms Select What Runs" [ref=f13e576]'
+                - generic [ref=f13e577]: Media Relations
+              - generic [ref=f13e578]:
+                - generic [ref=f13e579]:
+                  - generic [ref=f13e583]: 5 min read
+                  - generic [ref=f13e584]: •
+                  - generic [ref=f13e585]: 2026-09-28
+                - 'heading "The Death of the Generic Press Release: How Modern Newsrooms Select What Runs" [level=3] [ref=f13e586]'
+                - paragraph [ref=f13e587]: Why 90% of corporate press releases end up in newsroom recycle bins, and the editorial storytelling techniques that guarantee high-value placement.
+            - generic [ref=f13e588]: Read Article
+          - 'link "ESG Beyond Compliance: Transforming Sustainability into Corporate Goodwill Reputation 6 min read • 2026-08-19 ESG Beyond Compliance: Transforming Sustainability into Corporate Goodwill Why greenwashing is destroying brand trust and how data-backed environmental transparency creates resilient international enterprise value. Read Article" [ref=f13e592] [cursor=pointer]':
+            - /url: /en/insights/esg-sustainability-reporting-bangladesh
+            - generic [ref=f13e593]:
+              - generic [ref=f13e594]:
+                - 'img "ESG Beyond Compliance: Transforming Sustainability into Corporate Goodwill" [ref=f13e595]'
+                - generic [ref=f13e596]: Reputation
+              - generic [ref=f13e597]:
+                - generic [ref=f13e598]:
+                  - generic [ref=f13e602]: 6 min read
+                  - generic [ref=f13e603]: •
+                  - generic [ref=f13e604]: 2026-08-19
+                - 'heading "ESG Beyond Compliance: Transforming Sustainability into Corporate Goodwill" [level=3] [ref=f13e605]'
+                - paragraph [ref=f13e606]: Why greenwashing is destroying brand trust and how data-backed environmental transparency creates resilient international enterprise value.
+            - generic [ref=f13e607]: Read Article
+  - contentinfo [ref=f13e612]:
+    - generic [ref=f13e614]:
+      - generic [ref=f13e615]:
+        - link [ref=f13e616] [cursor=pointer]:
+          - /url: /en
+          - img "Berlo Communications" [ref=f13e617]
+        - paragraph [ref=f13e618]: Strategic PR, Corporate Communications & Powerful Brand Narratives
+        - generic [ref=f13e619]:
+          - generic [ref=f13e620]: Apartment - B3, House - 32/34, Road - 07, Block - C, Niketon, Gulshan-1, Dhaka, Bangladesh
+          - generic [ref=f13e628]:
+            - link "+880 1711 268 479" [ref=f13e629] [cursor=pointer]:
+              - /url: tel:+880 1711 268 479
+            - link "+880 1812 336 789" [ref=f13e630] [cursor=pointer]:
+              - /url: tel:+880 1812 336 789
+          - generic [ref=f13e635]:
+            - link "contact@berlocommunications.com" [ref=f13e636] [cursor=pointer]:
+              - /url: mailto:contact@berlocommunications.com
+            - link "shatarupa@berlocommunications.com" [ref=f13e637] [cursor=pointer]:
+              - /url: mailto:shatarupa@berlocommunications.com
+      - generic [ref=f13e638]:
+        - heading "Agency Profile" [level=4] [ref=f13e639]
+        - list [ref=f13e640]:
+          - listitem [ref=f13e641]:
+            - link "About Berlo" [ref=f13e642] [cursor=pointer]:
+              - /url: /en/about
+          - listitem [ref=f13e643]:
+            - link "Leadership" [ref=f13e644] [cursor=pointer]:
+              - /url: /en/leadership
+          - listitem [ref=f13e645]:
+            - link "Our Team" [ref=f13e646] [cursor=pointer]:
+              - /url: /en/team
+          - listitem [ref=f13e647]:
+            - link "Clients" [ref=f13e648] [cursor=pointer]:
+              - /url: /en/clients
+      - generic [ref=f13e649]:
+        - heading "Strategic Capabilities" [level=4] [ref=f13e650]
+        - list [ref=f13e651]:
+          - listitem [ref=f13e652]:
+            - link "Strategic PR" [ref=f13e653] [cursor=pointer]:
+              - /url: /en/services/strategic-pr
+          - listitem [ref=f13e654]:
+            - link "Media Relations" [ref=f13e655] [cursor=pointer]:
+              - /url: /en/services/media-relations
+          - listitem [ref=f13e656]:
+            - link "Crisis Management" [ref=f13e657] [cursor=pointer]:
+              - /url: /en/services/crisis-management
+          - listitem [ref=f13e658]:
+            - link "Events & Activations" [ref=f13e659] [cursor=pointer]:
+              - /url: /en/services/events-activations
+          - listitem [ref=f13e660]:
+            - link "Visual Storytelling" [ref=f13e661] [cursor=pointer]:
+              - /url: /en/services/content-storytelling
+      - generic [ref=f13e662]:
+        - heading "Subscribe to Executive PR Briefing" [level=4] [ref=f13e663]
+        - paragraph [ref=f13e664]: Monthly strategic insights, media trends, and corporate communication analyses.
+        - generic [ref=f13e666]:
+          - textbox "Enter your corporate email" [ref=f13e667]
+          - button "Subscribe" [ref=f13e668]
+        - generic [ref=f13e671]:
+          - generic [ref=f13e672]: "Recognized Member & Affiliations:"
+          - generic [ref=f13e673]:
+            - generic [ref=f13e674]: BASIS
+            - generic [ref=f13e675]: BAPRO
+            - generic [ref=f13e676]: PRCA Member
+            - generic [ref=f13e677]: e-CAB
+    - generic [ref=f13e679]:
+      - generic [ref=f13e680]:
+        - generic [ref=f13e681]: © 2026 Berlo Communications Ltd.. All rights reserved.
+        - generic [ref=f13e682]: •
+        - generic [ref=f13e683]: Est. 2018 | Dhaka, Bangladesh
+      - generic [ref=f13e684]:
+        - link "Privacy Policy" [ref=f13e685] [cursor=pointer]:
+          - /url: /en/privacy
+        - link "Terms & Conditions" [ref=f13e686] [cursor=pointer]:
+          - /url: /en/terms

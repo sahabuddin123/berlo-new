@@ -1,0 +1,39 @@
+# ============================================================
+# Berlo Communications — Monorepo .gitignore
+# ============================================================
+
+# --- Backend (Laravel) ---
+backend/.env
+backend/vendor/
+backend/storage/logs/*.log
+backend/storage/app/public
+backend/public/storage
+backend/bootstrap/cache/*.php
+backend/node_modules/
+backend/.phpunit.cache/
+
+# --- Frontend (React / Vite) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# --- OS & Editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/settings.json
+*.code-workspace
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Misc ---
+.cache/
+tmp/
+

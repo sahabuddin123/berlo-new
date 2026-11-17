@@ -1,0 +1,487 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - generic [ref=f1e6]:
+      - link [ref=f1e7] [cursor=pointer]:
+        - /url: /bn
+        - img "Berlo Communications Logo" [ref=f1e8]
+      - generic [ref=f1e9]:
+        - button "Open search dialog" [ref=f1e10]
+        - button "Toggle language" [ref=f1e14]:
+          - generic [ref=f1e18]: EN
+        - button "Toggle theme mode" [ref=f1e19]
+        - link "অনুসন্ধান করুন" [ref=f1e23] [cursor=pointer]:
+          - /url: /bn/contact
+        - button "Open navigation menu" [ref=f1e24]
+  - main [ref=f1e26]:
+    - generic [ref=f1e27]:
+      - generic [ref=f1e30]:
+        - generic [ref=f1e31]:
+          - heading "“কর্পোরেট সাফল্যের অনন্য কৌশলগত পিআর পার্টনার।”" [level=1] [ref=f1e32]
+          - paragraph [ref=f1e33]: বার্লো কমিউনিকেশন্সে আপনাকে স্বাগতম—বাংলাদেশের অন্যতম শীর্ষস্থানীয় করপোরেট পিআর ও কৌশলগত যোগাযোগ সংস্থা। আমাদের উদ্ভাবনী কৌশল ও ফলমুখী দৃষ্টিভঙ্গির মাধ্যমে আমরা শীর্ষ প্রতিষ্ঠান ও বহুজাতিক ব্র্যান্ডের দীর্ঘমেয়াদী সুনাম বিনির্মাণ ও সংকট ব্যবস্থাপনা পরিচালনা করি।
+          - generic [ref=f1e34]:
+            - link "পরামর্শ সেশন বুক করুন" [ref=f1e35] [cursor=pointer]:
+              - /url: "#consultancy"
+            - link "আমাদের সেবাসমূহ" [ref=f1e39] [cursor=pointer]:
+              - /url: "#services"
+          - generic [ref=f1e41]:
+            - generic [ref=f1e42]: "স্বীকৃত সংস্থা ও সদস্যপদ:"
+            - generic [ref=f1e43]:
+              - generic [ref=f1e44]: BASIS
+              - generic [ref=f1e47]: BAPRO
+              - generic [ref=f1e50]: PRCA Member
+              - generic [ref=f1e53]: e-CAB
+        - generic [ref=f1e57]:
+          - img "Berlo Senior PR Strategist" [ref=f1e60]
+          - generic [ref=f1e62]:
+            - generic [ref=f1e63]: কর্পোরেট সুনাম সুরক্ষা
+            - generic [ref=f1e66]: "|"
+            - generic [ref=f1e67]:
+              - generic [ref=f1e68]: +৩২০% ইতিবাচক জনমত
+              - generic [ref=f1e72]: ১০০+ শীর্ষ নিউজডেস্ক সংযোগ
+          - generic [ref=f1e73]: ১২+ বছরের শ্রেষ্ঠত্ব
+          - generic [ref=f1e78]:
+            - button "Go to slide 1" [ref=f1e79]
+            - button "Go to slide 2" [ref=f1e80]
+            - button "Go to slide 3" [ref=f1e81]
+      - generic [ref=f1e84]:
+        - heading "In the Spotlight" [level=2] [ref=f1e85]:
+          - text: In the
+          - generic [ref=f1e86]: Spotlight
+        - generic [ref=f1e87]:
+          - generic [ref=f1e88] [cursor=pointer]: The Business Standard
+          - generic [ref=f1e89] [cursor=pointer]: প্রথম আলো
+          - generic [ref=f1e90] [cursor=pointer]: The Daily Star
+          - generic [ref=f1e91] [cursor=pointer]: DHAKA TRIBUNE
+          - generic [ref=f1e92] [cursor=pointer]: Financial Express
+          - generic [ref=f1e93] [cursor=pointer]: REUTERS
+      - generic [ref=f1e95]:
+        - img "Berlo PR Strategy Room" [ref=f1e96]
+        - generic [ref=f1e98]:
+          - button "Play agency video reel" [ref=f1e99] [cursor=pointer]
+          - generic [ref=f1e102]:
+            - generic [ref=f1e103]: সংস্থার রিল দেখুন
+            - generic [ref=f1e104]: 2:45
+        - generic [ref=f1e105]: Berlo Strategic Newsroom & Crisis Command Center — Dhaka
+      - generic [ref=f1e109]:
+        - generic [ref=f1e110]:
+          - generic [ref=f1e111]:
+            - heading "Our Services" [level=2] [ref=f1e112]:
+              - text: Our
+              - generic [ref=f1e113]: Services
+            - paragraph [ref=f1e114]: আমাদের লক্ষ্য ক্লায়েন্টদের সাফল্য ও সম্মানকে নতুন উচ্চতায় পৌঁছে দেওয়া।
+          - link "VIEW ALL" [ref=f1e116] [cursor=pointer]:
+            - /url: /bn/services
+        - generic [ref=f1e118]:
+          - link "জাতীয় মিডিয়া সম্পর্ক ও প্রেস কনফারেন্স ১০০+ শীর্ষ জাতীয় দৈনিক, টেলিভিশন নেটওয়ার্ক ও বিজনেস ব্যুরোর সাথে সরাসরি সংযোগ স্থাপনের মাধ্যমে আপনার ব্র্যান্ড ন্যারেটিভকে জাতীয় আলোচনার শীর্ষে রাখুন। বিস্তারিত দেখুন" [ref=f1e120] [cursor=pointer]:
+            - /url: /bn/services/strategic-media-relations
+            - generic [ref=f1e121]:
+              - heading "জাতীয় মিডিয়া সম্পর্ক ও প্রেস কনফারেন্স" [level=3] [ref=f1e126]
+              - paragraph [ref=f1e127]: ১০০+ শীর্ষ জাতীয় দৈনিক, টেলিভিশন নেটওয়ার্ক ও বিজনেস ব্যুরোর সাথে সরাসরি সংযোগ স্থাপনের মাধ্যমে আপনার ব্র্যান্ড ন্যারেটিভকে জাতীয় আলোচনার শীর্ষে রাখুন।
+            - generic [ref=f1e128]: বিস্তারিত দেখুন
+          - link "সংকট ব্যবস্থাপনা ও সুনাম সুরক্ষা সুনামের যেকোনো হুমকি চিহ্নিত হওয়ার পর তাৎক্ষণিক ওয়ার-রুম কার্যকরীকরণ এবং দ্রুত প্রেস ব্রিফিংয়ের মাধ্যমে নেতিবাচক জনমত প্রশমন ও নিয়ন্ত্রণ। বিস্তারিত দেখুন" [ref=f1e133] [cursor=pointer]:
+            - /url: /bn/services/crisis-reputation-management
+            - generic [ref=f1e134]:
+              - heading "সংকট ব্যবস্থাপনা ও সুনাম সুরক্ষা" [level=3] [ref=f1e138]
+              - paragraph [ref=f1e139]: সুনামের যেকোনো হুমকি চিহ্নিত হওয়ার পর তাৎক্ষণিক ওয়ার-রুম কার্যকরীকরণ এবং দ্রুত প্রেস ব্রিফিংয়ের মাধ্যমে নেতিবাচক জনমত প্রশমন ও নিয়ন্ত্রণ।
+            - generic [ref=f1e140]: বিস্তারিত দেখুন
+          - link "কর্পোরেট যোগাযোগ ও উপদেষ্টা সি-সুইট এক্সিকিউটিভ বার্তা, অংশীজন সমন্বয় এবং আধুনিক সুশাসনকেন্দ্রিক বার্ষিক প্রতিবেদন ও প্রেস রিলিজের মাধ্যমে করপোরেট গ্রহণযোগ্যতা বৃদ্ধি। বিস্তারিত দেখুন" [ref=f1e145] [cursor=pointer]:
+            - /url: /bn/services/corporate-communications
+            - generic [ref=f1e146]:
+              - heading "কর্পোরেট যোগাযোগ ও উপদেষ্টা" [level=3] [ref=f1e152]
+              - paragraph [ref=f1e153]: সি-সুইট এক্সিকিউটিভ বার্তা, অংশীজন সমন্বয় এবং আধুনিক সুশাসনকেন্দ্রিক বার্ষিক প্রতিবেদন ও প্রেস রিলিজের মাধ্যমে করপোরেট গ্রহণযোগ্যতা বৃদ্ধি।
+            - generic [ref=f1e154]: বিস্তারিত দেখুন
+          - link "কৌশলগত ব্র্যান্ড ও মার্কেট পিআর বাজারে দীর্ঘস্থায়ী সুনাম প্রতিষ্ঠা, নতুন পণ্য উন্মোচন এবং গবেষণা ও বিশ্লেষণভিত্তিক যোগাযোগের মাধ্যমে আপনার ব্র্যান্ডকে অন্যদের চেয়ে অনন্যভাবে উপস্থাপন। বিস্তারিত দেখুন" [ref=f1e159] [cursor=pointer]:
+            - /url: /bn/services/content-storytelling
+            - generic [ref=f1e160]:
+              - heading "কৌশলগত ব্র্যান্ড ও মার্কেট পিআর" [level=3] [ref=f1e166]
+              - paragraph [ref=f1e167]: বাজারে দীর্ঘস্থায়ী সুনাম প্রতিষ্ঠা, নতুন পণ্য উন্মোচন এবং গবেষণা ও বিশ্লেষণভিত্তিক যোগাযোগের মাধ্যমে আপনার ব্র্যান্ডকে অন্যদের চেয়ে অনন্যভাবে উপস্থাপন।
+            - generic [ref=f1e168]: বিস্তারিত দেখুন
+          - link "পাবলিক পলিসি ও রেগুলেটরি সম্পর্ক নীতিগত সংলাপ, নিয়ন্ত্রক সংস্থার সাথে স্বচ্ছ আলোচনা ও শিল্পবান্ধব নীতি সংস্কারে অংশীজনদের যুক্ত করার মাধ্যমে গঠনমূলক সমাধান নিশ্চিতকরণ। বিস্তারিত দেখুন" [ref=f1e173] [cursor=pointer]:
+            - /url: /bn/services/government-advocacy
+            - generic [ref=f1e174]:
+              - heading "পাবলিক পলিসি ও রেগুলেটরি সম্পর্ক" [level=3] [ref=f1e180]
+              - paragraph [ref=f1e181]: নীতিগত সংলাপ, নিয়ন্ত্রক সংস্থার সাথে স্বচ্ছ আলোচনা ও শিল্পবান্ধব নীতি সংস্কারে অংশীজনদের যুক্ত করার মাধ্যমে গঠনমূলক সমাধান নিশ্চিতকরণ।
+            - generic [ref=f1e182]: বিস্তারিত দেখুন
+          - link "ডিজিটাল পিআর ও জনমত বিশ্লেষণ রিয়েল-টাইম অনলাইন মিডিয়া পর্যবেক্ষণ, ডিজিটাল সেন্টিমেন্ট রিকভারি এবং শীর্ষ ইনফ্লুয়েন্সার ও অনলাইন প্ল্যাটফর্মে সক্রিয় ব্র্যান্ড দৃশ্যমানতা। বিস্তারিত দেখুন" [ref=f1e187] [cursor=pointer]:
+            - /url: /bn/services/digital-pr-influencers
+            - generic [ref=f1e188]:
+              - heading "ডিজিটাল পিআর ও জনমত বিশ্লেষণ" [level=3] [ref=f1e196]
+              - paragraph [ref=f1e197]: রিয়েল-টাইম অনলাইন মিডিয়া পর্যবেক্ষণ, ডিজিটাল সেন্টিমেন্ট রিকভারি এবং শীর্ষ ইনফ্লুয়েন্সার ও অনলাইন প্ল্যাটফর্মে সক্রিয় ব্র্যান্ড দৃশ্যমানতা।
+            - generic [ref=f1e198]: বিস্তারিত দেখুন
+          - link "উচ্চ-প্রভাবশালী ইভেন্ট ও কনক্লেভ জাতীয় প্রেস কনফারেন্স, মিডিয়া রাউন্ডটেবিল ও বহুজাতিক কর্পোরেট সম্মেলনের নিখুঁত রূপায়ণ, যা নিশ্চিত করে ব্যাপক প্রচার ও অংশীজনদের সক্রিয় অংশগ্রহণ। বিস্তারিত দেখুন" [ref=f1e203] [cursor=pointer]:
+            - /url: /bn/services/events-brand-activations
+            - generic [ref=f1e204]:
+              - heading "উচ্চ-প্রভাবশালী ইভেন্ট ও কনক্লেভ" [level=3] [ref=f1e209]
+              - paragraph [ref=f1e210]: জাতীয় প্রেস কনফারেন্স, মিডিয়া রাউন্ডটেবিল ও বহুজাতিক কর্পোরেট সম্মেলনের নিখুঁত রূপায়ণ, যা নিশ্চিত করে ব্যাপক প্রচার ও অংশীজনদের সক্রিয় অংশগ্রহণ।
+            - generic [ref=f1e211]: বিস্তারিত দেখুন
+          - link "সি-সুইট এক্সিকিউটিভ ব্র্যান্ডিং শীর্ষ করপোরেট ব্যক্তিত্বের অপ-এড রচনা, কিনোট বক্তৃতা প্রস্তুতি ও শিল্প বিশেষজ্ঞ হিসেবে জাতীয় গণমাধ্যমে জোরালো উপস্থিতি প্রতিষ্ঠা। বিস্তারিত দেখুন" [ref=f1e216] [cursor=pointer]:
+            - /url: /bn/services/strategic-pr-reputation
+            - generic [ref=f1e217]:
+              - heading "সি-সুইট এক্সিকিউটিভ ব্র্যান্ডিং" [level=3] [ref=f1e223]
+              - paragraph [ref=f1e224]: শীর্ষ করপোরেট ব্যক্তিত্বের অপ-এড রচনা, কিনোট বক্তৃতা প্রস্তুতি ও শিল্প বিশেষজ্ঞ হিসেবে জাতীয় গণমাধ্যমে জোরালো উপস্থিতি প্রতিষ্ঠা।
+            - generic [ref=f1e225]: বিস্তারিত দেখুন
+          - link "টেকসই উন্নয়ন ও সিএসআর পিআর ইএসজি প্রতিশ্রুতি প্রচার, সামাজিক দায়িত্বশীলতার ফলাফল প্রকাশ এবং ইতিবাচক সমাজ বিনির্মাণমূলক উদ্যোগসমূহের কার্যকর জনসংযোগ। বিস্তারিত দেখুন" [ref=f1e230] [cursor=pointer]:
+            - /url: /bn/services/corporate-communications
+            - generic [ref=f1e231]:
+              - heading "টেকসই উন্নয়ন ও সিএসআর পিআর" [level=3] [ref=f1e236]
+              - paragraph [ref=f1e237]: ইএসজি প্রতিশ্রুতি প্রচার, সামাজিক দায়িত্বশীলতার ফলাফল প্রকাশ এবং ইতিবাচক সমাজ বিনির্মাণমূলক উদ্যোগসমূহের কার্যকর জনসংযোগ।
+            - generic [ref=f1e238]: বিস্তারিত দেখুন
+      - generic [ref=f1e243]:
+        - generic [ref=f1e244]:
+          - img "Berlo PR Strategic Consultation" [ref=f1e245]
+          - generic [ref=f1e247]:
+            - generic [ref=f1e248]: Confidential C-Suite Advisory
+            - generic [ref=f1e249]: Direct engagement with senior agency partners and crisis advisors.
+        - generic [ref=f1e250]:
+          - generic [ref=f1e251]:
+            - heading "Book a Free Consultancy" [level=2] [ref=f1e252]:
+              - text: Book a Free
+              - generic [ref=f1e253]: Consultancy
+            - paragraph [ref=f1e254]: আমাদের সিনিয়র পিআর বিশেষজ্ঞদের সাথে একটি গোপনীয় কৌশলগত আলোচনার সময় নির্ধারণ করুন।
+          - generic [ref=f1e255]:
+            - textbox "আপনার নাম / প্রতিষ্ঠানের নাম" [ref=f1e257]
+            - textbox "ফোন নম্বর বা বিজনেস ইমেইল" [ref=f1e259]
+            - combobox [ref=f1e261]:
+              - option "Strategic Media Relations & Press" [selected]
+              - option "Crisis & Reputation Architecture"
+              - option "Corporate Communications & Advisory"
+              - option "Strategic Brand PR Positioning"
+              - option "Government Affairs & Policy Advocacy"
+            - button "অনুরোধ পাঠান" [ref=f1e263] [cursor=pointer]
+      - generic [ref=f1e270]:
+        - heading "Explore Client Ratings Showcase" [level=2] [ref=f1e275]:
+          - text: Explore
+          - generic [ref=f1e276]: Client Ratings
+          - text: Showcase
+        - generic [ref=f1e279]:
+          - generic [ref=f1e280]:
+            - generic [ref=f1e281]: 250+
+            - generic [ref=f1e282]: সফল করপোরেট ক্যাম্পেইন
+          - generic [ref=f1e283]:
+            - generic [ref=f1e284]: 100%
+            - generic [ref=f1e285]: গোপনীয়তা রক্ষা নিশ্চয়তা
+          - generic [ref=f1e286]:
+            - generic [ref=f1e287]: 60 Min
+            - generic [ref=f1e288]: ক্রাইসিস ওয়ার-রুম গতি
+          - generic [ref=f1e289]:
+            - generic [ref=f1e290]: 12+ Yrs
+            - generic [ref=f1e291]: জাতীয় গণমাধ্যম সংযোগ
+      - generic [ref=f1e293]:
+        - generic [ref=f1e294]:
+          - heading "Discover the Benefits with Us" [level=2] [ref=f1e295]:
+            - text: Discover the
+            - generic [ref=f1e296]: Benefits
+            - text: with Us
+          - paragraph [ref=f1e297]: বাংলাদেশের শীর্ষস্থানীয় প্রতিষ্ঠান ও বহুজাতিক ব্র্যান্ডসমূহ কেন বার্লো কমিউনিকেশন্সের ওপর আস্থা রাখে
+          - generic [ref=f1e298]:
+            - generic [ref=f1e299]:
+              - generic [ref=f1e300]: "1"
+              - generic [ref=f1e301]:
+                - heading "শীর্ষ গণমাধ্যমে সরাসরি সংযোগ" [level=4] [ref=f1e302]
+                - paragraph [ref=f1e303]: প্রধান সম্পাদক, অনুসন্ধানী সাংবাদিক এবং জাতীয় টেলিভিশন নেটওয়ার্কের সাথে সরাসরি পেশাদার সম্পর্ক।
+            - generic [ref=f1e304]:
+              - generic [ref=f1e305]: "2"
+              - generic [ref=f1e306]:
+                - heading "২৪/৭ দ্রুত সংকট মোকাবিলা প্রটোকল" [level=4] [ref=f1e307]
+                - paragraph [ref=f1e308]: সুনামের যেকোনো হুমকি প্রশমনে এবং ব্র্যান্ডের সম্মান রক্ষার্থে ৬০ মিনিটের মধ্যে ওয়ার-রুম কার্যকরীকরণ।
+            - generic [ref=f1e309]:
+              - generic [ref=f1e310]: "3"
+              - generic [ref=f1e311]:
+                - heading "তথ্য ও বিশ্লেষণনির্ভর সেন্টিনেল ইন্টেলিজেন্স" [level=4] [ref=f1e312]
+                - paragraph [ref=f1e313]: রিয়েল-টাইম মিডিয়া মনিটরিং, জনমত গতিপথ বিশ্লেষণ এবং প্রিন্ট ও ডিজিটালে শেয়ার অফ ভয়েস ট্র্যাকিং।
+            - generic [ref=f1e314]:
+              - generic [ref=f1e315]: "4"
+              - generic [ref=f1e316]:
+                - heading "সারাদেশে কার্যক্রম পরিচালনার সক্ষমতা" [level=4] [ref=f1e317]
+                - paragraph [ref=f1e318]: ঢাকা, চট্টগ্রাম, সিলেটসহ সকল বিভাগে সফল প্রেস কনফারেন্স, গোলটেবিল ও ব্র্যান্ড অ্যাক্টিভেশন বাস্তবায়ন।
+            - generic [ref=f1e319]:
+              - generic [ref=f1e320]: "5"
+              - generic [ref=f1e321]:
+                - heading "বোর্ডরুমের পূর্ণ গোপনীয়তা ও বিশ্বস্ততা" [level=4] [ref=f1e322]
+                - paragraph [ref=f1e323]: সংবেদনশীল কর্পোরেট চুক্তি, পুনর্গঠন ও শীর্ষ নেতৃত্বের পরিবর্তনের সুরক্ষায় সর্বোচ্চ প্রাতিষ্ঠানিক এনডিএ নিশ্চয়তা।
+        - generic [ref=f1e325]:
+          - img "Berlo Agency Conference Room" [ref=f1e326]
+          - generic [ref=f1e328]:
+            - generic [ref=f1e329]: Corporate Headquarters
+            - generic [ref=f1e330]: Apartment B3, House 32/34, Road 07, Niketon, Gulshan-1, Dhaka
+      - generic [ref=f1e331]:
+        - generic [ref=f1e333]:
+          - heading "Innovating Success Together" [level=2] [ref=f1e334]:
+            - text: Innovating
+            - generic [ref=f1e335]: Success
+            - text: Together
+          - paragraph [ref=f1e336]: Trusted by visionary market leaders, tech innovators, and multinational enterprises
+        - generic [ref=f1e338]:
+          - generic [ref=f1e339] [cursor=pointer]:
+            - generic [ref=f1e340]: bKash
+            - generic [ref=f1e341]: FinTech
+          - generic [ref=f1e342] [cursor=pointer]:
+            - generic [ref=f1e343]: Grameenphone
+            - generic [ref=f1e344]: Telecom
+          - generic [ref=f1e345] [cursor=pointer]:
+            - generic [ref=f1e346]: Walton
+            - generic [ref=f1e347]: Consumer Tech
+          - generic [ref=f1e348] [cursor=pointer]:
+            - generic [ref=f1e349]: PRAN-RFL
+            - generic [ref=f1e350]: FMCG Conglomerate
+          - generic [ref=f1e351] [cursor=pointer]:
+            - generic [ref=f1e352]: Summit Group
+            - generic [ref=f1e353]: Power & Infra
+          - generic [ref=f1e354] [cursor=pointer]:
+            - generic [ref=f1e355]: Square Pharma
+            - generic [ref=f1e356]: Healthcare
+          - generic [ref=f1e357] [cursor=pointer]:
+            - generic [ref=f1e358]: BRAC Bank
+            - generic [ref=f1e359]: Banking
+          - generic [ref=f1e360] [cursor=pointer]:
+            - generic [ref=f1e361]: Beximco
+            - generic [ref=f1e362]: Conglomerate
+          - generic [ref=f1e363] [cursor=pointer]:
+            - generic [ref=f1e364]: Unilever Bangladesh
+            - generic [ref=f1e365]: FMCG Global
+          - generic [ref=f1e366] [cursor=pointer]:
+            - generic [ref=f1e367]: Standard Chartered
+            - generic [ref=f1e368]: Banking
+          - generic [ref=f1e369] [cursor=pointer]:
+            - generic [ref=f1e370]: City Bank
+            - generic [ref=f1e371]: Financial
+          - generic [ref=f1e372] [cursor=pointer]:
+            - generic [ref=f1e373]: Robi Axiata
+            - generic [ref=f1e374]: Telecom
+          - generic [ref=f1e375] [cursor=pointer]:
+            - generic [ref=f1e376]: bKash
+            - generic [ref=f1e377]: FinTech
+          - generic [ref=f1e378] [cursor=pointer]:
+            - generic [ref=f1e379]: Grameenphone
+            - generic [ref=f1e380]: Telecom
+          - generic [ref=f1e381] [cursor=pointer]:
+            - generic [ref=f1e382]: Walton
+            - generic [ref=f1e383]: Consumer Tech
+          - generic [ref=f1e384] [cursor=pointer]:
+            - generic [ref=f1e385]: PRAN-RFL
+            - generic [ref=f1e386]: FMCG Conglomerate
+          - generic [ref=f1e387] [cursor=pointer]:
+            - generic [ref=f1e388]: Summit Group
+            - generic [ref=f1e389]: Power & Infra
+          - generic [ref=f1e390] [cursor=pointer]:
+            - generic [ref=f1e391]: Square Pharma
+            - generic [ref=f1e392]: Healthcare
+          - generic [ref=f1e393] [cursor=pointer]:
+            - generic [ref=f1e394]: BRAC Bank
+            - generic [ref=f1e395]: Banking
+          - generic [ref=f1e396] [cursor=pointer]:
+            - generic [ref=f1e397]: Beximco
+            - generic [ref=f1e398]: Conglomerate
+          - generic [ref=f1e399] [cursor=pointer]:
+            - generic [ref=f1e400]: Unilever Bangladesh
+            - generic [ref=f1e401]: FMCG Global
+          - generic [ref=f1e402] [cursor=pointer]:
+            - generic [ref=f1e403]: Standard Chartered
+            - generic [ref=f1e404]: Banking
+          - generic [ref=f1e405] [cursor=pointer]:
+            - generic [ref=f1e406]: City Bank
+            - generic [ref=f1e407]: Financial
+          - generic [ref=f1e408] [cursor=pointer]:
+            - generic [ref=f1e409]: Robi Axiata
+            - generic [ref=f1e410]: Telecom
+      - generic [ref=f1e411]:
+        - generic [ref=f1e412]:
+          - heading "Clients Says" [level=2] [ref=f1e413]:
+            - text: Clients
+            - generic [ref=f1e414]: Says
+          - link "VIEW ALL" [ref=f1e415] [cursor=pointer]:
+            - /url: /bn/clients
+        - generic [ref=f1e417]:
+          - generic [ref=f1e418]:
+            - generic [ref=f1e419]:
+              - img "সৈয়দ মাহবুবুর রহমান" [ref=f1e420]
+              - button "Play client video review" [ref=f1e422] [cursor=pointer]
+            - generic [ref=f1e425]:
+              - paragraph [ref=f1e426]: “আমাদের রি-ব্র্যান্ডিং এবং জাতীয় আর্থিক প্রতিবেদন প্রচারে বার্লোর কৌশলগত নির্দেশনা ছিল প্রশংসনীয়। তাদের মিডিয়া সংযোগ অতুলনীয়।”
+              - generic [ref=f1e427]:
+                - generic [ref=f1e428]: সৈয়দ মাহবুবুর রহমান
+                - generic [ref=f1e429]: ব্যবস্থাপনা পরিচালক ও সিইও — মিউচুয়াল ট্রাস্ট ব্যাংক
+          - generic [ref=f1e430]:
+            - generic [ref=f1e431]:
+              - img "তানিয়া শারমিন" [ref=f1e432]
+              - button "Play client video review" [ref=f1e434] [cursor=pointer]
+            - generic [ref=f1e437]:
+              - paragraph [ref=f1e438]: “সংবেদনশীল কর্পোরেট পরিস্থিতিতে বার্লো সর্বোচ্চ গোপনীয়তা ও অবিশ্বাস্য ক্ষিপ্রতায় সঠিক ফলাফল নিশ্চিত করে।”
+              - generic [ref=f1e439]:
+                - generic [ref=f1e440]: তানিয়া শারমিন
+                - generic [ref=f1e441]: প্রধান, করপোরেট অ্যাফেয়ার্স — শীর্ষ বহুজাতিক কনগ্লোমারেট
+          - generic [ref=f1e442]:
+            - generic [ref=f1e443]:
+              - img "কাজী আশরাফুল ইসলাম" [ref=f1e444]
+              - button "Play client video review" [ref=f1e446] [cursor=pointer]
+            - generic [ref=f1e449]:
+              - paragraph [ref=f1e450]: “প্রেস কনক্লেভ থেকে শুরু করে পলিসি অ্যাডভোকেসি পর্যন্ত, বার্লো সবসময় আমাদের সবচেয়ে নির্ভরযোগ্য পিআর পার্টনার।”
+              - generic [ref=f1e451]:
+                - generic [ref=f1e452]: কাজী আশরাফুল ইসলাম
+                - generic [ref=f1e453]: পরিচালক, এক্সটার্নাল কমিউনিকেশন্স — শীর্ষ ফিনটেক প্রতিষ্ঠান
+      - generic [ref=f1e455]:
+        - heading "Memories & Moments" [level=2] [ref=f1e457]:
+          - text: Memories &
+          - generic [ref=f1e458]: Moments
+        - generic [ref=f1e459]:
+          - generic [ref=f1e460] [cursor=pointer]:
+            - img "জাতীয় টেক সম্মেলন ও প্রেস ব্রিফিং" [ref=f1e461]
+            - generic [ref=f1e462]: জাতীয় টেক সম্মেলন ও প্রেস ব্রিফিং
+          - generic [ref=f1e464] [cursor=pointer]:
+            - img "শীর্ষ মিডিয়া এডিটরস রাউন্ডটেবিল" [ref=f1e465]
+            - generic [ref=f1e466]: শীর্ষ মিডিয়া এডিটরস রাউন্ডটেবিল
+          - generic [ref=f1e468] [cursor=pointer]:
+            - img "কর্পোরেট রি-ব্র্যান্ডিং গালা উদ্বোধন" [ref=f1e469]
+            - generic [ref=f1e470]: কর্পোরেট রি-ব্র্যান্ডিং গালা উদ্বোধন
+          - generic [ref=f1e472] [cursor=pointer]:
+            - img "কৌশলগত ক্রাইসিস ওয়ার-রুম বিশ্লেষণ" [ref=f1e473]
+            - generic [ref=f1e474]: কৌশলগত ক্রাইসিস ওয়ার-রুম বিশ্লেষণ
+          - generic [ref=f1e476] [cursor=pointer]:
+            - img "টেলিভিশন স্টুডিও সাক্ষাৎকার পরিচালনা" [ref=f1e477]
+            - generic [ref=f1e478]: টেলিভিশন স্টুডিও সাক্ষাৎকার পরিচালনা
+          - generic [ref=f1e480] [cursor=pointer]:
+            - img "কর্পোরেট অংশীদারিত্ব চুক্তি স্বাক্ষর" [ref=f1e481]
+            - generic [ref=f1e482]: কর্পোরেট অংশীদারিত্ব চুক্তি স্বাক্ষর
+          - generic [ref=f1e484] [cursor=pointer]:
+            - img "বার্ষিক জনসংযোগ এক্সিলেন্স অ্যাওয়ার্ড" [ref=f1e485]
+            - generic [ref=f1e486]: বার্ষিক জনসংযোগ এক্সিলেন্স অ্যাওয়ার্ড
+          - generic [ref=f1e488] [cursor=pointer]:
+            - img "সি-সুইট পলিসি কনক্লেভ" [ref=f1e489]
+            - generic [ref=f1e490]: সি-সুইট পলিসি কনক্লেভ
+          - generic [ref=f1e492] [cursor=pointer]:
+            - img "ফিনটেক লিডারশিপ সাংবাদিক সম্মেলন" [ref=f1e493]
+            - generic [ref=f1e494]: ফিনটেক লিডারশিপ সাংবাদিক সম্মেলন
+          - generic [ref=f1e496] [cursor=pointer]:
+            - img "বার্লো স্ট্র্যাটেজি অ্যান্ড প্ল্যানিং টিম" [ref=f1e497]
+            - generic [ref=f1e498]: বার্লো স্ট্র্যাটেজি অ্যান্ড প্ল্যানিং টিম
+          - generic [ref=f1e500] [cursor=pointer]:
+            - img "সিএসআর ফ্ল্যাগশিপ প্রজেক্ট উদ্বোধন" [ref=f1e501]
+            - generic [ref=f1e502]: সিএসআর ফ্ল্যাগশিপ প্রজেক্ট উদ্বোধন
+          - generic [ref=f1e504] [cursor=pointer]:
+            - img "আন্তর্জাতিক ডেলিগেটস রিসেপশন" [ref=f1e505]
+            - generic [ref=f1e506]: আন্তর্জাতিক ডেলিগেটস রিসেপশন
+      - generic [ref=f1e508]:
+        - generic [ref=f1e509]:
+          - heading "Latest Blogs" [level=2] [ref=f1e510]:
+            - text: Latest
+            - generic [ref=f1e511]: Blogs
+          - link "VIEW ALL" [ref=f1e512] [cursor=pointer]:
+            - /url: /bn/insights
+        - generic [ref=f1e514]:
+          - 'link "প্রথম ৬০ মিনিট: ডিজিটাল যুগে করপোরেট সংকট প্রশমন ও সুনাম সুরক্ষার মূলমন্ত্র সংকট জনসংযোগ 7 min read • 2026-10-15 প্রথম ৬০ মিনিট: ডিজিটাল যুগে করপোরেট সংকট প্রশমন ও সুনাম সুরক্ষার মূলমন্ত্র অনলাইনে গুজব বা সংকট সৃষ্টির প্রথম মুহূর্তগুলোতে শীর্ষ নির্বাহীদের প্রতিক্রিয়া গতি ও স্বচ্ছতা কীভাবে সংস্থাকে বিপর্যয় থেকে রক্ষা করে। সম্পূর্ণ পড়ুন" [ref=f1e515] [cursor=pointer]':
+            - /url: /bn/insights/navigating-corporate-crises-in-the-hyper-digital-age
+            - generic [ref=f1e516]:
+              - generic [ref=f1e517]:
+                - 'img "প্রথম ৬০ মিনিট: ডিজিটাল যুগে করপোরেট সংকট প্রশমন ও সুনাম সুরক্ষার মূলমন্ত্র" [ref=f1e518]'
+                - generic [ref=f1e519]: সংকট জনসংযোগ
+              - generic [ref=f1e520]:
+                - generic [ref=f1e521]:
+                  - generic [ref=f1e525]: 7 min read
+                  - generic [ref=f1e526]: •
+                  - generic [ref=f1e527]: 2026-10-15
+                - 'heading "প্রথম ৬০ মিনিট: ডিজিটাল যুগে করপোরেট সংকট প্রশমন ও সুনাম সুরক্ষার মূলমন্ত্র" [level=3] [ref=f1e528]'
+                - paragraph [ref=f1e529]: অনলাইনে গুজব বা সংকট সৃষ্টির প্রথম মুহূর্তগুলোতে শীর্ষ নির্বাহীদের প্রতিক্রিয়া গতি ও স্বচ্ছতা কীভাবে সংস্থাকে বিপর্যয় থেকে রক্ষা করে।
+            - generic [ref=f1e530]: সম্পূর্ণ পড়ুন
+          - 'link "গতানুগতিক প্রেস রিলিজের সমাপ্তি: আধুনিক নিউজ রুম কীভাবে সংবাদ নির্বাচন করে গণমাধ্যম কৌশল 5 min read • 2026-09-28 গতানুগতিক প্রেস রিলিজের সমাপ্তি: আধুনিক নিউজ রুম কীভাবে সংবাদ নির্বাচন করে কেন ৯০ শতাংশ করপোরেট প্রেস রিলিজ বাতিল হয়ে যায় এবং সম্পাদকীয় কৌশলে কীভাবে প্রথম সারির প্রকাশনা নিশ্চিত করা যায়। সম্পূর্ণ পড়ুন" [ref=f1e534] [cursor=pointer]':
+            - /url: /bn/insights/the-death-of-generic-press-releases
+            - generic [ref=f1e535]:
+              - generic [ref=f1e536]:
+                - 'img "গতানুগতিক প্রেস রিলিজের সমাপ্তি: আধুনিক নিউজ রুম কীভাবে সংবাদ নির্বাচন করে" [ref=f1e537]'
+                - generic [ref=f1e538]: গণমাধ্যম কৌশল
+              - generic [ref=f1e539]:
+                - generic [ref=f1e540]:
+                  - generic [ref=f1e544]: 5 min read
+                  - generic [ref=f1e545]: •
+                  - generic [ref=f1e546]: 2026-09-28
+                - 'heading "গতানুগতিক প্রেস রিলিজের সমাপ্তি: আধুনিক নিউজ রুম কীভাবে সংবাদ নির্বাচন করে" [level=3] [ref=f1e547]'
+                - paragraph [ref=f1e548]: কেন ৯০ শতাংশ করপোরেট প্রেস রিলিজ বাতিল হয়ে যায় এবং সম্পাদকীয় কৌশলে কীভাবে প্রথম সারির প্রকাশনা নিশ্চিত করা যায়।
+            - generic [ref=f1e549]: সম্পূর্ণ পড়ুন
+          - 'link "আইনি বাধ্যবাধকতার ঊর্ধ্বে ইএসজি: পরিবেশবান্ধব উদ্যোগকে করপোরেট সুনামে রূপান্তর সুনাম ব্যবস্থাপনা 6 min read • 2026-08-19 আইনি বাধ্যবাধকতার ঊর্ধ্বে ইএসজি: পরিবেশবান্ধব উদ্যোগকে করপোরেট সুনামে রূপান্তর কেন দায়সারা পরিবেশ সচেতনতা বিশ্বাসযোগ্যতা নষ্ট করে এবং কীভাবে তথ্যভিত্তিক টেকসই উদ্যোগ বৈশ্বিক গ্রহণযোগ্যতা বাড়ায়। সম্পূর্ণ পড়ুন" [ref=f1e553] [cursor=pointer]':
+            - /url: /bn/insights/esg-sustainability-reporting-bangladesh
+            - generic [ref=f1e554]:
+              - generic [ref=f1e555]:
+                - 'img "আইনি বাধ্যবাধকতার ঊর্ধ্বে ইএসজি: পরিবেশবান্ধব উদ্যোগকে করপোরেট সুনামে রূপান্তর" [ref=f1e556]'
+                - generic [ref=f1e557]: সুনাম ব্যবস্থাপনা
+              - generic [ref=f1e558]:
+                - generic [ref=f1e559]:
+                  - generic [ref=f1e563]: 6 min read
+                  - generic [ref=f1e564]: •
+                  - generic [ref=f1e565]: 2026-08-19
+                - 'heading "আইনি বাধ্যবাধকতার ঊর্ধ্বে ইএসজি: পরিবেশবান্ধব উদ্যোগকে করপোরেট সুনামে রূপান্তর" [level=3] [ref=f1e566]'
+                - paragraph [ref=f1e567]: কেন দায়সারা পরিবেশ সচেতনতা বিশ্বাসযোগ্যতা নষ্ট করে এবং কীভাবে তথ্যভিত্তিক টেকসই উদ্যোগ বৈশ্বিক গ্রহণযোগ্যতা বাড়ায়।
+            - generic [ref=f1e568]: সম্পূর্ণ পড়ুন
+  - contentinfo [ref=f1e573]:
+    - generic [ref=f1e575]:
+      - generic [ref=f1e576]:
+        - link [ref=f1e577] [cursor=pointer]:
+          - /url: /bn
+          - img "Berlo Communications" [ref=f1e578]
+        - paragraph [ref=f1e579]: কৌশলগত জনসংযোগ, প্রাতিষ্ঠানিক যোগাযোগ ও ব্র্যান্ড ন্যারেটিভ
+        - generic [ref=f1e580]:
+          - generic [ref=f1e581]: অ্যাপার্টমেন্ট - বি৩, হাউস - ৩২/৩৪, রোড - ০৭, ব্লক - সি, নিকেতন, গুলশান-১, ঢাকা, বাংলাদেশ
+          - generic [ref=f1e589]:
+            - link "+880 1711 268 479" [ref=f1e590] [cursor=pointer]:
+              - /url: tel:+880 1711 268 479
+            - link "+880 1812 336 789" [ref=f1e591] [cursor=pointer]:
+              - /url: tel:+880 1812 336 789
+          - generic [ref=f1e596]:
+            - link "contact@berlocommunications.com" [ref=f1e597] [cursor=pointer]:
+              - /url: mailto:contact@berlocommunications.com
+            - link "shatarupa@berlocommunications.com" [ref=f1e598] [cursor=pointer]:
+              - /url: mailto:shatarupa@berlocommunications.com
+      - generic [ref=f1e599]:
+        - heading "সংস্থা পরিচিতি" [level=4] [ref=f1e600]
+        - list [ref=f1e601]:
+          - listitem [ref=f1e602]:
+            - link "বার্লো সম্পর্কে" [ref=f1e603] [cursor=pointer]:
+              - /url: /bn/about
+          - listitem [ref=f1e604]:
+            - link "নেতৃত্ব" [ref=f1e605] [cursor=pointer]:
+              - /url: /bn/leadership
+          - listitem [ref=f1e606]:
+            - link "আমাদের টিম" [ref=f1e607] [cursor=pointer]:
+              - /url: /bn/team
+          - listitem [ref=f1e608]:
+            - link "ক্লায়েন্টসমূহ" [ref=f1e609] [cursor=pointer]:
+              - /url: /bn/clients
+      - generic [ref=f1e610]:
+        - heading "কৌশলগত সেবাসমূহ" [level=4] [ref=f1e611]
+        - list [ref=f1e612]:
+          - listitem [ref=f1e613]:
+            - link "কৌশলগত জনসংযোগ" [ref=f1e614] [cursor=pointer]:
+              - /url: /bn/services/strategic-pr
+          - listitem [ref=f1e615]:
+            - link "মিডিয়া সংযোগ" [ref=f1e616] [cursor=pointer]:
+              - /url: /bn/services/media-relations
+          - listitem [ref=f1e617]:
+            - link "সংকট ব্যবস্থাপনা" [ref=f1e618] [cursor=pointer]:
+              - /url: /bn/services/crisis-management
+          - listitem [ref=f1e619]:
+            - link "ইভেন্ট ও অ্যাক্টিভেশন" [ref=f1e620] [cursor=pointer]:
+              - /url: /bn/services/events-activations
+          - listitem [ref=f1e621]:
+            - link "ভিজ্যুয়াল স্টোরিটেলিং" [ref=f1e622] [cursor=pointer]:
+              - /url: /bn/services/content-storytelling
+      - generic [ref=f1e623]:
+        - heading "এক্সিকিউটিভ পিআর ব্রিফিং সাবস্ক্রাইব করুন" [level=4] [ref=f1e624]
+        - paragraph [ref=f1e625]: মাসিক কৌশলগত অন্তর্দৃষ্টি, মিডিয়া ট্রেন্ড এবং করপোরেট যোগাযোগ বিশ্লেষণ।
+        - generic [ref=f1e627]:
+          - textbox "আপনার করপোরেট ইমেইল লিখুন" [ref=f1e628]
+          - button "Subscribe" [ref=f1e629]
+        - generic [ref=f1e632]:
+          - generic [ref=f1e633]: "স্বীকৃত সংস্থা ও সদস্যপদ:"
+          - generic [ref=f1e634]:
+            - generic [ref=f1e635]: BASIS
+            - generic [ref=f1e636]: BAPRO
+            - generic [ref=f1e637]: PRCA Member
+            - generic [ref=f1e638]: e-CAB
+    - generic [ref=f1e640]:
+      - generic [ref=f1e641]:
+        - generic [ref=f1e642]: © 2026 Berlo Communications Ltd.. সর্বস্বত্ব সংরক্ষিত।
+        - generic [ref=f1e643]: •
+        - generic [ref=f1e644]: স্থাপিত ২০১৮ | ঢাকা, বাংলাদেশ
+      - generic [ref=f1e645]:
+        - link "গোপনীয়তা নীতি" [ref=f1e646] [cursor=pointer]:
+          - /url: /bn/privacy
+        - link "ব্যবহারের শর্তাবলি" [ref=f1e647] [cursor=pointer]:
+          - /url: /bn/terms
