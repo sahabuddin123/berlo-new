@@ -84,6 +84,12 @@ const defaultMarqueeLogos = [
   { name: 'Export Promotion Bureau', logo: '/images/berlo/clients/epbb.jpg' },
 ];
 
+const defaultVideoTestimonials = [
+  { id: 1, title: 'Enterprise Reputation & Brand Scaling', subtitle: 'Strategic PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-1.jpg', youtubeId: 'FHnfg223H60' },
+  { id: 2, title: 'Nationwide Media Reach & Expansion', subtitle: 'Media Access', thumbnail: '/images/berlo/testimonials/stock-testimonial-2.jpg', youtubeId: 'OTClukQmiEw' },
+  { id: 3, title: 'Enduring Enterprise Trust & Crisis Shield', subtitle: 'Crisis PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-3.jpg', youtubeId: 'osL5z5nCE8M' },
+];
+
 export const AdminPagesManagerPage: React.FC = () => {
   const [selectedPage, setSelectedPage] = useState<string>('home');
   const [sections, setSections] = useState<PageSection[]>([]);
@@ -2269,83 +2275,241 @@ export const AdminPagesManagerPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* 3 Video Cards */}
-                  <div className="p-4 rounded-xl bg-[#141826] border border-[#232b3e] space-y-4">
-                    <span className="text-xs font-bold text-white flex items-center gap-2">
-                      <Film className="w-4 h-4 text-rose-400" />
-                      3 Client Video Reviews (16:9 Thumbnail Cards with YouTube Modals)
-                    </span>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                      {[0, 1, 2].map((vIdx) => {
-                        const vList = currentSection.metadata?.video_testimonials || [
-                          { id: 1, title: 'Enterprise Reputation & Brand Scaling', subtitle: 'Strategic PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-1.jpg', youtubeId: 'FHnfg223H60' },
-                          { id: 2, title: 'Nationwide Media Reach & Expansion', subtitle: 'Media Access', thumbnail: '/images/berlo/testimonials/stock-testimonial-2.jpg', youtubeId: 'OTClukQmiEw' },
-                          { id: 3, title: 'Enduring Enterprise Trust & Crisis Shield', subtitle: 'Crisis PR', thumbnail: '/images/berlo/testimonials/stock-testimonial-3.jpg', youtubeId: 'osL5z5nCE8M' },
-                        ];
-                        const item = vList[vIdx] || { title: '', subtitle: '', thumbnail: '', youtubeId: '' };
-                        return (
-                          <div key={vIdx} className="p-3.5 rounded-xl bg-[#0f121d] border border-[#212738] space-y-2.5">
-                            <span className="text-[11px] font-bold text-rose-300 block">Video Review #{vIdx + 1}</span>
-                            <div>
-                              <span className="text-[10px] text-slate-400">Card Title:</span>
-                              <input
-                                type="text"
-                                value={item.title || ''}
-                                onChange={(e) => {
-                                  const next = [...vList];
-                                  next[vIdx] = { ...next[vIdx], title: e.target.value };
-                                  updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
-                                }}
-                                className="w-full px-2.5 py-1.5 rounded-lg bg-[#141826] border border-[#232b3e] text-white text-xs mt-1"
-                              />
+                  {/* Client Video Reviews Carousel (User Requested Multiple Support) */}
+                  {(() => {
+                    const vList: Array<{ id?: any; title: string; subtitle?: string; thumbnail: string; youtubeId: string }> =
+                      currentSection.metadata?.video_testimonials || defaultVideoTestimonials;
+
+                    const updateReviews = (newList: Array<{ id?: any; title: string; subtitle?: string; thumbnail: string; youtubeId: string }>) => {
+                      updateCurrentSectionMetadata((m) => ({
+                        ...m,
+                        video_testimonials: newList,
+                      }));
+                    };
+
+                    const addVideoReview = () => {
+                      const next = [
+                        ...vList,
+                        {
+                          id: Date.now(),
+                          title: 'Corporate Leadership & Brand Trust',
+                          subtitle: 'Client Review',
+                          thumbnail: '/images/berlo/testimonials/stock-testimonial-1.jpg',
+                          youtubeId: 'FHnfg223H60',
+                        },
+                      ];
+                      updateReviews(next);
+                    };
+
+                    const removeVideoReview = (idx: number) => {
+                      const next = vList.filter((_, i) => i !== idx);
+                      updateReviews(next);
+                    };
+
+                    const updateVideoField = (idx: number, field: string, val: string) => {
+                      const next = [...vList];
+                      let cleanVal = val;
+                      if (field === 'youtubeId') {
+                        const match = val.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+                        cleanVal = match ? match[1] : val.trim();
+                      }
+                      next[idx] = { ...next[idx], [field]: cleanVal };
+                      updateReviews(next);
+                    };
+
+                    const moveVideoReview = (idx: number, dir: 'up' | 'down') => {
+                      if (dir === 'up' && idx > 0) {
+                        const next = [...vList];
+                        const tmp = next[idx - 1];
+                        next[idx - 1] = next[idx];
+                        next[idx] = tmp;
+                        updateReviews(next);
+                      } else if (dir === 'down' && idx < vList.length - 1) {
+                        const next = [...vList];
+                        const tmp = next[idx + 1];
+                        next[idx + 1] = next[idx];
+                        next[idx] = tmp;
+                        updateReviews(next);
+                      }
+                    };
+
+                    const resetToDefaults = () => {
+                      updateReviews(defaultVideoTestimonials);
+                    };
+
+                    return (
+                      <div className="p-5 rounded-2xl bg-[#0d101a] border border-[#20273c] space-y-4 shadow-xl">
+                        {/* Header Row */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1b2234]">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <Film className="w-4 h-4 text-rose-400" />
+                              <span className="text-sm font-bold text-white tracking-wide">
+                                Client Video Reviews (Carousel Slider)
+                              </span>
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                                {vList.length} Video Reviews in Carousel
+                              </span>
                             </div>
-                            <div>
-                              <span className="text-[10px] text-slate-400">YouTube Video ID:</span>
-                              <input
-                                type="text"
-                                value={item.youtubeId || item.youtube_id || ''}
-                                onChange={(e) => {
-                                  const next = [...vList];
-                                  next[vIdx] = { ...next[vIdx], youtubeId: e.target.value };
-                                  updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
-                                }}
-                                placeholder="FHnfg223H60"
-                                className="w-full px-2.5 py-1.5 rounded-lg bg-[#141826] border border-[#232b3e] text-white font-mono text-xs mt-1"
-                              />
-                            </div>
-                            <div>
-                              <span className="text-[10px] text-slate-400">Thumbnail Image:</span>
-                              <div className="flex gap-1.5 mt-1">
-                                <input
-                                  type="text"
-                                  value={item.thumbnail || ''}
-                                  onChange={(e) => {
-                                    const next = [...vList];
-                                    next[vIdx] = { ...next[vIdx], thumbnail: e.target.value };
-                                    updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
+                            <p className="text-[11px] text-slate-400 mt-1">
+                              হোমপেজের ভিডিও টেস্টিমোনিয়াল ক্যারোসেলে যতখুশি ভিডিও রিভিউ যোগ করুন। কার্ডের YouTube আইডি ও থাম্বনেইল এখান থেকে সহজেই কন্ট্রোল করা যায়।
+                            </p>
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={addVideoReview}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white text-xs font-bold shadow-md shadow-rose-950/40 transition-all cursor-pointer"
+                            >
+                              <Plus className="w-3.5 h-3.5" />
+                              <span>Add Video Review</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={resetToDefaults}
+                              className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10 text-xs transition-colors cursor-pointer"
+                              title="Reset to 3 default video reviews"
+                            >
+                              Reset Default 3
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Editable Grid of Video Reviews */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {vList.map((item, vIdx) => (
+                            <div
+                              key={vIdx}
+                              className="p-4 rounded-xl bg-[#141826] border border-[#212738] hover:border-rose-500/50 transition-all space-y-3 shadow-md group relative"
+                            >
+                              {/* Card Header with Sequence & Reorder */}
+                              <div className="flex items-center justify-between pb-2 border-b border-[#1b2234]">
+                                <span className="text-[11px] font-bold text-rose-300 flex items-center gap-1.5">
+                                  <span className="w-4 h-4 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-300 text-[9px] font-mono flex items-center justify-center">
+                                    {vIdx + 1}
+                                  </span>
+                                  <span>Video Review #{vIdx + 1}</span>
+                                </span>
+
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    type="button"
+                                    disabled={vIdx === 0}
+                                    onClick={() => moveVideoReview(vIdx, 'up')}
+                                    className="p-1 rounded bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white disabled:opacity-20 cursor-pointer"
+                                    title="Move earlier in carousel"
+                                  >
+                                    <ArrowUp className="w-3 h-3" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    disabled={vIdx === vList.length - 1}
+                                    onClick={() => moveVideoReview(vIdx, 'down')}
+                                    className="p-1 rounded bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white disabled:opacity-20 cursor-pointer"
+                                    title="Move later in carousel"
+                                  >
+                                    <ArrowDown className="w-3 h-3" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeVideoReview(vIdx)}
+                                    className="p-1 rounded bg-rose-500/10 hover:bg-rose-500/25 text-rose-400 hover:text-rose-300 transition-colors ml-1 cursor-pointer"
+                                    title="Delete video review"
+                                  >
+                                    <Trash2 className="w-3 h-3" />
+                                  </button>
+                                </div>
+                              </div>
+
+                              {/* 16:9 Thumbnail Preview */}
+                              <div className="relative aspect-video rounded-lg overflow-hidden bg-black border border-[#232b3e]">
+                                <img
+                                  src={item.thumbnail}
+                                  alt={item.title}
+                                  className="w-full h-full object-cover"
+                                  onError={(e: any) => {
+                                    e.target.src = '/images/berlo/testimonials/stock-testimonial-1.jpg';
                                   }}
-                                  className="flex-1 px-2 py-1 rounded bg-[#141826] border border-[#232b3e] text-white text-[11px] font-mono"
                                 />
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    openMediaPicker((url) => {
-                                      const next = [...vList];
-                                      next[vIdx] = { ...next[vIdx], thumbnail: url };
-                                      updateCurrentSectionMetadata((m) => ({ ...m, video_testimonials: next }));
-                                    })
-                                  }
-                                  className="p-1 rounded bg-white/10 text-white"
-                                >
-                                  <FolderOpen className="w-3 h-3" />
-                                </button>
+                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                  <div className="w-8 h-6 rounded-md bg-[#F61C0D] flex items-center justify-center shadow">
+                                    <svg className="w-3 h-3 text-white fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                      <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                  </div>
+                                </div>
+                                <span className="absolute bottom-1 right-1.5 px-1.5 py-0.5 rounded bg-black/70 text-[9px] font-mono text-slate-300">
+                                  {item.youtubeId || 'No ID'}
+                                </span>
+                              </div>
+
+                              {/* Form Fields */}
+                              <div className="space-y-2 text-xs">
+                                <div>
+                                  <span className="text-[10px] text-slate-400 font-semibold">Card Title / Client Name:</span>
+                                  <input
+                                    type="text"
+                                    value={item.title || ''}
+                                    onChange={(e) => updateVideoField(vIdx, 'title', e.target.value)}
+                                    placeholder="e.g. Enterprise Reputation & Brand Scaling"
+                                    className="w-full px-2.5 py-1.5 rounded-lg bg-[#0e121d] border border-[#232b3e] text-white text-xs mt-0.5"
+                                  />
+                                </div>
+
+                                <div>
+                                  <span className="text-[10px] text-slate-400 font-semibold">Category / Subtitle:</span>
+                                  <input
+                                    type="text"
+                                    value={item.subtitle || ''}
+                                    onChange={(e) => updateVideoField(vIdx, 'subtitle', e.target.value)}
+                                    placeholder="e.g. Strategic PR / Crisis Management"
+                                    className="w-full px-2.5 py-1.5 rounded-lg bg-[#0e121d] border border-[#232b3e] text-white text-xs mt-0.5"
+                                  />
+                                </div>
+
+                                <div>
+                                  <span className="text-[10px] text-slate-400 font-semibold">YouTube Video ID (or URL):</span>
+                                  <input
+                                    type="text"
+                                    value={item.youtubeId || (item as any).youtube_id || ''}
+                                    onChange={(e) => updateVideoField(vIdx, 'youtubeId', e.target.value)}
+                                    placeholder="FHnfg223H60 or https://youtu.be/..."
+                                    className="w-full px-2.5 py-1.5 rounded-lg bg-[#0e121d] border border-[#232b3e] text-white font-mono text-xs mt-0.5"
+                                  />
+                                </div>
+
+                                <div>
+                                  <span className="text-[10px] text-slate-400 font-semibold">Thumbnail Image URL:</span>
+                                  <div className="flex gap-1.5 mt-0.5">
+                                    <input
+                                      type="text"
+                                      value={item.thumbnail || ''}
+                                      onChange={(e) => updateVideoField(vIdx, 'thumbnail', e.target.value)}
+                                      placeholder="/images/berlo/testimonials/..."
+                                      className="flex-1 px-2.5 py-1.5 rounded-lg bg-[#0e121d] border border-[#232b3e] text-white text-[11px] font-mono"
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() =>
+                                        openMediaPicker((url) => {
+                                          updateVideoField(vIdx, 'thumbnail', url);
+                                        })
+                                      }
+                                      className="px-2 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold flex items-center gap-1 cursor-pointer"
+                                      title="Select from Media Library"
+                                    >
+                                      <FolderOpen className="w-3.5 h-3.5" />
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               ) : currentSection.section_key === 'case_studies_header' ? (
                 /* ================================================================= */

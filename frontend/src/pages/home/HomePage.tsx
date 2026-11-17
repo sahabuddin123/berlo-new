@@ -158,6 +158,23 @@ export const HomePage: React.FC = () => {
   const [activeProjectFilter, setActiveProjectFilter] = useState<'all' | 'trade' | 'events' | 'crisis' | 'speaker'>('all');
   const [activeTeamFilter, setActiveTeamFilter] = useState<'all' | 'planning' | 'media' | 'events' | 'creative'>('all');
 
+  // Testimonial Carousel Ref & Controls
+  const testimonialCarouselRef = useRef<HTMLDivElement>(null);
+  const scrollPrevTestimonial = () => {
+    if (testimonialCarouselRef.current) {
+      const el = testimonialCarouselRef.current;
+      const cardWidth = el.clientWidth / (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1);
+      el.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
+  };
+  const scrollNextTestimonial = () => {
+    if (testimonialCarouselRef.current) {
+      const el = testimonialCarouselRef.current;
+      const cardWidth = el.clientWidth / (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1);
+      el.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+  };
+
   // Background Video Mouse Follow State matching IMBD reference
   const [videoMousePos, setVideoMousePos] = useState({ x: 0, y: 0 });
   const [isVideoHovered, setIsVideoHovered] = useState(false);
@@ -2014,7 +2031,7 @@ export const HomePage: React.FC = () => {
       <section className="py-16 lg:py-20 bg-white dark:bg-[#000000] text-slate-900 dark:text-white border-b border-slate-200 dark:border-[#1F1F1F] transition-colors duration-200">
         <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           
-          {/* Header Row: Clients Says + VIEW ALL button on right */}
+          {/* Header Row: Clients Says + Carousel Navigation & VIEW ALL button on right */}
           <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 text-center sm:text-left">
             <div>
               <h2 className="section-main-title text-slate-900 dark:text-white text-center sm:text-left">
@@ -2031,21 +2048,47 @@ export const HomePage: React.FC = () => {
                 </p>
               )}
             </div>
-            <Link
-              to={formatRoute('clients')}
-              className="px-5 py-2 border border-[#A302FF] text-[#A302FF] dark:text-white hover:bg-[#A302FF] hover:text-white text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-none self-center sm:self-auto"
-            >
-              <span>{lang === 'bn' ? 'সবগুলো দেখুন' : 'VIEW ALL'}</span>
-            </Link>
+
+            <div className="flex items-center gap-3">
+              {/* Carousel Navigation Arrows */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={scrollPrevTestimonial}
+                  aria-label="Previous testimonials"
+                  className="w-9 h-9 sm:w-10 sm:h-10 border border-slate-300 dark:border-[#2b2b2b] hover:border-[#A302FF] hover:bg-[#A302FF] text-slate-700 dark:text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95"
+                >
+                  <FaChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={scrollNextTestimonial}
+                  aria-label="Next testimonials"
+                  className="w-9 h-9 sm:w-10 sm:h-10 border border-slate-300 dark:border-[#2b2b2b] hover:border-[#A302FF] hover:bg-[#A302FF] text-slate-700 dark:text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95"
+                >
+                  <FaChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              <Link
+                to={formatRoute('clients')}
+                className="px-5 py-2.5 border border-[#A302FF] text-[#A302FF] dark:text-white hover:bg-[#A302FF] hover:text-white text-xs font-semibold tracking-widest uppercase transition-all duration-300 rounded-none self-center sm:self-auto"
+              >
+                <span>{lang === 'bn' ? 'সবগুলো দেখুন' : 'VIEW ALL'}</span>
+              </Link>
+            </div>
           </div>
 
-          {/* 3 Video Cards matching exact 16:9 thumbnail + play button */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {activeVideoTestimonials.map((item: any) => (
+          {/* Interactive Responsive Carousel Container (Smooth Horizontal Snap Scroll) */}
+          <div
+            ref={testimonialCarouselRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory py-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+          >
+            {activeVideoTestimonials.map((item: any, idx: number) => (
               <div
-                key={item.id}
+                key={item.id || idx}
                 onClick={() => setActiveVideoId(item.youtubeId || item.youtube_id || 'FHnfg223H60')}
-                className="group relative aspect-video bg-slate-900 dark:bg-[#0A0A0A] border border-slate-200 dark:border-[#222222] hover:border-[#A302FF] overflow-hidden cursor-pointer shadow-lg dark:shadow-xl transition-all duration-300"
+                className="snap-start shrink-0 w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group relative aspect-video bg-slate-900 dark:bg-[#0A0A0A] border border-slate-200 dark:border-[#222222] hover:border-[#A302FF] overflow-hidden cursor-pointer shadow-lg dark:shadow-xl transition-all duration-300"
               >
                 {/* Thumbnail Image: Grayscale 100% to Color on hover */}
                 <img
@@ -2053,11 +2096,21 @@ export const HomePage: React.FC = () => {
                   alt={item.title}
                   loading="lazy"
                   decoding="async"
+                  onError={(e: any) => {
+                    e.target.src = '/images/berlo/testimonials/stock-testimonial-1.jpg';
+                  }}
                   className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
 
                 {/* Subtle dark gradient overlay */}
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors duration-300" />
+
+                {/* Subtitle / Category Badge in Top Left */}
+                {item.subtitle && (
+                  <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/70 backdrop-blur-sm border border-white/10 text-[10px] font-bold uppercase tracking-wider text-purple-300 z-10">
+                    {item.subtitle}
+                  </div>
+                )}
 
                 {/* Authentic Red YouTube / Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
