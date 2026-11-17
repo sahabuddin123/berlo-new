@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { projectsData } from '../../data/projectsData';
+import { projectsData, CaseStudy } from '../../data/projectsData';
+import { getPublicProjects } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import { Award } from 'lucide-react';
 import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
@@ -9,6 +10,19 @@ import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
 export const WorkListingPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [projects, setProjects] = useState<CaseStudy[]>(projectsData);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicProjects().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setProjects(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const categories = [
     { key: 'all', en: 'All Case Studies', bn: 'সকল কেস স্টাডি' },
@@ -30,8 +44,8 @@ export const WorkListingPage: React.FC = () => {
 
   const filteredProjects =
     selectedCategory === 'all'
-      ? projectsData
-      : projectsData.filter((p) => p.category === selectedCategory);
+      ? projects
+      : projects.filter((p) => p.category === selectedCategory);
 
   const featured = filteredProjects.find((p) => p.featured) || filteredProjects[0];
   const gridProjects = filteredProjects.filter((p) => p.id !== featured?.id);

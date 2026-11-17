@@ -41,6 +41,8 @@ const AdminSettingsPage = lazy(() => import('../pages/admin/AdminSettingsPage').
 const AdminMediaLibraryPage = lazy(() => import('../pages/admin/AdminMediaLibraryPage').then((m) => ({ default: m.AdminMediaLibraryPage })));
 const AdminMenuPage = lazy(() => import('../pages/admin/AdminMenuPage').then((m) => ({ default: m.AdminMenuPage })));
 const AdminPagesManagerPage = lazy(() => import('../pages/admin/AdminPagesManagerPage').then((m) => ({ default: m.AdminPagesManagerPage })));
+const AdminTeamPage = lazy(() => import('../pages/admin/AdminTeamPage').then((m) => ({ default: m.AdminTeamPage })));
+const AdminClientsPage = lazy(() => import('../pages/admin/AdminClientsPage').then((m) => ({ default: m.AdminClientsPage })));
 
 export const router = createBrowserRouter([
   // Root URL redirects to default language /en
@@ -94,7 +96,8 @@ export const router = createBrowserRouter([
       { path: 'media', element: <AdminMediaLibraryPage /> },
       { path: 'menus', element: <AdminMenuPage /> },
       { path: 'pages', element: <AdminPagesManagerPage /> },
-      { path: 'team', element: <AdminDashboardPage /> },
+      { path: 'team', element: <AdminTeamPage /> },
+      { path: 'clients', element: <AdminClientsPage /> },
       { path: 'users', element: <AdminUsersPage /> },
       { path: 'settings', element: <AdminSettingsPage /> },
       { path: '*', element: <Navigate to="/admin/dashboard" replace /> },

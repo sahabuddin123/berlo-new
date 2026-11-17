@@ -311,6 +311,13 @@ export const adminApi = {
     return await apiRequest('/admin/services');
   },
 
+  async createService(payload: any): Promise<any> {
+    return await apiRequest('/admin/services', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
   async updateService(id: number, payload: any): Promise<any> {
     return await apiRequest(`/admin/services/${id}`, {
       method: 'PUT',
@@ -318,19 +325,141 @@ export const adminApi = {
     });
   },
 
-  // Projects
+  async deleteService(id: number): Promise<any> {
+    return await apiRequest(`/admin/services/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  // Projects / Case Studies
   async getProjects(): Promise<any> {
     return await apiRequest('/admin/projects');
   },
 
-  // Insights
+  async createProject(payload: any): Promise<any> {
+    return await apiRequest('/admin/projects', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async updateProject(id: number, payload: any): Promise<any> {
+    return await apiRequest(`/admin/projects/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteProject(id: number): Promise<any> {
+    return await apiRequest(`/admin/projects/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  // Insights / Articles
   async getInsights(): Promise<any> {
     return await apiRequest('/admin/insights');
+  },
+
+  async createInsight(payload: any): Promise<any> {
+    return await apiRequest('/admin/insights', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async updateInsight(id: number, payload: any): Promise<any> {
+    return await apiRequest(`/admin/insights/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteInsight(id: number): Promise<any> {
+    return await apiRequest(`/admin/insights/${id}`, {
+      method: 'DELETE',
+    });
   },
 
   // Gallery
   async getGallery(): Promise<any> {
     return await apiRequest('/admin/gallery');
+  },
+
+  async createPhoto(payload: any): Promise<any> {
+    return await apiRequest('/admin/gallery/photos', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deletePhoto(id: number): Promise<any> {
+    return await apiRequest(`/admin/gallery/photos/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  async createVideo(payload: any): Promise<any> {
+    return await apiRequest('/admin/gallery/videos', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteVideo(id: number): Promise<any> {
+    return await apiRequest(`/admin/gallery/videos/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  // Team
+  async getTeam(): Promise<any> {
+    return await apiRequest('/admin/team');
+  },
+
+  async createTeamMember(payload: any): Promise<any> {
+    return await apiRequest('/admin/team', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async updateTeamMember(id: number, payload: any): Promise<any> {
+    return await apiRequest(`/admin/team/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteTeamMember(id: number): Promise<any> {
+    return await apiRequest(`/admin/team/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  // Clients
+  async getClients(): Promise<any> {
+    return await apiRequest('/admin/clients');
+  },
+
+  async createClient(payload: any): Promise<any> {
+    return await apiRequest('/admin/clients', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async updateClient(id: number, payload: any): Promise<any> {
+    return await apiRequest(`/admin/clients/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  async deleteClient(id: number): Promise<any> {
+    return await apiRequest(`/admin/clients/${id}`, {
+      method: 'DELETE',
+    });
   },
 
   // Settings

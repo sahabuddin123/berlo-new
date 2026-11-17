@@ -28,6 +28,7 @@ import {
   HardDrive,
   Compass,
   Layers,
+  Handshake,
 } from 'lucide-react';
 
 interface NavItem {
@@ -155,6 +156,12 @@ export const AdminLayout: React.FC = () => {
           path: '/admin/team',
           icon: Users2,
           allowed: hasAnyRole(['superadmin', 'admin']),
+        },
+        {
+          name: 'Clients & Partners',
+          path: '/admin/clients',
+          icon: Handshake,
+          allowed: hasAnyRole(['superadmin', 'admin', 'content_writer']),
         },
       ],
     },

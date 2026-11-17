@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Seo } from '../../components/common/Seo';
+import { getPublicServices } from '../../services/publicApi';
+import { ServiceItem } from '../../data/servicesData';
 import {
   FaBullhorn,
   FaShieldAlt,
@@ -19,6 +21,45 @@ import { Award, CheckCircle2, HelpCircle } from 'lucide-react';
 
 export const ServicesOverviewPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
+  const [dynamicServices, setDynamicServices] = useState<ServiceItem[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicServices().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setDynamicServices(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const getServiceIcon = (name?: string) => {
+    switch (name?.toLowerCase()) {
+      case 'shieldcheck':
+      case 'shield':
+        return FaShieldAlt;
+      case 'building':
+        return FaBuilding;
+      case 'globe':
+        return FaGlobeAmericas;
+      case 'mic':
+      case 'microphone':
+        return FaMicrophoneAlt;
+      case 'hashtag':
+        return FaHashtag;
+      case 'newspaper':
+        return FaNewspaper;
+      case 'chart':
+      case 'chartline':
+        return FaChartLine;
+      case 'handshake':
+        return FaHandshake;
+      default:
+        return FaBullhorn;
+    }
+  };
 
   const servicesList = [
     {
@@ -192,7 +233,18 @@ export const ServicesOverviewPage: React.FC = () => {
       {/* ========================================================================= */}
       <section className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {servicesList.map((service) => {
+          {(dynamicServices.length > 0
+            ? dynamicServices.map((s, idx) => ({
+                id: s.slug || s.id,
+                link: `/services/${s.slug}`,
+                icon: getServiceIcon(s.iconName),
+                isTopLeft: idx === 0,
+                isBottomLeft: idx === dynamicServices.length - 3,
+                title: s.title[lang] || s.title.en,
+                desc: s.shortDesc[lang] || s.shortDesc.en,
+              }))
+            : servicesList
+          ).map((service) => {
             const Icon = service.icon;
             return (
               <div

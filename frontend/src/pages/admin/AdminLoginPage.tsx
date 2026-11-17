@@ -73,38 +73,39 @@ export const AdminLoginPage: React.FC = () => {
         <div className="absolute -bottom-10 left-[15%] w-[420px] h-[400px] rounded-full bg-[#701a75]/35 blur-[120px]" />
       </div>
 
-      <div className="w-full max-w-[400px] relative z-10 space-y-6">
+      <div className="w-full max-w-[390px] relative z-10 space-y-5">
         {/* Sleek Frosted Glassmorphism Card */}
-        <div className="relative rounded-[44px] px-8 sm:px-10 pt-12 pb-11 bg-white/[0.08] border border-white/[0.18] shadow-[0_30px_90px_rgba(0,0,0,0.65)] backdrop-blur-2xl overflow-hidden">
+        <div className="relative rounded-[38px] px-8 sm:px-10 pt-10 pb-9 bg-white/[0.08] border border-white/[0.18] shadow-[0_25px_80px_rgba(0,0,0,0.65)] backdrop-blur-2xl overflow-hidden">
           {/* Subtle top edge specular highlight */}
           <div className="absolute inset-x-12 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
 
           {/* Frosted Avatar Icon */}
-          <div className="flex justify-center mb-11">
-            <div className="w-32 h-32 rounded-full bg-white/[0.12] border border-white/[0.22] shadow-[inset_0_2px_14px_rgba(255,255,255,0.18)] backdrop-blur-md flex items-center justify-center p-5">
+          <div className="flex justify-center mb-10">
+            <div className="w-28 h-28 rounded-full bg-white/[0.10] border border-white/[0.18] shadow-[inset_0_2px_12px_rgba(255,255,255,0.15)] backdrop-blur-md flex items-end justify-center overflow-hidden">
               {/* Reference silhouette head and shoulders */}
               <svg
-                viewBox="0 0 24 24"
-                className="w-20 h-20 fill-white/40 drop-shadow-sm"
+                viewBox="0 0 100 100"
+                className="w-24 h-24 fill-white/40 translate-y-1"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M12 12c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm0 2.5c-3.4 0-10.2 1.7-10.2 5.1V22h20.4v-2.4c0-3.4-6.8-5.1-10.2-5.1z" />
+                <circle cx="50" cy="38" r="18" />
+                <path d="M50 62 C34 62 20 72 17 87 C26 95 37 100 50 100 C63 100 74 95 83 87 C80 72 66 62 50 62 Z" />
               </svg>
             </div>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-3 rounded-2xl bg-rose-500/15 border border-rose-400/30 text-rose-200 text-xs flex items-start gap-2.5 backdrop-blur-md animate-in fade-in">
+            <div className="mb-5 p-3 rounded-2xl bg-rose-500/15 border border-rose-400/30 text-rose-200 text-xs flex items-start gap-2.5 backdrop-blur-md animate-in fade-in">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-400" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Login Form with Underline-Only Inputs */}
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-7">
             {/* Email Field */}
-            <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2.5">
+            <div className="relative border-b border-white/30 focus-within:border-white transition-colors duration-200 pb-2">
               <div className="flex items-center gap-3.5">
                 <Mail className="w-4 h-4 text-white/80 shrink-0 stroke-[1.8]" />
                 <input
@@ -119,7 +120,7 @@ export const AdminLoginPage: React.FC = () => {
             </div>
 
             {/* Password Field */}
-            <div className="relative border-b border-white/35 focus-within:border-white transition-colors duration-200 pb-2.5">
+            <div className="relative border-b border-white/30 focus-within:border-white transition-colors duration-200 pb-2">
               <div className="flex items-center gap-3.5">
                 <Lock className="w-4 h-4 text-white/80 shrink-0 stroke-[1.8]" />
                 <input
@@ -149,7 +150,7 @@ export const AdminLoginPage: React.FC = () => {
                 className="flex items-center gap-2 cursor-pointer group select-none"
               >
                 <div
-                  className={`w-4 h-4 rounded-[3px] border flex items-center justify-center transition-all ${
+                  className={`w-3.5 h-3.5 rounded-[3px] border flex items-center justify-center transition-all ${
                     rememberMe
                       ? 'bg-black/60 border-white/60 text-white'
                       : 'bg-black/20 border-white/40 text-transparent'
@@ -157,25 +158,25 @@ export const AdminLoginPage: React.FC = () => {
                 >
                   <Check className="w-3 h-3 stroke-[3]" />
                 </div>
-                <span className="text-white/85 group-hover:text-white font-light text-[13px] tracking-tight">
+                <span className="text-white/80 group-hover:text-white font-light text-[12px] tracking-tight">
                   Remember me
                 </span>
               </label>
 
               <Link
                 to="/admin/forgot-password"
-                className="italic text-white/70 hover:text-white text-[13px] font-light transition-colors"
+                className="italic text-white/65 hover:text-white text-[12px] font-light transition-colors"
               >
                 Forgot Password?
               </Link>
             </div>
 
             {/* Rounded Capsule Gradient Button */}
-            <div className="pt-3">
+            <div className="pt-2">
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#240a34] via-[#351859] to-[#3d5bbd] hover:from-[#2e0e42] hover:via-[#421e70] hover:to-[#486bd9] text-white font-bold text-xs uppercase tracking-[0.25em] shadow-[0_12px_28px_rgba(40,20,70,0.5)] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center border border-white/10"
+                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#20092c] via-[#2f1b4a] to-[#304177] hover:from-[#290d38] hover:via-[#39225b] hover:to-[#3b5195] text-white font-semibold text-xs uppercase tracking-[0.2em] shadow-[0_10px_25px_rgba(20,10,40,0.5)] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center border border-white/10"
               >
                 {isLoading ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

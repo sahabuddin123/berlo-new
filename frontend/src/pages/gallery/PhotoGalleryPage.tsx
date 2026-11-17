@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Seo } from '../../components/common/Seo';
 import { photoCategories, photoGalleryItems, PhotoItem } from '../../data/galleryData';
+import { getPublicPhotos } from '../../services/publicApi';
 import {
   Camera,
   MapPin,
@@ -24,10 +25,24 @@ export const PhotoGalleryPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
 
+  const [photos, setPhotos] = useState<PhotoItem[]>(photoGalleryItems);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicPhotos().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setPhotos(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const filteredPhotos =
     activeCategory === 'all'
-      ? photoGalleryItems
-      : photoGalleryItems.filter((item) => item.categoryKey === activeCategory);
+      ? photos
+      : photos.filter((item) => item.categoryKey === activeCategory);
 
   const currentIndex = selectedPhoto
     ? filteredPhotos.findIndex((p) => p.id === selectedPhoto.id)

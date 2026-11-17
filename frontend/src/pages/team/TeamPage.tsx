@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { teamData } from '../../data/teamData';
+import { teamData, TeamMember } from '../../data/teamData';
+import { getPublicTeam } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import { Award } from 'lucide-react';
 import { FaArrowRight, FaChevronRight, FaEnvelope } from 'react-icons/fa';
@@ -9,6 +10,19 @@ import { FaArrowRight, FaChevronRight, FaEnvelope } from 'react-icons/fa';
 export const TeamPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
   const [activeDepartment, setActiveDepartment] = useState<string>('all');
+  const [team, setTeam] = useState<TeamMember[]>(teamData);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicTeam().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setTeam(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const memberImages: Record<string, string> = {
     'shakhawat-ullah': '/images/berlo/media_1794919816651_536d2857.jpg',
@@ -27,7 +41,7 @@ export const TeamPage: React.FC = () => {
     { key: 'creative', en: 'Creative & Visual Art', bn: 'ভিজ্যুয়াল ক্রিয়েটিভ' },
   ];
 
-  const filteredTeam = teamData.filter(
+  const filteredTeam = team.filter(
     (m) => activeDepartment === 'all' || m.department === activeDepartment
   );
 

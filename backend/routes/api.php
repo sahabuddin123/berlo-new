@@ -126,6 +126,22 @@ Route::prefix('v1')->group(function () {
             Route::delete('/gallery/videos/{id}', [AdminContentController::class, 'deleteVideo']);
         });
 
+        // --- Team Management ---
+        Route::get('/team', [AdminContentController::class, 'getTeam']);
+        Route::middleware('role:superadmin,admin,content_writer')->group(function () {
+            Route::post('/team', [AdminContentController::class, 'storeTeam']);
+            Route::put('/team/{id}', [AdminContentController::class, 'updateTeam']);
+        });
+        Route::delete('/team/{id}', [AdminContentController::class, 'deleteTeam'])->middleware('role:superadmin,admin');
+
+        // --- Clients Management ---
+        Route::get('/clients', [AdminContentController::class, 'getClients']);
+        Route::middleware('role:superadmin,admin,content_writer')->group(function () {
+            Route::post('/clients', [AdminContentController::class, 'storeClient']);
+            Route::put('/clients/{id}', [AdminContentController::class, 'updateClient']);
+        });
+        Route::delete('/clients/{id}', [AdminContentController::class, 'deleteClient'])->middleware('role:superadmin,admin');
+
         // --- Media Library (Upload, Browse, Delete) ---
         Route::get('/media-assets', [MediaController::class, 'index']);
         Route::post('/media-assets/upload', [MediaController::class, 'upload'])->middleware('role:superadmin,admin,content_writer');

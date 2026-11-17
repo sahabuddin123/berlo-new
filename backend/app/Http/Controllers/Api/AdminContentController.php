@@ -98,8 +98,8 @@ class AdminContentController extends Controller
             'slug' => ['required', 'string', 'unique:services,slug'],
             'title_en' => ['required', 'string'],
             'title_bn' => ['required', 'string'],
-            'short_desc_en' => ['required', 'string'],
-            'short_desc_bn' => ['required', 'string'],
+            'short_desc_en' => ['nullable', 'string'],
+            'short_desc_bn' => ['nullable', 'string'],
             'desc_en' => ['nullable', 'string'],
             'desc_bn' => ['nullable', 'string'],
             'icon' => ['nullable', 'string'],
@@ -109,6 +109,9 @@ class AdminContentController extends Controller
             'is_active' => ['boolean'],
             'sort_order' => ['integer'],
         ]);
+
+        $validated['short_desc_en'] = !empty($validated['short_desc_en']) ? $validated['short_desc_en'] : $validated['title_en'];
+        $validated['short_desc_bn'] = !empty($validated['short_desc_bn']) ? $validated['short_desc_bn'] : $validated['title_bn'];
 
         $service = Service::create($validated);
         ActivityLog::log('created', 'services', (string) $service->id, ['title' => $service->title_en]);
@@ -124,8 +127,8 @@ class AdminContentController extends Controller
             'slug' => ['required', 'string', 'unique:services,slug,' . $id],
             'title_en' => ['required', 'string'],
             'title_bn' => ['required', 'string'],
-            'short_desc_en' => ['required', 'string'],
-            'short_desc_bn' => ['required', 'string'],
+            'short_desc_en' => ['nullable', 'string'],
+            'short_desc_bn' => ['nullable', 'string'],
             'desc_en' => ['nullable', 'string'],
             'desc_bn' => ['nullable', 'string'],
             'icon' => ['nullable', 'string'],
@@ -135,6 +138,9 @@ class AdminContentController extends Controller
             'is_active' => ['boolean'],
             'sort_order' => ['integer'],
         ]);
+
+        $validated['short_desc_en'] = !empty($validated['short_desc_en']) ? $validated['short_desc_en'] : ($service->short_desc_en ?: $validated['title_en']);
+        $validated['short_desc_bn'] = !empty($validated['short_desc_bn']) ? $validated['short_desc_bn'] : ($service->short_desc_bn ?: $validated['title_bn']);
 
         $service->update($validated);
         ActivityLog::log('updated', 'services', (string) $service->id, ['title' => $service->title_en]);
@@ -510,5 +516,145 @@ class AdminContentController extends Controller
             'success' => true,
             'message' => 'Site settings saved successfully.',
         ]);
+    }
+
+    // =========================================================================
+    // 08. TEAM MEMBERS MANAGEMENT
+    // =========================================================================
+    public function getTeam(): JsonResponse
+    {
+        $team = TeamMember::orderBy('sort_order')->get();
+        return response()->json(['success' => true, 'data' => $team]);
+    }
+
+    public function storeTeam(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name_en' => ['required', 'string'],
+            'name_bn' => ['required', 'string'],
+            'role_en' => ['required', 'string'],
+            'role_bn' => ['required', 'string'],
+            'division_en' => ['nullable', 'string'],
+            'division_bn' => ['nullable', 'string'],
+            'bio_en' => ['nullable', 'string'],
+            'bio_bn' => ['nullable', 'string'],
+            'photo' => ['nullable', 'string'],
+            'email' => ['nullable', 'email'],
+            'phone' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
+            'is_leadership' => ['boolean'],
+            'sort_order' => ['integer'],
+        ]);
+
+        $slug = Str::slug($validated['name_en']);
+        $uniqueSlug = $slug;
+        $count = 1;
+        while (TeamMember::where('slug', $uniqueSlug)->exists()) {
+            $uniqueSlug = "{$slug}-{$count}";
+            $count++;
+        }
+
+        $member = TeamMember::create([
+            ...$validated,
+            'slug' => $uniqueSlug,
+            'division_en' => $validated['division_en'] ?? 'Strategic Advisory',
+            'division_bn' => $validated['division_bn'] ?? 'কৌশলগত পরামর্শ',
+        ]);
+
+        ActivityLog::log('created', 'team_members', (string) $member->id, ['name' => $member->name_en]);
+
+        return response()->json(['success' => true, 'message' => 'Team member added successfully.', 'data' => $member], 201);
+    }
+
+    public function updateTeam(Request $request, int $id): JsonResponse
+    {
+        $member = TeamMember::findOrFail($id);
+
+        $validated = $request->validate([
+            'name_en' => ['required', 'string'],
+            'name_bn' => ['required', 'string'],
+            'role_en' => ['required', 'string'],
+            'role_bn' => ['required', 'string'],
+            'division_en' => ['nullable', 'string'],
+            'division_bn' => ['nullable', 'string'],
+            'bio_en' => ['nullable', 'string'],
+            'bio_bn' => ['nullable', 'string'],
+            'photo' => ['nullable', 'string'],
+            'email' => ['nullable', 'email'],
+            'phone' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
+            'is_leadership' => ['boolean'],
+            'sort_order' => ['integer'],
+        ]);
+
+        $member->update($validated);
+        ActivityLog::log('updated', 'team_members', (string) $member->id, ['name' => $member->name_en]);
+
+        return response()->json(['success' => true, 'message' => 'Team member updated successfully.', 'data' => $member]);
+    }
+
+    public function deleteTeam(int $id): JsonResponse
+    {
+        $member = TeamMember::findOrFail($id);
+        $member->delete();
+        ActivityLog::log('deleted', 'team_members', (string) $id);
+
+        return response()->json(['success' => true, 'message' => 'Team member removed successfully.']);
+    }
+
+    // =========================================================================
+    // 09. CLIENTS & PARTNERS MANAGEMENT
+    // =========================================================================
+    public function getClients(): JsonResponse
+    {
+        $clients = Client::orderBy('sort_order')->get();
+        return response()->json(['success' => true, 'data' => $clients]);
+    }
+
+    public function storeClient(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string'],
+            'logo' => ['nullable', 'string'],
+            'industry' => ['nullable', 'string'],
+            'tier' => ['nullable', 'string'],
+            'website' => ['nullable', 'string'],
+            'is_featured' => ['boolean'],
+            'sort_order' => ['integer'],
+        ]);
+
+        $client = Client::create($validated);
+        ActivityLog::log('created', 'clients', (string) $client->id, ['name' => $client->name]);
+
+        return response()->json(['success' => true, 'message' => 'Client added successfully.', 'data' => $client], 201);
+    }
+
+    public function updateClient(Request $request, int $id): JsonResponse
+    {
+        $client = Client::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => ['required', 'string'],
+            'logo' => ['nullable', 'string'],
+            'industry' => ['nullable', 'string'],
+            'tier' => ['nullable', 'string'],
+            'website' => ['nullable', 'string'],
+            'is_featured' => ['boolean'],
+            'sort_order' => ['integer'],
+        ]);
+
+        $client->update($validated);
+        ActivityLog::log('updated', 'clients', (string) $client->id, ['name' => $client->name]);
+
+        return response()->json(['success' => true, 'message' => 'Client updated successfully.', 'data' => $client]);
+    }
+
+    public function deleteClient(int $id): JsonResponse
+    {
+        $client = Client::findOrFail($id);
+        $client->delete();
+        ActivityLog::log('deleted', 'clients', (string) $id);
+
+        return response()->json(['success' => true, 'message' => 'Client removed successfully.']);
     }
 }

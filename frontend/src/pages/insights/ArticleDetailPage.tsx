@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { insightsData } from '../../data/insightsData';
+import { insightsData, Article } from '../../data/insightsData';
+import { getPublicInsightBySlug, getPublicInsights } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import { LinkedInIcon, FacebookIcon } from '../../components/common/SocialIcons';
 import {
@@ -19,7 +20,28 @@ export const ArticleDetailPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
   const [copied, setCopied] = useState(false);
 
-  const article = insightsData.find((a) => a.slug === slug);
+  const fallbackArticle = insightsData.find((a) => a.slug === slug || a.id === slug);
+  const [article, setArticle] = useState<Article | undefined>(fallbackArticle);
+  const [allArticles, setAllArticles] = useState<Article[]>(insightsData);
+
+  useEffect(() => {
+    let isMounted = true;
+    if (slug) {
+      getPublicInsightBySlug(slug).then((data) => {
+        if (isMounted && data) {
+          setArticle(data);
+        }
+      });
+      getPublicInsights().then((data) => {
+        if (isMounted && data && data.length > 0) {
+          setAllArticles(data);
+        }
+      });
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [slug]);
 
   const articleImages: Record<string, string> = {
     'art-1': '/images/berlo/media_1794918294861_9ae416c9.jpg',
@@ -47,7 +69,7 @@ export const ArticleDetailPage: React.FC = () => {
   }
 
   const content = article.content[lang];
-  const relatedArticles = insightsData.filter((a) => a.id !== article.id).slice(0, 3);
+  const relatedArticles = allArticles.filter((a) => a.id !== article.id).slice(0, 3);
   const heroImage =
     articleImages[article.id] ||
     '/images/berlo/media_1794918294861_9ae416c9.jpg';

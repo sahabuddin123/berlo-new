@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { servicesData } from '../../data/servicesData';
+import { servicesData, ServiceItem } from '../../data/servicesData';
+import { getPublicServiceBySlug, getPublicServices } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import { CheckCircle2, Award } from 'lucide-react';
 import { FaArrowRight, FaChevronRight, FaArrowLeft } from 'react-icons/fa';
@@ -11,12 +12,32 @@ export const ServiceDetailPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
 
   const normalizedSlug = (slug || '').toLowerCase().trim();
-  const service = servicesData.find(
+  const fallbackService = servicesData.find(
     (s) =>
       s.slug.toLowerCase() === normalizedSlug ||
       s.id.toLowerCase() === normalizedSlug ||
       s.aliases?.some((a) => a.toLowerCase() === normalizedSlug)
   );
+
+  const [service, setService] = useState<ServiceItem | undefined>(fallbackService);
+  const [allServices, setAllServices] = useState<ServiceItem[]>(servicesData);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicServiceBySlug(normalizedSlug).then((data) => {
+      if (isMounted && data) {
+        setService(data);
+      }
+    });
+    getPublicServices().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setAllServices(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [normalizedSlug]);
 
   if (!service) {
     return (
@@ -36,7 +57,7 @@ export const ServiceDetailPage: React.FC = () => {
   }
 
   // Other complementary services
-  const otherServices = servicesData.filter((s) => s.id !== service.id).slice(0, 3);
+  const otherServices = allServices.filter((s) => s.id !== service.id).slice(0, 3);
 
   return (
     <div className="space-y-16 sm:space-y-24 lg:space-y-32 pb-24 overflow-hidden">

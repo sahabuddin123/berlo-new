@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { projectsData } from '../../data/projectsData';
+import { projectsData, CaseStudy } from '../../data/projectsData';
+import { getPublicProjectBySlug, getPublicProjects } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import { CheckCircle2, Quote, Award } from 'lucide-react';
 import { FaArrowRight, FaChevronRight, FaArrowLeft } from 'react-icons/fa';
@@ -10,7 +11,28 @@ export const CaseStudyDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { lang, formatRoute } = useLanguage();
 
-  const project = projectsData.find((p) => p.slug === slug);
+  const fallbackProject = projectsData.find((p) => p.slug === slug || p.id === slug);
+  const [project, setProject] = useState<CaseStudy | undefined>(fallbackProject);
+  const [allProjects, setAllProjects] = useState<CaseStudy[]>(projectsData);
+
+  useEffect(() => {
+    let isMounted = true;
+    if (slug) {
+      getPublicProjectBySlug(slug).then((data) => {
+        if (isMounted && data) {
+          setProject(data);
+        }
+      });
+      getPublicProjects().then((data) => {
+        if (isMounted && data && data.length > 0) {
+          setAllProjects(data);
+        }
+      });
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [slug]);
 
   const projectImages: Record<string, string> = {
     'fintech-reputation-elevation': '/images/berlo/media_1794917571021_869ec669.png',
@@ -38,7 +60,7 @@ export const CaseStudyDetailPage: React.FC = () => {
     );
   }
 
-  const otherProjects = projectsData.filter((p) => p.id !== project.id).slice(0, 3);
+  const otherProjects = allProjects.filter((p) => p.id !== project.id).slice(0, 3);
   const heroImage =
     projectImages[project.id] ||
     '/images/berlo/media_1794917571021_869ec669.png';

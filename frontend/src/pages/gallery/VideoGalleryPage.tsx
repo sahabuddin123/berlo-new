@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Seo } from '../../components/common/Seo';
-import { videoCategories, videoGalleryItems } from '../../data/galleryData';
+import { videoCategories, videoGalleryItems, VideoItem } from '../../data/galleryData';
+import { getPublicVideos } from '../../services/publicApi';
 import {
   Video,
   Play,
@@ -22,12 +23,26 @@ export const VideoGalleryPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
-  const featuredVideo = videoGalleryItems.find((v) => v.featured) || videoGalleryItems[0];
+  const [videos, setVideos] = useState<VideoItem[]>(videoGalleryItems);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicVideos().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setVideos(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const featuredVideo = videos.find((v) => v.featured) || videos[0];
 
   const filteredVideos =
     activeCategory === 'all'
-      ? videoGalleryItems
-      : videoGalleryItems.filter((item) => item.categoryKey === activeCategory);
+      ? videos
+      : videos.filter((item) => item.categoryKey === activeCategory);
 
   return (
     <div className="space-y-16 sm:space-y-24 lg:space-y-32 pb-24 overflow-hidden">

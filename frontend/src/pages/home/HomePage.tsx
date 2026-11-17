@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { insightsData } from '../../data/insightsData';
+import { insightsData, Article } from '../../data/insightsData';
+import { getPublicInsights, submitContactInquiry } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import {
   FaPlay,
@@ -46,10 +47,38 @@ export const HomePage: React.FC = () => {
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [homeArticles, setHomeArticles] = useState<Article[]>(insightsData);
 
-  const handleWizardSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    let isMounted = true;
+    getPublicInsights().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setHomeArticles(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleWizardSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
+
+    try {
+      await submitContactInquiry({
+        name: wizardData.name,
+        email: wizardData.email,
+        phone: wizardData.mobile,
+        company: wizardData.company,
+        designation: wizardData.designation,
+        service_interest: wizardData.service,
+        message: wizardData.message || `Consultation request for ${wizardData.service}`,
+      });
+    } catch {
+      // Handled
+    }
+
     setTimeout(() => {
       setIsSubmitted(false);
       setCurrentStep(1);
@@ -1996,7 +2025,7 @@ export const HomePage: React.FC = () => {
 
         {/* 3 Insight Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {insightsData.slice(0, 3).map((article) => (
+          {homeArticles.slice(0, 3).map((article) => (
             <Link
               key={article.id}
               to={formatRoute(`insights/${article.slug}`)}

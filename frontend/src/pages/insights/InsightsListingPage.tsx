@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { insightsData } from '../../data/insightsData';
+import { insightsData, Article } from '../../data/insightsData';
+import { getPublicInsights } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import { Award, Clock, Search } from 'lucide-react';
 import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
@@ -10,6 +11,19 @@ export const InsightsListingPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [articles, setArticles] = useState<Article[]>(insightsData);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicInsights().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setArticles(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const categories = [
     { key: 'all', en: 'All Insights', bn: 'সকল ইনসাইটস' },
@@ -26,7 +40,7 @@ export const InsightsListingPage: React.FC = () => {
     'art-5': '/images/berlo/media_1794919525086_daefc098.jpg',
   };
 
-  const filteredArticles = insightsData.filter((article) => {
+  const filteredArticles = articles.filter((article) => {
     const matchesCategory =
       selectedCategory === 'all' || article.category === selectedCategory;
     const matchesSearch =

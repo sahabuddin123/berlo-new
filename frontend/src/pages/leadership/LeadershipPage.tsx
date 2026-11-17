@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { teamData } from '../../data/teamData';
+import { teamData, TeamMember } from '../../data/teamData';
+import { getPublicLeadership } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import { Award, ShieldCheck } from 'lucide-react';
 import { FaArrowRight, FaChevronRight, FaEnvelope } from 'react-icons/fa';
@@ -9,6 +10,21 @@ import { FaArrowRight, FaChevronRight, FaEnvelope } from 'react-icons/fa';
 export const LeadershipPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
   const [activeDepartment, setActiveDepartment] = useState<string>('all');
+  const [leadershipList, setLeadershipList] = useState<TeamMember[]>(
+    teamData.filter((m) => m.isLeadership)
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicLeadership().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setLeadershipList(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Real team portraits from public/images/berlo/
   const memberImages: Record<string, string> = {
@@ -27,7 +43,7 @@ export const LeadershipPage: React.FC = () => {
     { key: 'events', en: 'Events & Activation', bn: 'ইভেন্ট ও অ্যাক্টিভেশন' },
   ];
 
-  const leaders = teamData.filter(
+  const leaders = leadershipList.filter(
     (m) =>
       m.isLeadership &&
       (activeDepartment === 'all' || m.department === activeDepartment)

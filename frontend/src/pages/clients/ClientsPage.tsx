@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { testimonialsData } from '../../data/clientsData';
 import { Seo } from '../../components/common/Seo';
+import { getPublicClients } from '../../services/publicApi';
 import { Award, Star, Quote } from 'lucide-react';
 import { FaArrowRight, FaChevronRight, FaTimes } from 'react-icons/fa';
 
@@ -10,6 +11,19 @@ export const ClientsPage: React.FC = () => {
   const { lang, formatRoute } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [dynamicClients, setDynamicClients] = useState<any[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    getPublicClients().then((data) => {
+      if (isMounted && data && data.length > 0) {
+        setDynamicClients(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Real enterprise client logos from public/images/berlo/clients/
   const clientLogos = [
@@ -62,10 +76,23 @@ export const ClientsPage: React.FC = () => {
     { key: 'development', en: 'Development & Trade', bn: 'উন্নয়ন ও আন্তর্জাতিক' },
   ];
 
+  const mergedLogos = [
+    ...dynamicClients.map((c) => ({
+      name: c.name,
+      logo: c.logo || '/images/berlo/clients/bat.jpg',
+      category: c.category || 'fmcg',
+      industry: typeof c.industry === 'object' ? c.industry : { en: c.industry || 'Corporate Partner', bn: c.industry || 'করপোরেট অংশীদার' },
+      years: `${c.partnershipYears || 4}+`,
+    })),
+    ...clientLogos.filter(
+      (sc) => !dynamicClients.some((dc) => dc.name.toLowerCase() === sc.name.toLowerCase())
+    ),
+  ];
+
   const filteredLogos =
     activeCategory === 'all'
-      ? clientLogos
-      : clientLogos.filter(
+      ? mergedLogos
+      : mergedLogos.filter(
           (c) =>
             c.category === activeCategory ||
             (activeCategory === 'energy' && (c.category === 'energy' || c.category === 'tech'))
