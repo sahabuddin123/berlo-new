@@ -12,6 +12,8 @@ const ServicesOverviewPage = lazy(() => import('../pages/services/ServicesOvervi
 const ServiceDetailPage = lazy(() => import('../pages/services/ServiceDetailPage').then((m) => ({ default: m.ServiceDetailPage })));
 const WorkListingPage = lazy(() => import('../pages/work/WorkListingPage').then((m) => ({ default: m.WorkListingPage })));
 const CaseStudyDetailPage = lazy(() => import('../pages/work/CaseStudyDetailPage').then((m) => ({ default: m.CaseStudyDetailPage })));
+const PhotoGalleryPage = lazy(() => import('../pages/gallery/PhotoGalleryPage').then((m) => ({ default: m.PhotoGalleryPage })));
+const VideoGalleryPage = lazy(() => import('../pages/gallery/VideoGalleryPage').then((m) => ({ default: m.VideoGalleryPage })));
 const ClientsPage = lazy(() => import('../pages/clients/ClientsPage').then((m) => ({ default: m.ClientsPage })));
 const InsightsListingPage = lazy(() => import('../pages/insights/InsightsListingPage').then((m) => ({ default: m.InsightsListingPage })));
 const ArticleDetailPage = lazy(() => import('../pages/insights/ArticleDetailPage').then((m) => ({ default: m.ArticleDetailPage })));
@@ -42,6 +44,9 @@ export const router = createBrowserRouter([
       { path: 'services/:slug', element: <ServiceDetailPage /> },
       { path: 'work', element: <WorkListingPage /> },
       { path: 'work/:slug', element: <CaseStudyDetailPage /> },
+      { path: 'gallery', element: <Navigate to="photos" replace /> },
+      { path: 'gallery/photos', element: <PhotoGalleryPage /> },
+      { path: 'gallery/videos', element: <VideoGalleryPage /> },
       { path: 'clients', element: <ClientsPage /> },
       { path: 'insights', element: <InsightsListingPage /> },
       { path: 'insights/:slug', element: <ArticleDetailPage /> },

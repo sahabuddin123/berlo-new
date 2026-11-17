@@ -49,6 +49,15 @@ export const navigationItems: NavItem[] = [
     label: { en: 'Case Studies', bn: 'কেস স্টাডি' },
   },
   {
+    id: 'gallery',
+    path: 'gallery',
+    label: { en: 'Gallery', bn: 'গ্যালারি' },
+    children: [
+      { id: 'photo-gallery', path: 'gallery/photos', label: { en: 'Photo Gallery', bn: 'ফটো গ্যালারি' } },
+      { id: 'video-gallery', path: 'gallery/videos', label: { en: 'Video Gallery', bn: 'ভিডিও গ্যালারি' } },
+    ],
+  },
+  {
     id: 'clients',
     path: 'clients',
     label: { en: 'Clients', bn: 'ক্লায়েন্টস' },
@@ -75,6 +84,8 @@ export const footerNavigation = {
     { path: 'leadership', label: { en: 'Leadership', bn: 'নেতৃত্ব' } },
     { path: 'team', label: { en: 'Our Team', bn: 'আমাদের টিম' } },
     { path: 'clients', label: { en: 'Clients', bn: 'ক্লায়েন্টসমূহ' } },
+    { path: 'gallery/photos', label: { en: 'Photo Gallery', bn: 'ফটো গ্যালারি' } },
+    { path: 'gallery/videos', label: { en: 'Video Gallery', bn: 'ভিডিও গ্যালারি' } },
   ],
   services: [
     { path: 'services/strategic-pr', label: { en: 'Strategic PR', bn: 'কৌশলগত জনসংযোগ' } },
