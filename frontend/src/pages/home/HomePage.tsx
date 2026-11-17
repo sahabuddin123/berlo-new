@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { insightsData, Article } from '../../data/insightsData';
-import { getPublicInsights, submitContactInquiry } from '../../services/publicApi';
+import { getPublicInsights, submitContactInquiry, getPublicPageSections } from '../../services/publicApi';
 import { Seo } from '../../components/common/Seo';
 import {
   FaPlay,
@@ -48,12 +48,18 @@ export const HomePage: React.FC = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [homeArticles, setHomeArticles] = useState<Article[]>(insightsData);
+  const [pageSections, setPageSections] = useState<Record<string, any>>({});
 
   useEffect(() => {
     let isMounted = true;
     getPublicInsights().then((data) => {
       if (isMounted && data && data.length > 0) {
         setHomeArticles(data);
+      }
+    });
+    getPublicPageSections('home').then((data) => {
+      if (isMounted && data) {
+        setPageSections(data);
       }
     });
     return () => {
@@ -205,52 +211,95 @@ export const HomePage: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeGalleryIndex, activeVideoId]);
 
-  // Hero interactive slider & typewriter state matching IMBD reference
+  // Dynamic Hero Configuration from PostgreSQL / Admin Page Builder
+  const dynamicHero = pageSections['hero'];
+  const dbSlides = dynamicHero?.metadata?.slides;
+
+  // Hero interactive slider & typewriter state matching IMBD reference (Dynamic with Fallbacks)
   const heroSlides = [
     {
       id: 1,
-      tag: lang === 'bn' ? 'কর্পোরেট সুনাম সুরক্ষা' : 'Reputation Architecture',
+      tag:
+        (lang === 'bn' ? dbSlides?.[0]?.tag_bn : dbSlides?.[0]?.tag_en) ||
+        (lang === 'bn' ? 'কর্পোরেট সুনাম সুরক্ষা' : 'Reputation Architecture'),
       text:
-        lang === 'bn'
+        (lang === 'bn' ? dbSlides?.[0]?.text_bn : dbSlides?.[0]?.text_en) ||
+        (lang === 'bn'
           ? 'কর্পোরেট সুনাম সুরক্ষা ও সি-সুইট এক্সিকিউটিভ ব্র্যান্ডিং।'
-          : 'Architecting enduring corporate reputation and C-suite authority.',
-      metric: lang === 'bn' ? '+৩২০% ইতিবাচক জনমত' : '+320% Positive Sentiment',
-      submetric: lang === 'bn' ? '১০০+ শীর্ষ নিউজডেস্ক সংযোগ' : '100+ Tier-1 Newsdesks Engaged',
-      image: '/images/berlo/hero-3d-1.png',
+          : 'Architecting enduring corporate reputation and C-suite authority.'),
+      metric:
+        (lang === 'bn' ? dbSlides?.[0]?.metric_bn : dbSlides?.[0]?.metric_en) ||
+        (lang === 'bn' ? '+৩২০% ইতিবাচক জনমত' : '+320% Positive Sentiment'),
+      submetric:
+        (lang === 'bn' ? dbSlides?.[0]?.submetric_bn : dbSlides?.[0]?.submetric_en) ||
+        (lang === 'bn' ? '১০০+ শীর্ষ নিউজডেস্ক সংযোগ' : '100+ Tier-1 Newsdesks Engaged'),
+      image: dbSlides?.[0]?.image || '/images/berlo/hero-3d-1.png',
       badgeColor: 'text-[#A302FF] dark:text-[#B833FF]',
       borderColor: 'border-[#A302FF]',
-      blobGradient: 'from-[#5B028F] via-[#A302FF] to-[#1A305A]',
-      iconType: 'network',
+      blobGradient: dbSlides?.[0]?.blob_gradient || 'from-[#5B028F] via-[#A302FF] to-[#1A305A]',
+      iconType: dbSlides?.[0]?.icon_type || 'network',
+      badgeTitle:
+        (lang === 'bn' ? dbSlides?.[0]?.badge_title_bn : dbSlides?.[0]?.badge_title_en) ||
+        (lang === 'bn' ? 'পিআর নেটওয়ার্ক' : 'PR Network'),
+      badgeStatus:
+        (lang === 'bn' ? dbSlides?.[0]?.badge_status_bn : dbSlides?.[0]?.badge_status_en) ||
+        (lang === 'bn' ? 'সক্রিয় ও পর্যবেক্ষণাধীন' : 'Active & Monitored'),
     },
     {
       id: 2,
-      tag: lang === 'bn' ? '২৪/৭ ক্রাইসিস ওয়ার-রুম' : '24/7 Crisis War-Room',
+      tag:
+        (lang === 'bn' ? dbSlides?.[1]?.tag_bn : dbSlides?.[1]?.tag_en) ||
+        (lang === 'bn' ? '২৪/৭ ক্রাইসিস ওয়ার-রুম' : '24/7 Crisis War-Room'),
       text:
-        lang === 'bn'
+        (lang === 'bn' ? dbSlides?.[1]?.text_bn : dbSlides?.[1]?.text_en) ||
+        (lang === 'bn'
           ? '২৪/৭ দ্রুত সংকট ব্যবস্থাপনা: সুনামহানি প্রতিরোধে নির্ভরযোগ্য প্রটোকল।'
-          : '24/7 Rapid Crisis War-Room: De-escalating reputational risks within 60 minutes.',
-      metric: lang === 'bn' ? '৬০ মিনিট প্রতিক্রিয়া গতি' : '60-Minute Rapid Response',
-      submetric: lang === 'bn' ? '১০০% এনডিএ নিশ্চয়তা' : '100% Boardroom NDA Protocol',
-      image: '/images/berlo/hero-3d-2.png',
+          : '24/7 Rapid Crisis War-Room: De-escalating reputational risks within 60 minutes.'),
+      metric:
+        (lang === 'bn' ? dbSlides?.[1]?.metric_bn : dbSlides?.[1]?.metric_en) ||
+        (lang === 'bn' ? '৬০ মিনিট প্রতিক্রিয়া গতি' : '60-Minute Rapid Response'),
+      submetric:
+        (lang === 'bn' ? dbSlides?.[1]?.submetric_bn : dbSlides?.[1]?.submetric_en) ||
+        (lang === 'bn' ? '১০০% এনডিএ নিশ্চয়তা' : '100% Boardroom NDA Protocol'),
+      image: dbSlides?.[1]?.image || '/images/berlo/hero-3d-2.png',
       badgeColor: 'text-[#11813C] dark:text-[#16A34A]',
       borderColor: 'border-[#11813C]',
-      blobGradient: 'from-[#0A4B20] via-[#11813C] to-[#0A2540]',
-      iconType: 'shield',
+      blobGradient: dbSlides?.[1]?.blob_gradient || 'from-[#0A4B20] via-[#11813C] to-[#0A2540]',
+      iconType: dbSlides?.[1]?.icon_type || 'shield',
+      badgeTitle:
+        (lang === 'bn' ? dbSlides?.[1]?.badge_title_bn : dbSlides?.[1]?.badge_title_en) ||
+        (lang === 'bn' ? 'ক্রাইসিস শিল্ড' : 'Crisis Shield'),
+      badgeStatus:
+        (lang === 'bn' ? dbSlides?.[1]?.badge_status_bn : dbSlides?.[1]?.badge_status_en) ||
+        (lang === 'bn' ? 'সক্রিয় ও পর্যবেক্ষণাধীন' : 'Active & Monitored'),
     },
     {
       id: 3,
-      tag: lang === 'bn' ? 'জাতীয় গণমাধ্যম সংযোগ' : 'Tier-1 Media Access',
+      tag:
+        (lang === 'bn' ? dbSlides?.[2]?.tag_bn : dbSlides?.[2]?.tag_en) ||
+        (lang === 'bn' ? 'জাতীয় গণমাধ্যম সংযোগ' : 'Tier-1 Media Access'),
       text:
-        lang === 'bn'
+        (lang === 'bn' ? dbSlides?.[2]?.text_bn : dbSlides?.[2]?.text_en) ||
+        (lang === 'bn'
           ? 'জাতীয় শীর্ষ দৈনিক ও টেলিভিশন নেটওয়ার্কে সরাসরি সম্পাদকীয় সংযোগ।'
-          : 'Securing prime-time broadcast and national front-page editorial coverage.',
-      metric: lang === 'bn' ? '৯৮.৭% কভারেজ সাফল্য' : '98.7% Media Placement Success',
-      submetric: lang === 'bn' ? '২৫০+ সফল ক্যাম্পেইন' : '250+ Corporate Campaigns',
-      image: '/images/berlo/hero-3d-3.png',
+          : 'Securing prime-time broadcast and national front-page editorial coverage.'),
+      metric:
+        (lang === 'bn' ? dbSlides?.[2]?.metric_bn : dbSlides?.[2]?.metric_en) ||
+        (lang === 'bn' ? '৯৮.৭% কভারেজ সাফল্য' : '98.7% Media Placement Success'),
+      submetric:
+        (lang === 'bn' ? dbSlides?.[2]?.submetric_bn : dbSlides?.[2]?.submetric_en) ||
+        (lang === 'bn' ? '২৫০+ সফল ক্যাম্পেইন' : '250+ Corporate Campaigns'),
+      image: dbSlides?.[2]?.image || '/images/berlo/hero-3d-3.png',
       badgeColor: 'text-[#00A896] dark:text-[#14B8A6]',
       borderColor: 'border-[#00A896]',
-      blobGradient: 'from-[#0A2540] via-[#1A305A] to-[#A302FF]',
-      iconType: 'broadcast',
+      blobGradient: dbSlides?.[2]?.blob_gradient || 'from-[#0A2540] via-[#1A305A] to-[#A302FF]',
+      iconType: dbSlides?.[2]?.icon_type || 'broadcast',
+      badgeTitle:
+        (lang === 'bn' ? dbSlides?.[2]?.badge_title_bn : dbSlides?.[2]?.badge_title_en) ||
+        (lang === 'bn' ? 'প্রাইম-টাইম' : 'Prime-Time'),
+      badgeStatus:
+        (lang === 'bn' ? dbSlides?.[2]?.badge_status_bn : dbSlides?.[2]?.badge_status_en) ||
+        (lang === 'bn' ? 'সক্রিয় ও পর্যবেক্ষণাধীন' : 'Active & Monitored'),
     },
   ];
 
@@ -729,7 +778,9 @@ export const HomePage: React.FC = () => {
               {/* Responsive Hero Headline */}
               <h1 className="hero-quote-title font-semibold tracking-tight text-[#1A305A] dark:text-[#FFFFFF]">
                 <span className="font-serif text-[#A302FF] dark:text-[#B833FF]">“</span>
-                {lang === 'bn' ? (
+                {(lang === 'bn' ? dynamicHero?.title_bn : dynamicHero?.title_en) ? (
+                  lang === 'bn' ? dynamicHero?.title_bn : dynamicHero?.title_en
+                ) : lang === 'bn' ? (
                   <>
                     কর্পোরেট{' '}
                     <span className="text-[#A302FF] dark:text-[#B833FF] font-extrabold">সাফল্যের</span>{' '}
@@ -752,25 +803,34 @@ export const HomePage: React.FC = () => {
 
               {/* Responsive Description with clean word alignment on mobile */}
               <p className="text-[15px] sm:text-[17px] lg:text-[19px] text-[#475569] dark:text-[#7A7A7A] leading-[1.65] text-left sm:text-justify font-normal">
-                {lang === 'bn'
-                  ? 'বার্লো কমিউনিকেশন্সে আপনাকে স্বাগতম—বাংলাদেশের অন্যতম শীর্ষস্থানীয় করপোরেট পিআর ও কৌশলগত যোগাযোগ সংস্থা। আমাদের উদ্ভাবনী কৌশল ও ফলমুখী দৃষ্টিভঙ্গির মাধ্যমে আমরা শীর্ষ প্রতিষ্ঠান ও বহুজাতিক ব্র্যান্ডের দীর্ঘমেয়াদী সুনাম বিনির্মাণ ও সংকট ব্যবস্থাপনা পরিচালনা করি।'
-                  : 'Welcome to Berlo Communications Ltd., one of the premier Public Relations and strategic corporate communications agencies in Bangladesh. With our innovative narrative engineering and results-oriented media access, we help enterprises protect reputation, command authority, and accelerate sustainable growth.'}
+                {(lang === 'bn' ? dynamicHero?.subtitle_bn : dynamicHero?.subtitle_en) ||
+                  (lang === 'bn'
+                    ? 'বার্লো কমিউনিকেশন্সে আপনাকে স্বাগতম—বাংলাদেশের অন্যতম শীর্ষস্থানীয় করপোরেট পিআর ও কৌশলগত যোগাযোগ সংস্থা। আমাদের উদ্ভাবনী কৌশল ও ফলমুখী দৃষ্টিভঙ্গির মাধ্যমে আমরা শীর্ষ প্রতিষ্ঠান ও বহুজাতিক ব্র্যান্ডের দীর্ঘমেয়াদী সুনাম বিনির্মাণ ও সংকট ব্যবস্থাপনা পরিচালনা করি।'
+                    : 'Welcome to Berlo Communications Ltd., one of the premier Public Relations and strategic corporate communications agencies in Bangladesh. With our innovative narrative engineering and results-oriented media access, we help enterprises protect reputation, command authority, and accelerate sustainable growth.')}
               </p>
 
               {/* Action Buttons: Stack on small phones, inline on tablets/desktop */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
                 <a
-                  href="#consultancy"
+                  href={dynamicHero?.cta_link || '#consultancy'}
                   className="btn-berlo-primary text-center justify-center"
                 >
                   <FaCalendarCheck className="w-4 h-4 mr-2" />
-                  <span>{lang === 'bn' ? 'পরামর্শ সেশন বুক করুন' : 'Book Free Consultation'}</span>
+                  <span>
+                    {(lang === 'bn' ? dynamicHero?.cta_text_bn : dynamicHero?.cta_text_en) ||
+                      (lang === 'bn' ? 'পরামর্শ সেশন বুক করুন' : 'Book Free Consultation')}
+                  </span>
                 </a>
                 <a
-                  href="#services"
+                  href={dynamicHero?.metadata?.secondary_cta_link || '#services'}
                   className="btn-berlo-outline text-center justify-center"
                 >
-                  <span>{lang === 'bn' ? 'আমাদের সেবাসমূহ' : 'Working scope with you'}</span>
+                  <span>
+                    {(lang === 'bn'
+                      ? dynamicHero?.metadata?.secondary_cta_text_bn
+                      : dynamicHero?.metadata?.secondary_cta_text_en) ||
+                      (lang === 'bn' ? 'আমাদের সেবাসমূহ' : 'Working scope with you')}
+                  </span>
                 </a>
               </div>
 
@@ -794,7 +854,7 @@ export const HomePage: React.FC = () => {
                 {/* Vector Character Illustration */}
                 <div className="relative z-10 w-full flex justify-start pl-1 sm:pl-4">
                   <img
-                    key={currentSlide.id}
+                    key={`${currentSlide.id}-${currentSlide.image}`}
                     src={currentSlide.image}
                     alt="Berlo PR Strategic Character"
                     fetchPriority="high"
@@ -838,10 +898,10 @@ export const HomePage: React.FC = () => {
                   </div>
                   <div className="text-left pr-1">
                     <div className="text-[10.5px] sm:text-[11.5px] font-bold text-white leading-tight">
-                      {currentSlide.id === 1 ? 'PR Network' : currentSlide.id === 2 ? 'Crisis Shield' : 'Prime-Time'}
+                      {currentSlide.badgeTitle}
                     </div>
                     <div className="text-[9px] text-emerald-400 font-semibold">
-                      Active & Monitored
+                      {currentSlide.badgeStatus}
                     </div>
                   </div>
                 </div>
@@ -1379,11 +1439,12 @@ export const HomePage: React.FC = () => {
 
             <div>
               <h2 className="section-main-title text-slate-900 dark:text-white uppercase tracking-tight">
-                {lang === 'bn' ? (
-                  <>ক্লায়েন্টদের <span className="b-border">রেটিং ও সাফল্য</span></>
-                ) : (
-                  <>Explore <span className="b-border">Client Ratings </span> Showcase</>
-                )}
+                {(lang === 'bn' ? pageSections['stats']?.title_bn : pageSections['stats']?.title_en) ||
+                  (lang === 'bn' ? (
+                    <>ক্লায়েন্টদের <span className="b-border">রেটিং ও সাফল্য</span></>
+                  ) : (
+                    <>Explore <span className="b-border">Client Ratings </span> Showcase</>
+                  ))}
               </h2>
             </div>
 
@@ -1395,30 +1456,53 @@ export const HomePage: React.FC = () => {
 
           {/* 4 Metric Blocks */}
           <div className="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 text-center">
-            <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#A302FF] dark:text-[#B833FF]">250+</div>
-              <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
-                {lang === 'bn' ? 'সফল করপোরেট ক্যাম্পেইন' : 'Corporate Campaigns'}
-              </div>
-            </div>
-            <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#11813C] dark:text-[#16A34A]">100%</div>
-              <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
-                {lang === 'bn' ? 'গোপনীয়তা রক্ষা নিশ্চয়তা' : 'NDA Confidentiality'}
-              </div>
-            </div>
-            <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#00A896] dark:text-[#14B8A6]">60 Min</div>
-              <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
-                {lang === 'bn' ? 'ক্রাইসিস ওয়ার-রুম গতি' : 'Crisis War-Room Speed'}
-              </div>
-            </div>
-            <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#1A305A] dark:text-[#60A5FA]">12+ Yrs</div>
-              <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
-                {lang === 'bn' ? 'জাতীয় গণমাধ্যম সংযোগ' : 'Media Ecosystem Legacy'}
-              </div>
-            </div>
+            {pageSections['stats']?.metadata?.stats_list ? (
+              pageSections['stats'].metadata.stats_list.map((stat: any, idx: number) => {
+                const colors = [
+                  'text-[#A302FF] dark:text-[#B833FF]',
+                  'text-[#11813C] dark:text-[#16A34A]',
+                  'text-[#00A896] dark:text-[#14B8A6]',
+                  'text-[#1A305A] dark:text-[#60A5FA]',
+                ];
+                return (
+                  <div key={idx} className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                    <div className={`text-2xl sm:text-3xl font-extrabold ${colors[idx % colors.length]}`}>
+                      {stat.value}
+                    </div>
+                    <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
+                      {lang === 'bn' ? stat.label_bn : stat.label_en}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <>
+                <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#A302FF] dark:text-[#B833FF]">250+</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
+                    {lang === 'bn' ? 'সফল করপোরেট ক্যাম্পেইন' : 'Corporate Campaigns'}
+                  </div>
+                </div>
+                <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#11813C] dark:text-[#16A34A]">100%</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
+                    {lang === 'bn' ? 'গোপনীয়তা রক্ষা নিশ্চয়তা' : 'NDA Confidentiality'}
+                  </div>
+                </div>
+                <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#00A896] dark:text-[#14B8A6]">60 Min</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
+                    {lang === 'bn' ? 'ক্রাইসিস ওয়ার-রুম গতি' : 'Crisis War-Room Speed'}
+                  </div>
+                </div>
+                <div className="p-3.5 sm:p-5 bg-white dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#1A305A] dark:text-[#60A5FA]">12+ Yrs</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-[#7A7A7A] mt-1">
+                    {lang === 'bn' ? 'জাতীয় গণমাধ্যম সংযোগ' : 'Media Ecosystem Legacy'}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -1429,96 +1513,120 @@ export const HomePage: React.FC = () => {
       <section className="py-16 lg:py-24 max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: 5 Benefits */}
+          {/* Left Column: Benefits / Pillars */}
           <div className="lg:col-span-7 space-y-6">
             <h2 className="section-main-title text-slate-900 dark:text-white text-center lg:text-left">
-              {lang === 'bn' ? (
-                <>আমাদের সাথে কাজ করার <span className="b-border">সুবিধাসমূহ</span></>
-              ) : (
-                <>Discover the <span className="b-border">Benefits</span> with Us</>
-              )}
+              {(lang === 'bn' ? pageSections['why_us']?.title_bn : pageSections['why_us']?.title_en) ||
+                (lang === 'bn' ? (
+                  <>আমাদের সাথে কাজ করার <span className="b-border">সুবিধাসমূহ</span></>
+                ) : (
+                  <>Discover the <span className="b-border">Benefits</span> with Us</>
+                ))}
             </h2>
 
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-                <div className="w-8 h-8 rounded-full bg-[#A302FF] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-purple-600/30">
-                  1
-                </div>
-                <div>
-                  <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
-                    {lang === 'bn' ? 'শীর্ষ গণমাধ্যমে সরাসরি সংযোগ' : 'Unmatched Tier-1 Media Access'}
-                  </h4>
-                  <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
-                    {lang === 'bn'
-                      ? 'প্রধান সম্পাদক, অনুসন্ধানী সাংবাদিক এবং জাতীয় টেলিভিশন নেটওয়ার্কের সাথে সরাসরি পেশাদার সম্পর্ক।'
-                      : 'Direct access to national chief editors, investigative reporters, and prime-time broadcast directors across Bangladesh.'}
-                  </p>
-                </div>
-              </div>
+              {pageSections['why_us']?.metadata?.pillars ? (
+                pageSections['why_us'].metadata.pillars.map((pillar: any, idx: number) => {
+                  const colors = ['bg-[#A302FF]', 'bg-[#11813C]', 'bg-[#00A896]', 'bg-[#1A305A]'];
+                  return (
+                    <div key={idx} className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                      <div className={`w-8 h-8 rounded-full ${colors[idx % colors.length]} text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md`}>
+                        {idx + 1}
+                      </div>
+                      <div>
+                        <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                          {lang === 'bn' ? pillar.title_bn : pillar.title_en}
+                        </h4>
+                        <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
+                          {lang === 'bn' ? pillar.desc_bn : pillar.desc_en}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <>
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                    <div className="w-8 h-8 rounded-full bg-[#A302FF] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-purple-600/30">
+                      1
+                    </div>
+                    <div>
+                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                        {lang === 'bn' ? 'শীর্ষ গণমাধ্যমে সরাসরি সংযোগ' : 'Unmatched Tier-1 Media Access'}
+                      </h4>
+                      <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
+                        {lang === 'bn'
+                          ? 'প্রধান সম্পাদক, অনুসন্ধানী সাংবাদিক এবং জাতীয় টেলিভিশন নেটওয়ার্কের সাথে সরাসরি পেশাদার সম্পর্ক।'
+                          : 'Direct access to national chief editors, investigative reporters, and prime-time broadcast directors across Bangladesh.'}
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-                <div className="w-8 h-8 rounded-full bg-[#11813C] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-green-600/30">
-                  2
-                </div>
-                <div>
-                  <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
-                    {lang === 'bn' ? '২৪/৭ দ্রুত সংকট মোকাবিলা প্রটোকল' : 'Rapid 24/7 Crisis Protocol'}
-                  </h4>
-                  <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
-                    {lang === 'bn'
-                      ? 'সুনামের যেকোনো হুমকি প্রশমনে এবং ব্র্যান্ডের সম্মান রক্ষার্থে ৬০ মিনিটের মধ্যে ওয়ার-রুম কার্যকরীকরণ।'
-                      : 'Immediate war-room activation within 60 minutes to neutralize reputational vulnerability and protect brand equity.'}
-                  </p>
-                </div>
-              </div>
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                    <div className="w-8 h-8 rounded-full bg-[#11813C] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-green-600/30">
+                      2
+                    </div>
+                    <div>
+                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                        {lang === 'bn' ? '২৪/৭ দ্রুত সংকট মোকাবিলা প্রটোকল' : 'Rapid 24/7 Crisis Protocol'}
+                      </h4>
+                      <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
+                        {lang === 'bn'
+                          ? 'সুনামের যেকোনো হুমকি প্রশমনে এবং ব্র্যান্ডের সম্মান রক্ষার্থে ৬০ মিনিটের মধ্যে ওয়ার-রুম কার্যকরীকরণ।'
+                          : 'Immediate war-room activation within 60 minutes to neutralize reputational vulnerability and protect brand equity.'}
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-                <div className="w-8 h-8 rounded-full bg-[#00A896] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-teal-600/30">
-                  3
-                </div>
-                <div>
-                  <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
-                    {lang === 'bn' ? 'তথ্য ও বিশ্লেষণনির্ভর সেন্টিনেল ইন্টেলিজেন্স' : 'Data-Driven Sentiment Intelligence'}
-                  </h4>
-                  <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
-                    {lang === 'bn'
-                      ? 'রিয়েল-টাইম মিডিয়া মনিটরিং, জনমত গতিপথ বিশ্লেষণ এবং প্রিন্ট ও ডিজিটালে শেয়ার অফ ভয়েস ট্র্যাকিং।'
-                      : 'Real-time media tracking, predictive sentiment trajectory modeling, and comprehensive Share of Voice (SOV) metrics.'}
-                  </p>
-                </div>
-              </div>
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                    <div className="w-8 h-8 rounded-full bg-[#00A896] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-teal-600/30">
+                      3
+                    </div>
+                    <div>
+                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                        {lang === 'bn' ? 'তথ্য ও বিশ্লেষণনির্ভর সেন্টিনেল ইন্টেলিজেন্স' : 'Data-Driven Sentiment Intelligence'}
+                      </h4>
+                      <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
+                        {lang === 'bn'
+                          ? 'রিয়েল-টাইম মিডিয়া মনিটরিং, জনমত গতিপথ বিশ্লেষণ এবং প্রিন্ট ও ডিজিটালে শেয়ার অফ ভয়েস ট্র্যাকিং।'
+                          : 'Real-time media tracking, predictive sentiment trajectory modeling, and comprehensive Share of Voice (SOV) metrics.'}
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-                <div className="w-8 h-8 rounded-full bg-[#1A305A] dark:bg-[#25427C] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md">
-                  4
-                </div>
-                <div>
-                  <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
-                    {lang === 'bn' ? 'সারাদেশে কার্যক্রম পরিচালনার সক্ষমতা' : 'Pan-Bangladesh Operational Reach'}
-                  </h4>
-                  <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
-                    {lang === 'bn'
-                      ? 'ঢাকা, চট্টগ্রাম, সিলেটসহ সকল বিভাগে সফল প্রেস কনফারেন্স, গোলটেবিল ও ব্র্যান্ড অ্যাক্টিভেশন বাস্তবায়ন।'
-                      : 'Seamless nationwide execution of press conferences, roundtables, and high-impact activations across all 8 divisions.'}
-                  </p>
-                </div>
-              </div>
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                    <div className="w-8 h-8 rounded-full bg-[#1A305A] dark:bg-[#25427C] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md">
+                      4
+                    </div>
+                    <div>
+                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                        {lang === 'bn' ? 'সারাদেশে কার্যক্রম পরিচালনার সক্ষমতা' : 'Pan-Bangladesh Operational Reach'}
+                      </h4>
+                      <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
+                        {lang === 'bn'
+                          ? 'ঢাকা, চট্টগ্রাম, সিলেটসহ সকল বিভাগে সফল প্রেস কনফারেন্স, গোলটেবিল ও ব্র্যান্ড অ্যাক্টিভেশন বাস্তবায়ন।'
+                          : 'Seamless nationwide execution of press conferences, roundtables, and high-impact activations across all 8 divisions.'}
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
-                <div className="w-8 h-8 rounded-full bg-[#A302FF] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-purple-600/30">
-                  5
-                </div>
-                <div>
-                  <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
-                    {lang === 'bn' ? 'বোর্ডরুমের পূর্ণ গোপনীয়তা ও বিশ্বস্ততা' : 'Absolute Boardroom Confidentiality'}
-                  </h4>
-                  <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
-                    {lang === 'bn'
-                      ? 'সংবেদনশীল কর্পোরেট চুক্তি, পুনর্গঠন ও শীর্ষ নেতৃত্বের পরিবর্তনের সুরক্ষায় সর্বোচ্চ প্রাতিষ্ঠানিক এনডিএ নিশ্চয়তা।'
-                      : 'Institutional-grade non-disclosure agreements safeguarding sensitive corporate transactions, restructuring, and leadership shifts.'}
-                  </p>
-                </div>
-              </div>
+                  <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-[#191919] border border-slate-200 dark:border-[#262626]">
+                    <div className="w-8 h-8 rounded-full bg-[#A302FF] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-md shadow-purple-600/30">
+                      5
+                    </div>
+                    <div>
+                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                        {lang === 'bn' ? 'বোর্ডরুমের পূর্ণ গোপনীয়তা ও বিশ্বস্ততা' : 'Absolute Boardroom Confidentiality'}
+                      </h4>
+                      <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
+                        {lang === 'bn'
+                          ? 'সংবেদনশীল কর্পোরেট চুক্তি, পুনর্গঠন ও শীর্ষ নেতৃত্বের পরিবর্তনের সুরক্ষায় সর্বোচ্চ প্রাতিষ্ঠানিক এনডিএ নিশ্চয়তা।'
+                          : 'Institutional-grade non-disclosure agreements safeguarding sensitive corporate transactions, restructuring, and leadership shifts.'}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
