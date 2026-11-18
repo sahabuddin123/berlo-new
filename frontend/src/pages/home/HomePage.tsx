@@ -1057,6 +1057,17 @@ export const HomePage: React.FC = () => {
   const teamDisplayCount = leadershipSection?.metadata?.display_count || 6;
   const selectedTeamSlugs: string[] = leadershipSection?.metadata?.selected_team_slugs || [];
 
+  const teamMemberFallbackImages: Record<string, string> = {
+    'shakhawat-ullah': '/images/berlo/team/shakwat-ullah-01.jpg',
+    'md-kabir-hossain': '/images/berlo/team/img-20260301-wa0001.jpg',
+    'akm-zamshed-uddin': '/images/berlo/team/zamshed.png',
+    'kabery-azad': '/images/berlo/team/shakhwat-ullah-1.png',
+    'tariq-anwar': '/images/berlo/team/team-tut.jpg',
+    'rajin-shaleh': '/images/berlo/team/team-tut.jpg',
+    'shatarupa-das': '/images/berlo/team/jawad.jpg',
+    'tahsin-al-jawad': '/images/berlo/team/jawad.jpg',
+  };
+
   const rawTeamMembers = (dbTeam.length > 0
     ? dbTeam.map((m) => ({
         id: m.slug || String(m.id),
@@ -1065,7 +1076,7 @@ export const HomePage: React.FC = () => {
         name: lang === 'bn' ? m.name.bn : m.name.en,
         role: lang === 'bn' ? m.role.bn : m.role.en,
         departmentLabel: lang === 'bn' ? m.departmentLabel?.bn || 'কৌশলগত পরিকল্পনা' : m.departmentLabel?.en || 'Strategic Planning',
-        image: m.image || '/images/berlo/team/shakwat-ullah-01.jpg',
+        image: m.image || teamMemberFallbackImages[m.slug] || '/images/berlo/team/shakwat-ullah-01.jpg',
         bio: lang === 'bn' ? m.bio.bn : m.bio.en,
         experience: `${m.experienceYears || 12}+ Yrs Exp`,
         email: m.social?.email || 'contact@berlocommunications.com',

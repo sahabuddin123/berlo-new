@@ -26,14 +26,16 @@ export const LeadershipPage: React.FC = () => {
     };
   }, []);
 
-  // Real team portraits from public/images/berlo/
+  // Real team portraits from public/images/berlo/team/
   const memberImages: Record<string, string> = {
-    'shakhawat-ullah': '/images/berlo/media_1794919816651_536d2857.jpg',
-    'md-kabir-hossain': '/images/berlo/media_1794919910744_ebc54319.jpg',
-    'akm-zamshed-uddin': '/images/berlo/media_1794919261279_75e33998.jpg',
-    'ashiqur-rahman': '/images/berlo/media_1794914012084_4405045d.jpg',
-    'tahmina-akter': '/images/berlo/media_1794915460700_983f5d15.jpg',
-    'farhana-yasmin': '/images/berlo/media_1794919525086_daefc098.jpg',
+    'shakhawat-ullah': '/images/berlo/team/shakwat-ullah-01.jpg',
+    'md-kabir-hossain': '/images/berlo/team/img-20260301-wa0001.jpg',
+    'akm-zamshed-uddin': '/images/berlo/team/zamshed.png',
+    'kabery-azad': '/images/berlo/team/shakhwat-ullah-1.png',
+    'tariq-anwar': '/images/berlo/team/team-tut.jpg',
+    'shatarupa-das': '/images/berlo/team/jawad.jpg',
+    'rajin-shaleh': '/images/berlo/team/team-tut.jpg',
+    'tahsin-al-jawad': '/images/berlo/team/jawad.jpg',
   };
 
   const departments = [
