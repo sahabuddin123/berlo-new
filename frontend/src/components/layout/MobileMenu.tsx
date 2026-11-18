@@ -74,7 +74,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onOpenS
                   <div>
                     <button
                       onClick={() => toggleExpand(item.id)}
-                      className="w-full flex items-center justify-between py-3 px-2 text-base font-semibold text-slate-800 dark:text-slate-100 hover:text-[#A302FF] dark:hover:text-[#B833FF]"
+                      className="w-full flex items-center justify-between py-2.5 px-2 text-[14.5px] font-semibold text-slate-800 dark:text-slate-100 hover:text-[#A302FF] dark:hover:text-[#B833FF]"
                     >
                       <span>{item.label[lang]}</span>
                       <ChevronDown
@@ -91,7 +91,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onOpenS
                             to={formatRoute(child.path)}
                             onClick={onClose}
                             className={({ isActive }) =>
-                              `block py-2 px-3 text-sm rounded-lg transition-colors ${
+                              `block py-1.5 px-3 text-[13px] rounded-lg transition-colors ${
                                 isActive
                                   ? 'font-semibold text-[#A302FF] bg-[#A302FF]/5 dark:bg-[#A302FF]/10'
                                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -109,7 +109,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onOpenS
                     to={formatRoute(item.path)}
                     onClick={onClose}
                     className={({ isActive }) =>
-                      `block py-3 px-2 text-base font-semibold rounded-lg transition-colors ${
+                      `block py-2.5 px-2 text-[14.5px] font-semibold rounded-lg transition-colors ${
                         isActive
                           ? 'text-[#A302FF] dark:text-[#B833FF]'
                           : 'text-slate-800 dark:text-slate-100 hover:text-[#A302FF]'
