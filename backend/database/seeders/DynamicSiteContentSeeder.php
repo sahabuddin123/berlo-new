@@ -441,9 +441,78 @@ class DynamicSiteContentSeeder extends Seeder
             Testimonial::create($t);
         }
 
-        // 4. Projects (4 Featured Projects)
+        // 4. Projects (Featured Authentic Case Studies)
         Project::query()->delete();
         $projects = [
+            [
+                'slug' => 'bangladesh-leather-footwear-expo-iccb',
+                'title_en' => '10th Bangladesh Leather & Footwear Expo & International Trade Summit at ICCB',
+                'title_bn' => 'আইসিসিবিতে ১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো ও আন্তর্জাতিক ট্রেড সামিট',
+                'client_name' => 'Limra Trade Events & International Expo Consortium',
+                'industry' => 'events',
+                'year' => '2026',
+                'overview_en' => 'Comprehensive event planning, VIP protocol, media relations, and digital stage launch production for the 10th Bangladesh Leather & Footwear Expo, 7th Non-Woven Expo, and Confucius Institute Unveiling at ICCB Hall-04.',
+                'overview_bn' => 'আইসিসিবি হল-০৪-এ অনুষ্ঠিত ১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো, ৭ম নন-ওভেন এক্সপো এবং কনফুসিয়াস ইনস্টিটিউট উন্মোচন অনুষ্ঠানের সামগ্রিক ইভেন্ট পরিকল্পনা, কূটনৈতিক প্রটোকল, প্রেস কভারেজ ও ডিজিটাল উদ্বোধনী মঞ্চ ব্যবস্থাপনা সফলভাবে পরিচালনা করে বার্লো কমিউনিকেশন্স।',
+                'challenge_en' => 'Synchronizing high-security ministerial protocols, international trade delegations, live cultural performances, and multi-channel press syndication.',
+                'challenge_bn' => 'আন্তর্জাতিক প্রতিনিধি দল, সরকারি মন্ত্রী ও নীতি নির্ধারকদের নিরাপত্তা প্রটোকল, যৌথ সাংস্কৃতিক পরিবেশনা এবং লাইভ মিডিয়া কভারেজ নিশ্চিত করা।',
+                'solution_en' => 'Interactive digital handprint launch interface on LED walls, dedicated VIP liaison desks, red-carpet delegate welcoming, and instant press release distribution.',
+                'solution_bn' => 'এলইডিতে ইন্টারঅ্যাক্টিভ ডিজিটাল উদ্বোধনী হ্যান্ডপ্রিন্ট সিস্টেম, ভিআইপি লিয়াজোঁ ডেস্ক, রেড কার্পেট অভ্যর্থনা এবং স্পট প্রেস সিন্ডিকেশন।',
+                'impact_en' => '18,000+ Trade Visitors, 45+ National Dailies Coverage, 120+ Exhibitor Pavilions',
+                'impact_bn' => '১৮,০০০+ বাণিজ্য দর্শনার্থী, ৪৫+ জাতীয় দৈনিকে প্রকাশ, ১২০+ আন্তর্জাতিক প্যাভিলিয়ন',
+                'stat_number' => '18,000+',
+                'stat_label_en' => 'B2B Trade Attendees',
+                'stat_label_bn' => 'বাণিজ্য দর্শনার্থী ও ক্রেতা',
+                'cover_image' => '/images/berlo/projects/iccb-expo-confucius-stage.jpg',
+                'is_featured' => true,
+                'is_published' => true,
+                'sort_order' => 1,
+            ],
+            [
+                'slug' => 'centerpoint-autumn-cultural-activation',
+                'title_en' => 'Centerpoint Experiential Cultural Activation & Heritage Art Showcase',
+                'title_bn' => 'সেন্টারপয়েন্ট এক্সপেরিয়েন্সিয়াল কালচারাল অ্যাক্টিভেশন ও ঐতিহ্যবাহী কারুশিল্প উৎসব',
+                'client_name' => 'Centerpoint Commercial & Retail Properties Ltd.',
+                'industry' => 'brand',
+                'year' => '2026',
+                'overview_en' => 'A high-impact lifestyle and cultural activation transforming Centerpoint’s grand atrium into a living celebration of Bengali folk crafts, live acoustic musical stages, and interactive workshops.',
+                'overview_bn' => 'সেন্টারপয়েন্টের বিশাল সেন্ট্রাল অ্যাট্রিয়ামকে ঐতিহ্যবাহী বাঙালি লোকশিল্প, লাইভ অ্যাকোস্টিক সঙ্গীতমঞ্চ এবং দর্শনার্থীদের সরাসরি অংশগ্রহণের বর্ণাঢ্য কারুশিল্পের মেলবন্ধনে রূপান্তরের এক অনন্য লাইফস্টাইল অ্যাক্টিভেশন।',
+                'challenge_en' => 'Increasing mall dwell time and engaging younger urban demographics with meaningful communal art experiences.',
+                'challenge_bn' => 'গ্রাহকদের মল অ্যাট্রিয়ামে দীর্ঘক্ষণ আকৃষ্ট রাখা এবং তরুণ প্রজন্ম ও পরিবারের সাথে গভীর সাংস্কৃতিক সংযোগ তৈরি করা।',
+                'solution_en' => 'Monumental terracotta & bamboo folk art installation, live block printing artisan workshops, and a hand-painted alpona live music stage.',
+                'solution_bn' => 'বাঁশের খাঁচা, কুলা ও মৃৎশিল্প ব্যাকড্রপ, সরাসরি ব্লকপ্রিন্ট করার ওয়ার্কশপ কর্নার এবং লাইভ মিউজিকের জন্য গোল আলপনাযুক্ত স্টেজ।',
+                'impact_en' => '65,000+ Footfall, 3,200+ Live Artisans Engaged, 32% Retail Sales Surge',
+                'impact_bn' => '৬৫,০০০+ গ্রাহক সমাগম, ৩,২০০+ ওয়ার্কশপ অংশগ্রহণকারী, ৩২% মল সেলস বৃদ্ধি',
+                'stat_number' => '65,000+',
+                'stat_label_en' => 'Total Activation Footfall',
+                'stat_label_bn' => 'উৎসব চলাকালীন গ্রাহক সমাগম',
+                'cover_image' => '/images/berlo/projects/centerpoint-atrium-musical-stage.jpg',
+                'is_featured' => true,
+                'is_published' => true,
+                'sort_order' => 2,
+            ],
+            [
+                'slug' => 'city-bank-amex-ultramarine-activation',
+                'title_en' => 'City Bank American Express Ultramarine Premium Activation & Origami Experience',
+                'title_bn' => 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন প্রিমিয়াম অ্যাক্টিভেশন ও অরিগামি এক্সপেরিয়েন্স',
+                'client_name' => 'City Bank PLC & American Express',
+                'industry' => 'corporate',
+                'year' => '2026',
+                'overview_en' => 'An ultra-premium brand experience combining high-touch financial advisory for the Amex Ultramarine Credit Card with poetic spatial art installations featuring suspended origami clouds, pottery wheels, and Victorian floral sets.',
+                'overview_bn' => 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন ক্রেডিট কার্ডের প্রিমিয়াম পরিচিতি নিশ্চিত করতে এক আধুনিক লাইফস্টাইল অ্যাক্টিভেশন, যেখানে আধুনিক ফাইন্যান্সিয়াল সার্ভিসের সাথে ভাসমান অরিগামি মেঘ, মৃৎশিল্প এবং ভিক্টোরিয়ান ফ্লোরাল লাউঞ্জের সমন্বয় ঘটানো হয়।',
+                'challenge_en' => 'Positioning an elite credit card product beyond conventional sales kiosks into an upscale experiential environment.',
+                'challenge_bn' => 'সাধারণ ব্যাংকিং বুথের বদলে একটি অভিজাত কার্ডের জন্য প্রয়োজন ছিল আভিজাত্য ও আধুনিক বিলাসিতার এক প্রিমিয়াম আবহ।',
+                'solution_en' => 'Backlit luxury Amex pavilion, suspended origami paper-dove cloudscapes, live master potter station, and botanical photo lounge.',
+                'solution_bn' => 'আলোকোজ্জ্বল আমেরিকান এক্সপ্রেস প্যাভিলিয়ন, ঝুলন্ত অরিগামি মেঘ ও শান্তির কপোত, জীবন্ত মৃৎশিল্প কর্নার এবং তাজা ফুলের ফটোবুথ।',
+                'impact_en' => '850+ Premium Card Onboarding, 140% Target Exceeded, 98% Brand Affinity',
+                'impact_bn' => '৮৫০+ প্রিমিয়াম কার্ড আবেদন, ১৪০% লক্ষ্যমাত্রা অর্জন, ৯৮% ব্র্যান্ড সন্তুষ্টি',
+                'stat_number' => '850+',
+                'stat_label_en' => 'Premium Card Applications',
+                'stat_label_bn' => 'প্রিমিয়াম ক্রেডিট কার্ড আবেদনপত্র',
+                'cover_image' => '/images/berlo/projects/amex-ultramarine-lounge-activation.jpg',
+                'is_featured' => true,
+                'is_published' => true,
+                'sort_order' => 3,
+            ],
             [
                 'slug' => 'epb-diaspora-summit',
                 'title_en' => 'Global Trade & Diaspora Investment Summit',
@@ -541,21 +610,21 @@ class DynamicSiteContentSeeder extends Seeder
             Project::create($p);
         }
 
-        // 5. Gallery Photos (12 Mosaic Tiles)
+        // 5. Gallery Photos (12 Authentic Mosaic Tiles)
         GalleryPhoto::query()->delete();
         $photos = [
-            ['title_en' => 'Live National Press Delegation', 'title_bn' => 'জাতীয় প্রেস কনফারেন্স ব্রিফিং', 'image_url' => '/images/berlo/gallery/moment-1.jpg', 'category_key' => 'press', 'category_en' => 'National Press', 'category_bn' => 'জাতীয় প্রেস', 'sort_order' => 1],
-            ['title_en' => 'High-Level Corporate Delegation', 'title_bn' => 'শীর্ষ কর্পোরেট প্রতিনিধিদল', 'image_url' => '/images/berlo/gallery/moment-2.jpg', 'category_key' => 'corporate', 'category_en' => 'Corporate Summit', 'category_bn' => 'কর্পোরেট সম্মেলন', 'sort_order' => 2],
-            ['title_en' => 'National Media Delegation', 'title_bn' => 'জাতীয় গণমাধ্যম গোলটেবিল', 'image_url' => '/images/berlo/gallery/moment-3.jpg', 'category_key' => 'media', 'category_en' => 'Media Roundtable', 'category_bn' => 'গণমাধ্যম গোলটেবিল', 'sort_order' => 3],
-            ['title_en' => 'Executive Press Briefing', 'title_bn' => 'নির্বাহী প্রেস ব্রিফিং অধিবেশন', 'image_url' => '/images/berlo/gallery/moment-4.jpg', 'category_key' => 'briefing', 'category_en' => 'Press Briefing', 'category_bn' => 'প্রেস ব্রিফিং', 'sort_order' => 4],
-            ['title_en' => 'Senior Leadership Roundtables', 'title_bn' => 'সিনিয়র নেতৃত্ব ও নীতিনির্ধারণী ফোরাম', 'image_url' => '/images/berlo/gallery/moment-5.jpg', 'category_key' => 'leadership', 'category_en' => 'Leadership Forum', 'category_bn' => 'নেতৃত্ব ফোরাম', 'sort_order' => 5],
-            ['title_en' => 'Corporate Communications Milestone', 'title_bn' => 'কর্পোরেট যোগাযোগ মাইলফলক উদযাপন', 'image_url' => '/images/berlo/gallery/moment-6.jpg', 'category_key' => 'milestone', 'category_en' => 'Milestone', 'category_bn' => 'মাইলফলক', 'sort_order' => 6],
-            ['title_en' => 'Stakeholder Media Forum', 'title_bn' => 'স্টেকহোল্ডার মিডিয়া নেটওয়ার্কিং ফোরাম', 'image_url' => '/images/berlo/gallery/moment-7.jpg', 'category_key' => 'forum', 'category_en' => 'Stakeholder Forum', 'category_bn' => 'অংশীদার ফোরাম', 'sort_order' => 7],
-            ['title_en' => 'Strategic Media Partnership Signing', 'title_bn' => 'কৌশলগত মিডিয়া পার্টনারশিপ স্বাক্ষর', 'image_url' => '/images/berlo/gallery/moment-8.jpg', 'category_key' => 'partnership', 'category_en' => 'Partnership', 'category_bn' => 'অংশীদারিত্ব', 'sort_order' => 8],
-            ['title_en' => 'Investigative Briefing Session', 'title_bn' => 'অনুসন্ধানী তথ্য উপস্থাপন অধিবেশন', 'image_url' => '/images/berlo/gallery/moment-9.jpg', 'category_key' => 'briefing', 'category_en' => 'Special Briefing', 'category_bn' => 'বিশেষ ব্রিফিং', 'sort_order' => 9],
-            ['title_en' => 'National Broadcasters Session', 'title_bn' => 'জাতীয় টেলিভিশন সম্প্রচারকদের সাথে ব্রিফিং', 'image_url' => '/images/berlo/gallery/moment-10.jpg', 'category_key' => 'broadcast', 'category_en' => 'Broadcast Forum', 'category_bn' => 'সম্প্রচার ফোরাম', 'sort_order' => 10],
-            ['title_en' => 'Annual Corporate Gala Press', 'title_bn' => 'বার্ষিক কর্পোরেট গালা ও মিডিয়া ডেসপ্যাচ', 'image_url' => '/images/berlo/gallery/moment-11.jpg', 'category_key' => 'gala', 'category_en' => 'Annual Gala', 'category_bn' => 'বার্ষিক গালা', 'sort_order' => 11],
-            ['title_en' => 'Boardroom Crisis Resolution Protocol', 'title_bn' => 'বোর্ডরুম ক্রাইসিস নিরসন অধিবেশন', 'image_url' => '/images/berlo/gallery/moment-12.jpg', 'category_key' => 'crisis', 'category_en' => 'Crisis War-Room', 'category_bn' => 'ক্রাইসিস ওয়ার-রুম', 'sort_order' => 12],
+            ['title_en' => '10th Bangladesh Leather & Footwear Expo — Digital Stage Launch', 'title_bn' => '১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো — ডিজিটাল স্টেজ উদ্বোধন', 'image_url' => '/images/berlo/gallery/gallery-iccb-digital-launch.jpg', 'category_key' => 'events', 'category_en' => 'Trade Expo', 'category_bn' => 'বাণিজ্য মেলা', 'sort_order' => 1],
+            ['title_en' => 'Centerpoint Heritage Art Fest — Live Alpona Concert Stage', 'title_bn' => 'সেন্টারপয়েন্ট ঐতিহ্যবাহী কারুশিল্প উৎসব — লাইভ আলপনা সঙ্গীতমঞ্চ', 'image_url' => '/images/berlo/gallery/gallery-centerpoint-alpona-stage.jpg', 'category_key' => 'activation', 'category_en' => 'Brand Activation', 'category_bn' => 'ব্র্যান্ড অ্যাক্টিভেশন', 'sort_order' => 2],
+            ['title_en' => 'Centerpoint Monumental Terracotta & Handloom Backdrop', 'title_bn' => 'সেন্টারপয়েন্ট ফোক আর্ট ইন্সটলেশন — মৃৎশিল্প ও হ্যান্ডলুম প্রদর্শনী', 'image_url' => '/images/berlo/gallery/gallery-centerpoint-folk-art-backdrop.jpg', 'category_key' => 'activation', 'category_en' => 'Art Installation', 'category_bn' => 'শিল্প প্রদর্শনী', 'sort_order' => 3],
+            ['title_en' => 'Traditional Block Printing Atelier — Hands-On Workshop', 'title_bn' => 'ঐতিহ্যবাহী ব্লক প্রিন্টিং কর্মশালা — লাইভ কারুশিল্প সেশন', 'image_url' => '/images/berlo/gallery/gallery-centerpoint-block-printing.jpg', 'category_key' => 'activation', 'category_en' => 'Craft Workshop', 'category_bn' => 'কারুশিল্প কর্মশালা', 'sort_order' => 4],
+            ['title_en' => 'City Bank American Express Ultramarine — Luxury Product Lounge', 'title_bn' => 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন — লাক্সারি প্রোডাক্ট লাউঞ্জ', 'image_url' => '/images/berlo/gallery/gallery-amex-ultramarine-booth.jpg', 'category_key' => 'events', 'category_en' => 'Corporate Lounge', 'category_bn' => 'করপোরেট লাউঞ্জ', 'sort_order' => 5],
+            ['title_en' => 'Origami Spatial Installation — Suspended Paper Doves & Cloudscape', 'title_bn' => 'অরিগামি স্পেশাল ইন্সটলেশন — ঝুলন্ত শ্বেত কপোত ও ভাসমান মেঘ', 'image_url' => '/images/berlo/gallery/gallery-centerpoint-origami-clouds.jpg', 'category_key' => 'activation', 'category_en' => 'Spatial Design', 'category_bn' => 'স্পেশাল ডিজাইন', 'sort_order' => 6],
+            ['title_en' => 'Master Potter Live Demonstration — Clay Crafting Wheel', 'title_bn' => 'মৃৎশিল্পীর সরাসরি পরিবেশনা — জীবন্ত মাটির পাত্র তৈরির চাকা', 'image_url' => '/images/berlo/gallery/gallery-centerpoint-pottery-artisan.jpg', 'category_key' => 'activation', 'category_en' => 'Live Craft', 'category_bn' => 'ঐতিহ্যবাহী কারুশিল্প', 'sort_order' => 7],
+            ['title_en' => 'Victorian Botanical Portrait Suite — Fresh Hydrangea Floral Installation', 'title_bn' => 'ভিক্টোরিয়ান বোটানিক্যাল পোর্ট্রেট স্যুট — তাজা ফুলের নান্দনিক সেট', 'image_url' => '/images/berlo/gallery/gallery-centerpoint-floral-throne.jpg', 'category_key' => 'activation', 'category_en' => 'Floral Art', 'category_bn' => 'ফুলের নান্দনিক সেট', 'sort_order' => 8],
+            ['title_en' => 'Centerpoint Grand Fest — Hundreds of Spectators Cheering Live', 'title_bn' => 'সেন্টারপয়েন্ট গ্র্যান্ড ফেস্ট — শত শত দর্শকের উচ্ছ্বসিত উপস্থিতি', 'image_url' => '/images/berlo/gallery/gallery-centerpoint-enthusiastic-audience.jpg', 'category_key' => 'activation', 'category_en' => 'Crowd Activation', 'category_bn' => 'জনসমাগম', 'sort_order' => 9],
+            ['title_en' => 'Confucius Institute Unveiling Ceremony — Cultural Dance Showcase', 'title_bn' => 'কনফুসিয়াস ইনস্টিটিউট উন্মোচন অনুষ্ঠান — সাংস্কৃতিক পরিবেশনা', 'image_url' => '/images/berlo/gallery/gallery-iccb-cultural-dance.jpg', 'category_key' => 'speaker', 'category_en' => 'Bilateral Summit', 'category_bn' => 'কূটনৈতিক সামিট', 'sort_order' => 10],
+            ['title_en' => 'Bangladesh Leather & Non-Woven Expo — Grand Entrance Pavilion', 'title_bn' => 'বাংলাদেশ লেদার ও নন-ওভেন এক্সপো — গ্র্যান্ড এন্ট্রান্স প্যাভিলিয়ন', 'image_url' => '/images/berlo/gallery/gallery-iccb-entrance-expo.jpg', 'category_key' => 'events', 'category_en' => 'Expo Entrance', 'category_bn' => 'প্রদর্শনী ফটক', 'sort_order' => 11],
+            ['title_en' => 'ICCB International Trade Expo — Dignitary Red Carpet Reception', 'title_bn' => 'আইসিসিবি আন্তর্জাতিক প্রদর্শনী — ভিআইপি রেড কার্পেট অভ্যর্থনা', 'image_url' => '/images/berlo/projects/iccb-expo-red-carpet-delegates.jpg', 'category_key' => 'events', 'category_en' => 'VIP Protocol', 'category_bn' => 'ভিআইপি প্রটোকল', 'sort_order' => 12],
         ];
         foreach ($photos as $p) {
             GalleryPhoto::create($p);

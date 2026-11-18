@@ -56,6 +56,259 @@ export const photoCategories = [
 
 export const photoGalleryItems: PhotoItem[] = [
   {
+    id: 'photo-iccb-digital-launch',
+    title: {
+      en: '10th Bangladesh Leather & Footwear Expo — Digital Stage Launch Ceremony',
+      bn: '১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো — ডিজিটাল স্টেজ উদ্বোধন',
+    },
+    category: {
+      en: 'Corporate Events & Expos',
+      bn: 'করপোরেট ইভেন্ট ও মেলা',
+    },
+    categoryKey: 'events',
+    image: '/images/berlo/gallery/gallery-iccb-digital-launch.jpg',
+    date: 'September 2026',
+    location: {
+      en: 'ICCB Hall-04, Dhaka',
+      bn: 'আইসিসিবি হল-০৪, বসুন্ধরা, ঢাকা',
+    },
+    client: 'Limra Trade Events & International Consortium',
+    description: {
+      en: 'High-tech digital handprint stage launch with international trade delegations and ministerial dignitaries.',
+      bn: 'আন্তর্জাতিক বাণিজ্য প্রতিনিধি ও মন্ত্রী পর্যায়ের অতিথিবৃন্দের উপস্থিতিতে ডিজিটাল হ্যান্ডপ্রিন্ট মঞ্চ উদ্বোধন।',
+    },
+  },
+  {
+    id: 'photo-iccb-entrance-expo',
+    title: {
+      en: 'Bangladesh Leather & Non-Woven Expo — Grand Entrance & Welcome Pavilion',
+      bn: 'বাংলাদেশ লেদার ও নন-ওভেন এক্সপো — গ্র্যান্ড এন্ট্রান্স প্যাভিলিয়ন',
+    },
+    category: {
+      en: 'Corporate Events & Expos',
+      bn: 'করপোরেট ইভেন্ট ও মেলা',
+    },
+    categoryKey: 'events',
+    image: '/images/berlo/gallery/gallery-iccb-entrance-expo.jpg',
+    date: 'September 2026',
+    location: {
+      en: 'ICCB Main Complex, Dhaka',
+      bn: 'আইসিসিবি মূল প্রাঙ্গণ, ঢাকা',
+    },
+    client: 'Limra Trade Events',
+    description: {
+      en: 'Marquee entrance branding and international trade pavilion protocol infrastructure managed by Berlo.',
+      bn: 'আন্তর্জাতিক বাণিজ্য প্রদর্শনীর মূল ফটক ব্র্যান্ডিং এবং সমন্বিত প্রটোকল অবকাঠামো।',
+    },
+  },
+  {
+    id: 'photo-iccb-cultural-dance',
+    title: {
+      en: 'Confucius Institute Unveiling Ceremony — Bilateral Cultural Showcase',
+      bn: 'কনফুসিয়াস ইনস্টিটিউট উন্মোচন অনুষ্ঠান — দ্বিপাক্ষিক সাংস্কৃতিক পরিবেশনা',
+    },
+    category: {
+      en: 'Speaker Programs & Summits',
+      bn: 'স্পিকার সেশন ও সামিট',
+    },
+    categoryKey: 'speaker',
+    image: '/images/berlo/gallery/gallery-iccb-cultural-dance.jpg',
+    date: 'September 2026',
+    location: {
+      en: 'ICCB Grand Auditorium, Dhaka',
+      bn: 'আইসিসিবি গ্র্যান্ড অডিটোরিয়াম, ঢাকা',
+    },
+    client: 'Yunnan Minzu University & University of Chittagong',
+    description: {
+      en: 'Cross-cultural artistic stage choreography and diplomatic protocol orchestrations.',
+      bn: 'দ্বিপাক্ষিক সাংস্কৃতিক মেলবন্ধন এবং কূটনৈতিক প্রটোকল মঞ্চায়ন।',
+    },
+  },
+  {
+    id: 'photo-centerpoint-alpona-stage',
+    title: {
+      en: 'Centerpoint Heritage Art Fest — Live Alpona Concert Stage',
+      bn: 'সেন্টারপয়েন্ট ঐতিহ্যবাহী কারুশিল্প উৎসব — লাইভ আলপনা সঙ্গীতমঞ্চ',
+    },
+    category: {
+      en: 'Brand Activations & Galas',
+      bn: 'ব্র্যান্ড অ্যাক্টিভেশন ও গালা',
+    },
+    categoryKey: 'activation',
+    image: '/images/berlo/gallery/gallery-centerpoint-alpona-stage.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint Mall Atrium, Dhaka',
+      bn: 'সেন্টারপয়েন্ট মল অ্যাট্রিয়াম, ঢাকা',
+    },
+    client: 'Centerpoint Commercial Properties',
+    description: {
+      en: 'Acoustic live concert on a circular hand-painted alpona dais framed by suspended artisan textiles.',
+      bn: 'হাতে আঁকা আলপনা মঞ্চে অ্যাকোস্টিক সঙ্গীত পরিবেশনা এবং ঐতিহ্যবাহী কারুশিল্প প্রদর্শনী।',
+    },
+  },
+  {
+    id: 'photo-centerpoint-folk-art-backdrop',
+    title: {
+      en: 'Centerpoint Folk Art Installation — Terracotta & Handloom Display',
+      bn: 'সেন্টারপয়েন্ট ফোক আর্ট ইন্সটলেশন — মৃৎশিল্প ও হ্যান্ডলুম অ্যাট্রিয়াম প্রদর্শনী',
+    },
+    category: {
+      en: 'Brand Activations & Galas',
+      bn: 'ব্র্যান্ড অ্যাক্টিভেশন ও গালা',
+    },
+    categoryKey: 'activation',
+    image: '/images/berlo/gallery/gallery-centerpoint-folk-art-backdrop.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint Grand Atrium, Dhaka',
+      bn: 'সেন্টারপয়েন্ট গ্র্যান্ড অ্যাট্রিয়াম, ঢাকা',
+    },
+    client: 'Centerpoint Commercial Properties',
+    description: {
+      en: 'Monumental bamboo lattice backdrop integrating folk kula, woven textiles, and terracotta crafts.',
+      bn: 'বাঁশের খাঁচা, নকশী কুলা এবং মৃৎশিল্পের সমন্বয়ে নির্মিত বিশাল লোকশিল্প ব্যাকড্রপ।',
+    },
+  },
+  {
+    id: 'photo-centerpoint-block-printing',
+    title: {
+      en: 'Traditional Block Printing Atelier — Interactive Artisan Workshop',
+      bn: 'ঐতিহ্যবাহী ব্লক প্রিন্টিং কর্মশালা — সরাসরি অংশগ্রহণমূলক কারুশিল্প সেশন',
+    },
+    category: {
+      en: 'Brand Activations & Galas',
+      bn: 'ব্র্যান্ড অ্যাক্টিভেশন ও গালা',
+    },
+    categoryKey: 'activation',
+    image: '/images/berlo/gallery/gallery-centerpoint-block-printing.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint Mall Atrium, Dhaka',
+      bn: 'সেন্টারপয়েন্ট মল অ্যাট্রিয়াম, ঢাকা',
+    },
+    client: 'Centerpoint Commercial Properties',
+    description: {
+      en: 'Hands-on block printing atelier enabling attendees to hand-stamp custom heritage motifs.',
+      bn: 'দর্শনার্থীদের জন্য ঐতিহ্যবাহী ব্লকে সরাসরি নকশা প্রিন্ট করার আনন্দময় লাইভ ওয়ার্কশপ।',
+    },
+  },
+  {
+    id: 'photo-amex-ultramarine-booth',
+    title: {
+      en: 'City Bank American Express Ultramarine — Luxury Product Lounge',
+      bn: 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন — লাক্সারি প্রোডাক্ট লাউঞ্জ',
+    },
+    category: {
+      en: 'Corporate Events & Expos',
+      bn: 'করপোরেট ইভেন্ট ও মেলা',
+    },
+    categoryKey: 'events',
+    image: '/images/berlo/gallery/gallery-amex-ultramarine-booth.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint Concourse, Dhaka',
+      bn: 'সেন্টারপয়েন্ট কনকোর্স, ঢাকা',
+    },
+    client: 'City Bank PLC & American Express',
+    description: {
+      en: 'Contemporary architectural backlit pavilion showcasing the elite American Express Ultramarine Credit Card.',
+      bn: 'আমেরিকান এক্সপ্রেস আল্ট্রামেরিন কার্ডের আধুনিক আলোকোজ্জ্বল ব্র্যান্ডিং ও এক্সক্লুসিভ লাউঞ্জ।',
+    },
+  },
+  {
+    id: 'photo-centerpoint-origami-clouds',
+    title: {
+      en: 'Origami Spatial Installation — Suspended Paper Doves & Cloudscape',
+      bn: 'অরিগামি স্পেশাল ইন্সটলেশন — ঝুলন্ত শ্বেত কপোত ও ভাসমান মেঘ',
+    },
+    category: {
+      en: 'Brand Activations & Galas',
+      bn: 'ব্র্যান্ড অ্যাক্টিভেশন ও গালা',
+    },
+    categoryKey: 'activation',
+    image: '/images/berlo/gallery/gallery-centerpoint-origami-clouds.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint Grand Atrium, Dhaka',
+      bn: 'সেন্টারপয়েন্ট গ্র্যান্ড অ্যাট্রিয়াম, ঢাকা',
+    },
+    client: 'Centerpoint Commercial Properties',
+    description: {
+      en: 'Dreamlike overhead spatial installation with hundreds of handcrafted origami doves floating through cloudscapes.',
+      bn: 'অ্যাট্রিয়ামের ছাদে শত শত হাতে তৈরি কাগজের শান্তির কপোত ও ভাসমান তুলোর মেঘমালা।',
+    },
+  },
+  {
+    id: 'photo-centerpoint-pottery-artisan',
+    title: {
+      en: 'Master Potter Live Demonstration — Clay Crafting Wheel',
+      bn: 'মৃৎশিল্পীর সরাসরি পরিবেশনা — জীবন্ত মাটির পাত্র তৈরির চাকা',
+    },
+    category: {
+      en: 'Brand Activations & Galas',
+      bn: 'ব্র্যান্ড অ্যাক্টিভেশন ও গালা',
+    },
+    categoryKey: 'activation',
+    image: '/images/berlo/gallery/gallery-centerpoint-pottery-artisan.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint Craft Pavilion, Dhaka',
+      bn: 'সেন্টারপয়েন্ট কারুশিল্প প্যাভিলিয়ন, ঢাকা',
+    },
+    client: 'Centerpoint Commercial Properties',
+    description: {
+      en: 'Live traditional wheel-thrown pottery demonstrations celebrating indigenous craft heritage.',
+      bn: 'ঐতিহ্যবাহী চাকার সাহায্যে সরাসরি মাটির পাত্র তৈরির মনোমুগ্ধকর পরিবেশনা।',
+    },
+  },
+  {
+    id: 'photo-centerpoint-floral-throne',
+    title: {
+      en: 'Victorian Botanical Portrait Suite — Fresh Hydrangea Floral Installation',
+      bn: 'ভিক্টোরিয়ান বোটানিক্যাল পোর্ট্রেট স্যুট — তাজা হাইড্রেনজিয়া ফুলের নান্দনিক সেট',
+    },
+    category: {
+      en: 'Brand Activations & Galas',
+      bn: 'ব্র্যান্ড অ্যাক্টিভেশন ও গালা',
+    },
+    categoryKey: 'activation',
+    image: '/images/berlo/gallery/gallery-centerpoint-floral-throne.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint VIP Lounge, Dhaka',
+      bn: 'সেন্টারপয়েন্ট ভিআইপি লাউঞ্জ, ঢাকা',
+    },
+    client: 'Centerpoint Commercial Properties',
+    description: {
+      en: 'Handmade cane chair surrounded by fresh hydrangeas, baby’s breath, and floral botanical art.',
+      bn: 'তাজা ফুল, বেতের চেয়ার ও সবুজ লতাপাতার সমন্বয়ে নির্মিত চমৎকার ফোটো স্যুট।',
+    },
+  },
+  {
+    id: 'photo-centerpoint-enthusiastic-audience',
+    title: {
+      en: 'Centerpoint Grand Fest — Hundreds of Spectators Cheering Live',
+      bn: 'সেন্টারপয়েন্ট গ্র্যান্ড ফেস্ট — শত শত দর্শকের উচ্ছ্বসিত উপস্থিতি',
+    },
+    category: {
+      en: 'Brand Activations & Galas',
+      bn: 'ব্র্যান্ড অ্যাক্টিভেশন ও গালা',
+    },
+    categoryKey: 'activation',
+    image: '/images/berlo/gallery/gallery-centerpoint-enthusiastic-audience.jpg',
+    date: 'October 2026',
+    location: {
+      en: 'Centerpoint Main Arena, Dhaka',
+      bn: 'সেন্টারপয়েন্ট মেইন এরিনা, ঢাকা',
+    },
+    client: 'Centerpoint Commercial Properties',
+    description: {
+      en: 'Hundreds of seated youth, families, and attendees clapping and enjoying the live cultural spectacle.',
+      bn: 'শত শত তরুণ ও দর্শনার্থীদের বিপুল হর্ষধ্বনি ও উচ্ছ্বাসে মুখরিত সাংস্কৃতিক আসর।',
+    },
+  },
+  {
     id: 'photo-ditf-01',
     title: {
       en: 'Dhaka International Trade Fair — Grand Pavilion Unveiling',

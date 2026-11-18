@@ -23,6 +23,204 @@ export interface CaseStudy {
 
 export const projectsData: CaseStudy[] = [
   {
+    id: 'bangladesh-leather-footwear-expo-iccb',
+    slug: 'bangladesh-leather-footwear-expo-iccb',
+    title: {
+      en: '10th Bangladesh Leather & Footwear Expo & International Trade Summit at ICCB',
+      bn: 'আইসিসিবিতে ১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো ও আন্তর্জাতিক ট্রেড সামিট',
+    },
+    clientName: 'Limra Trade Events & International Expo Consortium',
+    industry: { en: 'International Trade & Industrial Expos', bn: 'আন্তর্জাতিক বাণিজ্য ও শিল্প মেলা' },
+    category: 'events',
+    featured: true,
+    timeline: '3 Days Summit / 4 Months Planning',
+    heroMetrics: [
+      { value: '18,000+', label: { en: 'B2B Trade Attendees', bn: 'বাণিজ্য দর্শনার্থী ও ক্রেতা' } },
+      { value: '120+', label: { en: 'Global Exhibitor Booths', bn: 'আন্তর্জাতিক প্রদর্শক প্যাভিলিয়ন' } },
+      { value: '100%', label: { en: 'Diplomatic Protocol Clearance', bn: 'কূটনৈতিক প্রটোকল সমন্বয়' } },
+    ],
+    overview: {
+      en: 'Berlo Communications orchestrated comprehensive event planning, VIP protocol, media relations, and digital stage launch production for the 10th Bangladesh Leather & Footwear Expo, 7th Non-Woven Expo, and Confucius Institute Unveiling at ICCB Hall-04.',
+      bn: 'আইসিসিবি হল-০৪-এ অনুষ্ঠিত ১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো, ৭ম নন-ওভেন এক্সপো এবং কনফুসিয়াস ইনস্টিটিউট উন্মোচন অনুষ্ঠানের সামগ্রিক ইভেন্ট পরিকল্পনা, কূটনৈতিক প্রটোকল, প্রেস কভারেজ ও ডিজিটাল উদ্বোধনী মঞ্চ ব্যবস্থাপনা সফলভাবে পরিচালনা করে বার্লো কমিউনিকেশন্স।',
+    },
+    challenge: {
+      en: 'The event required synchronizing high-security ministerial protocols, international trade delegations from China and South Asia, live cultural performances, and multi-channel press syndication in a premier convention complex.',
+      bn: 'আন্তর্জাতিক প্রতিনিধি দল, সরকারি মন্ত্রী ও নীতি নির্ধারকদের নিরাপত্তা প্রটোকল, যৌথ সাংস্কৃতিক পরিবেশনা এবং একই সাথে জাতীয় ও আন্তর্জাতিক সংবাদ মাধ্যমে লাইভ মিডিয়া কভারেজ নিশ্চিত করা ছিল একটি জটিল চ্যালেঞ্জ।',
+    },
+    strategy: {
+      en: 'We designed an integrated event operations framework: an interactive digital handprint launch interface on LED walls, dedicated VIP liaison desks, red-carpet delegate welcoming, and instant press release distribution rooms.',
+      bn: 'আমরা একটি সমন্বিত ইভেন্ট অপারেশন ফ্রেমওয়ার্ক প্রণয়ন করি: এলইডিতে ইন্টারঅ্যাক্টিভ ডিজিটাল উদ্বোধনী হ্যান্ডপ্রিন্ট সিস্টেম, ভিআইপি লিয়াজোঁ ডেস্ক, রেড কার্পেট অভ্যর্থনা এবং স্পট প্রেস সিন্ডিকেশন সেন্টার।',
+    },
+    execution: {
+      en: 'Executed seamless VIP stage management, coordinated bilingual master-of-ceremonies, managed dynamic audiovisual stage craft, and directed photo/video documentation capturing high-level trade interactions and cross-cultural stage performances.',
+      bn: 'মঞ্চে দ্বিভাষিক উপস্থাপনা, নিখুঁত অডিও-ভিজ্যুয়াল লাইটিং, দ্বিপাক্ষিক সাংস্কৃতিক নৃত্যনাট্য পরিচালনা এবং আন্তর্জাতিক ব্যবসায়িক আলোচনার প্রফেশনাল ফটো ও ভিডিও ডকুমেন্টেশন নিশ্চিত করা হয়।',
+    },
+    results: {
+      en: [
+        'Over 18,000 verified trade visitors and B2B buyers engaged over 3 exhibition days.',
+        'Extensive editorial placement across 45+ premier national dailies and broadcast television networks.',
+        'High-level commendation from international trade delegations for seamless protocol and staging.',
+        'Signed cross-border manufacturing MOUs facilitated by private networking zones managed by Berlo.',
+      ],
+      bn: [
+        '৩ দিনের প্রদর্শনীতে ১৮,০০০ এর বেশি নিবন্ধিত দেশি-বিদেশি বাণিজ্য দর্শনার্থীর অংশগ্রহণ।',
+        '৪৫টিরও বেশি জাতীয় দৈনিক ও শীর্ষ টেলিভিশন চ্যানেলে গুরুত্বসহকারে সংবাদ প্রকাশ।',
+        'আন্তর্জাতিক প্রতিনিধিদল কর্তৃক রাষ্ট্রীয় প্রটোকল ও নিখুঁত মঞ্চ ব্যবস্থাপনার ভূয়সী প্রশংসা।',
+        'বার্লোর ব্যবস্থাপনায় পরিচালিত এক্সক্লুসিভ লাউঞ্জে শীর্ষস্থানীয় যৌথ বাণিজ্য চুক্তি ও সমঝোতা স্মারক স্বাক্ষর।',
+      ],
+    },
+    quote: {
+      text: {
+        en: 'Berlo Communications elevated this international expo into a world-class diplomatic and commercial success. Their protocol execution and media reach were impeccable.',
+        bn: 'বার্লো কমিউনিকেশন্স আন্তর্জাতিক এই প্রদর্শনীকে বৈশ্বিক মানসম্পন্ন বাণিজ্যিক ও কূটনৈতিক সাফল্যে রূপান্তর করেছে। তাদের প্রটোকল এবং মিডিয়া সমন্বয় ছিল অনবদ্য।',
+      },
+      author: 'Executive Committee',
+      designation: {
+        en: 'Trade Delegation Directorate',
+        bn: 'ট্রেড ডেলিগেশন পরিচালনা পর্ষদ',
+      },
+    },
+    servicesProvided: [
+      'Event Planning & Production',
+      'VIP Protocol Management',
+      'Media Relations & Press Conference',
+      'Digital Stage Launch Craft',
+      'Commercial Photography & Videography',
+    ],
+  },
+  {
+    id: 'centerpoint-autumn-cultural-activation',
+    slug: 'centerpoint-autumn-cultural-activation',
+    title: {
+      en: 'Centerpoint Experiential Cultural Activation & Heritage Art Showcase',
+      bn: 'সেন্টারপয়েন্ট এক্সপেরিয়েন্সিয়াল কালচারাল অ্যাক্টিভেশন ও ঐতিহ্যবাহী কারুশিল্প উৎসব',
+    },
+    clientName: 'Centerpoint Commercial & Retail Properties Ltd.',
+    industry: { en: 'Retail & Commercial Real Estate', bn: 'বাণিজ্যিক রিয়েল এস্টেট ও লাইফস্টাইল মল' },
+    category: 'brand',
+    featured: true,
+    timeline: '5 Days Festival',
+    heroMetrics: [
+      { value: '65,000+', label: { en: 'Footfall During Activation', bn: 'উৎসব চলাকালীন গ্রাহক সমাগম' } },
+      { value: '3,200+', label: { en: 'Workshop Participants', bn: 'কর্মশালায় প্রত্যক্ষ অংশগ্রহণকারী' } },
+      { value: '250%', label: { en: 'Social Media Engagement Surge', bn: 'সোশ্যাল মিডিয়া এনগেজমেন্ট বৃদ্ধি' } },
+    ],
+    overview: {
+      en: 'A high-impact lifestyle and cultural activation transforming Centerpoint’s grand atrium into a living celebration of Bengali folk crafts, live acoustic musical stages, and interactive workshops.',
+      bn: 'সেন্টারপয়েন্টের বিশাল সেন্ট্রাল অ্যাট্রিয়ামকে ঐতিহ্যবাহী বাঙালি লোকশিল্প, লাইভ অ্যাকোস্টিক সঙ্গীতমঞ্চ এবং দর্শনার্থীদের সরাসরি অংশগ্রহণের বর্ণাঢ্য কারুশিল্পের মেলবন্ধনে রূপান্তরের এক অনন্য লাইফস্টাইল অ্যাক্টিভেশন।',
+    },
+    challenge: {
+      en: 'Modern retail centers often struggle with transient footfall that doesn’t engage with communal spaces. Centerpoint needed an activation that increased dwelling time, celebrated authentic heritage, and resonated strongly across young demographics and families.',
+      bn: 'আধুনিক শপিং সেন্টারে দর্শনার্থীরা কেবল কেনাকাটা করে দ্রুত চলে যায়, মল স্পেসে দীর্ঘ সময় কাটায় না। সেন্টারপয়েন্টের লক্ষ্য ছিল গ্রাহকদের মল অ্যাট্রিয়ামে দীর্ঘক্ষণ আকৃষ্ট রাখা এবং তরুণ প্রজন্ম ও পরিবারের সাথে গভীর সাংস্কৃতিক সংযোগ তৈরি করা।',
+    },
+    strategy: {
+      en: 'Berlo designed an experiential cultural journey: an authentic folk art backdrop with terracotta kula, bamboo latticework, live traditional block printing fabric ateliers, and a circular hand-painted alpona performance stage for live folk-fusion musical sessions.',
+      bn: 'বার্লো একটি বহুমাত্রিক এক্সপেরিয়েন্সিয়াল যাত্রা তৈরি করে: বাঁশের খাঁচা, কুলা ও মৃৎশিল্প দিয়ে বিশাল নান্দনিক ব্যাকড্রপ, সরাসরি ব্লকপ্রিন্ট করার ওয়ার্কশপ কর্নার এবং লাইভ মিউজিকের জন্য গোল আলপনাযুক্ত পারফরম্যান্স স্টেজ।',
+    },
+    execution: {
+      en: 'Fabricated eco-friendly folk pavilions, curated top folk-fusion bands for live atrium concerts, set up live block-printing crafting stations with organic dyes, and engaged thousands of enthusiastic visitors in interactive art creation.',
+      bn: 'পরিবেশবান্ধব কারুশিল্প প্যাভিলিয়ন নির্মাণ, তরুণদের প্রিয় লোক-ফিউশন ব্যান্ডদের লাইভ কনসার্ট, অর্গানিক রঙের লাইভ ব্লকপ্রিন্টিং স্টেশন এবং হাজারো দর্শনার্থীকে সরাসরি সম্পৃক্ত করে এক প্রাণবন্ত উৎসবের আবহ তৈরি করা হয়।',
+    },
+    results: {
+      en: [
+        'Over 65,000 visitors experienced the activation across 5 days, increasing mall dwell time by 74%.',
+        'More than 3,200 personalized block-printed fabrics created live by attendees.',
+        'Viral organic reach across Instagram and Facebook with thousands of attendee-generated photo tags.',
+        'Tenant retail outlets reported an average 32% increase in sales during the activation period.',
+      ],
+      bn: [
+        '৫ দিনে ৬৫,০০০ এরও বেশি মানুষ উৎসব উপভোগ করেন এবং মলে সময় কাটানোর হার ৭৪% বৃদ্ধি পায়।',
+        '৩,২০০ জনেরও বেশি দর্শনার্থী নিজ হাতে ব্লকপ্রিন্ট করে নিজেদের ফ্যাব্রিক তৈরি করেন।',
+        'ইনস্টাগ্রাম ও ফেসবুকে হাজার হাজার ছবি ও ভিডিও পোস্টের মাধ্যমে ব্যাপক ভাইরাল অর্গানিক রিচ অর্জন।',
+        'উৎসব চলাকালীন সেন্টারের রিটেইল ও ফুড আউটলেটসমূহের বিক্রি গড়ে ৩২% বৃদ্ধি পায়।',
+      ],
+    },
+    quote: {
+      text: {
+        en: 'The vibrancy and cultural soul Berlo brought to Centerpoint was phenomenal. Our atrium was filled with life, laughter, and high-value customer engagement.',
+        bn: 'সেন্টারপয়েন্টে বার্লো যে প্রাণবন্ততা এবং সাংস্কৃতিক নান্দনিকতা এনেছে তা অসাধারণ। আমাদের অ্যাট্রিয়াম প্রাণবন্ত জনসমাগম ও উচ্ছ্বাসে ভরে উঠেছিল।',
+      },
+      author: 'Operations Directorate',
+      designation: {
+        en: 'Centerpoint Commercial Properties',
+        bn: 'সেন্টারপয়েন্ট বাণিজ্যিক পরিচালন পর্ষদ',
+      },
+    },
+    servicesProvided: [
+      'Experiential Spatial Design',
+      'Folk Art Fabrication',
+      'Live Musical Stage Production',
+      'Crowd Management & Engagement',
+      'Social Media Campaigning',
+    ],
+  },
+  {
+    id: 'city-bank-amex-ultramarine-activation',
+    slug: 'city-bank-amex-ultramarine-activation',
+    title: {
+      en: 'City Bank American Express Ultramarine Premium Activation & Origami Experience',
+      bn: 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন প্রিমিয়াম অ্যাক্টিভেশন ও অরিগামি এক্সপেরিয়েন্স',
+    },
+    clientName: 'City Bank PLC & American Express',
+    industry: { en: 'Banking & Luxury Financial Services', bn: 'ব্যাংকিং ও প্রিমিয়াম ফিনান্সিয়াল সার্ভিস' },
+    category: 'corporate',
+    featured: true,
+    timeline: '3 Weeks Campaign',
+    heroMetrics: [
+      { value: '850+', label: { en: 'Card Applications Initiated', bn: 'প্রিমিয়াম ক্রেডিট কার্ড আবেদনপত্র' } },
+      { value: '15,000+', label: { en: 'Immersive Booth Interactions', bn: 'লাউঞ্জ ও বুথ প্রত্যক্ষ পরিদর্শন' } },
+      { value: '98%', label: { en: 'Customer Brand Affinity', bn: 'ব্র্যান্ড সন্তুষ্টি ও ইতিবাচক প্রতিক্রিয়া' } },
+    ],
+    overview: {
+      en: 'An ultra-premium brand experience combining high-touch financial advisory for the City Bank American Express Ultramarine Credit Card with poetic spatial art installations featuring suspended origami clouds, pottery wheels, and Victorian floral sets.',
+      bn: 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন ক্রেডিট কার্ডের প্রিমিয়াম পরিচিতি নিশ্চিত করতে এক আধুনিক লাইফস্টাইল অ্যাক্টিভেশন, যেখানে আধুনিক ফাইন্যান্সিয়াল সার্ভিসের সাথে ভাসমান অরিগামি মেঘ, মৃৎশিল্প এবং ভিক্টোরিয়ান ফ্লোরাল লাউঞ্জের সমন্বয় ঘটানো হয়।',
+    },
+    challenge: {
+      en: 'Positioning an elite credit card product requires transcending conventional sales kiosks. The client needed an upscale environment that reflected elegance, craftsmanship, and bespoke luxury.',
+      bn: 'সাধারণ ব্যাংকিং বুথের বদলে একটি অভিজাত কার্ডের জন্য প্রয়োজন ছিল এমন এক প্রিমিয়াম আবহ, যা আভিজাত্য, শিল্পনৈপুণ্য এবং আধুনিক বিলাসিতাকে সুন্দরভাবে তুলে ধরে।',
+    },
+    strategy: {
+      en: 'Berlo fused high-end financial consulting with artisanal creativity: a contemporary backlit Amex Ultramarine activation booth alongside an ethereal origami bird ceiling installation and a live master potter sculpting clay on a wheel.',
+      bn: 'বার্লো আধুনিক ফিনান্সিয়াল কনসাল্টিংয়ের সাথে শিল্পের মেলবন্ধন ঘটায়: ব্যাকলিট লাক্সারি অ্যামেক্স আল্ট্রামেরিন বুথ, ছাদ থেকে ঝুলন্ত শ্বেত মেঘ ও শান্তির কপোত অরিগামি এবং কুমোরের জীবন্ত মৃৎশিল্প কর্নার।',
+    },
+    execution: {
+      en: 'Custom-built the American Express illuminated pavilion, installed overhead cloud and paper-dove spatial sculptures, provided professional brand ambassadors, and designed a fresh floral Victorian throne for guest portraits.',
+      bn: 'আমেরিকান এক্সপ্রেসের আলোকোজ্জ্বল ব্র্যান্ডিং প্যাভিলিয়ন নির্মাণ, মেঘ ও পাখির শৈল্পিক ভাস্কর্য স্থাপন, প্রশিক্ষিত ব্র্যান্ড অ্যাম্বাসেডর সমন্বয় এবং তাজা ফুলের ফটোবুথ স্থাপন করা হয়।',
+    },
+    results: {
+      en: [
+        'Exceeded premium card onboarding targets by 140% during the activation.',
+        'Recognized by City Bank leadership as one of the most aesthetically distinguished mall campaigns of the year.',
+        'High dwell time and deep customer appreciation for the integrated artisan workshops.',
+        'Extensive brand visibility across high-net-worth shopper demographics.',
+      ],
+      bn: [
+        'অ্যাক্টিভেশন চলাকালীন প্রিমিয়াম কার্ড সংগ্রহের লক্ষ্যমাত্রা ১৪০% অতিক্রম।',
+        'সিটি ব্যাংক কর্তৃপক্ষের দ্বারা বছরের অন্যতম নান্দনিক মল ক্যাম্পেইন হিসেবে প্রশংসিত।',
+        'ঐতিহ্যবাহী মৃৎশিল্প ও অরিগামি ওয়ার্কশপে গ্রাহকদের বিপুল আগ্রহ ও সময় অতিবাহিত।',
+        'উচ্চ আয়ের গ্রাহক শ্রেণির মাঝে কার্ডটির দৃশ্যমানতা ও গ্রহণযোগ্যতা বহুলাংশে বৃদ্ধি।',
+      ],
+    },
+    quote: {
+      text: {
+        en: 'The experiential execution provided by Berlo set a new benchmark for banking retail activations in Bangladesh. The spatial aesthetics drew immense organic traction.',
+        bn: 'বার্লোর এক্সপেরিয়েন্সিয়াল বাস্তবায়ন বাংলাদেশে ব্যাংকিং রিটেল অ্যাক্টিভেশনে এক নতুন মাইলফলক স্থাপন করেছে। তাদের নান্দনিক পরিবেশ অসাধারণ সাড়া ফেলেছিল।',
+      },
+      author: 'Retail Banking Division',
+      designation: {
+        en: 'City Bank American Express Division',
+        bn: 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস বিভাগ',
+      },
+    },
+    servicesProvided: [
+      'Luxury Brand Activation',
+      'Spatial & Environmental Art Direction',
+      'Brand Ambassador Training',
+      'Interactive Craft Stations',
+      'Lead Generation Operations',
+    ],
+  },
+  {
     id: 'fintech-reputation-elevation',
     slug: 'fintech-reputation-elevation',
     title: {

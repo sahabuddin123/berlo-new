@@ -34,6 +34,9 @@ export const WorkListingPage: React.FC = () => {
 
   // Map authentic imagery to project items
   const projectImages: Record<string, string> = {
+    'bangladesh-leather-footwear-expo-iccb': '/images/berlo/projects/iccb-expo-confucius-stage.jpg',
+    'centerpoint-autumn-cultural-activation': '/images/berlo/projects/centerpoint-atrium-musical-stage.jpg',
+    'city-bank-amex-ultramarine-activation': '/images/berlo/projects/amex-ultramarine-lounge-activation.jpg',
     'fintech-reputation-elevation': '/images/berlo/media_1794917571021_869ec669.png',
     'telecom-5g-launch': '/images/berlo/media_1794917667301_ec42fff0.jpg',
     'pharmaceutical-product-recall-crisis': '/images/berlo/media_1794918294861_9ae416c9.jpg',

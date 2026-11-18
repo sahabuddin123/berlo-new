@@ -649,6 +649,57 @@ export const HomePage: React.FC = () => {
   // 4 Featured Recent Projects from live Berlo portfolio with rich strategic attributes
   const featuredProjects = [
     {
+      id: 'bangladesh-leather-footwear-expo-iccb',
+      categoryType: 'events',
+      title: lang === 'bn' ? '১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো ও আন্তর্জাতিক ট্রেড সামিট' : '10th Bangladesh Leather & Footwear Expo & Trade Summit at ICCB',
+      category: lang === 'bn' ? 'আন্তর্জাতিক বাণিজ্য ও এক্সপো' : 'International Trade & Industrial Expos',
+      metric: lang === 'bn' ? '১৮,০০০+ ট্রেড ভিজিটর' : '18,000+ Trade Attendees',
+      submetric: lang === 'bn' ? '১২০+ আন্তর্জাতিক প্যাভিলিয়ন' : '120+ Global Exhibitor Booths',
+      deliverables: lang === 'bn' ? 'ডিজিটাল স্টেজ লঞ্চ • ভিআইপি প্রটোকল • প্রেস সিন্ডিকেশন' : 'Digital Stage Launch • VIP Protocol • Press Syndication',
+      desc: lang === 'bn'
+        ? 'আইসিসিবি হল-০৪-এ অনুষ্ঠিত ১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো, ৭ম নন-ওভেন এক্সপো এবং কনফুসিয়াস ইনস্টিটিউট উন্মোচন অনুষ্ঠানের সামগ্রিক ইভেন্ট পরিকল্পনা ও কূটনৈতিক প্রটোকল সমন্বয়।'
+        : 'Comprehensive event planning, VIP protocol, media relations, and digital stage launch production for the 10th Bangladesh Leather & Footwear Expo and Confucius Institute Unveiling at ICCB.',
+      image: '/images/berlo/projects/iccb-expo-confucius-stage.jpg',
+      link: '/work/bangladesh-leather-footwear-expo-iccb',
+      client: 'Limra Trade Events & International Consortium',
+      year: '2026',
+      tag: '#TradeExpo',
+    },
+    {
+      id: 'centerpoint-autumn-cultural-activation',
+      categoryType: 'events',
+      title: lang === 'bn' ? 'সেন্টারপয়েন্ট এক্সপেরিয়েন্সিয়াল কালচারাল অ্যাক্টিভেশন ও কারুশিল্প উৎসব' : 'Centerpoint Experiential Cultural Activation & Heritage Art Showcase',
+      category: lang === 'bn' ? 'ব্র্যান্ড অ্যাক্টিভেশন ও ফোক আর্ট' : 'Retail & Experiential Brand Activation',
+      metric: lang === 'bn' ? '৬৫,০০০+ গ্রাহক সমাগম' : '65,000+ Footfall During Activation',
+      submetric: lang === 'bn' ? '৩,২০০+ ওয়ার্কশপ অংশগ্রহণকারী' : '3,200+ Live Artisans Engaged',
+      deliverables: lang === 'bn' ? 'ফোক আর্ট প্যাভিলিয়ন • লাইভ আলপনা স্টেজ • ব্লকপ্রিন্ট' : 'Folk Art Fabrication • Live Alpona Concert • Block Printing',
+      desc: lang === 'bn'
+        ? 'সেন্টারপয়েন্টের সেন্ট্রাল অ্যাট্রিয়ামে ঐতিহ্যবাহী বাঙালি লোকশিল্প, লাইভ অ্যাকোস্টিক সঙ্গীতমঞ্চ এবং দর্শনার্থীদের সরাসরি অংশগ্রহণের বর্ণাঢ্য কারুশিল্পের মেলবন্ধন।'
+        : 'A high-impact lifestyle and cultural activation transforming Centerpoint’s grand atrium into a living celebration of Bengali folk crafts, live acoustic musical stages, and interactive workshops.',
+      image: '/images/berlo/projects/centerpoint-atrium-musical-stage.jpg',
+      link: '/work/centerpoint-autumn-cultural-activation',
+      client: 'Centerpoint Commercial Properties',
+      year: '2026',
+      tag: '#CulturalActivation',
+    },
+    {
+      id: 'city-bank-amex-ultramarine-activation',
+      categoryType: 'trade',
+      title: lang === 'bn' ? 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন প্রিমিয়াম অ্যাক্টিভেশন' : 'City Bank American Express Ultramarine Premium Activation & Origami Lounge',
+      category: lang === 'bn' ? 'প্রিমিয়াম করপোরেট অ্যাক্টিভেশন' : 'Luxury Banking & Experiential Brand Activation',
+      metric: lang === 'bn' ? '৮৫০+ প্রিমিয়াম কার্ড আবেদন' : '850+ Card Applications Initiated',
+      submetric: lang === 'bn' ? '১৫,০০০+ বুথ প্রত্যক্ষ পরিদর্শন' : '15,000+ Immersive Booth Interactions',
+      deliverables: lang === 'bn' ? 'আলোকোজ্জ্বল প্যাভিলিয়ন • অরিগামি ক্লাউডস • ফ্লোরাল স্যুট' : 'Illuminated Pavilion • Suspended Origami Clouds • Floral Set',
+      desc: lang === 'bn'
+        ? 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন ক্রেডিট কার্ডের প্রিমিয়াম পরিচিতি নিশ্চিত করতে আধুনিক লাইফস্টাইল অ্যাক্টিভেশন ও অরিগামি মেঘমালার শৈল্পিক পরিবেশনা।'
+        : 'An ultra-premium brand experience combining high-touch financial advisory for the Amex Ultramarine Credit Card with poetic spatial art installations and live artisan corners.',
+      image: '/images/berlo/projects/amex-ultramarine-lounge-activation.jpg',
+      link: '/work/city-bank-amex-ultramarine-activation',
+      client: 'City Bank PLC & American Express',
+      year: '2026',
+      tag: '#AmexUltramarine',
+    },
+    {
       id: 'dhaka-trade-fair',
       categoryType: 'trade',
       title: lang === 'bn' ? 'ঢাকা আন্তর্জাতিক বাণিজ্য মেলা (DITF) প্যাভিলিয়ন পিআর' : 'Dhaka International Trade Fair (DITF) Pavilion PR',
@@ -857,55 +908,55 @@ export const HomePage: React.FC = () => {
     { name: 'Export Promotion Bureau', logo: '/images/berlo/clients/epbb.jpg' },
   ];
 
-  // 12 Photos for "Memories & Moments" mosaic with REAL images from live Berlo website galleries
+  // 12 Photos for "Memories & Moments" mosaic with REAL images from live Berlo website galleries & activations
   const momentPhotos = [
     {
-      title: lang === 'bn' ? 'ঢাকা আন্তর্জাতিক বাণিজ্য মেলা প্যাভিলিয়ন' : 'Dhaka International Trade Fair Pavilion',
-      url: '/images/berlo/projects/dhaka-trade-fair_3-1.jpg',
+      title: lang === 'bn' ? '১০ম বাংলাদেশ লেদার অ্যান্ড ফুটওয়্যার এক্সপো — ডিজিটাল স্টেজ উদ্বোধন' : '10th Bangladesh Leather & Footwear Expo — Digital Stage Launch',
+      url: '/images/berlo/gallery/gallery-iccb-digital-launch.jpg',
     },
     {
-      title: lang === 'bn' ? 'সিনোভা হেলথকেয়ার কর্পোরেট গালা' : 'Synova Healthcare Corporate Gala',
-      url: '/images/berlo/projects/event-management_synova.jpg',
+      title: lang === 'bn' ? 'সেন্টারপয়েন্ট ঐতিহ্যবাহী কারুশিল্প উৎসব — লাইভ আলপনা সঙ্গীতমঞ্চ' : 'Centerpoint Heritage Art Fest — Live Alpona Concert Stage',
+      url: '/images/berlo/gallery/gallery-centerpoint-alpona-stage.jpg',
     },
     {
-      title: lang === 'bn' ? 'জাতীয় গণমাধ্যম প্রেস কনফারেন্স পরিচালনা' : 'National Broadcast Press Conference',
-      url: '/images/berlo/projects/production-crisis_1.jpg',
+      title: lang === 'bn' ? 'সেন্টারপয়েন্ট ফোক আর্ট ইন্সটলেশন — মৃৎশিল্প ও হ্যান্ডলুম প্রদর্শনী' : 'Centerpoint Folk Art Installation — Terracotta & Handloom Backdrop',
+      url: '/images/berlo/gallery/gallery-centerpoint-folk-art-backdrop.jpg',
     },
     {
-      title: lang === 'bn' ? 'সি-সুইট এক্সিকিউটিভ স্পিকার প্রোগ্রাম' : 'Executive C-Suite Speaker Program',
-      url: '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195434-56b4a48d.jpg',
+      title: lang === 'bn' ? 'ঐতিহ্যবাহী ব্লক প্রিন্টিং কর্মশালা — সরাসরি অংশগ্রহণমূলক সেশন' : 'Traditional Block Printing Atelier — Hands-On Workshop',
+      url: '/images/berlo/gallery/gallery-centerpoint-block-printing.jpg',
     },
     {
-      title: lang === 'bn' ? 'বাণিজ্য মেলা উদ্বোধনী প্রেস ব্রিফিং' : 'Trade Fair Opening Press Briefing',
-      url: '/images/berlo/projects/dhaka-trade-fair_1-1.jpg',
+      title: lang === 'bn' ? 'সিটি ব্যাংক আমেরিকান এক্সপ্রেস আল্ট্রামেরিন — লাক্সারি প্রোডাক্ট লাউঞ্জ' : 'City Bank American Express Ultramarine — Luxury Product Lounge',
+      url: '/images/berlo/gallery/gallery-amex-ultramarine-booth.jpg',
     },
     {
-      title: lang === 'bn' ? 'কর্পোরেট অংশীদারিত্ব চুক্তি স্বাক্ষর' : 'Corporate Partnership Agreement Gala',
-      url: '/images/berlo/projects/event-management_8-1.jpg',
+      title: lang === 'bn' ? 'অরিগামি স্পেশাল ইন্সটলেশন — ঝুলন্ত শ্বেত কপোত ও ভাসমান মেঘ' : 'Origami Spatial Installation — Suspended Paper Doves & Cloudscape',
+      url: '/images/berlo/gallery/gallery-centerpoint-origami-clouds.jpg',
     },
     {
-      title: lang === 'bn' ? 'জরুরি ক্রাইসিস ওয়ার-রুম বিশ্লেষণ' : 'Crisis War-Room Strategic Analysis',
-      url: '/images/berlo/projects/production-crisis_2.jpg',
+      title: lang === 'bn' ? 'মৃৎশিল্পীর সরাসরি পরিবেশনা — জীবন্ত মাটির পাত্র তৈরির চাকা' : 'Master Potter Live Demonstration — Clay Crafting Wheel',
+      url: '/images/berlo/gallery/gallery-centerpoint-pottery-artisan.jpg',
     },
     {
-      title: lang === 'bn' ? 'টেলিভিশন স্টুডিও সরাসরি সম্প্রচার' : 'Prime-Time Broadcast Coordination',
-      url: '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195433-b8e9e550.jpg',
+      title: lang === 'bn' ? 'ভিক্টোরিয়ান বোটানিক্যাল পোর্ট্রেট স্যুট — তাজা ফুলের নান্দনিক সেট' : 'Victorian Botanical Portrait Suite — Fresh Hydrangea Floral Installation',
+      url: '/images/berlo/gallery/gallery-centerpoint-floral-throne.jpg',
     },
     {
-      title: lang === 'bn' ? 'আন্তর্জাতিক বাণিজ্য ডেলিগেশন অভ্যর্থনা' : 'International Delegation Reception',
-      url: '/images/berlo/projects/dhaka-trade-fair_2-1.jpg',
+      title: lang === 'bn' ? 'সেন্টারপয়েন্ট গ্র্যান্ড ফেস্ট — শত শত দর্শকের উচ্ছ্বসিত উপস্থিতি' : 'Centerpoint Grand Fest — Hundreds of Spectators Cheering Live',
+      url: '/images/berlo/gallery/gallery-centerpoint-enthusiastic-audience.jpg',
     },
     {
-      title: lang === 'bn' ? 'বার্ষিক ব্র্যান্ড এক্সিলেন্স অ্যাওয়ার্ড' : 'Annual Brand Excellence Recognition',
-      url: '/images/berlo/projects/event-management_7-1.jpg',
+      title: lang === 'bn' ? 'কনফুসিয়াস ইনস্টিটিউট উন্মোচন অনুষ্ঠান — সাংস্কৃতিক পরিবেশনা' : 'Confucius Institute Unveiling Ceremony — Cultural Showcase',
+      url: '/images/berlo/gallery/gallery-iccb-cultural-dance.jpg',
     },
     {
-      title: lang === 'bn' ? 'গণমাধ্যম সম্পাদকীয় রাউন্ডটেবিল' : 'Editorial Leaders Media Roundtable',
-      url: '/images/berlo/projects/production-crisis_3.jpg',
+      title: lang === 'bn' ? 'বাংলাদেশ লেদার ও নন-ওভেন এক্সপো — গ্র্যান্ড এন্ট্রান্স প্যাভিলিয়ন' : 'Bangladesh Leather & Non-Woven Expo — Grand Entrance Pavilion',
+      url: '/images/berlo/gallery/gallery-iccb-entrance-expo.jpg',
     },
     {
-      title: lang === 'bn' ? 'বার্লো স্ট্র্যাটেজিক কনফারেন্স টিম' : 'Berlo Strategic Conference Team',
-      url: '/images/berlo/about-3.jpg',
+      title: lang === 'bn' ? 'আন্তর্জাতিক বাণিজ্য ডেলিগেশন অভ্যর্থনা ও ভিআইপি প্রটোকল' : 'International Trade Expo — VIP Protocol & Delegate Reception',
+      url: '/images/berlo/projects/iccb-expo-red-carpet-delegates.jpg',
     },
   ];
 
@@ -1021,6 +1072,12 @@ export const HomePage: React.FC = () => {
   const projectsDisplayCount = projectsSection?.metadata?.display_count || 4;
   const selectedProjectSlugs: string[] = projectsSection?.metadata?.selected_project_slugs || [];
 
+  const projectImageFallbackMap: Record<string, string> = {
+    'bangladesh-leather-footwear-expo-iccb': '/images/berlo/projects/iccb-expo-confucius-stage.jpg',
+    'centerpoint-autumn-cultural-activation': '/images/berlo/projects/centerpoint-atrium-musical-stage.jpg',
+    'city-bank-amex-ultramarine-activation': '/images/berlo/projects/amex-ultramarine-lounge-activation.jpg',
+  };
+
   const rawProjects = (dbProjects.length > 0
     ? dbProjects.map((p) => ({
         id: p.slug || String(p.id),
@@ -1032,7 +1089,7 @@ export const HomePage: React.FC = () => {
         submetric: p.heroMetrics?.[1]?.value ? `${p.heroMetrics[1].value} ${lang === 'bn' ? p.heroMetrics[1].label.bn : p.heroMetrics[1].label.en}` : (p as any).impact_en ? (lang === 'bn' ? ((p as any).impact_bn || (p as any).impact_en) : (p as any).impact_en) : (lang === 'bn' ? '২৫ লক্ষ+ দর্শনার্থী সংযোগ' : '2.5M+ On-Ground Reach'),
         deliverables: p.servicesProvided?.join(' • ') || (lang === 'bn' ? 'ভিআইপি প্রেস ব্রিফিং • মন্ত্রী পর্যায়ের প্রটোকল' : 'VIP Press Briefing • Ministerial Protocol'),
         desc: lang === 'bn' ? (p.overview?.bn || p.challenge?.bn || (p as any).overview_bn) : (p.overview?.en || p.challenge?.en || (p as any).overview_en),
-        image: (p as any).cover_image || (p as any).image_url || (p as any).hero_image || (p.slug.includes('trade') ? '/images/berlo/projects/dhaka-trade-fair_cover.jpg' : p.slug.includes('synova') || p.slug.includes('event') ? '/images/berlo/projects/event-management_synova.jpg' : p.slug.includes('crisis') ? '/images/berlo/projects/production-crisis_cover-1.jpg' : '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195434-56b4a48d.jpg'),
+        image: (p as any).cover_image || (p as any).image_url || (p as any).hero_image || projectImageFallbackMap[p.slug] || (p.slug.includes('trade') ? '/images/berlo/projects/dhaka-trade-fair_cover.jpg' : p.slug.includes('synova') || p.slug.includes('event') ? '/images/berlo/projects/event-management_synova.jpg' : p.slug.includes('crisis') ? '/images/berlo/projects/production-crisis_cover-1.jpg' : '/images/berlo/projects/speaker-program_whatsapp-image-2025-07-31-at-195434-56b4a48d.jpg'),
         link: `/work/${p.slug}`,
         client: p.clientName || (p as any).client_name || 'Export Promotion Bureau (EPB)',
         year: p.timeline || (p as any).year || '2025–2026',
