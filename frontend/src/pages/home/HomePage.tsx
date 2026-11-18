@@ -1189,7 +1189,7 @@ export const HomePage: React.FC = () => {
               </h1>
 
               {/* Responsive Description with clean word alignment on mobile */}
-              <p className="text-[15px] sm:text-[16.5px] lg:text-[17px] xl:text-[19px] text-[#475569] dark:text-[#7A7A7A] leading-[1.65] text-left sm:text-justify font-normal">
+              <p className="text-[14px] sm:text-[15.5px] lg:text-[16px] xl:text-[17.5px] text-[#475569] dark:text-[#7A7A7A] leading-[1.65] text-left sm:text-justify font-normal">
                 {(lang === 'bn' ? dynamicHero?.subtitle_bn : dynamicHero?.subtitle_en) ||
                   (lang === 'bn'
                     ? 'বার্লো কমিউনিকেশন্সে আপনাকে স্বাগতম—বাংলাদেশের অন্যতম শীর্ষস্থানীয় করপোরেট পিআর ও কৌশলগত যোগাযোগ সংস্থা। আমাদের উদ্ভাবনী কৌশল ও ফলমুখী দৃষ্টিভঙ্গির মাধ্যমে আমরা শীর্ষ প্রতিষ্ঠান ও বহুজাতিক ব্র্যান্ডের দীর্ঘমেয়াদী সুনাম বিনির্মাণ ও সংকট ব্যবস্থাপনা পরিচালনা করি।'
@@ -1524,7 +1524,7 @@ export const HomePage: React.FC = () => {
                       </div>
 
                       {/* Title: Centered on Mobile matching IMBD */}
-                      <h3 className="text-[19px] sm:text-[21px] lg:text-[22px] font-bold text-slate-900 dark:text-white mt-5 sm:mt-6 group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-snug text-center md:text-left">
+                      <h3 className="text-[17px] sm:text-[18.5px] lg:text-[19.5px] font-bold text-slate-900 dark:text-white mt-5 sm:mt-6 group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-snug text-center md:text-left">
                         {service.title}
                       </h3>
 
@@ -1586,7 +1586,7 @@ export const HomePage: React.FC = () => {
             {/* Right Column: Exact Stepper Form (Personal Info, Contact Info, Message) */}
             <div className="lg:col-span-6 space-y-6 text-left">
               <div>
-                <h2 className="text-[32px] sm:text-[40px] font-bold text-slate-900 dark:text-white tracking-tight">
+                <h2 className="text-[26px] sm:text-[32px] font-bold text-slate-900 dark:text-white tracking-tight">
                   {renderStyledSectionTitle(
                     lang === 'bn' ? consultancySection?.title_bn : consultancySection?.title_en,
                     lang === 'bn' ? <>ফ্রি <span className="b-border">পরামর্শ গ্রহণ</span></> : <>Book a Free <span className="b-border">Consultancy</span></>,
@@ -1958,7 +1958,7 @@ export const HomePage: React.FC = () => {
                         {idx + 1}
                       </div>
                       <div>
-                        <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                        <h4 className="text-[15.5px] font-semibold text-slate-900 dark:text-white">
                           {lang === 'bn' ? pillar.title_bn : pillar.title_en}
                         </h4>
                         <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
@@ -1975,7 +1975,7 @@ export const HomePage: React.FC = () => {
                       1
                     </div>
                     <div>
-                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                      <h4 className="text-[15.5px] font-semibold text-slate-900 dark:text-white">
                         {lang === 'bn' ? 'শীর্ষ গণমাধ্যমে সরাসরি সংযোগ' : 'Unmatched Tier-1 Media Access'}
                       </h4>
                       <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
@@ -1991,7 +1991,7 @@ export const HomePage: React.FC = () => {
                       2
                     </div>
                     <div>
-                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                      <h4 className="text-[15.5px] font-semibold text-slate-900 dark:text-white">
                         {lang === 'bn' ? '২৪/৭ দ্রুত সংকট মোকাবিলা প্রটোকল' : 'Rapid 24/7 Crisis Protocol'}
                       </h4>
                       <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
@@ -2007,7 +2007,7 @@ export const HomePage: React.FC = () => {
                       3
                     </div>
                     <div>
-                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                      <h4 className="text-[15.5px] font-semibold text-slate-900 dark:text-white">
                         {lang === 'bn' ? 'তথ্য ও বিশ্লেষণনির্ভর সেন্টিনেল ইন্টেলিজেন্স' : 'Data-Driven Sentiment Intelligence'}
                       </h4>
                       <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
@@ -2023,7 +2023,7 @@ export const HomePage: React.FC = () => {
                       4
                     </div>
                     <div>
-                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                      <h4 className="text-[15.5px] font-semibold text-slate-900 dark:text-white">
                         {lang === 'bn' ? 'সারাদেশে কার্যক্রম পরিচালনার সক্ষমতা' : 'Pan-Bangladesh Operational Reach'}
                       </h4>
                       <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
@@ -2039,7 +2039,7 @@ export const HomePage: React.FC = () => {
                       5
                     </div>
                     <div>
-                      <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                      <h4 className="text-[15.5px] font-semibold text-slate-900 dark:text-white">
                         {lang === 'bn' ? 'বোর্ডরুমের পূর্ণ গোপনীয়তা ও বিশ্বস্ততা' : 'Absolute Boardroom Confidentiality'}
                       </h4>
                       <p className="text-[14px] text-slate-600 dark:text-[#7A7A7A] mt-0.5">
@@ -2350,7 +2350,7 @@ export const HomePage: React.FC = () => {
                       {activeProjects[0]?.client || featuredProjects[0].client}
                     </div>
                     
-                    <h3 className="text-[24px] sm:text-[28px] font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-tight">
+                    <h3 className="text-[20px] sm:text-[23px] font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-tight">
                       {activeProjects[0]?.title || featuredProjects[0].title}
                     </h3>
                     
@@ -2419,7 +2419,7 @@ export const HomePage: React.FC = () => {
 
                     {/* Content: Title Only */}
                     <div className="p-6">
-                      <h4 className="text-[18px] sm:text-[19px] font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-snug line-clamp-2">
+                      <h4 className="text-[16px] sm:text-[17px] font-bold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors leading-snug line-clamp-2">
                         {project.title}
                       </h4>
                     </div>
@@ -2522,7 +2522,7 @@ export const HomePage: React.FC = () => {
 
                     {/* Bottom Info inside visual */}
                     <div className="absolute bottom-4 inset-x-5 z-10 space-y-1">
-                      <h3 className="text-[22px] font-bold text-white group-hover:text-[#B833FF] transition-colors tracking-tight">
+                      <h3 className="text-[19px] font-bold text-white group-hover:text-[#B833FF] transition-colors tracking-tight">
                         {member.name}
                       </h3>
                       <div className="text-xs font-semibold text-slate-200 tracking-wide">
@@ -2660,7 +2660,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-[18px] font-semibold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors line-clamp-2 leading-snug">
+                  <h3 className="text-[16px] font-semibold text-slate-900 dark:text-white group-hover:text-[#A302FF] dark:group-hover:text-[#B833FF] transition-colors line-clamp-2 leading-snug">
                     {article.title[lang]}
                   </h3>
                 </div>
@@ -2688,7 +2688,7 @@ export const HomePage: React.FC = () => {
               <span>{lang === 'bn' ? pageSections['cta'].badge_bn || pageSections['cta'].badge_en : pageSections['cta'].badge_en}</span>
             </div>
           )}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight max-w-3xl mx-auto">
             {renderStyledSectionTitle(
               lang === 'bn' ? pageSections['cta']?.title_bn : pageSections['cta']?.title_en,
               lang === 'bn'
